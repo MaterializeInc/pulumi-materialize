@@ -12,27 +12,28 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package xyz
+package materialize
 
 import (
 	"fmt"
 	"path/filepath"
 
+	"provider/pkg/version"
+
+	materialize "github.com/MaterializeInc/terraform-provider-materialize/pkg"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 	shim "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim"
 	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v2"
-	"github.com/pulumi/pulumi-xyz/provider/pkg/version"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
-	"github.com/terraform-providers/terraform-provider-xyz/xyz"
 )
 
 // all of the token components used below.
 const (
 	// This variable controls the default name of the package in the package
 	// registries for nodejs and python:
-	mainPkg = "xyz"
+	mainPkg = "materialize"
 	// modules:
-	mainMod = "index" // the xyz module
+	mainMod = "index" // the materialize module
 )
 
 // preConfigureCallback is called before the providerConfigure function of the underlying provider.
@@ -46,70 +47,59 @@ func preConfigureCallback(vars resource.PropertyMap, c shim.ResourceConfig) erro
 // Provider returns additional overlaid schema and metadata associated with the provider..
 func Provider() tfbridge.ProviderInfo {
 	// Instantiate the Terraform provider
-	p := shimv2.NewProvider(xyz.Provider())
+	p := shimv2.NewProvider(materialize.Provider())
 
 	// Create a Pulumi provider mapping
 	prov := tfbridge.ProviderInfo{
-		P:    p,
-		Name: "xyz",
-		// DisplayName is a way to be able to change the casing of the provider
-		// name when being displayed on the Pulumi registry
-		DisplayName: "",
-		// The default publisher for all packages is Pulumi.
-		// Change this to your personal name (or a company name) that you
-		// would like to be shown in the Pulumi Registry if this package is published
-		// there.
-		Publisher: "Pulumi",
-		// LogoURL is optional but useful to help identify your package in the Pulumi Registry
-		// if this package is published there.
-		//
-		// You may host a logo on a domain you control or add an SVG logo for your package
-		// in your repository and use the raw content URL for that file as your logo URL.
-		LogoURL: "",
-		// PluginDownloadURL is an optional URL used to download the Provider
-		// for use in Pulumi programs
-		// e.g https://github.com/org/pulumi-provider-name/releases/
-		PluginDownloadURL: "",
-		Description:       "A Pulumi package for creating and managing xyz cloud resources.",
-		// category/cloud tag helps with categorizing the package in the Pulumi Registry.
-		// For all available categories, see `Keywords` in
-		// https://www.pulumi.com/docs/guides/pulumi-packages/schema/#package.
-		Keywords:   []string{"pulumi", "xyz", "category/cloud"},
-		License:    "Apache-2.0",
-		Homepage:   "https://www.pulumi.com",
-		Repository: "https://github.com/pulumi/pulumi-xyz",
-		// The GitHub Org for the provider - defaults to `terraform-providers`. Note that this
-		// should match the TF provider module's require directive, not any replace directives.
-		GitHubOrg: "",
-		Config:    map[string]*tfbridge.SchemaInfo{
-			// Add any required configuration here, or remove the example below if
-			// no additional points are required.
-			// "region": {
-			// 	Type: tfbridge.MakeType("region", "Region"),
-			// 	Default: &tfbridge.DefaultInfo{
-			// 		EnvVars: []string{"AWS_REGION", "AWS_DEFAULT_REGION"},
-			// 	},
-			// },
-		},
+		P:                    p,
+		Name:                 "materialize",
+		Description:          "A Pulumi package for creating and managing materialize cloud resources.",
+		Keywords:             []string{"pulumi", "materialize", "category/cloud"},
+		License:              "Apache-2.0",
+		Publisher:            "Materialize Inc",
+		LogoURL:              "https://raw.githubusercontent.com/MaterializeInc/pulumi-materialize/main/assets/materialize.svg",
+		GitHubOrg:            "MaterializeInc",
+		Homepage:             "https://github.com/MaterializeInc/terraform-provider-materialize",
+		Repository:           "https://github.com/MaterializeInc/terraform-provider-materialize",
+		PluginDownloadURL:    "github://api.github.com/MaterializeInc/pulumi-materialize",
+		DisplayName:          "Materialize",
 		PreConfigureCallback: preConfigureCallback,
-		Resources:            map[string]*tfbridge.ResourceInfo{
-			// Map each resource in the Terraform provider to a Pulumi type. Two examples
-			// are below - the single line form is the common case. The multi-line form is
-			// needed only if you wish to override types or other default options.
-			//
-			// "aws_iam_role": {Tok: tfbridge.MakeResource(mainPkg, mainMod, "IamRole")}
-			//
-			// "aws_acm_certificate": {
-			// 	Tok: tfbridge.MakeResource(mainPkg, mainMod, "Certificate"),
-			// 	Fields: map[string]*tfbridge.SchemaInfo{
-			// 		"tags": {Type: tfbridge.MakeType(mainPkg, "Tags")},
-			// 	},
-			// },
+		Config:               map[string]*tfbridge.SchemaInfo{},
+		Resources: map[string]*tfbridge.ResourceInfo{
+			"materialize_cluster":                              {Tok: tfbridge.MakeResource(mainPkg, mainMod, "Cluster")},
+			"materialize_cluster_replica":                      {Tok: tfbridge.MakeResource(mainPkg, mainMod, "ClusterReplica")},
+			"materialize_connection_aws_privatelink":           {Tok: tfbridge.MakeResource(mainPkg, mainMod, "ConnectionAwsPrivatelink")},
+			"materialize_connection_confluent_schema_registry": {Tok: tfbridge.MakeResource(mainPkg, mainMod, "ConnectionConfluentSchemaRegistry")},
+			"materialize_connection_kafka":                     {Tok: tfbridge.MakeResource(mainPkg, mainMod, "ConnectionKafka")},
+			"materialize_connection_postgres":                  {Tok: tfbridge.MakeResource(mainPkg, mainMod, "ConnectionPostgres")},
+			"materialize_connection_ssh_tunnel":                {Tok: tfbridge.MakeResource(mainPkg, mainMod, "ConnectionSshTunnel")},
+			"materialize_database":                             {Tok: tfbridge.MakeResource(mainPkg, mainMod, "Database")},
+			"materialize_index":                                {Tok: tfbridge.MakeResource(mainPkg, mainMod, "Index")},
+			"materialize_materialized_view":                    {Tok: tfbridge.MakeResource(mainPkg, mainMod, "MaterializedView")},
+			"materialize_schema":                               {Tok: tfbridge.MakeResource(mainPkg, mainMod, "Schema")},
+			"materialize_secret":                               {Tok: tfbridge.MakeResource(mainPkg, mainMod, "Secret")},
+			"materialize_sink_kafka":                           {Tok: tfbridge.MakeResource(mainPkg, mainMod, "SinkKafka")},
+			"materialize_source_kafka":                         {Tok: tfbridge.MakeResource(mainPkg, mainMod, "SourceKafka")},
+			"materialize_source_load_generator":                {Tok: tfbridge.MakeResource(mainPkg, mainMod, "SourceLoadgen")},
+			"materialize_source_postgres":                      {Tok: tfbridge.MakeResource(mainPkg, mainMod, "SourcePostgres")},
+			"materialize_table":                                {Tok: tfbridge.MakeResource(mainPkg, mainMod, "Table")},
+			"materialize_view":                                 {Tok: tfbridge.MakeResource(mainPkg, mainMod, "View")},
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{
-			// Map each resource in the Terraform provider to a Pulumi function. An example
-			// is below.
-			// "aws_ami": {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getAmi")},
+			"materialize_cluster":           {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "GetClusters")},
+			"materialize_cluster_replica":   {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "GetClusterReplicas")},
+			"materialize_connection":        {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "GetConnections")},
+			"materialize_current_database":  {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "GetCurrentDatabase")},
+			"materialize_current_cluster":   {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "GetCurrentCluster")},
+			"materialize_database":          {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "GetDatabases")},
+			"materialize_index":             {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "GetIndexes")},
+			"materialize_materialized_view": {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "GetMaterializedViews")},
+			"materialize_schema":            {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "GetSchemas")},
+			"materialize_secret":            {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "GetSecrets")},
+			"materialize_sink":              {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "GetSinks")},
+			"materialize_source":            {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "GetSources")},
+			"materialize_table":             {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "GetTables")},
+			"materialize_view":              {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "GetViews")},
 		},
 		JavaScript: &tfbridge.JavaScriptInfo{
 			// List any npm dependencies and their versions
