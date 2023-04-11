@@ -15,8 +15,8 @@
 package main
 
 import (
-	materialize "provider"
-	"provider/pkg/version"
+	materialize "github.com/MaterializeInc/pulumi-materialize/provider"
+	"github.com/MaterializeInc/pulumi-materialize/provider/pkg/version"
 
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfgen"
 )

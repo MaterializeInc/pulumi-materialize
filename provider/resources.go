@@ -18,7 +18,7 @@ import (
 	"fmt"
 	"path/filepath"
 
-	"provider/pkg/version"
+	"github.com/MaterializeInc/pulumi-materialize/provider/pkg/version"
 
 	materialize "github.com/MaterializeInc/terraform-provider-materialize/pkg"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"

@@ -1,4 +1,4 @@
-module provider
+module github.com/MaterializeInc/pulumi-materialize/provider
 
 go 1.18
 
