@@ -20,7 +20,7 @@ import (
 
 	"github.com/MaterializeInc/pulumi-materialize/provider/pkg/version"
 
-	materialize "github.com/MaterializeInc/terraform-provider-materialize/pkg"
+	materialize "github.com/MaterializeInc/terraform-provider-materialize/pkg/provider"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 	shim "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim"
 	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v2"
