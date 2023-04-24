@@ -20,6 +20,8 @@ WORKING_DIR     := $(shell pwd)
 OS := $(shell uname)
 EMPTY_TO_AVOID_SED := ""
 
+VERSION ?= $(patsubst v%,%,$(shell git describe))
+
 prepare::
 	@if test -z "${NAME}"; then echo "NAME not set"; exit 1; fi
 	@if test -z "${REPOSITORY}"; then echo "REPOSITORY not set"; exit 1; fi
@@ -113,6 +115,12 @@ install_dotnet_sdk::
 	find . -name '*.nupkg' -print -exec cp -p {} ${WORKING_DIR}/nuget \;
 
 install_python_sdk::
+	rm -rf sdk/python
+	bin/pulumi-tfgen-materialize $(VERSION) python
+	cp README.md sdk/python/
+	cd sdk/python/ && \
+		sed -i.bak -e "s/0\.0\.0/$(VERSION)/g" setup.py && \
+		rm setup.py.bak
 
 install_go_sdk::
 
