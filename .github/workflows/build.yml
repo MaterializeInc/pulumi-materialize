@@ -1,0 +1,38 @@
+name: build
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  goreleaser-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      # https://github.com/actions/checkout/issues/290
+      - run: git fetch --force --tags
+      - uses: actions/setup-go@v2
+        with:
+          go-version: 1.18
+      - uses: actions/setup-python@v2
+        with:
+          python-version: 3.7
+      - uses: actions/setup-node@v2
+        with:
+          nodejs-version: 14.x
+      - uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 3.1.x
+      - run: make python-sdk
+      - run: make go-sdk
+      - run: make dotnet-sdk
+      - run: make nodejs-sdk
+      - uses: goreleaser/goreleaser-action@v2
+        with:
+          distribution: goreleaser
+          version: latest
+          args: build --skip-validate --rm-dist

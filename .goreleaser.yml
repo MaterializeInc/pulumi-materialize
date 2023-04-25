@@ -1,0 +1,25 @@
+archives:
+  - id: archive
+    name_template: "{{ .Binary }}-{{ .Tag }}-{{ .Os }}-{{ .Arch }}"
+before:
+  hooks:
+    - make tfgen
+builds:
+  - goarch:
+      - amd64
+      - arm64
+    goos:
+      - darwin
+      - windows
+      - linux
+    env:
+      - CGO_ENABLED=0
+    dir: ./provider
+    main: ./cmd/pulumi-resource-materialize
+    binary: pulumi-resource-materialize
+    ldflags:
+      - -X github.com/MaterializeInc/pulumi-materialize/provider/pkg/version.Version={{.Version}}
+      - -X github.com/MaterializeInc/terraform-provider-materializeio/materializeio.providerVersion=pulumi-materialize/{{.Version}}
+      - -X github.com/MaterializeInc/terraform-provider-materialize/honeycombio.providerVersion=pulumi-materialize/{{.Version}}
+changelog:
+  skip: true
