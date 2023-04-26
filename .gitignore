@@ -22,8 +22,6 @@ provider/**/schema-embed.json
 **/nuget
 **/dist
 
-/sdk/nodejs
-/sdk/dotnet
-/sdk/python
+sdk/*
 /dist/
 /provider/cmd/pulumi-resource-materialize/schema.go

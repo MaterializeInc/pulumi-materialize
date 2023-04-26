@@ -24,14 +24,14 @@ jobs:
           args: release --rm-dist
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - run: make python-sdk
+      - run: make python_sdk
       - run: python setup.py build sdist
         working-directory: sdk/python
       - uses: pypa/gh-action-pypi-publish@master
         with:
           password: ${{ secrets.PYPI_API_TOKEN }}
           packages_dir: sdk/python/dist/
-      - run: make nodejs-sdk
+      - run: make nodejs_sdk
       - run: |
           yarn install
           yarn run tsc
@@ -43,7 +43,7 @@ jobs:
           access: "public"
           token: ${{ secrets.NPM_TOKEN }}
           package: ${{github.workspace}}/sdk/nodejs/bin/package.json
-      # - run: make dotnet-sdk
+      # - run: make dotnet_sdk
       # - name: publish nuget package
       #   run: |
       #     dotnet nuget push ${{github.workspace}}/sdk/dotnet/bin/Debug/*.nupkg -s https://api.nuget.org/v3/index.json -k ${{ secrets.NUGET_PUBLISH_KEY }}
