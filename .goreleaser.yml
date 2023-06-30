@@ -1,0 +1,23 @@
+archives:
+  - id: archive
+    name_template: "{{ .Binary }}-{{ .Tag }}-{{ .Os }}-{{ .Arch }}"
+before:
+  hooks:
+    - make tfgen
+builds:
+  - goarch:
+      - amd64
+      - arm64
+    goos:
+      - darwin
+      - windows
+      - linux
+    env:
+      - CGO_ENABLED=0
+    dir: ./provider
+    main: ./cmd/pulumi-resource-materialize
+    binary: pulumi-resource-materialize
+    ldflags:
+      - -X main.version={{.Tag}}
+changelog:
+  skip: true
