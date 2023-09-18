@@ -6,3 +6,5 @@ updates:
       interval: weekly
       day: sunday
       time: "22:00"
+    allow:
+      - dependency-name: "terraform-provider-materialize"
