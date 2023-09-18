@@ -116,7 +116,7 @@ install_dotnet_sdk::
 
 install_python_sdk::
 	rm -rf sdk/python
-	bin/pulumi-tfgen-materialize $(VERSION) python
+	bin/pulumi-tfgen-materialize python --out sdk/python/
 	cp README.md sdk/python/
 	cd sdk/python/ && \
 		sed -i.bak -e "s/0\.0\.0/$(VERSION)/g" setup.py && \
@@ -127,7 +127,8 @@ install_go_sdk::
 install_nodejs_sdk::
 	yarn link --cwd $(WORKING_DIR)/sdk/nodejs/bin
 
-install_sdks:: install_dotnet_sdk install_python_sdk install_nodejs_sdk
+# install_sdks:: install_dotnet_sdk install_python_sdk install_nodejs_sdk
+install_sdks:: install_python_sdk
 
 test::
 	cd examples && go test -v -tags=all -parallel ${TESTPARALLELISM} -timeout 2h
