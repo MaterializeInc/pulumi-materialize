@@ -103,6 +103,7 @@ func Provider() tfbridge.ProviderInfo {
 			"materialize_source_kafka":                         {Tok: tfbridge.MakeResource(mainPkg, mainMod, "SourceKafka")},
 			"materialize_source_load_generator":                {Tok: tfbridge.MakeResource(mainPkg, mainMod, "SourceLoadgen")},
 			"materialize_source_postgres":                      {Tok: tfbridge.MakeResource(mainPkg, mainMod, "SourcePostgres")},
+			"materialize_source_webhook":                       {Tok: tfbridge.MakeResource(mainPkg, mainMod, "SourceWebhook")},
 			"materialize_source_grant":                         {Tok: tfbridge.MakeResource(mainPkg, mainMod, "GrantSource")},
 			"materialize_table":                                {Tok: tfbridge.MakeResource(mainPkg, mainMod, "Table")},
 			"materialize_table_grant":                          {Tok: tfbridge.MakeResource(mainPkg, mainMod, "GrantTable")},
