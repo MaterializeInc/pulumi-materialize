@@ -57,7 +57,7 @@ func Provider() tfbridge.ProviderInfo {
 		Keywords:             []string{"pulumi", "materialize", "category/cloud"},
 		License:              "Apache-2.0",
 		Publisher:            "Materialize Inc",
-		LogoURL:              "https://raw.githubusercontent.com/MaterializeInc/pulumi-materialize/main/assets/materialize.svg",
+		LogoURL:              "https://github.com/MaterializeInc/pulumi-materialize/assets/7467658/77df931a-b571-461f-a279-dac62fbbc236",
 		GitHubOrg:            "MaterializeInc",
 		Homepage:             "https://github.com/MaterializeInc/terraform-provider-materialize",
 		Repository:           "https://github.com/MaterializeInc/terraform-provider-materialize",
