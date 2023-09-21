@@ -32,11 +32,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout Repo
-      uses: actions/checkout@v2
-    - name: Unshallow clone for tags
-      run: git fetch --prune --unshallow --tags
+      uses: actions/checkout@v3
+    - name: Unshallow
+      run: git fetch --prune --unshallow
     - name: Install Go
-      uses: actions/setup-go@v2
+      uses: actions/setup-go@v4
       with:
         go-version: ${{matrix.goversion}}
     - name: Install pulumictl
@@ -48,8 +48,8 @@ jobs:
     - name: Run GoReleaser
       uses: goreleaser/goreleaser-action@v2
       with:
-        args: -p 3 release --rm-dist
         version: latest
+        args: -p 3 release --rm-dist
     strategy:
       fail-fast: true
       matrix:
