@@ -19,6 +19,6 @@ builds:
     binary: pulumi-resource-materialize
     ldflags:
       # The line below MUST align with the module in current provider/go.mod
-      - -X github.com/MaterializeInc/pulumi-materialize/provider/pkg/version.Version={{.Version}}
+      - -X github.com/MaterializeInc/pulumi-materialize/provider/pkg/version.Version={{.Tag }}
 changelog:
   skip: true
