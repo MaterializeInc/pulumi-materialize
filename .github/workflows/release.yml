@@ -50,6 +50,8 @@ jobs:
       with:
         version: latest
         args: -p 3 release --rm-dist
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     strategy:
       fail-fast: true
       matrix:
