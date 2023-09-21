@@ -11,7 +11,7 @@
     "license": "Apache-2.0",
     "attribution": "This Pulumi package is based on the [`materialize` Terraform Provider](https://github.com/MaterializeInc/terraform-provider-materialize).",
     "repository": "https://github.com/MaterializeInc/terraform-provider-materialize",
-    "logoUrl": "https://raw.githubusercontent.com/MaterializeInc/pulumi-materialize/main/assets/materialize.svg",
+    "logoUrl": "https://github.com/MaterializeInc/pulumi-materialize/assets/7467658/77df931a-b571-461f-a279-dac62fbbc236",
     "pluginDownloadURL": "github://api.github.com/MaterializeInc/pulumi-materialize",
     "publisher": "Materialize Inc",
     "meta": {
