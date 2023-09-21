@@ -5,25 +5,20 @@ before:
   hooks:
     - make tfgen
 builds:
-  - binary: pulumi-resource-materialize
-    dir: provider
-    env:
-      - CGO_ENABLED=0
-    goarch:
+  - goarch:
       - amd64
       - arm64
     goos:
       - darwin
       - windows
       - linux
+    env:
+      - CGO_ENABLED=0
+    dir: ./provider
+    main: ./cmd/pulumi-resource-materialize
+    binary: pulumi-resource-materialize
     ldflags:
       # The line below MUST align with the module in current provider/go.mod
-      - -X github.com/MaterializeInc/pulumi-materialize/provider/pkg/version.Version={{.Tag }}
-    main: ./cmd/pulumi-resource-materialize/
+      - -X github.com/MaterializeInc/pulumi-materialize/provider/pkg/version.Version={{.Version}}
 changelog:
   skip: true
-release:
-  disable: false
-  prerelease: auto
-snapshot:
-  name_template: '{{ .Tag }}-SNAPSHOT'
