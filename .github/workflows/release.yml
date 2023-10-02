@@ -35,7 +35,7 @@ jobs:
     - name: Checkout Repo
       uses: actions/checkout@v3
     - name: Unshallow
-      run: git fetch --prune --unshallow
+      run: git fetch --prune --unshallow --tags
     - name: Install Go
       uses: actions/setup-go@v4
       with:
@@ -66,16 +66,16 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        dotnetversion:
-          - 3.1.301
+        # dotnetversion:
+        #   - 3.1.301
         goversion:
           - 1.21.x
         language:
-          - nodejs
+          # - nodejs
           - python
-          - dotnet
-          - go
-        nodeversion:
-          - 14.x
+          # - dotnet
+          # - go
+        # nodeversion:
+        #   - 14.x
         pythonversion:
           - "3.9"
