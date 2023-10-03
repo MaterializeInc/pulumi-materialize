@@ -1,39 +1,29 @@
-# Contributing to the Pulumi ecosystem
+# Contributing
 
-Do you want to contribute to Pulumi? Awesome! We are so happy to have you.
-We have a few tips and housekeeping items to help you get up and running.
+## Developing the provider
 
-## Code of Conduct
+The Pulumi provider is dependent on the [Terraform provider](https://github.com/MaterializeInc/terraform-provider-materialize). Any new features or changes should be applied there.
 
-Please make sure to read and observe our [Code of Conduct](./CODE-OF-CONDUCT.md)
+### Updating Terraform provider
 
-## Community Expectations
+To update the Terraform provider, change the version of `github.com/MaterializeInc/terraform-provider-materialize`in the [provider/go.mod](provider/go.mod) and run `go mod tidy`.
 
-Please read about our [contribution guidelines here.](https://github.com/pulumi/pulumi/blob/master/CONTRIBUTING.md#communications)
+> **Note**
+The repo is configured with dependabot to check for new versions of the Terraform provider.
 
-## Setting up your development environment
+### Updating the schema
 
-### Pulumi prerequisites
+To update the schema for the Pulumi provider (after the Terraform version has been updated) run `make tfgen` to automatically generate any new schema or property changes.
 
-Please refer to the [main Pulumi repo](https://github.com/pulumi/pulumi/)'s [CONTRIBUTING.md file](
-https://github.com/pulumi/pulumi/blob/master/CONTRIBUTING.md#developing) for details on how to get set up with Pulumi.
-
-## Committing Generated Code
-
-You must generate and check in the SDKs on each pull request containing a code change, e.g. adding a new resource to `resources.go`.
-
-1. Run `make build_sdks` from the root of this repository
-1. Open a pull request containing all changes
-1. *Note:* If a large number of seemingly-unrelated diffs are produced by `make build_sdks` (for example, lots of changes to comments unrelated to the change you are making), ensure that the latest dependencies for the provider are installed by running `go mod tidy` in the `provider/` directory of this repository.
+If a new resource or data source has been added, the reference will need to be added to [provider/resources.go]. After it has been added, you can run `make tfgen`.
 
 ## Cutting a release
 
-To cut a new release of the provider, create a new tag and push that tag. This will trigger a Github Action to generate the artifacts necessary for the Terraform Registry.
+To cut a new release of the provider, create a new tag and push that tag. This will trigger a Github Action to generate the artifacts and build the configured SDKs.
 
 ```bash
-git tag -a vX.Y.Z -m vX.Y.Z
+git tag vX.Y.Z
 git push origin vX.Y.Z
 ```
 
 [Materialize]: https://materialize.com
-
