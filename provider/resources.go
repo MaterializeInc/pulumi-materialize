@@ -68,8 +68,8 @@ func Provider() tfbridge.ProviderInfo {
 			"application_name": {
 				Default: &tfbridge.DefaultInfo{Value: "pulumi-provider-materialize"},
 			},
-			"testing": {
-				Default: &tfbridge.DefaultInfo{Value: false},
+			"sslmode": {
+				Default: &tfbridge.DefaultInfo{Value: true},
 			},
 		},
 		Resources: map[string]*tfbridge.ResourceInfo{

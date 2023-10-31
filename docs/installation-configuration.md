@@ -21,7 +21,7 @@ Use `pulumi config set materialize:<option>`.
 | Option | Required/Optional | Description |
 |-----|------|----|
 | `host`| Required | Materialize host
-| `username`| Required | Materialize user |
+| `user`| Required | Materialize user |
 | `password`| Required | Materialize password |
 | `port`| Optional | The Materialize port number to connect to at the server host |
 | `database`| Optional | Materialize database |

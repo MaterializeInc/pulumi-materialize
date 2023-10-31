@@ -68,21 +68,21 @@
             },
             "password": {
                 "type": "string",
-                "description": "Materialize host. Can also come from the `MZ_PW` environment variable.\n",
+                "description": "Materialize host. Can also come from the `MZ_PASSWORD` environment variable.\n",
                 "secret": true
             },
             "port": {
                 "type": "integer",
                 "description": "The Materialize port number to connect to at the server host. Can also come from the `MZ_PORT` environment variable.\nDefaults to 6875.\n"
             },
-            "testing": {
+            "sslmode": {
                 "type": "boolean",
-                "description": "Enable to test the provider locally\n",
-                "default": false
+                "description": "For testing purposes, disable SSL.\n",
+                "default": true
             },
-            "username": {
+            "user": {
                 "type": "string",
-                "description": "Materialize username. Can also come from the `MZ_USER` environment variable.\n"
+                "description": "Materialize user. Can also come from the `MZ_USER` environment variable.\n"
             }
         }
     },
@@ -1170,6 +1170,23 @@
                 "name"
             ]
         },
+        "materialize:index/RoleSessionVariable:RoleSessionVariable": {
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "description": "The name of the session variable.\n"
+                },
+                "value": {
+                    "type": "string",
+                    "description": "The value for the session variable.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "name",
+                "value"
+            ]
+        },
         "materialize:index/SinkKafkaEnvelope:SinkKafkaEnvelope": {
             "properties": {
                 "debezium": {
@@ -1967,6 +1984,10 @@
         },
         "materialize:index/TableColumn:TableColumn": {
             "properties": {
+                "comment": {
+                    "type": "string",
+                    "description": "**Private Preview** Comment on an object in the database.\n"
+                },
                 "name": {
                     "type": "string",
                     "description": "The name of the column to be created in the table.\n"
@@ -2033,20 +2054,20 @@
             },
             "password": {
                 "type": "string",
-                "description": "Materialize host. Can also come from the `MZ_PW` environment variable.\n",
+                "description": "Materialize host. Can also come from the `MZ_PASSWORD` environment variable.\n",
                 "secret": true
             },
             "port": {
                 "type": "integer",
                 "description": "The Materialize port number to connect to at the server host. Can also come from the `MZ_PORT` environment variable.\nDefaults to 6875.\n"
             },
-            "testing": {
+            "sslmode": {
                 "type": "boolean",
-                "description": "Enable to test the provider locally\n"
+                "description": "For testing purposes, disable SSL.\n"
             },
-            "username": {
+            "user": {
                 "type": "string",
-                "description": "Materialize username. Can also come from the `MZ_USER` environment variable.\n"
+                "description": "Materialize user. Can also come from the `MZ_USER` environment variable.\n"
             }
         },
         "inputProperties": {
@@ -2065,21 +2086,21 @@
             },
             "password": {
                 "type": "string",
-                "description": "Materialize host. Can also come from the `MZ_PW` environment variable.\n",
+                "description": "Materialize host. Can also come from the `MZ_PASSWORD` environment variable.\n",
                 "secret": true
             },
             "port": {
                 "type": "integer",
                 "description": "The Materialize port number to connect to at the server host. Can also come from the `MZ_PORT` environment variable.\nDefaults to 6875.\n"
             },
-            "testing": {
+            "sslmode": {
                 "type": "boolean",
-                "description": "Enable to test the provider locally\n",
-                "default": false
+                "description": "For testing purposes, disable SSL.\n",
+                "default": true
             },
-            "username": {
+            "user": {
                 "type": "string",
-                "description": "Materialize username. Can also come from the `MZ_USER` environment variable.\n"
+                "description": "Materialize user. Can also come from the `MZ_USER` environment variable.\n"
             }
         }
     },
@@ -2087,9 +2108,13 @@
         "materialize:index/cluster:Cluster": {
             "description": "Clusters describe logical compute resources that can be used by sources, sinks, indexes, and materialized views.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as materialize from \"@pulumi/materialize\";\n\nconst exampleCluster = new materialize.Cluster(\"exampleCluster\", {});\n```\n```python\nimport pulumi\nimport pulumi_materialize as materialize\n\nexample_cluster = materialize.Cluster(\"exampleCluster\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Materialize = Pulumi.Materialize;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var exampleCluster = new Materialize.Cluster(\"exampleCluster\");\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-materialize/sdk/go/materialize\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := materialize.NewCluster(ctx, \"exampleCluster\", nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.materialize.Cluster;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var exampleCluster = new Cluster(\"exampleCluster\");\n\n    }\n}\n```\n```yaml\nresources:\n  exampleCluster:\n    type: materialize:Cluster\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nClusters can be imported using the cluster id\n\n```sh\n $ pulumi import materialize:index/cluster:Cluster example_cluster \u003ccluster_id\u003e\n```\n\n Cluster id and information be found in the `mz_catalog.mz_clusters` table ",
             "properties": {
+                "comment": {
+                    "type": "string",
+                    "description": "**Private Preview** Comment on an object in the database.\n"
+                },
                 "disk": {
                     "type": "boolean",
-                    "description": "**Private Preview**. Whether or not the replicas of the managed cluster are *disk-backed replicas*.\n"
+                    "description": "**Private Preview**. Whether or not the replica is a *disk-backed replica*.\n"
                 },
                 "idleArrangementMergeEffort": {
                     "type": "integer",
@@ -2125,9 +2150,13 @@
                 "ownershipRole"
             ],
             "inputProperties": {
+                "comment": {
+                    "type": "string",
+                    "description": "**Private Preview** Comment on an object in the database.\n"
+                },
                 "disk": {
                     "type": "boolean",
-                    "description": "**Private Preview**. Whether or not the replicas of the managed cluster are *disk-backed replicas*.\n"
+                    "description": "**Private Preview**. Whether or not the replica is a *disk-backed replica*.\n"
                 },
                 "idleArrangementMergeEffort": {
                     "type": "integer",
@@ -2162,9 +2191,13 @@
             "stateInputs": {
                 "description": "Input properties used for looking up and filtering Cluster resources.\n",
                 "properties": {
+                    "comment": {
+                        "type": "string",
+                        "description": "**Private Preview** Comment on an object in the database.\n"
+                    },
                     "disk": {
                         "type": "boolean",
-                        "description": "**Private Preview**. Whether or not the replicas of the managed cluster are *disk-backed replicas*.\n"
+                        "description": "**Private Preview**. Whether or not the replica is a *disk-backed replica*.\n"
                     },
                     "idleArrangementMergeEffort": {
                         "type": "integer",
@@ -2210,6 +2243,10 @@
                     "type": "string",
                     "description": "The cluster whose resources you want to create an additional computation of.\n"
                 },
+                "comment": {
+                    "type": "string",
+                    "description": "**Private Preview** Comment on an object in the database.\n"
+                },
                 "disk": {
                     "type": "boolean",
                     "description": "**Private Preview**. Whether or not the replica is a *disk-backed replica*.\n"
@@ -2251,6 +2288,10 @@
                     "type": "string",
                     "description": "The cluster whose resources you want to create an additional computation of.\n",
                     "willReplaceOnChanges": true
+                },
+                "comment": {
+                    "type": "string",
+                    "description": "**Private Preview** Comment on an object in the database.\n"
                 },
                 "disk": {
                     "type": "boolean",
@@ -2300,6 +2341,10 @@
                         "description": "The cluster whose resources you want to create an additional computation of.\n",
                         "willReplaceOnChanges": true
                     },
+                    "comment": {
+                        "type": "string",
+                        "description": "**Private Preview** Comment on an object in the database.\n"
+                    },
                     "disk": {
                         "type": "boolean",
                         "description": "**Private Preview**. Whether or not the replica is a *disk-backed replica*.\n",
@@ -2343,6 +2388,10 @@
                         "type": "string"
                     },
                     "description": "The availability zones of the AWS PrivateLink service.\n"
+                },
+                "comment": {
+                    "type": "string",
+                    "description": "**Private Preview** Comment on an object in the database.\n"
                 },
                 "databaseName": {
                     "type": "string",
@@ -2391,6 +2440,10 @@
                     "description": "The availability zones of the AWS PrivateLink service.\n",
                     "willReplaceOnChanges": true
                 },
+                "comment": {
+                    "type": "string",
+                    "description": "**Private Preview** Comment on an object in the database.\n"
+                },
                 "databaseName": {
                     "type": "string",
                     "description": "The identifier for the connection database. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
@@ -2429,6 +2482,10 @@
                         },
                         "description": "The availability zones of the AWS PrivateLink service.\n",
                         "willReplaceOnChanges": true
+                    },
+                    "comment": {
+                        "type": "string",
+                        "description": "**Private Preview** Comment on an object in the database.\n"
                     },
                     "databaseName": {
                         "type": "string",
@@ -2472,6 +2529,10 @@
                 "awsPrivatelink": {
                     "$ref": "#/types/materialize:index/ConnectionConfluentSchemaRegistryAwsPrivatelink:ConnectionConfluentSchemaRegistryAwsPrivatelink",
                     "description": "The AWS PrivateLink configuration for the Confluent Schema Registry.\n"
+                },
+                "comment": {
+                    "type": "string",
+                    "description": "**Private Preview** Comment on an object in the database.\n"
                 },
                 "databaseName": {
                     "type": "string",
@@ -2523,7 +2584,7 @@
                 },
                 "validate": {
                     "type": "boolean",
-                    "description": "If the connection should wait for validation.\n"
+                    "description": "**Private Preview** If the connection should wait for validation.\n"
                 }
             },
             "required": [
@@ -2537,6 +2598,10 @@
                     "$ref": "#/types/materialize:index/ConnectionConfluentSchemaRegistryAwsPrivatelink:ConnectionConfluentSchemaRegistryAwsPrivatelink",
                     "description": "The AWS PrivateLink configuration for the Confluent Schema Registry.\n",
                     "willReplaceOnChanges": true
+                },
+                "comment": {
+                    "type": "string",
+                    "description": "**Private Preview** Comment on an object in the database.\n"
                 },
                 "databaseName": {
                     "type": "string",
@@ -2592,7 +2657,7 @@
                 },
                 "validate": {
                     "type": "boolean",
-                    "description": "If the connection should wait for validation.\n"
+                    "description": "**Private Preview** If the connection should wait for validation.\n"
                 }
             },
             "requiredInputs": [
@@ -2605,6 +2670,10 @@
                         "$ref": "#/types/materialize:index/ConnectionConfluentSchemaRegistryAwsPrivatelink:ConnectionConfluentSchemaRegistryAwsPrivatelink",
                         "description": "The AWS PrivateLink configuration for the Confluent Schema Registry.\n",
                         "willReplaceOnChanges": true
+                    },
+                    "comment": {
+                        "type": "string",
+                        "description": "**Private Preview** Comment on an object in the database.\n"
                     },
                     "databaseName": {
                         "type": "string",
@@ -2664,7 +2733,7 @@
                     },
                     "validate": {
                         "type": "boolean",
-                        "description": "If the connection should wait for validation.\n"
+                        "description": "**Private Preview** If the connection should wait for validation.\n"
                     }
                 },
                 "type": "object"
@@ -2673,6 +2742,10 @@
         "materialize:index/connectionKafka:ConnectionKafka": {
             "description": "A Kafka connection establishes a link to a Kafka cluster.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as materialize from \"@pulumi/materialize\";\n\n// Create a Kafka Connection\nconst exampleKafkaConnection = new materialize.ConnectionKafka(\"exampleKafkaConnection\", {\n    kafkaBrokers: [{\n        broker: \"b-1.hostname-1:9096\",\n    }],\n    progressTopic: \"example\",\n    saslMechanisms: \"SCRAM-SHA-256\",\n    saslPassword: {\n        databaseName: \"materialize\",\n        name: \"kafka_password\",\n        schemaName: \"public\",\n    },\n    saslUsername: {\n        text: \"user\",\n    },\n});\nconst exampleKafkaConnectionMultipleBrokers = new materialize.ConnectionKafka(\"exampleKafkaConnectionMultipleBrokers\", {kafkaBrokers: [\n    {\n        availabilityZone: \"use1-az1\",\n        broker: \"b-1.hostname-1:9096\",\n        privatelinkConnection: {\n            databaseName: \"materialize\",\n            name: \"example_aws_privatelink_conn\",\n            schemaName: \"public\",\n        },\n        targetGroupPort: 9001,\n    },\n    {\n        availabilityZone: \"use1-az2\",\n        broker: \"b-2.hostname-2:9096\",\n        privatelinkConnection: {\n            databaseName: \"materialize\",\n            name: \"example_aws_privatelink_conn\",\n            schemaName: \"public\",\n        },\n        targetGroupPort: 9002,\n    },\n]});\n```\n```python\nimport pulumi\nimport pulumi_materialize as materialize\n\n# Create a Kafka Connection\nexample_kafka_connection = materialize.ConnectionKafka(\"exampleKafkaConnection\",\n    kafka_brokers=[materialize.ConnectionKafkaKafkaBrokerArgs(\n        broker=\"b-1.hostname-1:9096\",\n    )],\n    progress_topic=\"example\",\n    sasl_mechanisms=\"SCRAM-SHA-256\",\n    sasl_password=materialize.ConnectionKafkaSaslPasswordArgs(\n        database_name=\"materialize\",\n        name=\"kafka_password\",\n        schema_name=\"public\",\n    ),\n    sasl_username=materialize.ConnectionKafkaSaslUsernameArgs(\n        text=\"user\",\n    ))\nexample_kafka_connection_multiple_brokers = materialize.ConnectionKafka(\"exampleKafkaConnectionMultipleBrokers\", kafka_brokers=[\n    materialize.ConnectionKafkaKafkaBrokerArgs(\n        availability_zone=\"use1-az1\",\n        broker=\"b-1.hostname-1:9096\",\n        privatelink_connection=materialize.ConnectionKafkaKafkaBrokerPrivatelinkConnectionArgs(\n            database_name=\"materialize\",\n            name=\"example_aws_privatelink_conn\",\n            schema_name=\"public\",\n        ),\n        target_group_port=9001,\n    ),\n    materialize.ConnectionKafkaKafkaBrokerArgs(\n        availability_zone=\"use1-az2\",\n        broker=\"b-2.hostname-2:9096\",\n        privatelink_connection=materialize.ConnectionKafkaKafkaBrokerPrivatelinkConnectionArgs(\n            database_name=\"materialize\",\n            name=\"example_aws_privatelink_conn\",\n            schema_name=\"public\",\n        ),\n        target_group_port=9002,\n    ),\n])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Materialize = Pulumi.Materialize;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // Create a Kafka Connection\n    var exampleKafkaConnection = new Materialize.ConnectionKafka(\"exampleKafkaConnection\", new()\n    {\n        KafkaBrokers = new[]\n        {\n            new Materialize.Inputs.ConnectionKafkaKafkaBrokerArgs\n            {\n                Broker = \"b-1.hostname-1:9096\",\n            },\n        },\n        ProgressTopic = \"example\",\n        SaslMechanisms = \"SCRAM-SHA-256\",\n        SaslPassword = new Materialize.Inputs.ConnectionKafkaSaslPasswordArgs\n        {\n            DatabaseName = \"materialize\",\n            Name = \"kafka_password\",\n            SchemaName = \"public\",\n        },\n        SaslUsername = new Materialize.Inputs.ConnectionKafkaSaslUsernameArgs\n        {\n            Text = \"user\",\n        },\n    });\n\n    var exampleKafkaConnectionMultipleBrokers = new Materialize.ConnectionKafka(\"exampleKafkaConnectionMultipleBrokers\", new()\n    {\n        KafkaBrokers = new[]\n        {\n            new Materialize.Inputs.ConnectionKafkaKafkaBrokerArgs\n            {\n                AvailabilityZone = \"use1-az1\",\n                Broker = \"b-1.hostname-1:9096\",\n                PrivatelinkConnection = new Materialize.Inputs.ConnectionKafkaKafkaBrokerPrivatelinkConnectionArgs\n                {\n                    DatabaseName = \"materialize\",\n                    Name = \"example_aws_privatelink_conn\",\n                    SchemaName = \"public\",\n                },\n                TargetGroupPort = 9001,\n            },\n            new Materialize.Inputs.ConnectionKafkaKafkaBrokerArgs\n            {\n                AvailabilityZone = \"use1-az2\",\n                Broker = \"b-2.hostname-2:9096\",\n                PrivatelinkConnection = new Materialize.Inputs.ConnectionKafkaKafkaBrokerPrivatelinkConnectionArgs\n                {\n                    DatabaseName = \"materialize\",\n                    Name = \"example_aws_privatelink_conn\",\n                    SchemaName = \"public\",\n                },\n                TargetGroupPort = 9002,\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-materialize/sdk/go/materialize\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := materialize.NewConnectionKafka(ctx, \"exampleKafkaConnection\", \u0026materialize.ConnectionKafkaArgs{\n\t\t\tKafkaBrokers: materialize.ConnectionKafkaKafkaBrokerArray{\n\t\t\t\t\u0026materialize.ConnectionKafkaKafkaBrokerArgs{\n\t\t\t\t\tBroker: pulumi.String(\"b-1.hostname-1:9096\"),\n\t\t\t\t},\n\t\t\t},\n\t\t\tProgressTopic:  pulumi.String(\"example\"),\n\t\t\tSaslMechanisms: pulumi.String(\"SCRAM-SHA-256\"),\n\t\t\tSaslPassword: \u0026materialize.ConnectionKafkaSaslPasswordArgs{\n\t\t\t\tDatabaseName: pulumi.String(\"materialize\"),\n\t\t\t\tName:         pulumi.String(\"kafka_password\"),\n\t\t\t\tSchemaName:   pulumi.String(\"public\"),\n\t\t\t},\n\t\t\tSaslUsername: \u0026materialize.ConnectionKafkaSaslUsernameArgs{\n\t\t\t\tText: pulumi.String(\"user\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = materialize.NewConnectionKafka(ctx, \"exampleKafkaConnectionMultipleBrokers\", \u0026materialize.ConnectionKafkaArgs{\n\t\t\tKafkaBrokers: materialize.ConnectionKafkaKafkaBrokerArray{\n\t\t\t\t\u0026materialize.ConnectionKafkaKafkaBrokerArgs{\n\t\t\t\t\tAvailabilityZone: pulumi.String(\"use1-az1\"),\n\t\t\t\t\tBroker:           pulumi.String(\"b-1.hostname-1:9096\"),\n\t\t\t\t\tPrivatelinkConnection: \u0026materialize.ConnectionKafkaKafkaBrokerPrivatelinkConnectionArgs{\n\t\t\t\t\t\tDatabaseName: pulumi.String(\"materialize\"),\n\t\t\t\t\t\tName:         pulumi.String(\"example_aws_privatelink_conn\"),\n\t\t\t\t\t\tSchemaName:   pulumi.String(\"public\"),\n\t\t\t\t\t},\n\t\t\t\t\tTargetGroupPort: pulumi.Int(9001),\n\t\t\t\t},\n\t\t\t\t\u0026materialize.ConnectionKafkaKafkaBrokerArgs{\n\t\t\t\t\tAvailabilityZone: pulumi.String(\"use1-az2\"),\n\t\t\t\t\tBroker:           pulumi.String(\"b-2.hostname-2:9096\"),\n\t\t\t\t\tPrivatelinkConnection: \u0026materialize.ConnectionKafkaKafkaBrokerPrivatelinkConnectionArgs{\n\t\t\t\t\t\tDatabaseName: pulumi.String(\"materialize\"),\n\t\t\t\t\t\tName:         pulumi.String(\"example_aws_privatelink_conn\"),\n\t\t\t\t\t\tSchemaName:   pulumi.String(\"public\"),\n\t\t\t\t\t},\n\t\t\t\t\tTargetGroupPort: pulumi.Int(9002),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.materialize.ConnectionKafka;\nimport com.pulumi.materialize.ConnectionKafkaArgs;\nimport com.pulumi.materialize.inputs.ConnectionKafkaKafkaBrokerArgs;\nimport com.pulumi.materialize.inputs.ConnectionKafkaSaslPasswordArgs;\nimport com.pulumi.materialize.inputs.ConnectionKafkaSaslUsernameArgs;\nimport com.pulumi.materialize.inputs.ConnectionKafkaKafkaBrokerPrivatelinkConnectionArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var exampleKafkaConnection = new ConnectionKafka(\"exampleKafkaConnection\", ConnectionKafkaArgs.builder()        \n            .kafkaBrokers(ConnectionKafkaKafkaBrokerArgs.builder()\n                .broker(\"b-1.hostname-1:9096\")\n                .build())\n            .progressTopic(\"example\")\n            .saslMechanisms(\"SCRAM-SHA-256\")\n            .saslPassword(ConnectionKafkaSaslPasswordArgs.builder()\n                .databaseName(\"materialize\")\n                .name(\"kafka_password\")\n                .schemaName(\"public\")\n                .build())\n            .saslUsername(ConnectionKafkaSaslUsernameArgs.builder()\n                .text(\"user\")\n                .build())\n            .build());\n\n        var exampleKafkaConnectionMultipleBrokers = new ConnectionKafka(\"exampleKafkaConnectionMultipleBrokers\", ConnectionKafkaArgs.builder()        \n            .kafkaBrokers(            \n                ConnectionKafkaKafkaBrokerArgs.builder()\n                    .availabilityZone(\"use1-az1\")\n                    .broker(\"b-1.hostname-1:9096\")\n                    .privatelinkConnection(ConnectionKafkaKafkaBrokerPrivatelinkConnectionArgs.builder()\n                        .databaseName(\"materialize\")\n                        .name(\"example_aws_privatelink_conn\")\n                        .schemaName(\"public\")\n                        .build())\n                    .targetGroupPort(\"9001\")\n                    .build(),\n                ConnectionKafkaKafkaBrokerArgs.builder()\n                    .availabilityZone(\"use1-az2\")\n                    .broker(\"b-2.hostname-2:9096\")\n                    .privatelinkConnection(ConnectionKafkaKafkaBrokerPrivatelinkConnectionArgs.builder()\n                        .databaseName(\"materialize\")\n                        .name(\"example_aws_privatelink_conn\")\n                        .schemaName(\"public\")\n                        .build())\n                    .targetGroupPort(\"9002\")\n                    .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # Create a Kafka Connection\n  exampleKafkaConnection:\n    type: materialize:ConnectionKafka\n    properties:\n      kafkaBrokers:\n        - broker: b-1.hostname-1:9096\n      progressTopic: example\n      saslMechanisms: SCRAM-SHA-256\n      saslPassword:\n        databaseName: materialize\n        name: kafka_password\n        schemaName: public\n      saslUsername:\n        text: user\n  exampleKafkaConnectionMultipleBrokers:\n    type: materialize:ConnectionKafka\n    properties:\n      kafkaBrokers:\n        - availabilityZone: use1-az1\n          broker: b-1.hostname-1:9096\n          privatelinkConnection:\n            databaseName: materialize\n            name: example_aws_privatelink_conn\n            schemaName: public\n          targetGroupPort: '9001'\n        - availabilityZone: use1-az2\n          broker: b-2.hostname-2:9096\n          privatelinkConnection:\n            databaseName: materialize\n            name: example_aws_privatelink_conn\n            schemaName: public\n          targetGroupPort: '9002'\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\n#Connections can be imported using the connection id\n\n```sh\n $ pulumi import materialize:index/connectionKafka:ConnectionKafka example \u003cconnection_id\u003e\n```\n\n Connection id and information be found in the `mz_catalog.mz_connections` table ",
             "properties": {
+                "comment": {
+                    "type": "string",
+                    "description": "**Private Preview** Comment on an object in the database.\n"
+                },
                 "databaseName": {
                     "type": "string",
                     "description": "The identifier for the connection database. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
@@ -2734,7 +2807,7 @@
                 },
                 "validate": {
                     "type": "boolean",
-                    "description": "If the connection should wait for validation.\n"
+                    "description": "**Private Preview** If the connection should wait for validation.\n"
                 }
             },
             "required": [
@@ -2744,6 +2817,10 @@
                 "qualifiedSqlName"
             ],
             "inputProperties": {
+                "comment": {
+                    "type": "string",
+                    "description": "**Private Preview** Comment on an object in the database.\n"
+                },
                 "databaseName": {
                     "type": "string",
                     "description": "The identifier for the connection database. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
@@ -2812,7 +2889,7 @@
                 },
                 "validate": {
                     "type": "boolean",
-                    "description": "If the connection should wait for validation.\n"
+                    "description": "**Private Preview** If the connection should wait for validation.\n"
                 }
             },
             "requiredInputs": [
@@ -2821,6 +2898,10 @@
             "stateInputs": {
                 "description": "Input properties used for looking up and filtering ConnectionKafka resources.\n",
                 "properties": {
+                    "comment": {
+                        "type": "string",
+                        "description": "**Private Preview** Comment on an object in the database.\n"
+                    },
                     "databaseName": {
                         "type": "string",
                         "description": "The identifier for the connection database. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
@@ -2893,7 +2974,7 @@
                     },
                     "validate": {
                         "type": "boolean",
-                        "description": "If the connection should wait for validation.\n"
+                        "description": "**Private Preview** If the connection should wait for validation.\n"
                     }
                 },
                 "type": "object"
@@ -2905,6 +2986,10 @@
                 "awsPrivatelink": {
                     "$ref": "#/types/materialize:index/ConnectionPostgresAwsPrivatelink:ConnectionPostgresAwsPrivatelink",
                     "description": "The AWS PrivateLink configuration for the Postgres database.\n"
+                },
+                "comment": {
+                    "type": "string",
+                    "description": "**Private Preview** Comment on an object in the database.\n"
                 },
                 "database": {
                     "type": "string",
@@ -2968,7 +3053,7 @@
                 },
                 "validate": {
                     "type": "boolean",
-                    "description": "If the connection should wait for validation.\n"
+                    "description": "**Private Preview** If the connection should wait for validation.\n"
                 }
             },
             "required": [
@@ -2984,6 +3069,10 @@
                     "$ref": "#/types/materialize:index/ConnectionPostgresAwsPrivatelink:ConnectionPostgresAwsPrivatelink",
                     "description": "The AWS PrivateLink configuration for the Postgres database.\n",
                     "willReplaceOnChanges": true
+                },
+                "comment": {
+                    "type": "string",
+                    "description": "**Private Preview** Comment on an object in the database.\n"
                 },
                 "database": {
                     "type": "string",
@@ -3055,7 +3144,7 @@
                 },
                 "validate": {
                     "type": "boolean",
-                    "description": "If the connection should wait for validation.\n"
+                    "description": "**Private Preview** If the connection should wait for validation.\n"
                 }
             },
             "requiredInputs": [
@@ -3070,6 +3159,10 @@
                         "$ref": "#/types/materialize:index/ConnectionPostgresAwsPrivatelink:ConnectionPostgresAwsPrivatelink",
                         "description": "The AWS PrivateLink configuration for the Postgres database.\n",
                         "willReplaceOnChanges": true
+                    },
+                    "comment": {
+                        "type": "string",
+                        "description": "**Private Preview** Comment on an object in the database.\n"
                     },
                     "database": {
                         "type": "string",
@@ -3145,7 +3238,7 @@
                     },
                     "validate": {
                         "type": "boolean",
-                        "description": "If the connection should wait for validation.\n"
+                        "description": "**Private Preview** If the connection should wait for validation.\n"
                     }
                 },
                 "type": "object"
@@ -3154,6 +3247,10 @@
         "materialize:index/connectionSshTunnel:ConnectionSshTunnel": {
             "description": "An SSH tunnel connection establishes a link to an SSH bastion server.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as materialize from \"@pulumi/materialize\";\n\n// Create SSH Connection\nconst exampleSshConnection = new materialize.ConnectionSshTunnel(\"exampleSshConnection\", {\n    host: \"example.com\",\n    port: 22,\n    schemaName: \"public\",\n    user: \"example\",\n});\n```\n```python\nimport pulumi\nimport pulumi_materialize as materialize\n\n# Create SSH Connection\nexample_ssh_connection = materialize.ConnectionSshTunnel(\"exampleSshConnection\",\n    host=\"example.com\",\n    port=22,\n    schema_name=\"public\",\n    user=\"example\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Materialize = Pulumi.Materialize;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // Create SSH Connection\n    var exampleSshConnection = new Materialize.ConnectionSshTunnel(\"exampleSshConnection\", new()\n    {\n        Host = \"example.com\",\n        Port = 22,\n        SchemaName = \"public\",\n        User = \"example\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-materialize/sdk/go/materialize\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := materialize.NewConnectionSshTunnel(ctx, \"exampleSshConnection\", \u0026materialize.ConnectionSshTunnelArgs{\n\t\t\tHost:       pulumi.String(\"example.com\"),\n\t\t\tPort:       pulumi.Int(22),\n\t\t\tSchemaName: pulumi.String(\"public\"),\n\t\t\tUser:       pulumi.String(\"example\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.materialize.ConnectionSshTunnel;\nimport com.pulumi.materialize.ConnectionSshTunnelArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var exampleSshConnection = new ConnectionSshTunnel(\"exampleSshConnection\", ConnectionSshTunnelArgs.builder()        \n            .host(\"example.com\")\n            .port(22)\n            .schemaName(\"public\")\n            .user(\"example\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # Create SSH Connection\n  exampleSshConnection:\n    type: materialize:ConnectionSshTunnel\n    properties:\n      host: example.com\n      port: 22\n      schemaName: public\n      user: example\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\n#Connections can be imported using the connection id\n\n```sh\n $ pulumi import materialize:index/connectionSshTunnel:ConnectionSshTunnel example \u003cconnection_id\u003e\n```\n\n Connection id and information be found in the `mz_catalog.mz_connections` table ",
             "properties": {
+                "comment": {
+                    "type": "string",
+                    "description": "**Private Preview** Comment on an object in the database.\n"
+                },
                 "databaseName": {
                     "type": "string",
                     "description": "The identifier for the connection database. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
@@ -3206,6 +3303,10 @@
                 "user"
             ],
             "inputProperties": {
+                "comment": {
+                    "type": "string",
+                    "description": "**Private Preview** Comment on an object in the database.\n"
+                },
                 "databaseName": {
                     "type": "string",
                     "description": "The identifier for the connection database. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
@@ -3248,6 +3349,10 @@
             "stateInputs": {
                 "description": "Input properties used for looking up and filtering ConnectionSshTunnel resources.\n",
                 "properties": {
+                    "comment": {
+                        "type": "string",
+                        "description": "**Private Preview** Comment on an object in the database.\n"
+                    },
                     "databaseName": {
                         "type": "string",
                         "description": "The identifier for the connection database. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
@@ -3300,6 +3405,10 @@
         "materialize:index/database:Database": {
             "description": "The highest level namespace hierarchy in Materialize.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as materialize from \"@pulumi/materialize\";\n\nconst exampleDatabase = new materialize.Database(\"exampleDatabase\", {});\n```\n```python\nimport pulumi\nimport pulumi_materialize as materialize\n\nexample_database = materialize.Database(\"exampleDatabase\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Materialize = Pulumi.Materialize;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var exampleDatabase = new Materialize.Database(\"exampleDatabase\");\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-materialize/sdk/go/materialize\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := materialize.NewDatabase(ctx, \"exampleDatabase\", nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.materialize.Database;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var exampleDatabase = new Database(\"exampleDatabase\");\n\n    }\n}\n```\n```yaml\nresources:\n  exampleDatabase:\n    type: materialize:Database\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nDatabases can be imported using the database id\n\n```sh\n $ pulumi import materialize:index/database:Database example_database \u003cdatabase_id\u003e\n```\n\n Database id and information be found in the `mz_catalog.mz_databases` table ",
             "properties": {
+                "comment": {
+                    "type": "string",
+                    "description": "**Private Preview** Comment on an object in the database.\n"
+                },
                 "name": {
                     "type": "string",
                     "description": "The identifier for the database.\n"
@@ -3314,6 +3423,10 @@
                 "ownershipRole"
             ],
             "inputProperties": {
+                "comment": {
+                    "type": "string",
+                    "description": "**Private Preview** Comment on an object in the database.\n"
+                },
                 "name": {
                     "type": "string",
                     "description": "The identifier for the database.\n",
@@ -3327,6 +3440,10 @@
             "stateInputs": {
                 "description": "Input properties used for looking up and filtering Database resources.\n",
                 "properties": {
+                    "comment": {
+                        "type": "string",
+                        "description": "**Private Preview** Comment on an object in the database.\n"
+                    },
                     "name": {
                         "type": "string",
                         "description": "The identifier for the database.\n",
@@ -3726,7 +3843,7 @@
             }
         },
         "materialize:index/grantDatabaseDefaultPrivilege:GrantDatabaseDefaultPrivilege": {
-            "description": "Defines default privileges that will be applied to objects created in the future. It does not affect any existing objects.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.materialize.GrantDatabaseDefaultPrivilege;\nimport com.pulumi.materialize.GrantDatabaseDefaultPrivilegeArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new GrantDatabaseDefaultPrivilege(\"example\", GrantDatabaseDefaultPrivilegeArgs.builder()        \n            .databaseName(\"database\")\n            .granteeName(\"grantee\")\n            .privilege(\"USAGE\")\n            .targetRoleName(\"target_role\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # Grant role the privilege USAGE for objects in the database database\n  example:\n    type: materialize:GrantDatabaseDefaultPrivilege\n    properties:\n      databaseName: database\n      granteeName: grantee\n      privilege: USAGE\n      targetRoleName: target_role\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\n#Grants can be imported using the concatenation of GRANT DEFAULT, the grantee id of the role #Optionally you can include the target id, database id. The privilege is required\n\n\n\n```sh\n $ pulumi import materialize:index/grantDatabaseDefaultPrivilege:GrantDatabaseDefaultPrivilege example GRANT DEFAULT|CONNECTION|\u003cgrantee_id\u003e|\u003ctarget_role_id\u003e|\u003cdatabase_id\u003e||\u003cprivilege\u003e\n```\n\n ",
+            "description": "Defines default privileges that will be applied to objects created in the future. It does not affect any existing objects.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as materialize from \"@pulumi/materialize\";\n\n// Grant role the privilege USAGE for objects in the database database\nconst example = new materialize.GrantDatabaseDefaultPrivilege(\"example\", {\n    granteeName: \"grantee\",\n    privilege: \"USAGE\",\n    targetRoleName: \"target_role\",\n});\n```\n```python\nimport pulumi\nimport pulumi_materialize as materialize\n\n# Grant role the privilege USAGE for objects in the database database\nexample = materialize.GrantDatabaseDefaultPrivilege(\"example\",\n    grantee_name=\"grantee\",\n    privilege=\"USAGE\",\n    target_role_name=\"target_role\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Materialize = Pulumi.Materialize;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // Grant role the privilege USAGE for objects in the database database\n    var example = new Materialize.GrantDatabaseDefaultPrivilege(\"example\", new()\n    {\n        GranteeName = \"grantee\",\n        Privilege = \"USAGE\",\n        TargetRoleName = \"target_role\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-materialize/sdk/go/materialize\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := materialize.NewGrantDatabaseDefaultPrivilege(ctx, \"example\", \u0026materialize.GrantDatabaseDefaultPrivilegeArgs{\n\t\t\tGranteeName:    pulumi.String(\"grantee\"),\n\t\t\tPrivilege:      pulumi.String(\"USAGE\"),\n\t\t\tTargetRoleName: pulumi.String(\"target_role\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.materialize.GrantDatabaseDefaultPrivilege;\nimport com.pulumi.materialize.GrantDatabaseDefaultPrivilegeArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new GrantDatabaseDefaultPrivilege(\"example\", GrantDatabaseDefaultPrivilegeArgs.builder()        \n            .granteeName(\"grantee\")\n            .privilege(\"USAGE\")\n            .targetRoleName(\"target_role\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # Grant role the privilege USAGE for objects in the database database\n  example:\n    type: materialize:GrantDatabaseDefaultPrivilege\n    properties:\n      granteeName: grantee\n      privilege: USAGE\n      targetRoleName: target_role\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\n#Grants can be imported using the concatenation of GRANT DEFAULT, the grantee id of the role #Optionally you can include the target id, database id. The privilege is required\n\n\n\n```sh\n $ pulumi import materialize:index/grantDatabaseDefaultPrivilege:GrantDatabaseDefaultPrivilege example GRANT DEFAULT|CONNECTION|\u003cgrantee_id\u003e|\u003ctarget_role_id\u003e|\u003cdatabase_id\u003e||\u003cprivilege\u003e\n```\n\n ",
             "properties": {
                 "granteeName": {
                     "type": "string",
@@ -4018,7 +4135,7 @@
             }
         },
         "materialize:index/grantSchemaDefaultPrivilege:GrantSchemaDefaultPrivilege": {
-            "description": "Defines default privileges that will be applied to objects created in the future. It does not affect any existing objects.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.materialize.GrantSchemaDefaultPrivilege;\nimport com.pulumi.materialize.GrantSchemaDefaultPrivilegeArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new GrantSchemaDefaultPrivilege(\"example\", GrantSchemaDefaultPrivilegeArgs.builder()        \n            .databaseName(\"database\")\n            .granteeName(\"grantee\")\n            .privilege(\"USAGE\")\n            .schemaName(\"schema\")\n            .targetRoleName(\"target_role\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # Grant role the privilege USAGE for objects in the schema database.schema\n  example:\n    type: materialize:GrantSchemaDefaultPrivilege\n    properties:\n      databaseName: database\n      granteeName: grantee\n      privilege: USAGE\n      schemaName: schema\n      targetRoleName: target_role\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\n#Grants can be imported using the concatenation of GRANT DEFAULT, the grantee id of the role #Optionally you can include the target id, database id and schema id. The privilege is required\n\n\n\n```sh\n $ pulumi import materialize:index/grantSchemaDefaultPrivilege:GrantSchemaDefaultPrivilege example GRANT DEFAULT|SCHEMA|\u003cgrantee_id\u003e|\u003ctarget_role_id\u003e|\u003cdatabase_id\u003e|\u003cschema_id\u003e|\u003cprivilege\u003e\n```\n\n ",
+            "description": "Defines default privileges that will be applied to objects created in the future. It does not affect any existing objects.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as materialize from \"@pulumi/materialize\";\n\n// Grant role the privilege USAGE for objects in the schema database.schema\nconst example = new materialize.GrantSchemaDefaultPrivilege(\"example\", {\n    databaseName: \"database\",\n    granteeName: \"grantee\",\n    privilege: \"USAGE\",\n    targetRoleName: \"target_role\",\n});\n```\n```python\nimport pulumi\nimport pulumi_materialize as materialize\n\n# Grant role the privilege USAGE for objects in the schema database.schema\nexample = materialize.GrantSchemaDefaultPrivilege(\"example\",\n    database_name=\"database\",\n    grantee_name=\"grantee\",\n    privilege=\"USAGE\",\n    target_role_name=\"target_role\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Materialize = Pulumi.Materialize;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // Grant role the privilege USAGE for objects in the schema database.schema\n    var example = new Materialize.GrantSchemaDefaultPrivilege(\"example\", new()\n    {\n        DatabaseName = \"database\",\n        GranteeName = \"grantee\",\n        Privilege = \"USAGE\",\n        TargetRoleName = \"target_role\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-materialize/sdk/go/materialize\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := materialize.NewGrantSchemaDefaultPrivilege(ctx, \"example\", \u0026materialize.GrantSchemaDefaultPrivilegeArgs{\n\t\t\tDatabaseName:   pulumi.String(\"database\"),\n\t\t\tGranteeName:    pulumi.String(\"grantee\"),\n\t\t\tPrivilege:      pulumi.String(\"USAGE\"),\n\t\t\tTargetRoleName: pulumi.String(\"target_role\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.materialize.GrantSchemaDefaultPrivilege;\nimport com.pulumi.materialize.GrantSchemaDefaultPrivilegeArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new GrantSchemaDefaultPrivilege(\"example\", GrantSchemaDefaultPrivilegeArgs.builder()        \n            .databaseName(\"database\")\n            .granteeName(\"grantee\")\n            .privilege(\"USAGE\")\n            .targetRoleName(\"target_role\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # Grant role the privilege USAGE for objects in the schema database.schema\n  example:\n    type: materialize:GrantSchemaDefaultPrivilege\n    properties:\n      databaseName: database\n      granteeName: grantee\n      privilege: USAGE\n      targetRoleName: target_role\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\n#Grants can be imported using the concatenation of GRANT DEFAULT, the grantee id of the role #Optionally you can include the target id, database id and schema id. The privilege is required\n\n\n\n```sh\n $ pulumi import materialize:index/grantSchemaDefaultPrivilege:GrantSchemaDefaultPrivilege example GRANT DEFAULT|SCHEMA|\u003cgrantee_id\u003e|\u003ctarget_role_id\u003e|\u003cdatabase_id\u003e|\u003cschema_id\u003e|\u003cprivilege\u003e\n```\n\n ",
             "properties": {
                 "databaseName": {
                     "type": "string",
@@ -4923,6 +5040,10 @@
                     },
                     "description": "The expressions to use as the key for the index.\n"
                 },
+                "comment": {
+                    "type": "string",
+                    "description": "**Private Preview** Comment on an object in the database.\n"
+                },
                 "databaseName": {
                     "type": "string",
                     "description": "The identifier for the index database.\n"
@@ -4945,7 +5066,7 @@
                 },
                 "qualifiedSqlName": {
                     "type": "string",
-                    "description": "The fully qualified name of the view.\n"
+                    "description": "The fully qualified name of the index.\n"
                 },
                 "schemaName": {
                     "type": "string",
@@ -4973,6 +5094,10 @@
                     },
                     "description": "The expressions to use as the key for the index.\n",
                     "willReplaceOnChanges": true
+                },
+                "comment": {
+                    "type": "string",
+                    "description": "**Private Preview** Comment on an object in the database.\n"
                 },
                 "default": {
                     "type": "boolean",
@@ -5015,6 +5140,10 @@
                         "description": "The expressions to use as the key for the index.\n",
                         "willReplaceOnChanges": true
                     },
+                    "comment": {
+                        "type": "string",
+                        "description": "**Private Preview** Comment on an object in the database.\n"
+                    },
                     "databaseName": {
                         "type": "string",
                         "description": "The identifier for the index database.\n"
@@ -5041,7 +5170,7 @@
                     },
                     "qualifiedSqlName": {
                         "type": "string",
-                        "description": "The fully qualified name of the view.\n"
+                        "description": "The fully qualified name of the index.\n"
                     },
                     "schemaName": {
                         "type": "string",
@@ -5057,6 +5186,10 @@
                 "clusterName": {
                     "type": "string",
                     "description": "The cluster to maintain the materialized view. If not specified, defaults to the default cluster.\n"
+                },
+                "comment": {
+                    "type": "string",
+                    "description": "**Private Preview** Comment on an object in the database.\n"
                 },
                 "databaseName": {
                     "type": "string",
@@ -5095,6 +5228,10 @@
                     "type": "string",
                     "description": "The cluster to maintain the materialized view. If not specified, defaults to the default cluster.\n"
                 },
+                "comment": {
+                    "type": "string",
+                    "description": "**Private Preview** Comment on an object in the database.\n"
+                },
                 "databaseName": {
                     "type": "string",
                     "description": "The identifier for the materialized view database. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
@@ -5129,6 +5266,10 @@
                         "type": "string",
                         "description": "The cluster to maintain the materialized view. If not specified, defaults to the default cluster.\n"
                     },
+                    "comment": {
+                        "type": "string",
+                        "description": "**Private Preview** Comment on an object in the database.\n"
+                    },
                     "databaseName": {
                         "type": "string",
                         "description": "The identifier for the materialized view database. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
@@ -5161,8 +5302,12 @@
             }
         },
         "materialize:index/role:Role": {
-            "description": "A role is a collection of privileges you can apply to users.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.materialize.Role;\nimport com.pulumi.materialize.RoleArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var exampleRole = new Role(\"exampleRole\", RoleArgs.builder()        \n            .createCluster(false)\n            .createDb(true)\n            .createRole(false)\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  exampleRole:\n    type: materialize:Role\n    properties:\n      createCluster: false\n      createDb: true\n      createRole: false\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nRoles can be imported using the role id\n\n```sh\n $ pulumi import materialize:index/role:Role example_role \u003crole_id\u003e\n```\n\n Role id and information be found in the `mz_catalog.mz_roles` table ",
+            "description": "A role is a collection of privileges you can apply to users.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as materialize from \"@pulumi/materialize\";\n\nconst exampleRole = new materialize.Role(\"exampleRole\", {});\n```\n```python\nimport pulumi\nimport pulumi_materialize as materialize\n\nexample_role = materialize.Role(\"exampleRole\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Materialize = Pulumi.Materialize;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var exampleRole = new Materialize.Role(\"exampleRole\");\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-materialize/sdk/go/materialize\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := materialize.NewRole(ctx, \"exampleRole\", nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.materialize.Role;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var exampleRole = new Role(\"exampleRole\");\n\n    }\n}\n```\n```yaml\nresources:\n  exampleRole:\n    type: materialize:Role\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nRoles can be imported using the role id\n\n```sh\n $ pulumi import materialize:index/role:Role example_role \u003crole_id\u003e\n```\n\n Role id and information be found in the `mz_catalog.mz_roles` table ",
             "properties": {
+                "comment": {
+                    "type": "string",
+                    "description": "**Private Preview** Comment on an object in the database.\n"
+                },
                 "inherit": {
                     "type": "boolean",
                     "description": "Grants the role the ability to inheritance of privileges of other roles. Unlike PostgreSQL, Materialize does not currently support `NOINHERIT`\n"
@@ -5174,6 +5319,13 @@
                 "qualifiedSqlName": {
                     "type": "string",
                     "description": "The fully qualified name of the role.\n"
+                },
+                "sessionVariables": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/materialize:index/RoleSessionVariable:RoleSessionVariable"
+                    },
+                    "description": "Session variable.\n"
                 }
             },
             "required": [
@@ -5182,15 +5334,31 @@
                 "qualifiedSqlName"
             ],
             "inputProperties": {
+                "comment": {
+                    "type": "string",
+                    "description": "**Private Preview** Comment on an object in the database.\n"
+                },
                 "name": {
                     "type": "string",
                     "description": "The identifier for the role.\n",
+                    "willReplaceOnChanges": true
+                },
+                "sessionVariables": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/materialize:index/RoleSessionVariable:RoleSessionVariable"
+                    },
+                    "description": "Session variable.\n",
                     "willReplaceOnChanges": true
                 }
             },
             "stateInputs": {
                 "description": "Input properties used for looking up and filtering Role resources.\n",
                 "properties": {
+                    "comment": {
+                        "type": "string",
+                        "description": "**Private Preview** Comment on an object in the database.\n"
+                    },
                     "inherit": {
                         "type": "boolean",
                         "description": "Grants the role the ability to inheritance of privileges of other roles. Unlike PostgreSQL, Materialize does not currently support `NOINHERIT`\n"
@@ -5203,6 +5371,14 @@
                     "qualifiedSqlName": {
                         "type": "string",
                         "description": "The fully qualified name of the role.\n"
+                    },
+                    "sessionVariables": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/materialize:index/RoleSessionVariable:RoleSessionVariable"
+                        },
+                        "description": "Session variable.\n",
+                        "willReplaceOnChanges": true
                     }
                 },
                 "type": "object"
@@ -5211,6 +5387,10 @@
         "materialize:index/schema:Schema": {
             "description": "The second highest level namespace hierarchy in Materialize.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as materialize from \"@pulumi/materialize\";\n\nconst exampleSchema = new materialize.Schema(\"exampleSchema\", {databaseName: \"database\"});\n```\n```python\nimport pulumi\nimport pulumi_materialize as materialize\n\nexample_schema = materialize.Schema(\"exampleSchema\", database_name=\"database\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Materialize = Pulumi.Materialize;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var exampleSchema = new Materialize.Schema(\"exampleSchema\", new()\n    {\n        DatabaseName = \"database\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-materialize/sdk/go/materialize\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := materialize.NewSchema(ctx, \"exampleSchema\", \u0026materialize.SchemaArgs{\n\t\t\tDatabaseName: pulumi.String(\"database\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.materialize.Schema;\nimport com.pulumi.materialize.SchemaArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var exampleSchema = new Schema(\"exampleSchema\", SchemaArgs.builder()        \n            .databaseName(\"database\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  exampleSchema:\n    type: materialize:Schema\n    properties:\n      databaseName: database\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nSchemas can be imported using the schema id\n\n```sh\n $ pulumi import materialize:index/schema:Schema example_schema \u003cschema_id\u003e\n```\n\n Schema id and information be found in the `mz_catalog.mz_schemas` table ",
             "properties": {
+                "comment": {
+                    "type": "string",
+                    "description": "**Private Preview** Comment on an object in the database.\n"
+                },
                 "databaseName": {
                     "type": "string",
                     "description": "The identifier for the schema database. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
@@ -5234,6 +5414,10 @@
                 "qualifiedSqlName"
             ],
             "inputProperties": {
+                "comment": {
+                    "type": "string",
+                    "description": "**Private Preview** Comment on an object in the database.\n"
+                },
                 "databaseName": {
                     "type": "string",
                     "description": "The identifier for the schema database. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
@@ -5252,6 +5436,10 @@
             "stateInputs": {
                 "description": "Input properties used for looking up and filtering Schema resources.\n",
                 "properties": {
+                    "comment": {
+                        "type": "string",
+                        "description": "**Private Preview** Comment on an object in the database.\n"
+                    },
                     "databaseName": {
                         "type": "string",
                         "description": "The identifier for the schema database. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
@@ -5277,6 +5465,10 @@
         "materialize:index/secret:Secret": {
             "description": "A secret securely stores sensitive credentials (like passwords and SSL keys) in Materialize’s secret management system.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as materialize from \"@pulumi/materialize\";\n\nconst exampleSecret = new materialize.Secret(\"exampleSecret\", {value: \"some-secret-value\"});\n```\n```python\nimport pulumi\nimport pulumi_materialize as materialize\n\nexample_secret = materialize.Secret(\"exampleSecret\", value=\"some-secret-value\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Materialize = Pulumi.Materialize;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var exampleSecret = new Materialize.Secret(\"exampleSecret\", new()\n    {\n        Value = \"some-secret-value\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-materialize/sdk/go/materialize\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := materialize.NewSecret(ctx, \"exampleSecret\", \u0026materialize.SecretArgs{\n\t\t\tValue: pulumi.String(\"some-secret-value\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.materialize.Secret;\nimport com.pulumi.materialize.SecretArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var exampleSecret = new Secret(\"exampleSecret\", SecretArgs.builder()        \n            .value(\"some-secret-value\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  exampleSecret:\n    type: materialize:Secret\n    properties:\n      value: some-secret-value\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nSecrets can be imported using the secret id\n\n```sh\n $ pulumi import materialize:index/secret:Secret example_secret \u003csecret_id\u003e\n```\n\n Secret id and information be found in the `mz_catalog.mz_secrets` table ",
             "properties": {
+                "comment": {
+                    "type": "string",
+                    "description": "**Private Preview** Comment on an object in the database.\n"
+                },
                 "databaseName": {
                     "type": "string",
                     "description": "The identifier for the secret database. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
@@ -5309,6 +5501,10 @@
                 "qualifiedSqlName"
             ],
             "inputProperties": {
+                "comment": {
+                    "type": "string",
+                    "description": "**Private Preview** Comment on an object in the database.\n"
+                },
                 "databaseName": {
                     "type": "string",
                     "description": "The identifier for the secret database. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
@@ -5336,6 +5532,10 @@
             "stateInputs": {
                 "description": "Input properties used for looking up and filtering Secret resources.\n",
                 "properties": {
+                    "comment": {
+                        "type": "string",
+                        "description": "**Private Preview** Comment on an object in the database.\n"
+                    },
                     "databaseName": {
                         "type": "string",
                         "description": "The identifier for the secret database. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
@@ -5373,6 +5573,10 @@
                 "clusterName": {
                     "type": "string",
                     "description": "The cluster to maintain this sink. If not specified, the `size` option must be specified.\n"
+                },
+                "comment": {
+                    "type": "string",
+                    "description": "**Private Preview** Comment on an object in the database.\n"
                 },
                 "databaseName": {
                     "type": "string",
@@ -5445,6 +5649,10 @@
                     "type": "string",
                     "description": "The cluster to maintain this sink. If not specified, the `size` option must be specified.\n",
                     "willReplaceOnChanges": true
+                },
+                "comment": {
+                    "type": "string",
+                    "description": "**Private Preview** Comment on an object in the database.\n"
                 },
                 "databaseName": {
                     "type": "string",
@@ -5520,6 +5728,10 @@
                         "description": "The cluster to maintain this sink. If not specified, the `size` option must be specified.\n",
                         "willReplaceOnChanges": true
                     },
+                    "comment": {
+                        "type": "string",
+                        "description": "**Private Preview** Comment on an object in the database.\n"
+                    },
                     "databaseName": {
                         "type": "string",
                         "description": "The identifier for the sink database. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
@@ -5594,6 +5806,10 @@
                 "clusterName": {
                     "type": "string",
                     "description": "The cluster to maintain this source. If not specified, the `size` option must be specified.\n"
+                },
+                "comment": {
+                    "type": "string",
+                    "description": "**Private Preview** Comment on an object in the database.\n"
                 },
                 "databaseName": {
                     "type": "string",
@@ -5721,6 +5937,10 @@
                     "type": "string",
                     "description": "The cluster to maintain this source. If not specified, the `size` option must be specified.\n",
                     "willReplaceOnChanges": true
+                },
+                "comment": {
+                    "type": "string",
+                    "description": "**Private Preview** Comment on an object in the database.\n"
                 },
                 "databaseName": {
                     "type": "string",
@@ -5854,6 +6074,10 @@
                         "type": "string",
                         "description": "The cluster to maintain this source. If not specified, the `size` option must be specified.\n",
                         "willReplaceOnChanges": true
+                    },
+                    "comment": {
+                        "type": "string",
+                        "description": "**Private Preview** Comment on an object in the database.\n"
                     },
                     "databaseName": {
                         "type": "string",
@@ -6004,6 +6228,10 @@
                     "type": "string",
                     "description": "The cluster to maintain this source. If not specified, the `size` option must be specified.\n"
                 },
+                "comment": {
+                    "type": "string",
+                    "description": "**Private Preview** Comment on an object in the database.\n"
+                },
                 "counterOptions": {
                     "type": "array",
                     "items": {
@@ -6084,6 +6312,10 @@
                     "description": "The cluster to maintain this source. If not specified, the `size` option must be specified.\n",
                     "willReplaceOnChanges": true
                 },
+                "comment": {
+                    "type": "string",
+                    "description": "**Private Preview** Comment on an object in the database.\n"
+                },
                 "counterOptions": {
                     "type": "array",
                     "items": {
@@ -6153,6 +6385,10 @@
                         "type": "string",
                         "description": "The cluster to maintain this source. If not specified, the `size` option must be specified.\n",
                         "willReplaceOnChanges": true
+                    },
+                    "comment": {
+                        "type": "string",
+                        "description": "**Private Preview** Comment on an object in the database.\n"
                     },
                     "counterOptions": {
                         "type": "array",
@@ -6225,6 +6461,10 @@
                 "clusterName": {
                     "type": "string",
                     "description": "The cluster to maintain this source. If not specified, the `size` option must be specified.\n"
+                },
+                "comment": {
+                    "type": "string",
+                    "description": "**Private Preview** Comment on an object in the database.\n"
                 },
                 "databaseName": {
                     "type": "string",
@@ -6307,6 +6547,10 @@
                     "description": "The cluster to maintain this source. If not specified, the `size` option must be specified.\n",
                     "willReplaceOnChanges": true
                 },
+                "comment": {
+                    "type": "string",
+                    "description": "**Private Preview** Comment on an object in the database.\n"
+                },
                 "databaseName": {
                     "type": "string",
                     "description": "The identifier for the source database. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
@@ -6378,6 +6622,10 @@
                         "type": "string",
                         "description": "The cluster to maintain this source. If not specified, the `size` option must be specified.\n",
                         "willReplaceOnChanges": true
+                    },
+                    "comment": {
+                        "type": "string",
+                        "description": "**Private Preview** Comment on an object in the database.\n"
                     },
                     "databaseName": {
                         "type": "string",
@@ -6454,7 +6702,7 @@
             }
         },
         "materialize:index/sourceWebhook:SourceWebhook": {
-            "description": "A webhook source describes a webhook you want Materialize to read data from.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as materialize from \"@pulumi/materialize\";\n\nconst exampleWebhook = new materialize.SourceWebhook(\"exampleWebhook\", {\n    clusterName: materialize_cluster.example_cluster.name,\n    bodyFormat: \"json\",\n    includeHeaders: false,\n});\n```\n```python\nimport pulumi\nimport pulumi_materialize as materialize\n\nexample_webhook = materialize.SourceWebhook(\"exampleWebhook\",\n    cluster_name=materialize_cluster[\"example_cluster\"][\"name\"],\n    body_format=\"json\",\n    include_headers=False)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Materialize = Pulumi.Materialize;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var exampleWebhook = new Materialize.SourceWebhook(\"exampleWebhook\", new()\n    {\n        ClusterName = materialize_cluster.Example_cluster.Name,\n        BodyFormat = \"json\",\n        IncludeHeaders = false,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-materialize/sdk/go/materialize\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := materialize.NewSourceWebhook(ctx, \"exampleWebhook\", \u0026materialize.SourceWebhookArgs{\n\t\t\tClusterName:    pulumi.Any(materialize_cluster.Example_cluster.Name),\n\t\t\tBodyFormat:     pulumi.String(\"json\"),\n\t\t\tIncludeHeaders: pulumi.Bool(false),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.materialize.SourceWebhook;\nimport com.pulumi.materialize.SourceWebhookArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var exampleWebhook = new SourceWebhook(\"exampleWebhook\", SourceWebhookArgs.builder()        \n            .clusterName(materialize_cluster.example_cluster().name())\n            .bodyFormat(\"json\")\n            .includeHeaders(false)\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  exampleWebhook:\n    type: materialize:SourceWebhook\n    properties:\n      clusterName: ${materialize_cluster.example_cluster.name}\n      bodyFormat: json\n      includeHeaders: false\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nSources can be imported using the source id\n\n```sh\n $ pulumi import materialize:index/sourceWebhook:SourceWebhook example_source_webhook \u003csource_id\u003e\n```\n\n Source id and information be found in the `mz_catalog.mz_sources` table ",
+            "description": "**Private Preview** A webhook source describes a webhook you want Materialize to read data from.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as materialize from \"@pulumi/materialize\";\n\nconst exampleWebhook = new materialize.SourceWebhook(\"exampleWebhook\", {\n    clusterName: materialize_cluster.example_cluster.name,\n    bodyFormat: \"json\",\n    includeHeaders: false,\n});\n```\n```python\nimport pulumi\nimport pulumi_materialize as materialize\n\nexample_webhook = materialize.SourceWebhook(\"exampleWebhook\",\n    cluster_name=materialize_cluster[\"example_cluster\"][\"name\"],\n    body_format=\"json\",\n    include_headers=False)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Materialize = Pulumi.Materialize;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var exampleWebhook = new Materialize.SourceWebhook(\"exampleWebhook\", new()\n    {\n        ClusterName = materialize_cluster.Example_cluster.Name,\n        BodyFormat = \"json\",\n        IncludeHeaders = false,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-materialize/sdk/go/materialize\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := materialize.NewSourceWebhook(ctx, \"exampleWebhook\", \u0026materialize.SourceWebhookArgs{\n\t\t\tClusterName:    pulumi.Any(materialize_cluster.Example_cluster.Name),\n\t\t\tBodyFormat:     pulumi.String(\"json\"),\n\t\t\tIncludeHeaders: pulumi.Bool(false),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.materialize.SourceWebhook;\nimport com.pulumi.materialize.SourceWebhookArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var exampleWebhook = new SourceWebhook(\"exampleWebhook\", SourceWebhookArgs.builder()        \n            .clusterName(materialize_cluster.example_cluster().name())\n            .bodyFormat(\"json\")\n            .includeHeaders(false)\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  exampleWebhook:\n    type: materialize:SourceWebhook\n    properties:\n      clusterName: ${materialize_cluster.example_cluster.name}\n      bodyFormat: json\n      includeHeaders: false\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nSources can be imported using the source id\n\n```sh\n $ pulumi import materialize:index/sourceWebhook:SourceWebhook example_source_webhook \u003csource_id\u003e\n```\n\n Source id and information be found in the `mz_catalog.mz_sources` table ",
             "properties": {
                 "bodyFormat": {
                     "type": "string",
@@ -6474,6 +6722,10 @@
                 "clusterName": {
                     "type": "string",
                     "description": "The cluster to maintain this source.\n"
+                },
+                "comment": {
+                    "type": "string",
+                    "description": "**Private Preview** Comment on an object in the database.\n"
                 },
                 "databaseName": {
                     "type": "string",
@@ -6542,6 +6794,10 @@
                     "description": "The cluster to maintain this source.\n",
                     "willReplaceOnChanges": true
                 },
+                "comment": {
+                    "type": "string",
+                    "description": "**Private Preview** Comment on an object in the database.\n"
+                },
                 "databaseName": {
                     "type": "string",
                     "description": "The identifier for the source database. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
@@ -6593,6 +6849,10 @@
                         "type": "string",
                         "description": "The cluster to maintain this source.\n",
                         "willReplaceOnChanges": true
+                    },
+                    "comment": {
+                        "type": "string",
+                        "description": "**Private Preview** Comment on an object in the database.\n"
                     },
                     "databaseName": {
                         "type": "string",
@@ -6646,6 +6906,10 @@
                     },
                     "description": "Column of the table.\n"
                 },
+                "comment": {
+                    "type": "string",
+                    "description": "**Private Preview** Comment on an object in the database.\n"
+                },
                 "databaseName": {
                     "type": "string",
                     "description": "The identifier for the table database. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
@@ -6681,6 +6945,10 @@
                     "description": "Column of the table.\n",
                     "willReplaceOnChanges": true
                 },
+                "comment": {
+                    "type": "string",
+                    "description": "**Private Preview** Comment on an object in the database.\n"
+                },
                 "databaseName": {
                     "type": "string",
                     "description": "The identifier for the table database. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
@@ -6710,6 +6978,10 @@
                         },
                         "description": "Column of the table.\n",
                         "willReplaceOnChanges": true
+                    },
+                    "comment": {
+                        "type": "string",
+                        "description": "**Private Preview** Comment on an object in the database.\n"
                     },
                     "databaseName": {
                         "type": "string",
@@ -6743,6 +7015,10 @@
                 "category": {
                     "type": "string",
                     "description": "Type category.\n"
+                },
+                "comment": {
+                    "type": "string",
+                    "description": "**Private Preview** Comment on an object in the database.\n"
                 },
                 "databaseName": {
                     "type": "string",
@@ -6780,6 +7056,10 @@
                 "qualifiedSqlName"
             ],
             "inputProperties": {
+                "comment": {
+                    "type": "string",
+                    "description": "**Private Preview** Comment on an object in the database.\n"
+                },
                 "databaseName": {
                     "type": "string",
                     "description": "The identifier for the type database. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
@@ -6816,6 +7096,10 @@
                     "category": {
                         "type": "string",
                         "description": "Type category.\n"
+                    },
+                    "comment": {
+                        "type": "string",
+                        "description": "**Private Preview** Comment on an object in the database.\n"
                     },
                     "databaseName": {
                         "type": "string",
@@ -6857,6 +7141,10 @@
         "materialize:index/view:View": {
             "description": "Views represent queries of sources and other views that you want to save for repeated execution.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as materialize from \"@pulumi/materialize\";\n\nconst simpleViewView = new materialize.View(\"simpleViewView\", {\n    schemaName: materialize_schema.schema.name,\n    databaseName: materialize_database.database.name,\n    statement: `SELECT\n    *\nFROM\n    ${materialize_table.simple_table.qualified_name}\n`,\n}, {\n    dependsOn: [materialize_table.simple_table],\n});\nconst simpleViewIndex_viewView = new materialize.View(\"simpleViewIndex/viewView\", {\n    schemaName: materialize_schema.schema.name,\n    databaseName: materialize_database.database.name,\n    statement: \"SELECT * FROM materialize.public.simple_table\",\n});\n```\n```python\nimport pulumi\nimport pulumi_materialize as materialize\n\nsimple_view_view = materialize.View(\"simpleViewView\",\n    schema_name=materialize_schema[\"schema\"][\"name\"],\n    database_name=materialize_database[\"database\"][\"name\"],\n    statement=f\"\"\"SELECT\n    *\nFROM\n    {materialize_table[\"simple_table\"][\"qualified_name\"]}\n\"\"\",\n    opts=pulumi.ResourceOptions(depends_on=[materialize_table[\"simple_table\"]]))\nsimple_view_index_view_view = materialize.View(\"simpleViewIndex/viewView\",\n    schema_name=materialize_schema[\"schema\"][\"name\"],\n    database_name=materialize_database[\"database\"][\"name\"],\n    statement=\"SELECT * FROM materialize.public.simple_table\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Materialize = Pulumi.Materialize;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var simpleViewView = new Materialize.View(\"simpleViewView\", new()\n    {\n        SchemaName = materialize_schema.Schema.Name,\n        DatabaseName = materialize_database.Database.Name,\n        Statement = @$\"SELECT\n    *\nFROM\n    {materialize_table.Simple_table.Qualified_name}\n\",\n    }, new CustomResourceOptions\n    {\n        DependsOn = new[]\n        {\n            materialize_table.Simple_table,\n        },\n    });\n\n    var simpleViewIndex_viewView = new Materialize.View(\"simpleViewIndex/viewView\", new()\n    {\n        SchemaName = materialize_schema.Schema.Name,\n        DatabaseName = materialize_database.Database.Name,\n        Statement = \"SELECT * FROM materialize.public.simple_table\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"fmt\"\n\n\t\"github.com/pulumi/pulumi-materialize/sdk/go/materialize\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := materialize.NewView(ctx, \"simpleViewView\", \u0026materialize.ViewArgs{\n\t\t\tSchemaName:   pulumi.Any(materialize_schema.Schema.Name),\n\t\t\tDatabaseName: pulumi.Any(materialize_database.Database.Name),\n\t\t\tStatement:    pulumi.String(fmt.Sprintf(\"SELECT\\n    *\\nFROM\\n    %v\\n\", materialize_table.Simple_table.Qualified_name)),\n\t\t}, pulumi.DependsOn([]pulumi.Resource{\n\t\t\tmaterialize_table.Simple_table,\n\t\t}))\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = materialize.NewView(ctx, \"simpleViewIndex/viewView\", \u0026materialize.ViewArgs{\n\t\t\tSchemaName:   pulumi.Any(materialize_schema.Schema.Name),\n\t\t\tDatabaseName: pulumi.Any(materialize_database.Database.Name),\n\t\t\tStatement:    pulumi.String(\"SELECT * FROM materialize.public.simple_table\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.materialize.View;\nimport com.pulumi.materialize.ViewArgs;\nimport com.pulumi.resources.CustomResourceOptions;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var simpleViewView = new View(\"simpleViewView\", ViewArgs.builder()        \n            .schemaName(materialize_schema.schema().name())\n            .databaseName(materialize_database.database().name())\n            .statement(\"\"\"\nSELECT\n    *\nFROM\n    %s\n\", materialize_table.simple_table().qualified_name()))\n            .build(), CustomResourceOptions.builder()\n                .dependsOn(materialize_table.simple_table())\n                .build());\n\n        var simpleViewIndex_viewView = new View(\"simpleViewIndex/viewView\", ViewArgs.builder()        \n            .schemaName(materialize_schema.schema().name())\n            .databaseName(materialize_database.database().name())\n            .statement(\"SELECT * FROM materialize.public.simple_table\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  simpleViewView:\n    type: materialize:View\n    properties:\n      schemaName: ${materialize_schema.schema.name}\n      databaseName: ${materialize_database.database.name}\n      statement: |\n        SELECT\n            *\n        FROM\n            ${materialize_table.simple_table.qualified_name}\n    options:\n      dependson:\n        - ${materialize_table.simple_table}\n  simpleViewIndex/viewView:\n    type: materialize:View\n    properties:\n      schemaName: ${materialize_schema.schema.name}\n      databaseName: ${materialize_database.database.name}\n      statement: SELECT * FROM materialize.public.simple_table\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nViews can be imported using the view id\n\n```sh\n $ pulumi import materialize:index/view:View example_view \u003cview_id\u003e\n```\n\n View id and information be found in the `mz_catalog.mz_views` ",
             "properties": {
+                "comment": {
+                    "type": "string",
+                    "description": "**Private Preview** Comment on an object in the database.\n"
+                },
                 "databaseName": {
                     "type": "string",
                     "description": "The identifier for the view database. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
@@ -6889,6 +7177,10 @@
                 "statement"
             ],
             "inputProperties": {
+                "comment": {
+                    "type": "string",
+                    "description": "**Private Preview** Comment on an object in the database.\n"
+                },
                 "databaseName": {
                     "type": "string",
                     "description": "The identifier for the view database. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
@@ -6919,6 +7211,10 @@
             "stateInputs": {
                 "description": "Input properties used for looking up and filtering View resources.\n",
                 "properties": {
+                    "comment": {
+                        "type": "string",
+                        "description": "**Private Preview** Comment on an object in the database.\n"
+                    },
                     "databaseName": {
                         "type": "string",
                         "description": "The identifier for the view database. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
