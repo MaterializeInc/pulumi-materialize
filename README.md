@@ -19,8 +19,8 @@ pip install pulumi_materialize
 The following configuration points are available for the `materialize` provider:
 
 - `materialize:host` (environment: `MZ_HOST`) -  Materialize host.
-- `materialize:username` (environment: `MZ_USER`) - Materialize user.
-- `materialize:password` (environment: `MZ_PW`) - Materialize password.
+- `materialize:user` (environment: `MZ_USER`) - Materialize user.
+- `materialize:password` (environment: `MZ_PASSWORD`) - Materialize password.
 - `materialize:port` (environment: `MZ_PORT`) - The Materialize port number to connect to at the server host.
 - `materialize:database` (environment: `MZ_DATABASE`) - Materialize database.
 
