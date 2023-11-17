@@ -91,7 +91,7 @@
             "properties": {
                 "databaseName": {
                     "type": "string",
-                    "description": "The aws_privatelink database name.\n"
+                    "description": "The aws_privatelink database name. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
                 },
                 "name": {
                     "type": "string",
@@ -99,7 +99,7 @@
                 },
                 "schemaName": {
                     "type": "string",
-                    "description": "The aws_privatelink schema name.\n"
+                    "description": "The aws_privatelink schema name. Defaults to `public`\n"
                 }
             },
             "type": "object",
@@ -111,7 +111,7 @@
             "properties": {
                 "databaseName": {
                     "type": "string",
-                    "description": "The password database name.\n"
+                    "description": "The password database name. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
                 },
                 "name": {
                     "type": "string",
@@ -119,7 +119,7 @@
                 },
                 "schemaName": {
                     "type": "string",
-                    "description": "The password schema name.\n"
+                    "description": "The password schema name. Defaults to `public`\n"
                 }
             },
             "type": "object",
@@ -131,7 +131,7 @@
             "properties": {
                 "databaseName": {
                     "type": "string",
-                    "description": "The ssh_tunnel database name.\n"
+                    "description": "The ssh_tunnel database name. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
                 },
                 "name": {
                     "type": "string",
@@ -139,7 +139,7 @@
                 },
                 "schemaName": {
                     "type": "string",
-                    "description": "The ssh_tunnel schema name.\n"
+                    "description": "The ssh_tunnel schema name. Defaults to `public`\n"
                 }
             },
             "type": "object",
@@ -221,7 +221,7 @@
             "properties": {
                 "databaseName": {
                     "type": "string",
-                    "description": "The ssl_key database name.\n"
+                    "description": "The ssl_key database name. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
                 },
                 "name": {
                     "type": "string",
@@ -229,7 +229,7 @@
                 },
                 "schemaName": {
                     "type": "string",
-                    "description": "The ssl_key schema name.\n"
+                    "description": "The ssl_key schema name. Defaults to `public`\n"
                 }
             },
             "type": "object",
@@ -321,7 +321,7 @@
             "properties": {
                 "databaseName": {
                     "type": "string",
-                    "description": "The sasl_password database name.\n"
+                    "description": "The sasl_password database name. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
                 },
                 "name": {
                     "type": "string",
@@ -329,7 +329,7 @@
                 },
                 "schemaName": {
                     "type": "string",
-                    "description": "The sasl_password schema name.\n"
+                    "description": "The sasl_password schema name. Defaults to `public`\n"
                 }
             },
             "type": "object",
@@ -376,7 +376,7 @@
             "properties": {
                 "databaseName": {
                     "type": "string",
-                    "description": "The ssh_tunnel database name.\n"
+                    "description": "The ssh_tunnel database name. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
                 },
                 "name": {
                     "type": "string",
@@ -384,7 +384,7 @@
                 },
                 "schemaName": {
                     "type": "string",
-                    "description": "The ssh_tunnel schema name.\n"
+                    "description": "The ssh_tunnel schema name. Defaults to `public`\n"
                 }
             },
             "type": "object",
@@ -466,7 +466,7 @@
             "properties": {
                 "databaseName": {
                     "type": "string",
-                    "description": "The ssl_key database name.\n"
+                    "description": "The ssl_key database name. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
                 },
                 "name": {
                     "type": "string",
@@ -474,7 +474,7 @@
                 },
                 "schemaName": {
                     "type": "string",
-                    "description": "The ssl_key schema name.\n"
+                    "description": "The ssl_key schema name. Defaults to `public`\n"
                 }
             },
             "type": "object",
@@ -486,7 +486,7 @@
             "properties": {
                 "databaseName": {
                     "type": "string",
-                    "description": "The aws_privatelink database name.\n"
+                    "description": "The aws_privatelink database name. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
                 },
                 "name": {
                     "type": "string",
@@ -494,7 +494,7 @@
                 },
                 "schemaName": {
                     "type": "string",
-                    "description": "The aws_privatelink schema name.\n"
+                    "description": "The aws_privatelink schema name. Defaults to `public`\n"
                 }
             },
             "type": "object",
@@ -506,7 +506,7 @@
             "properties": {
                 "databaseName": {
                     "type": "string",
-                    "description": "The password database name.\n"
+                    "description": "The password database name. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
                 },
                 "name": {
                     "type": "string",
@@ -514,7 +514,7 @@
                 },
                 "schemaName": {
                     "type": "string",
-                    "description": "The password schema name.\n"
+                    "description": "The password schema name. Defaults to `public`\n"
                 }
             },
             "type": "object",
@@ -526,7 +526,7 @@
             "properties": {
                 "databaseName": {
                     "type": "string",
-                    "description": "The ssh_tunnel database name.\n"
+                    "description": "The ssh_tunnel database name. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
                 },
                 "name": {
                     "type": "string",
@@ -534,7 +534,7 @@
                 },
                 "schemaName": {
                     "type": "string",
-                    "description": "The ssh_tunnel schema name.\n"
+                    "description": "The ssh_tunnel schema name. Defaults to `public`\n"
                 }
             },
             "type": "object",
@@ -616,7 +616,7 @@
             "properties": {
                 "databaseName": {
                     "type": "string",
-                    "description": "The ssl_key database name.\n"
+                    "description": "The ssl_key database name. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
                 },
                 "name": {
                     "type": "string",
@@ -624,7 +624,7 @@
                 },
                 "schemaName": {
                     "type": "string",
-                    "description": "The ssl_key schema name.\n"
+                    "description": "The ssl_key schema name. Defaults to `public`\n"
                 }
             },
             "type": "object",
@@ -1154,7 +1154,7 @@
             "properties": {
                 "databaseName": {
                     "type": "string",
-                    "description": "The obj_name database name.\n"
+                    "description": "The obj_name database name. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
                 },
                 "name": {
                     "type": "string",
@@ -1162,7 +1162,7 @@
                 },
                 "schemaName": {
                     "type": "string",
-                    "description": "The obj_name schema name.\n"
+                    "description": "The obj_name schema name. Defaults to `public`\n"
                 }
             },
             "type": "object",
@@ -1261,7 +1261,7 @@
             "properties": {
                 "databaseName": {
                     "type": "string",
-                    "description": "The from database name.\n"
+                    "description": "The from database name. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
                 },
                 "name": {
                     "type": "string",
@@ -1269,7 +1269,7 @@
                 },
                 "schemaName": {
                     "type": "string",
-                    "description": "The from schema name.\n"
+                    "description": "The from schema name. Defaults to `public`\n"
                 }
             },
             "type": "object",
@@ -1281,7 +1281,7 @@
             "properties": {
                 "databaseName": {
                     "type": "string",
-                    "description": "The kafka_connection database name.\n"
+                    "description": "The kafka_connection database name. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
                 },
                 "name": {
                     "type": "string",
@@ -1289,7 +1289,7 @@
                 },
                 "schemaName": {
                     "type": "string",
-                    "description": "The kafka_connection schema name.\n"
+                    "description": "The kafka_connection schema name. Defaults to `public`\n"
                 }
             },
             "type": "object",
@@ -1456,7 +1456,7 @@
             "properties": {
                 "databaseName": {
                     "type": "string",
-                    "description": "The kafka_connection database name.\n"
+                    "description": "The kafka_connection database name. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
                 },
                 "name": {
                     "type": "string",
@@ -1464,7 +1464,7 @@
                 },
                 "schemaName": {
                     "type": "string",
-                    "description": "The kafka_connection schema name.\n"
+                    "description": "The kafka_connection schema name. Defaults to `public`\n"
                 }
             },
             "type": "object",
@@ -1855,7 +1855,7 @@
             "properties": {
                 "databaseName": {
                     "type": "string",
-                    "description": "The postgres_connection database name.\n"
+                    "description": "The postgres_connection database name. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
                 },
                 "name": {
                     "type": "string",
@@ -1863,7 +1863,7 @@
                 },
                 "schemaName": {
                     "type": "string",
-                    "description": "The postgres_connection schema name.\n"
+                    "description": "The postgres_connection schema name. Defaults to `public`\n"
                 }
             },
             "type": "object",
@@ -1915,6 +1915,10 @@
                     "type": "string",
                     "description": "The alias for the check options.\n"
                 },
+                "bytes": {
+                    "type": "boolean",
+                    "description": "Change type to `bytea`.\n"
+                },
                 "field": {
                     "$ref": "#/types/materialize:index/SourceWebhookCheckOptionField:SourceWebhookCheckOptionField",
                     "description": "The field for the check options.\n"
@@ -1960,6 +1964,49 @@
                 "name"
             ]
         },
+        "materialize:index/SourceWebhookIncludeHeader:SourceWebhookIncludeHeader": {
+            "properties": {
+                "alias": {
+                    "type": "string",
+                    "description": "The alias for the header.\n"
+                },
+                "bytes": {
+                    "type": "boolean",
+                    "description": "Change type to `bytea`.\n"
+                },
+                "header": {
+                    "type": "string",
+                    "description": "The name for the header.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "header"
+            ]
+        },
+        "materialize:index/SourceWebhookIncludeHeaders:SourceWebhookIncludeHeaders": {
+            "properties": {
+                "all": {
+                    "type": "boolean",
+                    "description": "Include all headers.\n"
+                },
+                "nots": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Headers that should be excluded.\n"
+                },
+                "onlies": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Headers that should be included.\n"
+                }
+            },
+            "type": "object"
+        },
         "materialize:index/SourceWebhookSubsource:SourceWebhookSubsource": {
             "properties": {
                 "databaseName": {
@@ -1990,15 +2037,18 @@
                 },
                 "name": {
                     "type": "string",
-                    "description": "The name of the column to be created in the table.\n"
+                    "description": "The name of the column to be created in the table.\n",
+                    "willReplaceOnChanges": true
                 },
                 "nullable": {
                     "type": "boolean",
-                    "description": "Do not allow the column to contain NULL values. Columns without this constraint can contain NULL values.\n"
+                    "description": "Do not allow the column to contain NULL values. Columns without this constraint can contain NULL values.\n",
+                    "willReplaceOnChanges": true
                 },
                 "type": {
                     "type": "string",
-                    "description": "The data type of the column indicated by name.\n"
+                    "description": "The data type of the column indicated by name.\n",
+                    "willReplaceOnChanges": true
                 }
             },
             "type": "object",
@@ -5199,6 +5249,13 @@
                     "type": "string",
                     "description": "The identifier for the materialized view.\n"
                 },
+                "notNullAssertions": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "**Private Preview** A list of columns for which to create non-null assertions.\n"
+                },
                 "ownershipRole": {
                     "type": "string",
                     "description": "The owernship role of the object.\n"
@@ -5241,6 +5298,14 @@
                     "type": "string",
                     "description": "The identifier for the materialized view.\n"
                 },
+                "notNullAssertions": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "**Private Preview** A list of columns for which to create non-null assertions.\n",
+                    "willReplaceOnChanges": true
+                },
                 "ownershipRole": {
                     "type": "string",
                     "description": "The owernship role of the object.\n"
@@ -5278,6 +5343,14 @@
                     "name": {
                         "type": "string",
                         "description": "The identifier for the materialized view.\n"
+                    },
+                    "notNullAssertions": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "**Private Preview** A list of columns for which to create non-null assertions.\n",
+                        "willReplaceOnChanges": true
                     },
                     "ownershipRole": {
                         "type": "string",
@@ -5598,6 +5671,10 @@
                     "$ref": "#/types/materialize:index/SinkKafkaKafkaConnection:SinkKafkaKafkaConnection",
                     "description": "The name of the Kafka connection to use in the sink.\n"
                 },
+                "keyNotEnforced": {
+                    "type": "boolean",
+                    "description": "Disable Materialize's validation of the key's uniqueness.\n"
+                },
                 "keys": {
                     "type": "array",
                     "items": {
@@ -5679,6 +5756,11 @@
                     "description": "The name of the Kafka connection to use in the sink.\n",
                     "willReplaceOnChanges": true
                 },
+                "keyNotEnforced": {
+                    "type": "boolean",
+                    "description": "Disable Materialize's validation of the key's uniqueness.\n",
+                    "willReplaceOnChanges": true
+                },
                 "keys": {
                     "type": "array",
                     "items": {
@@ -5755,6 +5837,11 @@
                     "kafkaConnection": {
                         "$ref": "#/types/materialize:index/SinkKafkaKafkaConnection:SinkKafkaKafkaConnection",
                         "description": "The name of the Kafka connection to use in the sink.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "keyNotEnforced": {
+                        "type": "boolean",
+                        "description": "Disable Materialize's validation of the key's uniqueness.\n",
                         "willReplaceOnChanges": true
                     },
                     "keys": {
@@ -6702,7 +6789,7 @@
             }
         },
         "materialize:index/sourceWebhook:SourceWebhook": {
-            "description": "**Private Preview** A webhook source describes a webhook you want Materialize to read data from.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as materialize from \"@pulumi/materialize\";\n\nconst exampleWebhook = new materialize.SourceWebhook(\"exampleWebhook\", {\n    clusterName: materialize_cluster.example_cluster.name,\n    bodyFormat: \"json\",\n    includeHeaders: false,\n});\n```\n```python\nimport pulumi\nimport pulumi_materialize as materialize\n\nexample_webhook = materialize.SourceWebhook(\"exampleWebhook\",\n    cluster_name=materialize_cluster[\"example_cluster\"][\"name\"],\n    body_format=\"json\",\n    include_headers=False)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Materialize = Pulumi.Materialize;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var exampleWebhook = new Materialize.SourceWebhook(\"exampleWebhook\", new()\n    {\n        ClusterName = materialize_cluster.Example_cluster.Name,\n        BodyFormat = \"json\",\n        IncludeHeaders = false,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-materialize/sdk/go/materialize\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := materialize.NewSourceWebhook(ctx, \"exampleWebhook\", \u0026materialize.SourceWebhookArgs{\n\t\t\tClusterName:    pulumi.Any(materialize_cluster.Example_cluster.Name),\n\t\t\tBodyFormat:     pulumi.String(\"json\"),\n\t\t\tIncludeHeaders: pulumi.Bool(false),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.materialize.SourceWebhook;\nimport com.pulumi.materialize.SourceWebhookArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var exampleWebhook = new SourceWebhook(\"exampleWebhook\", SourceWebhookArgs.builder()        \n            .clusterName(materialize_cluster.example_cluster().name())\n            .bodyFormat(\"json\")\n            .includeHeaders(false)\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  exampleWebhook:\n    type: materialize:SourceWebhook\n    properties:\n      clusterName: ${materialize_cluster.example_cluster.name}\n      bodyFormat: json\n      includeHeaders: false\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nSources can be imported using the source id\n\n```sh\n $ pulumi import materialize:index/sourceWebhook:SourceWebhook example_source_webhook \u003csource_id\u003e\n```\n\n Source id and information be found in the `mz_catalog.mz_sources` table ",
+            "description": "**Private Preview** A webhook source describes a webhook you want Materialize to read data from.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as materialize from \"@pulumi/materialize\";\n\nconst exampleWebhook = new materialize.SourceWebhook(\"exampleWebhook\", {\n    clusterName: materialize_cluster.cluster.name,\n    bodyFormat: \"json\",\n    checkExpression: \"headers-\u003e'x-mz-api-key' = secret\",\n    includeHeaders: {\n        nots: [\"x-mz-api-key\"],\n    },\n    checkOptions: [\n        {\n            field: {\n                headers: true,\n            },\n        },\n        {\n            field: {\n                secret: {\n                    name: materialize_secret.password.name,\n                    databaseName: materialize_secret.password.database_name,\n                    schemaName: materialize_secret.password.schema_name,\n                },\n            },\n            alias: \"secret\",\n        },\n    ],\n});\n```\n```python\nimport pulumi\nimport pulumi_materialize as materialize\n\nexample_webhook = materialize.SourceWebhook(\"exampleWebhook\",\n    cluster_name=materialize_cluster[\"cluster\"][\"name\"],\n    body_format=\"json\",\n    check_expression=\"headers-\u003e'x-mz-api-key' = secret\",\n    include_headers=materialize.SourceWebhookIncludeHeadersArgs(\n        nots=[\"x-mz-api-key\"],\n    ),\n    check_options=[\n        materialize.SourceWebhookCheckOptionArgs(\n            field=materialize.SourceWebhookCheckOptionFieldArgs(\n                headers=True,\n            ),\n        ),\n        materialize.SourceWebhookCheckOptionArgs(\n            field=materialize.SourceWebhookCheckOptionFieldArgs(\n                secret=materialize.SourceWebhookCheckOptionFieldSecretArgs(\n                    name=materialize_secret[\"password\"][\"name\"],\n                    database_name=materialize_secret[\"password\"][\"database_name\"],\n                    schema_name=materialize_secret[\"password\"][\"schema_name\"],\n                ),\n            ),\n            alias=\"secret\",\n        ),\n    ])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Materialize = Pulumi.Materialize;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var exampleWebhook = new Materialize.SourceWebhook(\"exampleWebhook\", new()\n    {\n        ClusterName = materialize_cluster.Cluster.Name,\n        BodyFormat = \"json\",\n        CheckExpression = \"headers-\u003e'x-mz-api-key' = secret\",\n        IncludeHeaders = new Materialize.Inputs.SourceWebhookIncludeHeadersArgs\n        {\n            Nots = new[]\n            {\n                \"x-mz-api-key\",\n            },\n        },\n        CheckOptions = new[]\n        {\n            new Materialize.Inputs.SourceWebhookCheckOptionArgs\n            {\n                Field = new Materialize.Inputs.SourceWebhookCheckOptionFieldArgs\n                {\n                    Headers = true,\n                },\n            },\n            new Materialize.Inputs.SourceWebhookCheckOptionArgs\n            {\n                Field = new Materialize.Inputs.SourceWebhookCheckOptionFieldArgs\n                {\n                    Secret = new Materialize.Inputs.SourceWebhookCheckOptionFieldSecretArgs\n                    {\n                        Name = materialize_secret.Password.Name,\n                        DatabaseName = materialize_secret.Password.Database_name,\n                        SchemaName = materialize_secret.Password.Schema_name,\n                    },\n                },\n                Alias = \"secret\",\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-materialize/sdk/go/materialize\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := materialize.NewSourceWebhook(ctx, \"exampleWebhook\", \u0026materialize.SourceWebhookArgs{\n\t\t\tClusterName:     pulumi.Any(materialize_cluster.Cluster.Name),\n\t\t\tBodyFormat:      pulumi.String(\"json\"),\n\t\t\tCheckExpression: pulumi.String(\"headers-\u003e'x-mz-api-key' = secret\"),\n\t\t\tIncludeHeaders: \u0026materialize.SourceWebhookIncludeHeadersArgs{\n\t\t\t\tNots: pulumi.StringArray{\n\t\t\t\t\tpulumi.String(\"x-mz-api-key\"),\n\t\t\t\t},\n\t\t\t},\n\t\t\tCheckOptions: materialize.SourceWebhookCheckOptionArray{\n\t\t\t\t\u0026materialize.SourceWebhookCheckOptionArgs{\n\t\t\t\t\tField: \u0026materialize.SourceWebhookCheckOptionFieldArgs{\n\t\t\t\t\t\tHeaders: pulumi.Bool(true),\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t\t\u0026materialize.SourceWebhookCheckOptionArgs{\n\t\t\t\t\tField: \u0026materialize.SourceWebhookCheckOptionFieldArgs{\n\t\t\t\t\t\tSecret: \u0026materialize.SourceWebhookCheckOptionFieldSecretArgs{\n\t\t\t\t\t\t\tName:         pulumi.Any(materialize_secret.Password.Name),\n\t\t\t\t\t\t\tDatabaseName: pulumi.Any(materialize_secret.Password.Database_name),\n\t\t\t\t\t\t\tSchemaName:   pulumi.Any(materialize_secret.Password.Schema_name),\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t\tAlias: pulumi.String(\"secret\"),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.materialize.SourceWebhook;\nimport com.pulumi.materialize.SourceWebhookArgs;\nimport com.pulumi.materialize.inputs.SourceWebhookIncludeHeadersArgs;\nimport com.pulumi.materialize.inputs.SourceWebhookCheckOptionArgs;\nimport com.pulumi.materialize.inputs.SourceWebhookCheckOptionFieldArgs;\nimport com.pulumi.materialize.inputs.SourceWebhookCheckOptionFieldSecretArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var exampleWebhook = new SourceWebhook(\"exampleWebhook\", SourceWebhookArgs.builder()        \n            .clusterName(materialize_cluster.cluster().name())\n            .bodyFormat(\"json\")\n            .checkExpression(\"headers-\u003e'x-mz-api-key' = secret\")\n            .includeHeaders(SourceWebhookIncludeHeadersArgs.builder()\n                .nots(\"x-mz-api-key\")\n                .build())\n            .checkOptions(            \n                SourceWebhookCheckOptionArgs.builder()\n                    .field(SourceWebhookCheckOptionFieldArgs.builder()\n                        .headers(true)\n                        .build())\n                    .build(),\n                SourceWebhookCheckOptionArgs.builder()\n                    .field(SourceWebhookCheckOptionFieldArgs.builder()\n                        .secret(SourceWebhookCheckOptionFieldSecretArgs.builder()\n                            .name(materialize_secret.password().name())\n                            .databaseName(materialize_secret.password().database_name())\n                            .schemaName(materialize_secret.password().schema_name())\n                            .build())\n                        .build())\n                    .alias(\"secret\")\n                    .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  exampleWebhook:\n    type: materialize:SourceWebhook\n    properties:\n      clusterName: ${materialize_cluster.cluster.name}\n      bodyFormat: json\n      checkExpression: headers-\u003e'x-mz-api-key' = secret\n      includeHeaders:\n        nots:\n          - x-mz-api-key\n      checkOptions:\n        - field:\n            headers: true\n        - field:\n            secret:\n              name: ${materialize_secret.password.name}\n              databaseName: ${materialize_secret.password.database_name}\n              schemaName: ${materialize_secret.password.schema_name}\n          alias: secret\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nSources can be imported using the source id\n\n```sh\n $ pulumi import materialize:index/sourceWebhook:SourceWebhook example_source_webhook \u003csource_id\u003e\n```\n\n Source id and information be found in the `mz_catalog.mz_sources` table ",
             "properties": {
                 "bodyFormat": {
                     "type": "string",
@@ -6731,8 +6818,15 @@
                     "type": "string",
                     "description": "The identifier for the source database. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
                 },
+                "includeHeader": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/materialize:index/SourceWebhookIncludeHeader:SourceWebhookIncludeHeader"
+                    },
+                    "description": "Map a header value from a request into a column.\n"
+                },
                 "includeHeaders": {
-                    "type": "boolean",
+                    "$ref": "#/types/materialize:index/SourceWebhookIncludeHeaders:SourceWebhookIncludeHeaders",
                     "description": "Include headers in the webhook.\n"
                 },
                 "name": {
@@ -6787,7 +6881,8 @@
                     "items": {
                         "$ref": "#/types/materialize:index/SourceWebhookCheckOption:SourceWebhookCheckOption"
                     },
-                    "description": "The check options for the webhook.\n"
+                    "description": "The check options for the webhook.\n",
+                    "willReplaceOnChanges": true
                 },
                 "clusterName": {
                     "type": "string",
@@ -6803,8 +6898,16 @@
                     "description": "The identifier for the source database. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
                     "willReplaceOnChanges": true
                 },
+                "includeHeader": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/materialize:index/SourceWebhookIncludeHeader:SourceWebhookIncludeHeader"
+                    },
+                    "description": "Map a header value from a request into a column.\n",
+                    "willReplaceOnChanges": true
+                },
                 "includeHeaders": {
-                    "type": "boolean",
+                    "$ref": "#/types/materialize:index/SourceWebhookIncludeHeaders:SourceWebhookIncludeHeaders",
                     "description": "Include headers in the webhook.\n",
                     "willReplaceOnChanges": true
                 },
@@ -6843,7 +6946,8 @@
                         "items": {
                             "$ref": "#/types/materialize:index/SourceWebhookCheckOption:SourceWebhookCheckOption"
                         },
-                        "description": "The check options for the webhook.\n"
+                        "description": "The check options for the webhook.\n",
+                        "willReplaceOnChanges": true
                     },
                     "clusterName": {
                         "type": "string",
@@ -6859,8 +6963,16 @@
                         "description": "The identifier for the source database. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
                         "willReplaceOnChanges": true
                     },
+                    "includeHeader": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/materialize:index/SourceWebhookIncludeHeader:SourceWebhookIncludeHeader"
+                        },
+                        "description": "Map a header value from a request into a column.\n",
+                        "willReplaceOnChanges": true
+                    },
                     "includeHeaders": {
-                        "type": "boolean",
+                        "$ref": "#/types/materialize:index/SourceWebhookIncludeHeaders:SourceWebhookIncludeHeaders",
                         "description": "Include headers in the webhook.\n",
                         "willReplaceOnChanges": true
                     },
