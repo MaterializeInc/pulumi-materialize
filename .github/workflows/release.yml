@@ -16,8 +16,8 @@ jobs:
     steps:
     - name: Checkout Repo
       uses: actions/checkout@v3
-    - name: Unshallow
-      run: git fetch --prune --unshallow --tags
+    # https://github.com/actions/checkout/issues/290
+    - run: git fetch --force --tags
     - name: Install Go
       uses: actions/setup-go@v4
       with:
