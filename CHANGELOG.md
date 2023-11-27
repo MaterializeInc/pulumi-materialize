@@ -1,6 +1,9 @@
 CHANGELOG
 =========
 
+## 0.0.5 - 2023-11-26
+Fix issues with the Terraform Bridge in v0.0.4.
+
 ## 0.0.4 - 2023-11-23
 Update to Terraform Provider [0.3.1](https://github.com/MaterializeInc/terraform-provider-materialize/releases/tag/v0.3.1).
 

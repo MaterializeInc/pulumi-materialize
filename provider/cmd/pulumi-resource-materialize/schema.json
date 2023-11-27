@@ -53,10 +53,9 @@
     },
     "config": {
         "variables": {
-            "applicationName": {
+            "applicationNameSuffix": {
                 "type": "string",
-                "description": "The application name to include in the connection string\n",
-                "default": "pulumi-provider-materialize"
+                "description": "A suffix to include in the `application_name` session parameter when connecting to Materialize.\n"
             },
             "database": {
                 "type": "string",
@@ -76,9 +75,8 @@
                 "description": "The Materialize port number to connect to at the server host. Can also come from the `MZ_PORT` environment variable.\nDefaults to 6875.\n"
             },
             "sslmode": {
-                "type": "boolean",
-                "description": "For testing purposes, disable SSL.\n",
-                "default": true
+                "type": "string",
+                "description": "For testing purposes, the SSL mode to use.\n"
             },
             "user": {
                 "type": "string",
@@ -2090,9 +2088,9 @@
     "provider": {
         "description": "The provider type for the materialize package. By default, resources use package-wide configuration\nsettings, however an explicit `Provider` instance may be created and passed during resource\nconstruction to achieve fine-grained programmatic control over provider settings. See the\n[documentation](https://www.pulumi.com/docs/reference/programming-model/#providers) for more information.\n",
         "properties": {
-            "applicationName": {
+            "applicationNameSuffix": {
                 "type": "string",
-                "description": "The application name to include in the connection string\n"
+                "description": "A suffix to include in the `application_name` session parameter when connecting to Materialize.\n"
             },
             "database": {
                 "type": "string",
@@ -2112,8 +2110,8 @@
                 "description": "The Materialize port number to connect to at the server host. Can also come from the `MZ_PORT` environment variable.\nDefaults to 6875.\n"
             },
             "sslmode": {
-                "type": "boolean",
-                "description": "For testing purposes, disable SSL.\n"
+                "type": "string",
+                "description": "For testing purposes, the SSL mode to use.\n"
             },
             "user": {
                 "type": "string",
@@ -2121,10 +2119,9 @@
             }
         },
         "inputProperties": {
-            "applicationName": {
+            "applicationNameSuffix": {
                 "type": "string",
-                "description": "The application name to include in the connection string\n",
-                "default": "pulumi-provider-materialize"
+                "description": "A suffix to include in the `application_name` session parameter when connecting to Materialize.\n"
             },
             "database": {
                 "type": "string",
@@ -2144,9 +2141,8 @@
                 "description": "The Materialize port number to connect to at the server host. Can also come from the `MZ_PORT` environment variable.\nDefaults to 6875.\n"
             },
             "sslmode": {
-                "type": "boolean",
-                "description": "For testing purposes, disable SSL.\n",
-                "default": true
+                "type": "string",
+                "description": "For testing purposes, the SSL mode to use.\n"
             },
             "user": {
                 "type": "string",
@@ -2156,7 +2152,7 @@
     },
     "resources": {
         "materialize:index/cluster:Cluster": {
-            "description": "Clusters describe logical compute resources that can be used by sources, sinks, indexes, and materialized views.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as materialize from \"@pulumi/materialize\";\n\nconst exampleCluster = new materialize.Cluster(\"exampleCluster\", {});\n```\n```python\nimport pulumi\nimport pulumi_materialize as materialize\n\nexample_cluster = materialize.Cluster(\"exampleCluster\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Materialize = Pulumi.Materialize;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var exampleCluster = new Materialize.Cluster(\"exampleCluster\");\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-materialize/sdk/go/materialize\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := materialize.NewCluster(ctx, \"exampleCluster\", nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.materialize.Cluster;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var exampleCluster = new Cluster(\"exampleCluster\");\n\n    }\n}\n```\n```yaml\nresources:\n  exampleCluster:\n    type: materialize:Cluster\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nClusters can be imported using the cluster id\n\n```sh\n $ pulumi import materialize:index/cluster:Cluster example_cluster \u003ccluster_id\u003e\n```\n\n Cluster id and information be found in the `mz_catalog.mz_clusters` table ",
+            "description": "Clusters describe logical compute resources that can be used by sources, sinks, indexes, and materialized views. Managed clusters are created by setting the `size` attribute\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as materialize from \"@pulumi/materialize\";\n\nconst exampleCluster = new materialize.Cluster(\"exampleCluster\", {});\n```\n```python\nimport pulumi\nimport pulumi_materialize as materialize\n\nexample_cluster = materialize.Cluster(\"exampleCluster\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Materialize = Pulumi.Materialize;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var exampleCluster = new Materialize.Cluster(\"exampleCluster\");\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-materialize/sdk/go/materialize\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := materialize.NewCluster(ctx, \"exampleCluster\", nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.materialize.Cluster;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var exampleCluster = new Cluster(\"exampleCluster\");\n\n    }\n}\n```\n```yaml\nresources:\n  exampleCluster:\n    type: materialize:Cluster\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nClusters can be imported using the cluster id\n\n```sh\n $ pulumi import materialize:index/cluster:Cluster example_cluster \u003ccluster_id\u003e\n```\n\n Cluster id and information be found in the `mz_catalog.mz_clusters` table ",
             "properties": {
                 "comment": {
                     "type": "string",
@@ -2839,6 +2835,10 @@
                     "type": "string",
                     "description": "The identifier for the connection schema. Defaults to `public`.\n"
                 },
+                "securityProtocol": {
+                    "type": "string",
+                    "description": "The security protocol to use: `PLAINTEXT`, `SSL`, `SASL_PLAINTEXT`, or `SASL_SSL`.\n"
+                },
                 "sshTunnel": {
                     "$ref": "#/types/materialize:index/ConnectionKafkaSshTunnel:ConnectionKafkaSshTunnel",
                     "description": "The SSH tunnel configuration for the Kafka broker.\n"
@@ -2915,6 +2915,11 @@
                 "schemaName": {
                     "type": "string",
                     "description": "The identifier for the connection schema. Defaults to `public`.\n",
+                    "willReplaceOnChanges": true
+                },
+                "securityProtocol": {
+                    "type": "string",
+                    "description": "The security protocol to use: `PLAINTEXT`, `SSL`, `SASL_PLAINTEXT`, or `SASL_SSL`.\n",
                     "willReplaceOnChanges": true
                 },
                 "sshTunnel": {
@@ -3000,6 +3005,11 @@
                     "schemaName": {
                         "type": "string",
                         "description": "The identifier for the connection schema. Defaults to `public`.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "securityProtocol": {
+                        "type": "string",
+                        "description": "The security protocol to use: `PLAINTEXT`, `SSL`, `SASL_PLAINTEXT`, or `SASL_SSL`.\n",
                         "willReplaceOnChanges": true
                     },
                     "sshTunnel": {

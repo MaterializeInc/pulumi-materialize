@@ -47,7 +47,7 @@ func preConfigureCallback(vars resource.PropertyMap, c shim.ResourceConfig) erro
 // Provider returns additional overlaid schema and metadata associated with the provider..
 func Provider() tfbridge.ProviderInfo {
 	// Instantiate the Terraform provider
-	p := shimv2.NewProvider(materialize.Provider())
+	p := shimv2.NewProvider(materialize.Provider(fmt.Sprintf("%s-pulumi-materialize", version.Version)))
 
 	// Create a Pulumi provider mapping
 	prov := tfbridge.ProviderInfo{
@@ -64,14 +64,6 @@ func Provider() tfbridge.ProviderInfo {
 		PluginDownloadURL:    "github://api.github.com/MaterializeInc/pulumi-materialize",
 		DisplayName:          "Materialize",
 		PreConfigureCallback: preConfigureCallback,
-		Config: map[string]*tfbridge.SchemaInfo{
-			"application_name": {
-				Default: &tfbridge.DefaultInfo{Value: "pulumi-provider-materialize"},
-			},
-			"sslmode": {
-				Default: &tfbridge.DefaultInfo{Value: true},
-			},
-		},
 		Resources: map[string]*tfbridge.ResourceInfo{
 			"materialize_cluster":                              {Tok: tfbridge.MakeResource(mainPkg, mainMod, "Cluster")},
 			"materialize_cluster_grant":                        {Tok: tfbridge.MakeResource(mainPkg, mainMod, "GrantCluster")},
