@@ -53,10 +53,6 @@
     },
     "config": {
         "variables": {
-            "applicationNameSuffix": {
-                "type": "string",
-                "description": "A suffix to include in the `application_name` session parameter when connecting to Materialize.\n"
-            },
             "database": {
                 "type": "string",
                 "description": "The Materialize database. Can also come from the `MZ_DATABASE` environment variable. Defaults to `materialize`.\n"
@@ -97,7 +93,7 @@
                 },
                 "schemaName": {
                     "type": "string",
-                    "description": "The aws_privatelink schema name. Defaults to `public`\n"
+                    "description": "The aws_privatelink schema name. Defaults to `public`.\n"
                 }
             },
             "type": "object",
@@ -117,7 +113,7 @@
                 },
                 "schemaName": {
                     "type": "string",
-                    "description": "The password schema name. Defaults to `public`\n"
+                    "description": "The password schema name. Defaults to `public`.\n"
                 }
             },
             "type": "object",
@@ -137,7 +133,7 @@
                 },
                 "schemaName": {
                     "type": "string",
-                    "description": "The ssh_tunnel schema name. Defaults to `public`\n"
+                    "description": "The ssh_tunnel schema name. Defaults to `public`.\n"
                 }
             },
             "type": "object",
@@ -227,7 +223,7 @@
                 },
                 "schemaName": {
                     "type": "string",
-                    "description": "The ssl_key schema name. Defaults to `public`\n"
+                    "description": "The ssl_key schema name. Defaults to `public`.\n"
                 }
             },
             "type": "object",
@@ -327,7 +323,7 @@
                 },
                 "schemaName": {
                     "type": "string",
-                    "description": "The sasl_password schema name. Defaults to `public`\n"
+                    "description": "The sasl_password schema name. Defaults to `public`.\n"
                 }
             },
             "type": "object",
@@ -382,7 +378,7 @@
                 },
                 "schemaName": {
                     "type": "string",
-                    "description": "The ssh_tunnel schema name. Defaults to `public`\n"
+                    "description": "The ssh_tunnel schema name. Defaults to `public`.\n"
                 }
             },
             "type": "object",
@@ -472,7 +468,7 @@
                 },
                 "schemaName": {
                     "type": "string",
-                    "description": "The ssl_key schema name. Defaults to `public`\n"
+                    "description": "The ssl_key schema name. Defaults to `public`.\n"
                 }
             },
             "type": "object",
@@ -492,7 +488,7 @@
                 },
                 "schemaName": {
                     "type": "string",
-                    "description": "The aws_privatelink schema name. Defaults to `public`\n"
+                    "description": "The aws_privatelink schema name. Defaults to `public`.\n"
                 }
             },
             "type": "object",
@@ -512,7 +508,7 @@
                 },
                 "schemaName": {
                     "type": "string",
-                    "description": "The password schema name. Defaults to `public`\n"
+                    "description": "The password schema name. Defaults to `public`.\n"
                 }
             },
             "type": "object",
@@ -532,7 +528,7 @@
                 },
                 "schemaName": {
                     "type": "string",
-                    "description": "The ssh_tunnel schema name. Defaults to `public`\n"
+                    "description": "The ssh_tunnel schema name. Defaults to `public`.\n"
                 }
             },
             "type": "object",
@@ -622,7 +618,7 @@
                 },
                 "schemaName": {
                     "type": "string",
-                    "description": "The ssl_key schema name. Defaults to `public`\n"
+                    "description": "The ssl_key schema name. Defaults to `public`.\n"
                 }
             },
             "type": "object",
@@ -1160,29 +1156,12 @@
                 },
                 "schemaName": {
                     "type": "string",
-                    "description": "The obj_name schema name. Defaults to `public`\n"
+                    "description": "The obj_name schema name. Defaults to `public`.\n"
                 }
             },
             "type": "object",
             "required": [
                 "name"
-            ]
-        },
-        "materialize:index/RoleSessionVariable:RoleSessionVariable": {
-            "properties": {
-                "name": {
-                    "type": "string",
-                    "description": "The name of the session variable.\n"
-                },
-                "value": {
-                    "type": "string",
-                    "description": "The value for the session variable.\n"
-                }
-            },
-            "type": "object",
-            "required": [
-                "name",
-                "value"
             ]
         },
         "materialize:index/SinkKafkaEnvelope:SinkKafkaEnvelope": {
@@ -1267,7 +1246,7 @@
                 },
                 "schemaName": {
                     "type": "string",
-                    "description": "The from schema name. Defaults to `public`\n"
+                    "description": "The from schema name. Defaults to `public`.\n"
                 }
             },
             "type": "object",
@@ -1287,7 +1266,7 @@
                 },
                 "schemaName": {
                     "type": "string",
-                    "description": "The kafka_connection schema name. Defaults to `public`\n"
+                    "description": "The kafka_connection schema name. Defaults to `public`.\n"
                 }
             },
             "type": "object",
@@ -1314,6 +1293,26 @@
                 }
             },
             "type": "object"
+        },
+        "materialize:index/SourceKafkaExposeProgress:SourceKafkaExposeProgress": {
+            "properties": {
+                "databaseName": {
+                    "type": "string",
+                    "description": "The expose_progress database name. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The expose_progress name.\n"
+                },
+                "schemaName": {
+                    "type": "string",
+                    "description": "The expose_progress schema name. Defaults to `public`.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "name"
+            ]
         },
         "materialize:index/SourceKafkaFormat:SourceKafkaFormat": {
             "properties": {
@@ -1462,7 +1461,7 @@
                 },
                 "schemaName": {
                     "type": "string",
-                    "description": "The kafka_connection schema name. Defaults to `public`\n"
+                    "description": "The kafka_connection schema name. Defaults to `public`.\n"
                 }
             },
             "type": "object",
@@ -1762,7 +1761,7 @@
                 "name"
             ]
         },
-        "materialize:index/SourceLoadgenAuctionOption:SourceLoadgenAuctionOption": {
+        "materialize:index/SourceLoadgenAuctionOptions:SourceLoadgenAuctionOptions": {
             "properties": {
                 "scaleFactor": {
                     "type": "number",
@@ -1777,7 +1776,7 @@
             },
             "type": "object"
         },
-        "materialize:index/SourceLoadgenCounterOption:SourceLoadgenCounterOption": {
+        "materialize:index/SourceLoadgenCounterOptions:SourceLoadgenCounterOptions": {
             "properties": {
                 "maxCardinality": {
                     "type": "integer",
@@ -1797,7 +1796,27 @@
             },
             "type": "object"
         },
-        "materialize:index/SourceLoadgenMarketingOption:SourceLoadgenMarketingOption": {
+        "materialize:index/SourceLoadgenExposeProgress:SourceLoadgenExposeProgress": {
+            "properties": {
+                "databaseName": {
+                    "type": "string",
+                    "description": "The expose_progress database name. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The expose_progress name.\n"
+                },
+                "schemaName": {
+                    "type": "string",
+                    "description": "The expose_progress schema name. Defaults to `public`.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "name"
+            ]
+        },
+        "materialize:index/SourceLoadgenMarketingOptions:SourceLoadgenMarketingOptions": {
             "properties": {
                 "scaleFactor": {
                     "type": "number",
@@ -1834,7 +1853,7 @@
                 "name"
             ]
         },
-        "materialize:index/SourceLoadgenTpchOption:SourceLoadgenTpchOption": {
+        "materialize:index/SourceLoadgenTpchOptions:SourceLoadgenTpchOptions": {
             "properties": {
                 "scaleFactor": {
                     "type": "number",
@@ -1849,6 +1868,26 @@
             },
             "type": "object"
         },
+        "materialize:index/SourcePostgresExposeProgress:SourcePostgresExposeProgress": {
+            "properties": {
+                "databaseName": {
+                    "type": "string",
+                    "description": "The expose_progress database name. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The expose_progress name.\n"
+                },
+                "schemaName": {
+                    "type": "string",
+                    "description": "The expose_progress schema name. Defaults to `public`.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "name"
+            ]
+        },
         "materialize:index/SourcePostgresPostgresConnection:SourcePostgresPostgresConnection": {
             "properties": {
                 "databaseName": {
@@ -1861,7 +1900,7 @@
                 },
                 "schemaName": {
                     "type": "string",
-                    "description": "The postgres_connection schema name. Defaults to `public`\n"
+                    "description": "The postgres_connection schema name. Defaults to `public`.\n"
                 }
             },
             "type": "object",
@@ -2033,6 +2072,11 @@
                     "type": "string",
                     "description": "**Private Preview** Comment on an object in the database.\n"
                 },
+                "default": {
+                    "type": "string",
+                    "description": "A default value to use for the column in an INSERT statement if an explicit value is not provided. If not specified, `NULL` is assumed..\n",
+                    "willReplaceOnChanges": true
+                },
                 "name": {
                     "type": "string",
                     "description": "The name of the column to be created in the table.\n",
@@ -2040,7 +2084,7 @@
                 },
                 "nullable": {
                     "type": "boolean",
-                    "description": "Do not allow the column to contain NULL values. Columns without this constraint can contain NULL values.\n",
+                    "description": "Do not allow the column to contain `NULL` values. Columns without this constraint can contain `NULL` values.\n",
                     "willReplaceOnChanges": true
                 },
                 "type": {
@@ -2083,15 +2127,28 @@
                 "keyType",
                 "valueType"
             ]
+        },
+        "materialize:index/TypeRowProperty:TypeRowProperty": {
+            "properties": {
+                "fieldName": {
+                    "type": "string",
+                    "description": "The name of a field in a row type.\n"
+                },
+                "fieldType": {
+                    "type": "string",
+                    "description": "The data type of a field indicated by `FIELD NAME`.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "fieldName",
+                "fieldType"
+            ]
         }
     },
     "provider": {
         "description": "The provider type for the materialize package. By default, resources use package-wide configuration\nsettings, however an explicit `Provider` instance may be created and passed during resource\nconstruction to achieve fine-grained programmatic control over provider settings. See the\n[documentation](https://www.pulumi.com/docs/reference/programming-model/#providers) for more information.\n",
         "properties": {
-            "applicationNameSuffix": {
-                "type": "string",
-                "description": "A suffix to include in the `application_name` session parameter when connecting to Materialize.\n"
-            },
             "database": {
                 "type": "string",
                 "description": "The Materialize database. Can also come from the `MZ_DATABASE` environment variable. Defaults to `materialize`.\n"
@@ -2119,10 +2176,6 @@
             }
         },
         "inputProperties": {
-            "applicationNameSuffix": {
-                "type": "string",
-                "description": "A suffix to include in the `application_name` session parameter when connecting to Materialize.\n"
-            },
             "database": {
                 "type": "string",
                 "description": "The Materialize database. Can also come from the `MZ_DATABASE` environment variable. Defaults to `materialize`.\n"
@@ -2193,7 +2246,8 @@
             },
             "required": [
                 "name",
-                "ownershipRole"
+                "ownershipRole",
+                "replicationFactor"
             ],
             "inputProperties": {
                 "comment": {
@@ -5402,13 +5456,6 @@
                 "qualifiedSqlName": {
                     "type": "string",
                     "description": "The fully qualified name of the role.\n"
-                },
-                "sessionVariables": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/materialize:index/RoleSessionVariable:RoleSessionVariable"
-                    },
-                    "description": "Session variable.\n"
                 }
             },
             "required": [
@@ -5424,14 +5471,6 @@
                 "name": {
                     "type": "string",
                     "description": "The identifier for the role.\n",
-                    "willReplaceOnChanges": true
-                },
-                "sessionVariables": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/materialize:index/RoleSessionVariable:RoleSessionVariable"
-                    },
-                    "description": "Session variable.\n",
                     "willReplaceOnChanges": true
                 }
             },
@@ -5454,14 +5493,6 @@
                     "qualifiedSqlName": {
                         "type": "string",
                         "description": "The fully qualified name of the role.\n"
-                    },
-                    "sessionVariables": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/types/materialize:index/RoleSessionVariable:RoleSessionVariable"
-                        },
-                        "description": "Session variable.\n",
-                        "willReplaceOnChanges": true
                     }
                 },
                 "type": "object"
@@ -5581,7 +5612,8 @@
             "required": [
                 "name",
                 "ownershipRole",
-                "qualifiedSqlName"
+                "qualifiedSqlName",
+                "value"
             ],
             "inputProperties": {
                 "comment": {
@@ -5612,6 +5644,9 @@
                     "secret": true
                 }
             },
+            "requiredInputs": [
+                "value"
+            ],
             "stateInputs": {
                 "description": "Input properties used for looking up and filtering Secret resources.\n",
                 "properties": {
@@ -5917,7 +5952,7 @@
                     "description": "How Materialize should interpret records (e.g. append-only, upsert)..\n"
                 },
                 "exposeProgress": {
-                    "type": "string",
+                    "$ref": "#/types/materialize:index/SourceKafkaExposeProgress:SourceKafkaExposeProgress",
                     "description": "The name of the progress subsource for the source. If this is not specified, the subsource will be named `\u003csrc_name\u003e_progress`.\n"
                 },
                 "format": {
@@ -6001,7 +6036,7 @@
                 },
                 "startTimestamp": {
                     "type": "integer",
-                    "description": "Use the specified value to set \"START OFFSET\" based on the Kafka timestamp.\n"
+                    "description": "Use the specified value to set `START OFFSET` based on the Kafka timestamp.\n"
                 },
                 "subsources": {
                     "type": "array",
@@ -6050,7 +6085,7 @@
                     "willReplaceOnChanges": true
                 },
                 "exposeProgress": {
-                    "type": "string",
+                    "$ref": "#/types/materialize:index/SourceKafkaExposeProgress:SourceKafkaExposeProgress",
                     "description": "The name of the progress subsource for the source. If this is not specified, the subsource will be named `\u003csrc_name\u003e_progress`.\n",
                     "willReplaceOnChanges": true
                 },
@@ -6146,7 +6181,7 @@
                 },
                 "startTimestamp": {
                     "type": "integer",
-                    "description": "Use the specified value to set \"START OFFSET\" based on the Kafka timestamp.\n",
+                    "description": "Use the specified value to set `START OFFSET` based on the Kafka timestamp.\n",
                     "willReplaceOnChanges": true
                 },
                 "topic": {
@@ -6187,7 +6222,7 @@
                         "willReplaceOnChanges": true
                     },
                     "exposeProgress": {
-                        "type": "string",
+                        "$ref": "#/types/materialize:index/SourceKafkaExposeProgress:SourceKafkaExposeProgress",
                         "description": "The name of the progress subsource for the source. If this is not specified, the subsource will be named `\u003csrc_name\u003e_progress`.\n",
                         "willReplaceOnChanges": true
                     },
@@ -6287,7 +6322,7 @@
                     },
                     "startTimestamp": {
                         "type": "integer",
-                        "description": "Use the specified value to set \"START OFFSET\" based on the Kafka timestamp.\n",
+                        "description": "Use the specified value to set `START OFFSET` based on the Kafka timestamp.\n",
                         "willReplaceOnChanges": true
                     },
                     "subsources": {
@@ -6312,13 +6347,10 @@
             }
         },
         "materialize:index/sourceLoadgen:SourceLoadgen": {
-            "description": "A load generator source produces synthetic data for use in demos and performance tests.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as materialize from \"@pulumi/materialize\";\n\nconst exampleSourceLoadGenerator = new materialize.SourceLoadgen(\"exampleSourceLoadGenerator\", {\n    counterOptions: [{\n        scaleFactor: 0.01,\n        tickInterval: \"500ms\",\n    }],\n    loadGeneratorType: \"COUNTER\",\n    schemaName: \"schema\",\n    size: \"3xsmall\",\n});\n```\n```python\nimport pulumi\nimport pulumi_materialize as materialize\n\nexample_source_load_generator = materialize.SourceLoadgen(\"exampleSourceLoadGenerator\",\n    counter_options=[materialize.SourceLoadgenCounterOptionArgs(\n        scale_factor=0.01,\n        tick_interval=\"500ms\",\n    )],\n    load_generator_type=\"COUNTER\",\n    schema_name=\"schema\",\n    size=\"3xsmall\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Materialize = Pulumi.Materialize;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var exampleSourceLoadGenerator = new Materialize.SourceLoadgen(\"exampleSourceLoadGenerator\", new()\n    {\n        CounterOptions = new[]\n        {\n            new Materialize.Inputs.SourceLoadgenCounterOptionArgs\n            {\n                ScaleFactor = 0.01,\n                TickInterval = \"500ms\",\n            },\n        },\n        LoadGeneratorType = \"COUNTER\",\n        SchemaName = \"schema\",\n        Size = \"3xsmall\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-materialize/sdk/go/materialize\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := materialize.NewSourceLoadgen(ctx, \"exampleSourceLoadGenerator\", \u0026materialize.SourceLoadgenArgs{\n\t\t\tCounterOptions: materialize.SourceLoadgenCounterOptionArray{\n\t\t\t\t\u0026materialize.SourceLoadgenCounterOptionArgs{\n\t\t\t\t\tScaleFactor:  pulumi.Float64(0.01),\n\t\t\t\t\tTickInterval: pulumi.String(\"500ms\"),\n\t\t\t\t},\n\t\t\t},\n\t\t\tLoadGeneratorType: pulumi.String(\"COUNTER\"),\n\t\t\tSchemaName:        pulumi.String(\"schema\"),\n\t\t\tSize:              pulumi.String(\"3xsmall\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.materialize.SourceLoadgen;\nimport com.pulumi.materialize.SourceLoadgenArgs;\nimport com.pulumi.materialize.inputs.SourceLoadgenCounterOptionArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var exampleSourceLoadGenerator = new SourceLoadgen(\"exampleSourceLoadGenerator\", SourceLoadgenArgs.builder()        \n            .counterOptions(SourceLoadgenCounterOptionArgs.builder()\n                .scaleFactor(0.01)\n                .tickInterval(\"500ms\")\n                .build())\n            .loadGeneratorType(\"COUNTER\")\n            .schemaName(\"schema\")\n            .size(\"3xsmall\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  exampleSourceLoadGenerator:\n    type: materialize:SourceLoadgen\n    properties:\n      counterOptions:\n        - scaleFactor: 0.01\n          tickInterval: 500ms\n      loadGeneratorType: COUNTER\n      schemaName: schema\n      size: 3xsmall\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nSources can be imported using the source id\n\n```sh\n $ pulumi import materialize:index/sourceLoadgen:SourceLoadgen example_source_load_generator \u003csource_id\u003e\n```\n\n Source id and information be found in the `mz_catalog.mz_sources` table ",
+            "description": "A load generator source produces synthetic data for use in demos and performance tests.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as materialize from \"@pulumi/materialize\";\n\nconst exampleSourceLoadGenerator = new materialize.SourceLoadgen(\"exampleSourceLoadGenerator\", {\n    counterOptions: {\n        scaleFactor: 0.01,\n        tickInterval: \"500ms\",\n    },\n    loadGeneratorType: \"COUNTER\",\n    schemaName: \"schema\",\n    size: \"3xsmall\",\n});\n```\n```python\nimport pulumi\nimport pulumi_materialize as materialize\n\nexample_source_load_generator = materialize.SourceLoadgen(\"exampleSourceLoadGenerator\",\n    counter_options=materialize.SourceLoadgenCounterOptionsArgs(\n        scale_factor=0.01,\n        tick_interval=\"500ms\",\n    ),\n    load_generator_type=\"COUNTER\",\n    schema_name=\"schema\",\n    size=\"3xsmall\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Materialize = Pulumi.Materialize;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var exampleSourceLoadGenerator = new Materialize.SourceLoadgen(\"exampleSourceLoadGenerator\", new()\n    {\n        CounterOptions = new Materialize.Inputs.SourceLoadgenCounterOptionsArgs\n        {\n            ScaleFactor = 0.01,\n            TickInterval = \"500ms\",\n        },\n        LoadGeneratorType = \"COUNTER\",\n        SchemaName = \"schema\",\n        Size = \"3xsmall\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-materialize/sdk/go/materialize\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := materialize.NewSourceLoadgen(ctx, \"exampleSourceLoadGenerator\", \u0026materialize.SourceLoadgenArgs{\n\t\t\tCounterOptions: \u0026materialize.SourceLoadgenCounterOptionsArgs{\n\t\t\t\tScaleFactor:  pulumi.Float64(0.01),\n\t\t\t\tTickInterval: pulumi.String(\"500ms\"),\n\t\t\t},\n\t\t\tLoadGeneratorType: pulumi.String(\"COUNTER\"),\n\t\t\tSchemaName:        pulumi.String(\"schema\"),\n\t\t\tSize:              pulumi.String(\"3xsmall\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.materialize.SourceLoadgen;\nimport com.pulumi.materialize.SourceLoadgenArgs;\nimport com.pulumi.materialize.inputs.SourceLoadgenCounterOptionsArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var exampleSourceLoadGenerator = new SourceLoadgen(\"exampleSourceLoadGenerator\", SourceLoadgenArgs.builder()        \n            .counterOptions(SourceLoadgenCounterOptionsArgs.builder()\n                .scaleFactor(0.01)\n                .tickInterval(\"500ms\")\n                .build())\n            .loadGeneratorType(\"COUNTER\")\n            .schemaName(\"schema\")\n            .size(\"3xsmall\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  exampleSourceLoadGenerator:\n    type: materialize:SourceLoadgen\n    properties:\n      counterOptions:\n        scaleFactor: 0.01\n        tickInterval: 500ms\n      loadGeneratorType: COUNTER\n      schemaName: schema\n      size: 3xsmall\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nSources can be imported using the source id\n\n```sh\n $ pulumi import materialize:index/sourceLoadgen:SourceLoadgen example_source_load_generator \u003csource_id\u003e\n```\n\n Source id and information be found in the `mz_catalog.mz_sources` table ",
             "properties": {
                 "auctionOptions": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/materialize:index/SourceLoadgenAuctionOption:SourceLoadgenAuctionOption"
-                    },
+                    "$ref": "#/types/materialize:index/SourceLoadgenAuctionOptions:SourceLoadgenAuctionOptions",
                     "description": "Auction Options.\n"
                 },
                 "clusterName": {
@@ -6330,25 +6362,23 @@
                     "description": "**Private Preview** Comment on an object in the database.\n"
                 },
                 "counterOptions": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/materialize:index/SourceLoadgenCounterOption:SourceLoadgenCounterOption"
-                    },
+                    "$ref": "#/types/materialize:index/SourceLoadgenCounterOptions:SourceLoadgenCounterOptions",
                     "description": "Counter Options.\n"
                 },
                 "databaseName": {
                     "type": "string",
                     "description": "The identifier for the source database. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
                 },
+                "exposeProgress": {
+                    "$ref": "#/types/materialize:index/SourceLoadgenExposeProgress:SourceLoadgenExposeProgress",
+                    "description": "The name of the progress subsource for the source. If this is not specified, the subsource will be named `\u003csrc_name\u003e_progress`.\n"
+                },
                 "loadGeneratorType": {
                     "type": "string",
                     "description": "The load generator types: [AUCTION MARKETING COUNTER TPCH].\n"
                 },
                 "marketingOptions": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/materialize:index/SourceLoadgenMarketingOption:SourceLoadgenMarketingOption"
-                    },
+                    "$ref": "#/types/materialize:index/SourceLoadgenMarketingOptions:SourceLoadgenMarketingOptions",
                     "description": "Marketing Options.\n"
                 },
                 "name": {
@@ -6379,10 +6409,7 @@
                     "description": "Subsources of a source.\n"
                 },
                 "tpchOptions": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/materialize:index/SourceLoadgenTpchOption:SourceLoadgenTpchOption"
-                    },
+                    "$ref": "#/types/materialize:index/SourceLoadgenTpchOptions:SourceLoadgenTpchOptions",
                     "description": "TPCH Options.\n"
                 }
             },
@@ -6397,10 +6424,7 @@
             ],
             "inputProperties": {
                 "auctionOptions": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/materialize:index/SourceLoadgenAuctionOption:SourceLoadgenAuctionOption"
-                    },
+                    "$ref": "#/types/materialize:index/SourceLoadgenAuctionOptions:SourceLoadgenAuctionOptions",
                     "description": "Auction Options.\n",
                     "willReplaceOnChanges": true
                 },
@@ -6414,10 +6438,7 @@
                     "description": "**Private Preview** Comment on an object in the database.\n"
                 },
                 "counterOptions": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/materialize:index/SourceLoadgenCounterOption:SourceLoadgenCounterOption"
-                    },
+                    "$ref": "#/types/materialize:index/SourceLoadgenCounterOptions:SourceLoadgenCounterOptions",
                     "description": "Counter Options.\n",
                     "willReplaceOnChanges": true
                 },
@@ -6426,15 +6447,18 @@
                     "description": "The identifier for the source database. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
                     "willReplaceOnChanges": true
                 },
+                "exposeProgress": {
+                    "$ref": "#/types/materialize:index/SourceLoadgenExposeProgress:SourceLoadgenExposeProgress",
+                    "description": "The name of the progress subsource for the source. If this is not specified, the subsource will be named `\u003csrc_name\u003e_progress`.\n",
+                    "willReplaceOnChanges": true
+                },
                 "loadGeneratorType": {
                     "type": "string",
-                    "description": "The load generator types: [AUCTION MARKETING COUNTER TPCH].\n"
+                    "description": "The load generator types: [AUCTION MARKETING COUNTER TPCH].\n",
+                    "willReplaceOnChanges": true
                 },
                 "marketingOptions": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/materialize:index/SourceLoadgenMarketingOption:SourceLoadgenMarketingOption"
-                    },
+                    "$ref": "#/types/materialize:index/SourceLoadgenMarketingOptions:SourceLoadgenMarketingOptions",
                     "description": "Marketing Options.\n",
                     "willReplaceOnChanges": true
                 },
@@ -6456,10 +6480,7 @@
                     "description": "The size of the source. If not specified, the `cluster_name` option must be specified.\n"
                 },
                 "tpchOptions": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/materialize:index/SourceLoadgenTpchOption:SourceLoadgenTpchOption"
-                    },
+                    "$ref": "#/types/materialize:index/SourceLoadgenTpchOptions:SourceLoadgenTpchOptions",
                     "description": "TPCH Options.\n",
                     "willReplaceOnChanges": true
                 }
@@ -6471,10 +6492,7 @@
                 "description": "Input properties used for looking up and filtering SourceLoadgen resources.\n",
                 "properties": {
                     "auctionOptions": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/types/materialize:index/SourceLoadgenAuctionOption:SourceLoadgenAuctionOption"
-                        },
+                        "$ref": "#/types/materialize:index/SourceLoadgenAuctionOptions:SourceLoadgenAuctionOptions",
                         "description": "Auction Options.\n",
                         "willReplaceOnChanges": true
                     },
@@ -6488,10 +6506,7 @@
                         "description": "**Private Preview** Comment on an object in the database.\n"
                     },
                     "counterOptions": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/types/materialize:index/SourceLoadgenCounterOption:SourceLoadgenCounterOption"
-                        },
+                        "$ref": "#/types/materialize:index/SourceLoadgenCounterOptions:SourceLoadgenCounterOptions",
                         "description": "Counter Options.\n",
                         "willReplaceOnChanges": true
                     },
@@ -6500,15 +6515,18 @@
                         "description": "The identifier for the source database. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
                         "willReplaceOnChanges": true
                     },
+                    "exposeProgress": {
+                        "$ref": "#/types/materialize:index/SourceLoadgenExposeProgress:SourceLoadgenExposeProgress",
+                        "description": "The name of the progress subsource for the source. If this is not specified, the subsource will be named `\u003csrc_name\u003e_progress`.\n",
+                        "willReplaceOnChanges": true
+                    },
                     "loadGeneratorType": {
                         "type": "string",
-                        "description": "The load generator types: [AUCTION MARKETING COUNTER TPCH].\n"
+                        "description": "The load generator types: [AUCTION MARKETING COUNTER TPCH].\n",
+                        "willReplaceOnChanges": true
                     },
                     "marketingOptions": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/types/materialize:index/SourceLoadgenMarketingOption:SourceLoadgenMarketingOption"
-                        },
+                        "$ref": "#/types/materialize:index/SourceLoadgenMarketingOptions:SourceLoadgenMarketingOptions",
                         "description": "Marketing Options.\n",
                         "willReplaceOnChanges": true
                     },
@@ -6541,10 +6559,7 @@
                         "description": "Subsources of a source.\n"
                     },
                     "tpchOptions": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/types/materialize:index/SourceLoadgenTpchOption:SourceLoadgenTpchOption"
-                        },
+                        "$ref": "#/types/materialize:index/SourceLoadgenTpchOptions:SourceLoadgenTpchOptions",
                         "description": "TPCH Options.\n",
                         "willReplaceOnChanges": true
                     }
@@ -6568,7 +6583,7 @@
                     "description": "The identifier for the source database. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
                 },
                 "exposeProgress": {
-                    "type": "string",
+                    "$ref": "#/types/materialize:index/SourcePostgresExposeProgress:SourcePostgresExposeProgress",
                     "description": "The name of the progress subsource for the source. If this is not specified, the subsource will be named `\u003csrc_name\u003e_progress`.\n"
                 },
                 "name": {
@@ -6654,7 +6669,7 @@
                     "willReplaceOnChanges": true
                 },
                 "exposeProgress": {
-                    "type": "string",
+                    "$ref": "#/types/materialize:index/SourcePostgresExposeProgress:SourcePostgresExposeProgress",
                     "description": "The name of the progress subsource for the source. If this is not specified, the subsource will be named `\u003csrc_name\u003e_progress`.\n",
                     "willReplaceOnChanges": true
                 },
@@ -6730,7 +6745,7 @@
                         "willReplaceOnChanges": true
                     },
                     "exposeProgress": {
-                        "type": "string",
+                        "$ref": "#/types/materialize:index/SourcePostgresExposeProgress:SourcePostgresExposeProgress",
                         "description": "The name of the progress subsource for the source. If this is not specified, the subsource will be named `\u003csrc_name\u003e_progress`.\n",
                         "willReplaceOnChanges": true
                     },
@@ -7054,6 +7069,7 @@
                 }
             },
             "required": [
+                "columns",
                 "name",
                 "ownershipRole",
                 "qualifiedSqlName"
@@ -7090,6 +7106,9 @@
                     "willReplaceOnChanges": true
                 }
             },
+            "requiredInputs": [
+                "columns"
+            ],
             "stateInputs": {
                 "description": "Input properties used for looking up and filtering Table resources.\n",
                 "properties": {
@@ -7166,6 +7185,13 @@
                     "type": "string",
                     "description": "The fully qualified name of the type.\n"
                 },
+                "rowProperties": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/materialize:index/TypeRowProperty:TypeRowProperty"
+                    },
+                    "description": "Row properties.\n"
+                },
                 "schemaName": {
                     "type": "string",
                     "description": "The identifier for the type schema. Defaults to `public`.\n"
@@ -7205,6 +7231,14 @@
                 "ownershipRole": {
                     "type": "string",
                     "description": "The owernship role of the object.\n"
+                },
+                "rowProperties": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/materialize:index/TypeRowProperty:TypeRowProperty"
+                    },
+                    "description": "Row properties.\n",
+                    "willReplaceOnChanges": true
                 },
                 "schemaName": {
                     "type": "string",
@@ -7250,6 +7284,14 @@
                     "qualifiedSqlName": {
                         "type": "string",
                         "description": "The fully qualified name of the type.\n"
+                    },
+                    "rowProperties": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/materialize:index/TypeRowProperty:TypeRowProperty"
+                        },
+                        "description": "Row properties.\n",
+                        "willReplaceOnChanges": true
                     },
                     "schemaName": {
                         "type": "string",
