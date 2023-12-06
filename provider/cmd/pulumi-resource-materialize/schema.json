@@ -281,6 +281,11 @@
                     "description": "The AWS PrivateLink connection name in Materialize.\n",
                     "willReplaceOnChanges": true
                 },
+                "sshTunnel": {
+                    "$ref": "#/types/materialize:index/ConnectionKafkaKafkaBrokerSshTunnel:ConnectionKafkaKafkaBrokerSshTunnel",
+                    "description": "The name of an SSH tunnel connection to route network traffic through by default.\n",
+                    "willReplaceOnChanges": true
+                },
                 "targetGroupPort": {
                     "type": "integer",
                     "description": "The port of the target group associated with the Kafka broker.\n"
@@ -304,6 +309,26 @@
                 "schemaName": {
                     "type": "string",
                     "description": "The identifier for the connection schema. Defaults to `public`.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "name"
+            ]
+        },
+        "materialize:index/ConnectionKafkaKafkaBrokerSshTunnel:ConnectionKafkaKafkaBrokerSshTunnel": {
+            "properties": {
+                "databaseName": {
+                    "type": "string",
+                    "description": "The ssh_tunnel database name. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The ssh_tunnel name.\n"
+                },
+                "schemaName": {
+                    "type": "string",
+                    "description": "The ssh_tunnel schema name. Defaults to `public`.\n"
                 }
             },
             "type": "object",
@@ -2895,7 +2920,7 @@
                 },
                 "sshTunnel": {
                     "$ref": "#/types/materialize:index/ConnectionKafkaSshTunnel:ConnectionKafkaSshTunnel",
-                    "description": "The SSH tunnel configuration for the Kafka broker.\n"
+                    "description": "The default SSH tunnel configuration for the Kafka brokers.\n"
                 },
                 "sslCertificate": {
                     "$ref": "#/types/materialize:index/ConnectionKafkaSslCertificate:ConnectionKafkaSslCertificate",
@@ -2978,7 +3003,7 @@
                 },
                 "sshTunnel": {
                     "$ref": "#/types/materialize:index/ConnectionKafkaSshTunnel:ConnectionKafkaSshTunnel",
-                    "description": "The SSH tunnel configuration for the Kafka broker.\n",
+                    "description": "The default SSH tunnel configuration for the Kafka brokers.\n",
                     "willReplaceOnChanges": true
                 },
                 "sslCertificate": {
@@ -3068,7 +3093,7 @@
                     },
                     "sshTunnel": {
                         "$ref": "#/types/materialize:index/ConnectionKafkaSshTunnel:ConnectionKafkaSshTunnel",
-                        "description": "The SSH tunnel configuration for the Kafka broker.\n",
+                        "description": "The default SSH tunnel configuration for the Kafka brokers.\n",
                         "willReplaceOnChanges": true
                     },
                     "sslCertificate": {
