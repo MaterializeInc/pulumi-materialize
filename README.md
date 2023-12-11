@@ -24,13 +24,6 @@ The following configuration points are available for the `materialize` provider:
 - `materialize:port` (environment: `MZ_PORT`) - The Materialize port number to connect to at the server host.
 - `materialize:database` (environment: `MZ_DATABASE`) - Materialize database.
 
-## Contributing
-
-Please see [CONTRIBUTING.md](CONTRIBUTING.md) for instructions on how to contribute to this provider.
-
-> **Warning**
-> The provider is under active development.
-
 ## Testing
 
 To run the tests which will simulate running Pulumi you will need to set the necessary envrionment variables and start the docker compose:
@@ -52,3 +45,10 @@ You can then run the tests:
 ```bash
 make test
 ```
+
+## Contributing
+
+Please see [CONTRIBUTING.md](CONTRIBUTING.md) for instructions on how to contribute to this provider.
+
+> **Warning**
+> The provider is under active development.

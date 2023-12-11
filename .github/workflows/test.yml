@@ -2,8 +2,8 @@ name: test
 on:
   pull_request:
     paths:
-      - provider
-      - examples
+      - provider/**
+      - examples/**
 
 env:
   MZ_HOST: localhost
@@ -19,13 +19,13 @@ jobs:
 
       - run: docker-compose -f examples/docker-compose.yml up -d --build
 
-      - run: make build_python
-
       - uses: actions/setup-go@v4
         with:
           go-version-file: "go.mod"
           cache: true
         working-directory: ./examples
+
+      - run: make build_python
 
       - run: make test
 
