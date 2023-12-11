@@ -30,4 +30,3 @@ jobs:
       - run: make test
 
       - run: docker compose -f examples/docker-compose.yml down
-        working-directory: ./examples
