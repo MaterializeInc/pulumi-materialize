@@ -45,6 +45,8 @@ export MZ_PORT=6877
 docker-compose -f examples/docker-compose.yml up -d --build
 ```
 
+The tests also assume that the SDKs have been built and are present at `sdk/{SDK language}`. These are not committed to git but can be built locally by running `make build_{sdk}`.
+
 You can then run the tests:
 
 ```bash
