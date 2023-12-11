@@ -30,3 +30,23 @@ Please see [CONTRIBUTING.md](CONTRIBUTING.md) for instructions on how to contrib
 
 > **Warning**
 > The provider is under active development.
+
+## Testing
+
+To run the tests which will simulate running Pulumi you will need to set the necessary envrionment variables and start the docker compose:
+
+```bash
+export MZ_HOST=localhost
+export MZ_USER=mz_system
+export MZ_SSLMODE=disable
+export MZ_PORT=6877
+
+# Start all containers
+docker-compose -f examples/docker-compose.yml up -d --build
+```
+
+You can then run the tests:
+
+```bash
+make test
+```

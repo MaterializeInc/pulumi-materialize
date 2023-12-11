@@ -55,28 +55,58 @@
         "variables": {
             "database": {
                 "type": "string",
-                "description": "The Materialize database. Can also come from the `MZ_DATABASE` environment variable. Defaults to `materialize`.\n"
+                "description": "The Materialize database. Can also come from the `MZ_DATABASE` environment variable. Defaults to `materialize`.\n",
+                "defaultInfo": {
+                    "environment": [
+                        "MZ_DATABASE"
+                    ]
+                }
             },
             "host": {
                 "type": "string",
-                "description": "Materialize host. Can also come from the `MZ_HOST` environment variable.\n"
+                "description": "Materialize host. Can also come from the `MZ_HOST` environment variable.\n",
+                "defaultInfo": {
+                    "environment": [
+                        "MZ_HOST"
+                    ]
+                }
             },
             "password": {
                 "type": "string",
                 "description": "Materialize host. Can also come from the `MZ_PASSWORD` environment variable.\n",
+                "defaultInfo": {
+                    "environment": [
+                        "MZ_PASSWORD"
+                    ]
+                },
                 "secret": true
             },
             "port": {
                 "type": "integer",
-                "description": "The Materialize port number to connect to at the server host. Can also come from the `MZ_PORT` environment variable.\nDefaults to 6875.\n"
+                "description": "The Materialize port number to connect to at the server host. Can also come from the `MZ_PORT` environment variable.\nDefaults to 6875.\n",
+                "defaultInfo": {
+                    "environment": [
+                        "MZ_PORT"
+                    ]
+                }
             },
             "sslmode": {
                 "type": "string",
-                "description": "For testing purposes, the SSL mode to use.\n"
+                "description": "For testing purposes, the SSL mode to use.\n",
+                "defaultInfo": {
+                    "environment": [
+                        "MZ_SSLMODE"
+                    ]
+                }
             },
             "user": {
                 "type": "string",
-                "description": "Materialize user. Can also come from the `MZ_USER` environment variable.\n"
+                "description": "Materialize user. Can also come from the `MZ_USER` environment variable.\n",
+                "defaultInfo": {
+                    "environment": [
+                        "MZ_USER"
+                    ]
+                }
             }
         }
     },
@@ -2203,28 +2233,58 @@
         "inputProperties": {
             "database": {
                 "type": "string",
-                "description": "The Materialize database. Can also come from the `MZ_DATABASE` environment variable. Defaults to `materialize`.\n"
+                "description": "The Materialize database. Can also come from the `MZ_DATABASE` environment variable. Defaults to `materialize`.\n",
+                "defaultInfo": {
+                    "environment": [
+                        "MZ_DATABASE"
+                    ]
+                }
             },
             "host": {
                 "type": "string",
-                "description": "Materialize host. Can also come from the `MZ_HOST` environment variable.\n"
+                "description": "Materialize host. Can also come from the `MZ_HOST` environment variable.\n",
+                "defaultInfo": {
+                    "environment": [
+                        "MZ_HOST"
+                    ]
+                }
             },
             "password": {
                 "type": "string",
                 "description": "Materialize host. Can also come from the `MZ_PASSWORD` environment variable.\n",
+                "defaultInfo": {
+                    "environment": [
+                        "MZ_PASSWORD"
+                    ]
+                },
                 "secret": true
             },
             "port": {
                 "type": "integer",
-                "description": "The Materialize port number to connect to at the server host. Can also come from the `MZ_PORT` environment variable.\nDefaults to 6875.\n"
+                "description": "The Materialize port number to connect to at the server host. Can also come from the `MZ_PORT` environment variable.\nDefaults to 6875.\n",
+                "defaultInfo": {
+                    "environment": [
+                        "MZ_PORT"
+                    ]
+                }
             },
             "sslmode": {
                 "type": "string",
-                "description": "For testing purposes, the SSL mode to use.\n"
+                "description": "For testing purposes, the SSL mode to use.\n",
+                "defaultInfo": {
+                    "environment": [
+                        "MZ_SSLMODE"
+                    ]
+                }
             },
             "user": {
                 "type": "string",
-                "description": "Materialize user. Can also come from the `MZ_USER` environment variable.\n"
+                "description": "Materialize user. Can also come from the `MZ_USER` environment variable.\n",
+                "defaultInfo": {
+                    "environment": [
+                        "MZ_USER"
+                    ]
+                }
             }
         }
     },
