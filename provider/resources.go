@@ -64,6 +64,26 @@ func Provider() tfbridge.ProviderInfo {
 		PluginDownloadURL:    "github://api.github.com/MaterializeInc/pulumi-materialize",
 		DisplayName:          "Materialize",
 		PreConfigureCallback: preConfigureCallback,
+		Config: map[string]*tfbridge.SchemaInfo{
+			"host": {
+				Default: &tfbridge.DefaultInfo{EnvVars: []string{"MZ_HOST"}},
+			},
+			"user": {
+				Default: &tfbridge.DefaultInfo{EnvVars: []string{"MZ_USER"}},
+			},
+			"password": {
+				Default: &tfbridge.DefaultInfo{EnvVars: []string{"MZ_PASSWORD"}},
+			},
+			"port": {
+				Default: &tfbridge.DefaultInfo{EnvVars: []string{"MZ_PORT"}},
+			},
+			"database": {
+				Default: &tfbridge.DefaultInfo{EnvVars: []string{"MZ_DATABASE"}},
+			},
+			"sslmode": {
+				Default: &tfbridge.DefaultInfo{EnvVars: []string{"MZ_SSLMODE"}},
+			},
+		},
 		Resources: map[string]*tfbridge.ResourceInfo{
 			"materialize_cluster":                              {Tok: tfbridge.MakeResource(mainPkg, mainMod, "Cluster")},
 			"materialize_cluster_grant":                        {Tok: tfbridge.MakeResource(mainPkg, mainMod, "GrantCluster")},

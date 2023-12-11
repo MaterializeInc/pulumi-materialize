@@ -7,6 +7,12 @@ import (
 	"github.com/pulumi/pulumi/pkg/v3/testing/integration"
 )
 
+func getBaseOptions(t *testing.T) integration.ProgramTestOptions {
+	return integration.ProgramTestOptions{
+		ExpectRefreshChanges: true,
+	}
+}
+
 func getCwd(t *testing.T) string {
 	cwd, err := os.Getwd()
 	if err != nil {
@@ -14,11 +20,4 @@ func getCwd(t *testing.T) string {
 	}
 
 	return cwd
-}
-
-func getBaseOptions() integration.ProgramTestOptions {
-	return integration.ProgramTestOptions{
-		RunUpdateTest:        false,
-		ExpectRefreshChanges: true,
-	}
 }

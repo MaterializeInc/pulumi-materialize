@@ -1,0 +1,32 @@
+name: test
+on:
+  pull_request:
+    paths:
+      - provider/**
+      - examples/**
+
+env:
+  MZ_HOST: localhost
+  MZ_USER: mz_system
+  MZ_SSLMODE: disable
+  MZ_PORT: 6877
+
+jobs: 
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - run: docker-compose -f examples/docker-compose.yml up -d --build
+
+      - uses: actions/setup-go@v4
+        with:
+          go-version-file: "go.mod"
+          cache: true
+        working-directory: ./examples
+
+      - run: make build_python
+
+      - run: make test
+
+      - run: docker compose -f examples/docker-compose.yml down

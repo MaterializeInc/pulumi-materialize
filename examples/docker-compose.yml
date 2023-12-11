@@ -1,0 +1,20 @@
+---
+version: "3.9"
+
+services:
+
+  materialized:
+    image: materialize/materialized:latest
+    container_name: materialized
+    command:
+      - '--cluster-replica-sizes={"3xsmall": {"workers": 1, "scale": 1, "credits_per_hour": "1"}, "2xsmall": {"workers": 1, "scale": 1, "credits_per_hour": "1"}}'
+      - --bootstrap-default-cluster-replica-size=3xsmall
+      - --bootstrap-builtin-cluster-replica-size=3xsmall
+      - --availability-zone=test1
+      - --availability-zone=test2
+      - --all-features
+    ports:
+      - 6875:6875
+      - 6877:6877
+      - 6878:6878
+    healthcheck: {test: curl -f localhost:6878/api/readyz, interval: 1s, start_period: 35s}
