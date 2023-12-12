@@ -18,13 +18,17 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - run: docker-compose -f examples/docker-compose.yml up -d --build
-
       - uses: actions/setup-go@v4
         with:
-          go-version: 1.20.x
+          go-version: 1.21.x
+
+      - uses: jaxxstorm/action-install-gh-release@v1.5.0
+        with:
+          repo: pulumi/pulumictl
 
       - run: make build_python
+
+      - run: docker-compose -f examples/docker-compose.yml up -d --build
 
       - run: make test
 
