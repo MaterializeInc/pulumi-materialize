@@ -1,4 +1,5 @@
 name: test
+
 on:
   pull_request:
     paths:
@@ -11,8 +12,8 @@ env:
   MZ_USER: mz_system
   MZ_SSLMODE: disable
   MZ_PORT: 6877
-  # THIS GITHUB_TOKEN IS A REQUIREMENT TO BE ABLE TO WRITE TO GH RELEASES
-  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  PYTHONVERSION: 3.9
+  GOVERSION: 1.21.x
 
 jobs: 
   test:
@@ -26,18 +27,13 @@ jobs:
 
       - uses: actions/setup-go@v4
         with:
-          go-version: 1.21.x
+          go-version: ${{ env.GOVERSION }}
 
-      - uses: jaxxstorm/action-install-gh-release@v1.5.0
+      - uses: actions/setup-python@v2
         with:
-          repo: pulumi/pulumictl
+          python-version: ${{ env.PYTHONVERSION }}
 
-      - run: echo "GORELEASER_CURRENT_TAG=v$(pulumictl get version --language generic)" >> $GITHUB_ENV
-
-      - uses: goreleaser/goreleaser-action@v2
-        with:
-          version: latest
-          args: -p 3 release --rm-dist
+      - uses: pulumi/action-install-pulumi-cli@v2
 
       - run: make build_python
 
