@@ -4,6 +4,7 @@ on:
     paths:
       - provider/**
       - examples/**
+      - .github/workflows/**
 
 env:
   MZ_HOST: localhost
