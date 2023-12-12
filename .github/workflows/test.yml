@@ -28,7 +28,12 @@ jobs:
         with:
           repo: pulumi/pulumictl
 
-      - run: make tfgen
+      - run: run: echo "GORELEASER_CURRENT_TAG=v$(pulumictl get version --language generic)" >> $GITHUB_ENV
+
+      - uses: goreleaser/goreleaser-action@v2
+        with:
+          version: latest
+          args: -p 3 release --rm-dist
 
       - run: make build_python
 
