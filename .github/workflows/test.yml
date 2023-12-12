@@ -11,6 +11,7 @@ env:
   MZ_USER: mz_system
   MZ_SSLMODE: disable
   MZ_PORT: 6877
+  # THIS GITHUB_TOKEN IS A REQUIREMENT TO BE ABLE TO WRITE TO GH RELEASES
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 jobs: 
@@ -28,7 +29,7 @@ jobs:
         with:
           repo: pulumi/pulumictl
 
-      - run: run: echo "GORELEASER_CURRENT_TAG=v$(pulumictl get version --language generic)" >> $GITHUB_ENV
+      - run: echo "GORELEASER_CURRENT_TAG=v$(pulumictl get version --language generic)" >> $GITHUB_ENV
 
       - uses: goreleaser/goreleaser-action@v2
         with:
