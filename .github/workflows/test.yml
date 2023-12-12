@@ -11,6 +11,7 @@ env:
   MZ_USER: mz_system
   MZ_SSLMODE: disable
   MZ_PORT: 6877
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 jobs: 
   test:
