@@ -18,3 +18,15 @@ services:
       - 6877:6877
       - 6878:6878
     healthcheck: {test: curl -f localhost:6878/api/readyz, interval: 1s, start_period: 35s}
+
+  frontegg:
+    container_name: frontegg
+    build: mocks/frontegg
+    ports:
+      - "3000:3000"
+
+  cloud:
+    container_name: cloud
+    build: mocks/cloud
+    ports:
+      - "3001:3001"

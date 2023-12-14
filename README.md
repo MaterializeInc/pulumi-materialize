@@ -18,10 +18,10 @@ pip install pulumi_materialize
 
 The following configuration points are available for the `materialize` provider:
 
-- `materialize:host` (environment: `MZ_HOST`) -  Materialize host.
-- `materialize:user` (environment: `MZ_USER`) - Materialize user.
 - `materialize:password` (environment: `MZ_PASSWORD`) - Materialize password.
-- `materialize:port` (environment: `MZ_PORT`) - The Materialize port number to connect to at the server host.
+- `materialize:endpoint` (environment: `MZ_ENDPOINT`) - The endpoint for the Materialize API.
+- `materialize:cloud_endpoint` (environment: `MZ_CLOUD_ENDPOINT`) - The endpoint for the Materialize Cloud API..
+- `materialize:default_region` (environment: `MZ_DEFAULT_REGION`) - The default region if not specified in the resource.
 - `materialize:database` (environment: `MZ_DATABASE`) - Materialize database.
 
 ## Testing
@@ -29,10 +29,10 @@ The following configuration points are available for the `materialize` provider:
 To run the tests which will simulate running Pulumi you will need to set the necessary envrionment variables and start the docker compose:
 
 ```bash
-export MZ_HOST=localhost
-export MZ_USER=mz_system
+export MZ_ENDPOINT=http://localhost:3000
+export MZ_CLOUD_ENDPOINT=http://localhost:3001
+export MZ_PASSWORD=mzp_1b2a3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b
 export MZ_SSLMODE=disable
-export MZ_PORT=6877
 
 # Start all containers
 docker-compose -f examples/docker-compose.yml up -d --build
