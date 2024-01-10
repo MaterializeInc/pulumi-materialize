@@ -53,6 +53,15 @@
     },
     "config": {
         "variables": {
+            "cloudEndpoint": {
+                "type": "string",
+                "description": "The endpoint for the Materialize Cloud API.\n",
+                "defaultInfo": {
+                    "environment": [
+                        "MZ_CLOUD_ENDPOINT"
+                    ]
+                }
+            },
             "database": {
                 "type": "string",
                 "description": "The Materialize database. Can also come from the `MZ_DATABASE` environment variable. Defaults to `materialize`.\n",
@@ -62,12 +71,21 @@
                     ]
                 }
             },
-            "host": {
+            "defaultRegion": {
                 "type": "string",
-                "description": "Materialize host. Can also come from the `MZ_HOST` environment variable.\n",
+                "description": "The default region if not specified in the resource\n",
                 "defaultInfo": {
                     "environment": [
-                        "MZ_HOST"
+                        "MZ_DEFAULT_REGION"
+                    ]
+                }
+            },
+            "endpoint": {
+                "type": "string",
+                "description": "The endpoint for the Materialize API.\n",
+                "defaultInfo": {
+                    "environment": [
+                        "MZ_ENDPOINT"
                     ]
                 }
             },
@@ -81,30 +99,12 @@
                 },
                 "secret": true
             },
-            "port": {
-                "type": "integer",
-                "description": "The Materialize port number to connect to at the server host. Can also come from the `MZ_PORT` environment variable.\nDefaults to 6875.\n",
-                "defaultInfo": {
-                    "environment": [
-                        "MZ_PORT"
-                    ]
-                }
-            },
             "sslmode": {
                 "type": "string",
                 "description": "For testing purposes, the SSL mode to use.\n",
                 "defaultInfo": {
                     "environment": [
                         "MZ_SSLMODE"
-                    ]
-                }
-            },
-            "user": {
-                "type": "string",
-                "description": "Materialize user. Can also come from the `MZ_USER` environment variable.\n",
-                "defaultInfo": {
-                    "environment": [
-                        "MZ_USER"
                     ]
                 }
             }
@@ -1219,6 +1219,39 @@
                 "name"
             ]
         },
+        "materialize:index/RegionRegion:RegionRegion": {
+            "properties": {
+                "cloudProvider": {
+                    "type": "string"
+                },
+                "host": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string",
+                    "description": "The ID of this resource.\n"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "url": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "cloudProvider",
+                "host",
+                "id",
+                "name",
+                "url"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
         "materialize:index/SinkKafkaEnvelope:SinkKafkaEnvelope": {
             "properties": {
                 "debezium": {
@@ -2305,33 +2338,42 @@
     "provider": {
         "description": "The provider type for the materialize package. By default, resources use package-wide configuration\nsettings, however an explicit `Provider` instance may be created and passed during resource\nconstruction to achieve fine-grained programmatic control over provider settings. See the\n[documentation](https://www.pulumi.com/docs/reference/programming-model/#providers) for more information.\n",
         "properties": {
+            "cloudEndpoint": {
+                "type": "string",
+                "description": "The endpoint for the Materialize Cloud API.\n"
+            },
             "database": {
                 "type": "string",
                 "description": "The Materialize database. Can also come from the `MZ_DATABASE` environment variable. Defaults to `materialize`.\n"
             },
-            "host": {
+            "defaultRegion": {
                 "type": "string",
-                "description": "Materialize host. Can also come from the `MZ_HOST` environment variable.\n"
+                "description": "The default region if not specified in the resource\n"
+            },
+            "endpoint": {
+                "type": "string",
+                "description": "The endpoint for the Materialize API.\n"
             },
             "password": {
                 "type": "string",
                 "description": "Materialize host. Can also come from the `MZ_PASSWORD` environment variable.\n",
                 "secret": true
             },
-            "port": {
-                "type": "integer",
-                "description": "The Materialize port number to connect to at the server host. Can also come from the `MZ_PORT` environment variable.\nDefaults to 6875.\n"
-            },
             "sslmode": {
                 "type": "string",
                 "description": "For testing purposes, the SSL mode to use.\n"
-            },
-            "user": {
-                "type": "string",
-                "description": "Materialize user. Can also come from the `MZ_USER` environment variable.\n"
             }
         },
         "inputProperties": {
+            "cloudEndpoint": {
+                "type": "string",
+                "description": "The endpoint for the Materialize Cloud API.\n",
+                "defaultInfo": {
+                    "environment": [
+                        "MZ_CLOUD_ENDPOINT"
+                    ]
+                }
+            },
             "database": {
                 "type": "string",
                 "description": "The Materialize database. Can also come from the `MZ_DATABASE` environment variable. Defaults to `materialize`.\n",
@@ -2341,12 +2383,21 @@
                     ]
                 }
             },
-            "host": {
+            "defaultRegion": {
                 "type": "string",
-                "description": "Materialize host. Can also come from the `MZ_HOST` environment variable.\n",
+                "description": "The default region if not specified in the resource\n",
                 "defaultInfo": {
                     "environment": [
-                        "MZ_HOST"
+                        "MZ_DEFAULT_REGION"
+                    ]
+                }
+            },
+            "endpoint": {
+                "type": "string",
+                "description": "The endpoint for the Materialize API.\n",
+                "defaultInfo": {
+                    "environment": [
+                        "MZ_ENDPOINT"
                     ]
                 }
             },
@@ -2360,15 +2411,6 @@
                 },
                 "secret": true
             },
-            "port": {
-                "type": "integer",
-                "description": "The Materialize port number to connect to at the server host. Can also come from the `MZ_PORT` environment variable.\nDefaults to 6875.\n",
-                "defaultInfo": {
-                    "environment": [
-                        "MZ_PORT"
-                    ]
-                }
-            },
             "sslmode": {
                 "type": "string",
                 "description": "For testing purposes, the SSL mode to use.\n",
@@ -2377,19 +2419,69 @@
                         "MZ_SSLMODE"
                     ]
                 }
-            },
-            "user": {
-                "type": "string",
-                "description": "Materialize user. Can also come from the `MZ_USER` environment variable.\n",
-                "defaultInfo": {
-                    "environment": [
-                        "MZ_USER"
-                    ]
-                }
             }
         }
     },
     "resources": {
+        "materialize:index/appPassword:AppPassword": {
+            "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as materialize from \"@pulumi/materialize\";\n\nconst exampleAppPassword = new materialize.AppPassword(\"exampleAppPassword\", {});\n```\n```python\nimport pulumi\nimport pulumi_materialize as materialize\n\nexample_app_password = materialize.AppPassword(\"exampleAppPassword\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Materialize = Pulumi.Materialize;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var exampleAppPassword = new Materialize.AppPassword(\"exampleAppPassword\");\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-materialize/sdk/go/materialize\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := materialize.NewAppPassword(ctx, \"exampleAppPassword\", nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.materialize.AppPassword;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var exampleAppPassword = new AppPassword(\"exampleAppPassword\");\n\n    }\n}\n```\n```yaml\nresources:\n  exampleAppPassword:\n    type: materialize:AppPassword\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nApp passwords can be imported using the app password id\n\n```sh\n $ pulumi import materialize:index/appPassword:AppPassword example_app_password \u003capp_password_id\u003e\n```\n\n ",
+            "properties": {
+                "createdAt": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "owner": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string",
+                    "secret": true
+                },
+                "secret": {
+                    "type": "string",
+                    "secret": true
+                }
+            },
+            "required": [
+                "createdAt",
+                "name",
+                "owner",
+                "password",
+                "secret"
+            ],
+            "inputProperties": {
+                "name": {
+                    "type": "string",
+                    "willReplaceOnChanges": true
+                }
+            },
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering AppPassword resources.\n",
+                "properties": {
+                    "createdAt": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string",
+                        "willReplaceOnChanges": true
+                    },
+                    "owner": {
+                        "type": "string"
+                    },
+                    "password": {
+                        "type": "string",
+                        "secret": true
+                    },
+                    "secret": {
+                        "type": "string",
+                        "secret": true
+                    }
+                },
+                "type": "object"
+            }
+        },
         "materialize:index/cluster:Cluster": {
             "description": "Clusters describe logical compute resources that can be used by sources, sinks, indexes, and materialized views. Managed clusters are created by setting the `size` attribute\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as materialize from \"@pulumi/materialize\";\n\nconst exampleCluster = new materialize.Cluster(\"exampleCluster\", {});\n```\n```python\nimport pulumi\nimport pulumi_materialize as materialize\n\nexample_cluster = materialize.Cluster(\"exampleCluster\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Materialize = Pulumi.Materialize;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var exampleCluster = new Materialize.Cluster(\"exampleCluster\");\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-materialize/sdk/go/materialize\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := materialize.NewCluster(ctx, \"exampleCluster\", nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.materialize.Cluster;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var exampleCluster = new Cluster(\"exampleCluster\");\n\n    }\n}\n```\n```yaml\nresources:\n  exampleCluster:\n    type: materialize:Cluster\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nClusters can be imported using the cluster id\n\n```sh\n $ pulumi import materialize:index/cluster:Cluster example_cluster \u003cregion\u003e:\u003ccluster_id\u003e\n```\n\n Cluster id and information be found in the `mz_catalog.mz_clusters` table The region is the region where the database is located (e.g. aws/us-east-1) ",
             "properties": {
@@ -2420,6 +2512,10 @@
                 "ownershipRole": {
                     "type": "string",
                     "description": "The owernship role of the object.\n"
+                },
+                "region": {
+                    "type": "string",
+                    "description": "The region to use for the resource connection. If not set, the default region is used.\n"
                 },
                 "replicationFactor": {
                     "type": "integer",
@@ -2465,6 +2561,11 @@
                     "type": "string",
                     "description": "The owernship role of the object.\n"
                 },
+                "region": {
+                    "type": "string",
+                    "description": "The region to use for the resource connection. If not set, the default region is used.\n",
+                    "willReplaceOnChanges": true
+                },
                 "replicationFactor": {
                     "type": "integer",
                     "description": "The number of replicas of each dataflow-powered object to maintain.\n"
@@ -2505,6 +2606,11 @@
                     "ownershipRole": {
                         "type": "string",
                         "description": "The owernship role of the object.\n"
+                    },
+                    "region": {
+                        "type": "string",
+                        "description": "The region to use for the resource connection. If not set, the default region is used.\n",
+                        "willReplaceOnChanges": true
                     },
                     "replicationFactor": {
                         "type": "integer",
@@ -2552,6 +2658,10 @@
                 "name": {
                     "type": "string",
                     "description": "The identifier for the replica.\n"
+                },
+                "region": {
+                    "type": "string",
+                    "description": "The region to use for the resource connection. If not set, the default region is used.\n"
                 },
                 "size": {
                     "type": "string",
@@ -2602,6 +2712,11 @@
                 "name": {
                     "type": "string",
                     "description": "The identifier for the replica.\n",
+                    "willReplaceOnChanges": true
+                },
+                "region": {
+                    "type": "string",
+                    "description": "The region to use for the resource connection. If not set, the default region is used.\n",
                     "willReplaceOnChanges": true
                 },
                 "size": {
@@ -2656,6 +2771,11 @@
                         "description": "The identifier for the replica.\n",
                         "willReplaceOnChanges": true
                     },
+                    "region": {
+                        "type": "string",
+                        "description": "The region to use for the resource connection. If not set, the default region is used.\n",
+                        "willReplaceOnChanges": true
+                    },
                     "size": {
                         "type": "string",
                         "description": "The size of the replica.\n",
@@ -2700,6 +2820,10 @@
                     "type": "string",
                     "description": "The fully qualified name of the connection.\n"
                 },
+                "region": {
+                    "type": "string",
+                    "description": "The region to use for the resource connection. If not set, the default region is used.\n"
+                },
                 "schemaName": {
                     "type": "string",
                     "description": "The identifier for the connection schema. Defaults to `public`.\n"
@@ -2742,6 +2866,11 @@
                 "ownershipRole": {
                     "type": "string",
                     "description": "The owernship role of the object.\n"
+                },
+                "region": {
+                    "type": "string",
+                    "description": "The region to use for the resource connection. If not set, the default region is used.\n",
+                    "willReplaceOnChanges": true
                 },
                 "schemaName": {
                     "type": "string",
@@ -2795,6 +2924,11 @@
                         "type": "string",
                         "description": "The fully qualified name of the connection.\n"
                     },
+                    "region": {
+                        "type": "string",
+                        "description": "The region to use for the resource connection. If not set, the default region is used.\n",
+                        "willReplaceOnChanges": true
+                    },
                     "schemaName": {
                         "type": "string",
                         "description": "The identifier for the connection schema. Defaults to `public`.\n",
@@ -2839,6 +2973,10 @@
                 "qualifiedSqlName": {
                     "type": "string",
                     "description": "The fully qualified name of the connection.\n"
+                },
+                "region": {
+                    "type": "string",
+                    "description": "The region to use for the resource connection. If not set, the default region is used.\n"
                 },
                 "schemaName": {
                     "type": "string",
@@ -2905,6 +3043,11 @@
                 "password": {
                     "$ref": "#/types/materialize:index/ConnectionConfluentSchemaRegistryPassword:ConnectionConfluentSchemaRegistryPassword",
                     "description": "The password for the Confluent Schema Registry.\n",
+                    "willReplaceOnChanges": true
+                },
+                "region": {
+                    "type": "string",
+                    "description": "The region to use for the resource connection. If not set, the default region is used.\n",
                     "willReplaceOnChanges": true
                 },
                 "schemaName": {
@@ -2983,6 +3126,11 @@
                         "type": "string",
                         "description": "The fully qualified name of the connection.\n"
                     },
+                    "region": {
+                        "type": "string",
+                        "description": "The region to use for the resource connection. If not set, the default region is used.\n",
+                        "willReplaceOnChanges": true
+                    },
                     "schemaName": {
                         "type": "string",
                         "description": "The identifier for the connection schema. Defaults to `public`.\n",
@@ -3058,6 +3206,10 @@
                 "qualifiedSqlName": {
                     "type": "string",
                     "description": "The fully qualified name of the connection.\n"
+                },
+                "region": {
+                    "type": "string",
+                    "description": "The region to use for the resource connection. If not set, the default region is used.\n"
                 },
                 "saslMechanisms": {
                     "type": "string",
@@ -3135,6 +3287,11 @@
                 "progressTopic": {
                     "type": "string",
                     "description": "The name of a topic that Kafka sinks can use to track internal consistency metadata.\n",
+                    "willReplaceOnChanges": true
+                },
+                "region": {
+                    "type": "string",
+                    "description": "The region to use for the resource connection. If not set, the default region is used.\n",
                     "willReplaceOnChanges": true
                 },
                 "saslMechanisms": {
@@ -3226,6 +3383,11 @@
                     "qualifiedSqlName": {
                         "type": "string",
                         "description": "The fully qualified name of the connection.\n"
+                    },
+                    "region": {
+                        "type": "string",
+                        "description": "The region to use for the resource connection. If not set, the default region is used.\n",
+                        "willReplaceOnChanges": true
                     },
                     "saslMechanisms": {
                         "type": "string",
@@ -3323,6 +3485,10 @@
                     "type": "string",
                     "description": "The fully qualified name of the connection.\n"
                 },
+                "region": {
+                    "type": "string",
+                    "description": "The region to use for the resource connection. If not set, the default region is used.\n"
+                },
                 "schemaName": {
                     "type": "string",
                     "description": "The identifier for the connection schema. Defaults to `public`.\n"
@@ -3405,6 +3571,11 @@
                 "port": {
                     "type": "integer",
                     "description": "The Postgres database port.\n",
+                    "willReplaceOnChanges": true
+                },
+                "region": {
+                    "type": "string",
+                    "description": "The region to use for the resource connection. If not set, the default region is used.\n",
                     "willReplaceOnChanges": true
                 },
                 "schemaName": {
@@ -3501,6 +3672,11 @@
                         "type": "string",
                         "description": "The fully qualified name of the connection.\n"
                     },
+                    "region": {
+                        "type": "string",
+                        "description": "The region to use for the resource connection. If not set, the default region is used.\n",
+                        "willReplaceOnChanges": true
+                    },
                     "schemaName": {
                         "type": "string",
                         "description": "The identifier for the connection schema. Defaults to `public`.\n",
@@ -3583,6 +3759,10 @@
                     "type": "string",
                     "description": "The fully qualified name of the connection.\n"
                 },
+                "region": {
+                    "type": "string",
+                    "description": "The region to use for the resource connection. If not set, the default region is used.\n"
+                },
                 "schemaName": {
                     "type": "string",
                     "description": "The identifier for the connection schema. Defaults to `public`.\n"
@@ -3628,6 +3808,11 @@
                 "port": {
                     "type": "integer",
                     "description": "The port of the SSH tunnel.\n",
+                    "willReplaceOnChanges": true
+                },
+                "region": {
+                    "type": "string",
+                    "description": "The region to use for the resource connection. If not set, the default region is used.\n",
                     "willReplaceOnChanges": true
                 },
                 "schemaName": {
@@ -3688,6 +3873,11 @@
                         "type": "string",
                         "description": "The fully qualified name of the connection.\n"
                     },
+                    "region": {
+                        "type": "string",
+                        "description": "The region to use for the resource connection. If not set, the default region is used.\n",
+                        "willReplaceOnChanges": true
+                    },
                     "schemaName": {
                         "type": "string",
                         "description": "The identifier for the connection schema. Defaults to `public`.\n",
@@ -3716,6 +3906,10 @@
                 "ownershipRole": {
                     "type": "string",
                     "description": "The owernship role of the object.\n"
+                },
+                "region": {
+                    "type": "string",
+                    "description": "The region to use for the resource connection. If not set, the default region is used.\n"
                 }
             },
             "required": [
@@ -3735,6 +3929,11 @@
                 "ownershipRole": {
                     "type": "string",
                     "description": "The owernship role of the object.\n"
+                },
+                "region": {
+                    "type": "string",
+                    "description": "The region to use for the resource connection. If not set, the default region is used.\n",
+                    "willReplaceOnChanges": true
                 }
             },
             "stateInputs": {
@@ -3752,6 +3951,11 @@
                     "ownershipRole": {
                         "type": "string",
                         "description": "The owernship role of the object.\n"
+                    },
+                    "region": {
+                        "type": "string",
+                        "description": "The region to use for the resource connection. If not set, the default region is used.\n",
+                        "willReplaceOnChanges": true
                     }
                 },
                 "type": "object"
@@ -3767,6 +3971,10 @@
                 "privilege": {
                     "type": "string",
                     "description": "The privilege to grant to the object.\n"
+                },
+                "region": {
+                    "type": "string",
+                    "description": "The region to use for the resource connection. If not set, the default region is used.\n"
                 },
                 "roleName": {
                     "type": "string",
@@ -3787,6 +3995,11 @@
                 "privilege": {
                     "type": "string",
                     "description": "The privilege to grant to the object.\n",
+                    "willReplaceOnChanges": true
+                },
+                "region": {
+                    "type": "string",
+                    "description": "The region to use for the resource connection. If not set, the default region is used.\n",
                     "willReplaceOnChanges": true
                 },
                 "roleName": {
@@ -3813,6 +4026,11 @@
                         "description": "The privilege to grant to the object.\n",
                         "willReplaceOnChanges": true
                     },
+                    "region": {
+                        "type": "string",
+                        "description": "The region to use for the resource connection. If not set, the default region is used.\n",
+                        "willReplaceOnChanges": true
+                    },
                     "roleName": {
                         "type": "string",
                         "description": "The name of the role to grant privilege to.\n",
@@ -3833,6 +4051,10 @@
                     "type": "string",
                     "description": "The privilege to grant to the object.\n"
                 },
+                "region": {
+                    "type": "string",
+                    "description": "The region to use for the resource connection. If not set, the default region is used.\n"
+                },
                 "targetRoleName": {
                     "type": "string",
                     "description": "The default privilege will apply to objects created by this role. If this is left blank, then the current role is assumed. Use the `PUBLIC` pseudo-role to target objects created by all roles.\n"
@@ -3852,6 +4074,11 @@
                 "privilege": {
                     "type": "string",
                     "description": "The privilege to grant to the object.\n",
+                    "willReplaceOnChanges": true
+                },
+                "region": {
+                    "type": "string",
+                    "description": "The region to use for the resource connection. If not set, the default region is used.\n",
                     "willReplaceOnChanges": true
                 },
                 "targetRoleName": {
@@ -3878,6 +4105,11 @@
                         "description": "The privilege to grant to the object.\n",
                         "willReplaceOnChanges": true
                     },
+                    "region": {
+                        "type": "string",
+                        "description": "The region to use for the resource connection. If not set, the default region is used.\n",
+                        "willReplaceOnChanges": true
+                    },
                     "targetRoleName": {
                         "type": "string",
                         "description": "The default privilege will apply to objects created by this role. If this is left blank, then the current role is assumed. Use the `PUBLIC` pseudo-role to target objects created by all roles.\n",
@@ -3901,6 +4133,10 @@
                 "privilege": {
                     "type": "string",
                     "description": "The privilege to grant to the object.\n"
+                },
+                "region": {
+                    "type": "string",
+                    "description": "The region to use for the resource connection. If not set, the default region is used.\n"
                 },
                 "roleName": {
                     "type": "string",
@@ -3932,6 +4168,11 @@
                 "privilege": {
                     "type": "string",
                     "description": "The privilege to grant to the object.\n",
+                    "willReplaceOnChanges": true
+                },
+                "region": {
+                    "type": "string",
+                    "description": "The region to use for the resource connection. If not set, the default region is used.\n",
                     "willReplaceOnChanges": true
                 },
                 "roleName": {
@@ -3970,6 +4211,11 @@
                         "description": "The privilege to grant to the object.\n",
                         "willReplaceOnChanges": true
                     },
+                    "region": {
+                        "type": "string",
+                        "description": "The region to use for the resource connection. If not set, the default region is used.\n",
+                        "willReplaceOnChanges": true
+                    },
                     "roleName": {
                         "type": "string",
                         "description": "The name of the role to grant privilege to.\n",
@@ -3999,6 +4245,10 @@
                     "type": "string",
                     "description": "The privilege to grant to the object.\n"
                 },
+                "region": {
+                    "type": "string",
+                    "description": "The region to use for the resource connection. If not set, the default region is used.\n"
+                },
                 "schemaName": {
                     "type": "string",
                     "description": "The default privilege will apply only to objects created in this schema, if specified.\n"
@@ -4027,6 +4277,11 @@
                 "privilege": {
                     "type": "string",
                     "description": "The privilege to grant to the object.\n",
+                    "willReplaceOnChanges": true
+                },
+                "region": {
+                    "type": "string",
+                    "description": "The region to use for the resource connection. If not set, the default region is used.\n",
                     "willReplaceOnChanges": true
                 },
                 "schemaName": {
@@ -4063,6 +4318,11 @@
                         "description": "The privilege to grant to the object.\n",
                         "willReplaceOnChanges": true
                     },
+                    "region": {
+                        "type": "string",
+                        "description": "The region to use for the resource connection. If not set, the default region is used.\n",
+                        "willReplaceOnChanges": true
+                    },
                     "schemaName": {
                         "type": "string",
                         "description": "The default privilege will apply only to objects created in this schema, if specified.\n",
@@ -4088,6 +4348,10 @@
                     "type": "string",
                     "description": "The privilege to grant to the object.\n"
                 },
+                "region": {
+                    "type": "string",
+                    "description": "The region to use for the resource connection. If not set, the default region is used.\n"
+                },
                 "roleName": {
                     "type": "string",
                     "description": "The name of the role to grant privilege to.\n"
@@ -4107,6 +4371,11 @@
                 "privilege": {
                     "type": "string",
                     "description": "The privilege to grant to the object.\n",
+                    "willReplaceOnChanges": true
+                },
+                "region": {
+                    "type": "string",
+                    "description": "The region to use for the resource connection. If not set, the default region is used.\n",
                     "willReplaceOnChanges": true
                 },
                 "roleName": {
@@ -4133,6 +4402,11 @@
                         "description": "The privilege to grant to the object.\n",
                         "willReplaceOnChanges": true
                     },
+                    "region": {
+                        "type": "string",
+                        "description": "The region to use for the resource connection. If not set, the default region is used.\n",
+                        "willReplaceOnChanges": true
+                    },
                     "roleName": {
                         "type": "string",
                         "description": "The name of the role to grant privilege to.\n",
@@ -4153,6 +4427,10 @@
                     "type": "string",
                     "description": "The privilege to grant to the object.\n"
                 },
+                "region": {
+                    "type": "string",
+                    "description": "The region to use for the resource connection. If not set, the default region is used.\n"
+                },
                 "targetRoleName": {
                     "type": "string",
                     "description": "The default privilege will apply to objects created by this role. If this is left blank, then the current role is assumed. Use the `PUBLIC` pseudo-role to target objects created by all roles.\n"
@@ -4172,6 +4450,11 @@
                 "privilege": {
                     "type": "string",
                     "description": "The privilege to grant to the object.\n",
+                    "willReplaceOnChanges": true
+                },
+                "region": {
+                    "type": "string",
+                    "description": "The region to use for the resource connection. If not set, the default region is used.\n",
                     "willReplaceOnChanges": true
                 },
                 "targetRoleName": {
@@ -4198,6 +4481,11 @@
                         "description": "The privilege to grant to the object.\n",
                         "willReplaceOnChanges": true
                     },
+                    "region": {
+                        "type": "string",
+                        "description": "The region to use for the resource connection. If not set, the default region is used.\n",
+                        "willReplaceOnChanges": true
+                    },
                     "targetRoleName": {
                         "type": "string",
                         "description": "The default privilege will apply to objects created by this role. If this is left blank, then the current role is assumed. Use the `PUBLIC` pseudo-role to target objects created by all roles.\n",
@@ -4221,6 +4509,10 @@
                 "privilege": {
                     "type": "string",
                     "description": "The privilege to grant to the object.\n"
+                },
+                "region": {
+                    "type": "string",
+                    "description": "The region to use for the resource connection. If not set, the default region is used.\n"
                 },
                 "roleName": {
                     "type": "string",
@@ -4252,6 +4544,11 @@
                 "privilege": {
                     "type": "string",
                     "description": "The privilege to grant to the object.\n",
+                    "willReplaceOnChanges": true
+                },
+                "region": {
+                    "type": "string",
+                    "description": "The region to use for the resource connection. If not set, the default region is used.\n",
                     "willReplaceOnChanges": true
                 },
                 "roleName": {
@@ -4290,6 +4587,11 @@
                         "description": "The privilege to grant to the object.\n",
                         "willReplaceOnChanges": true
                     },
+                    "region": {
+                        "type": "string",
+                        "description": "The region to use for the resource connection. If not set, the default region is used.\n",
+                        "willReplaceOnChanges": true
+                    },
                     "roleName": {
                         "type": "string",
                         "description": "The name of the role to grant privilege to.\n",
@@ -4311,6 +4613,10 @@
                     "type": "string",
                     "description": "The role name to add to role_name as a member.\n"
                 },
+                "region": {
+                    "type": "string",
+                    "description": "The region to use for the resource connection. If not set, the default region is used.\n"
+                },
                 "roleName": {
                     "type": "string",
                     "description": "The role name to add member_name as a member.\n"
@@ -4324,6 +4630,11 @@
                 "memberName": {
                     "type": "string",
                     "description": "The role name to add to role_name as a member.\n",
+                    "willReplaceOnChanges": true
+                },
+                "region": {
+                    "type": "string",
+                    "description": "The region to use for the resource connection. If not set, the default region is used.\n",
                     "willReplaceOnChanges": true
                 },
                 "roleName": {
@@ -4342,6 +4653,11 @@
                     "memberName": {
                         "type": "string",
                         "description": "The role name to add to role_name as a member.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "region": {
+                        "type": "string",
+                        "description": "The region to use for the resource connection. If not set, the default region is used.\n",
                         "willReplaceOnChanges": true
                     },
                     "roleName": {
@@ -4363,6 +4679,10 @@
                 "privilege": {
                     "type": "string",
                     "description": "The privilege to grant to the object.\n"
+                },
+                "region": {
+                    "type": "string",
+                    "description": "The region to use for the resource connection. If not set, the default region is used.\n"
                 },
                 "roleName": {
                     "type": "string",
@@ -4388,6 +4708,11 @@
                 "privilege": {
                     "type": "string",
                     "description": "The privilege to grant to the object.\n",
+                    "willReplaceOnChanges": true
+                },
+                "region": {
+                    "type": "string",
+                    "description": "The region to use for the resource connection. If not set, the default region is used.\n",
                     "willReplaceOnChanges": true
                 },
                 "roleName": {
@@ -4420,6 +4745,11 @@
                         "description": "The privilege to grant to the object.\n",
                         "willReplaceOnChanges": true
                     },
+                    "region": {
+                        "type": "string",
+                        "description": "The region to use for the resource connection. If not set, the default region is used.\n",
+                        "willReplaceOnChanges": true
+                    },
                     "roleName": {
                         "type": "string",
                         "description": "The name of the role to grant privilege to.\n",
@@ -4449,6 +4779,10 @@
                     "type": "string",
                     "description": "The privilege to grant to the object.\n"
                 },
+                "region": {
+                    "type": "string",
+                    "description": "The region to use for the resource connection. If not set, the default region is used.\n"
+                },
                 "targetRoleName": {
                     "type": "string",
                     "description": "The default privilege will apply to objects created by this role. If this is left blank, then the current role is assumed. Use the `PUBLIC` pseudo-role to target objects created by all roles.\n"
@@ -4473,6 +4807,11 @@
                 "privilege": {
                     "type": "string",
                     "description": "The privilege to grant to the object.\n",
+                    "willReplaceOnChanges": true
+                },
+                "region": {
+                    "type": "string",
+                    "description": "The region to use for the resource connection. If not set, the default region is used.\n",
                     "willReplaceOnChanges": true
                 },
                 "targetRoleName": {
@@ -4504,6 +4843,11 @@
                         "description": "The privilege to grant to the object.\n",
                         "willReplaceOnChanges": true
                     },
+                    "region": {
+                        "type": "string",
+                        "description": "The region to use for the resource connection. If not set, the default region is used.\n",
+                        "willReplaceOnChanges": true
+                    },
                     "targetRoleName": {
                         "type": "string",
                         "description": "The default privilege will apply to objects created by this role. If this is left blank, then the current role is assumed. Use the `PUBLIC` pseudo-role to target objects created by all roles.\n",
@@ -4523,6 +4867,10 @@
                 "privilege": {
                     "type": "string",
                     "description": "The privilege to grant to the object.\n"
+                },
+                "region": {
+                    "type": "string",
+                    "description": "The region to use for the resource connection. If not set, the default region is used.\n"
                 },
                 "roleName": {
                     "type": "string",
@@ -4553,6 +4901,11 @@
                 "privilege": {
                     "type": "string",
                     "description": "The privilege to grant to the object.\n",
+                    "willReplaceOnChanges": true
+                },
+                "region": {
+                    "type": "string",
+                    "description": "The region to use for the resource connection. If not set, the default region is used.\n",
                     "willReplaceOnChanges": true
                 },
                 "roleName": {
@@ -4591,6 +4944,11 @@
                         "description": "The privilege to grant to the object.\n",
                         "willReplaceOnChanges": true
                     },
+                    "region": {
+                        "type": "string",
+                        "description": "The region to use for the resource connection. If not set, the default region is used.\n",
+                        "willReplaceOnChanges": true
+                    },
                     "roleName": {
                         "type": "string",
                         "description": "The name of the role to grant privilege to.\n",
@@ -4625,6 +4983,10 @@
                     "type": "string",
                     "description": "The privilege to grant to the object.\n"
                 },
+                "region": {
+                    "type": "string",
+                    "description": "The region to use for the resource connection. If not set, the default region is used.\n"
+                },
                 "schemaName": {
                     "type": "string",
                     "description": "The default privilege will apply only to objects created in this schema, if specified.\n"
@@ -4653,6 +5015,11 @@
                 "privilege": {
                     "type": "string",
                     "description": "The privilege to grant to the object.\n",
+                    "willReplaceOnChanges": true
+                },
+                "region": {
+                    "type": "string",
+                    "description": "The region to use for the resource connection. If not set, the default region is used.\n",
                     "willReplaceOnChanges": true
                 },
                 "schemaName": {
@@ -4689,6 +5056,11 @@
                         "description": "The privilege to grant to the object.\n",
                         "willReplaceOnChanges": true
                     },
+                    "region": {
+                        "type": "string",
+                        "description": "The region to use for the resource connection. If not set, the default region is used.\n",
+                        "willReplaceOnChanges": true
+                    },
                     "schemaName": {
                         "type": "string",
                         "description": "The default privilege will apply only to objects created in this schema, if specified.\n",
@@ -4713,6 +5085,10 @@
                 "privilege": {
                     "type": "string",
                     "description": "The privilege to grant to the object.\n"
+                },
+                "region": {
+                    "type": "string",
+                    "description": "The region to use for the resource connection. If not set, the default region is used.\n"
                 },
                 "roleName": {
                     "type": "string",
@@ -4743,6 +5119,11 @@
                 "privilege": {
                     "type": "string",
                     "description": "The privilege to grant to the object.\n",
+                    "willReplaceOnChanges": true
+                },
+                "region": {
+                    "type": "string",
+                    "description": "The region to use for the resource connection. If not set, the default region is used.\n",
                     "willReplaceOnChanges": true
                 },
                 "roleName": {
@@ -4781,6 +5162,11 @@
                         "description": "The privilege to grant to the object.\n",
                         "willReplaceOnChanges": true
                     },
+                    "region": {
+                        "type": "string",
+                        "description": "The region to use for the resource connection. If not set, the default region is used.\n",
+                        "willReplaceOnChanges": true
+                    },
                     "roleName": {
                         "type": "string",
                         "description": "The name of the role to grant privilege to.\n",
@@ -4807,6 +5193,10 @@
                     "type": "string",
                     "description": "The system privilege to grant.\n"
                 },
+                "region": {
+                    "type": "string",
+                    "description": "The region to use for the resource connection. If not set, the default region is used.\n"
+                },
                 "roleName": {
                     "type": "string",
                     "description": "The name of the role to grant privilege to.\n"
@@ -4820,6 +5210,11 @@
                 "privilege": {
                     "type": "string",
                     "description": "The system privilege to grant.\n",
+                    "willReplaceOnChanges": true
+                },
+                "region": {
+                    "type": "string",
+                    "description": "The region to use for the resource connection. If not set, the default region is used.\n",
                     "willReplaceOnChanges": true
                 },
                 "roleName": {
@@ -4838,6 +5233,11 @@
                     "privilege": {
                         "type": "string",
                         "description": "The system privilege to grant.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "region": {
+                        "type": "string",
+                        "description": "The region to use for the resource connection. If not set, the default region is used.\n",
                         "willReplaceOnChanges": true
                     },
                     "roleName": {
@@ -4859,6 +5259,10 @@
                 "privilege": {
                     "type": "string",
                     "description": "The privilege to grant to the object.\n"
+                },
+                "region": {
+                    "type": "string",
+                    "description": "The region to use for the resource connection. If not set, the default region is used.\n"
                 },
                 "roleName": {
                     "type": "string",
@@ -4889,6 +5293,11 @@
                 "privilege": {
                     "type": "string",
                     "description": "The privilege to grant to the object.\n",
+                    "willReplaceOnChanges": true
+                },
+                "region": {
+                    "type": "string",
+                    "description": "The region to use for the resource connection. If not set, the default region is used.\n",
                     "willReplaceOnChanges": true
                 },
                 "roleName": {
@@ -4927,6 +5336,11 @@
                         "description": "The privilege to grant to the object.\n",
                         "willReplaceOnChanges": true
                     },
+                    "region": {
+                        "type": "string",
+                        "description": "The region to use for the resource connection. If not set, the default region is used.\n",
+                        "willReplaceOnChanges": true
+                    },
                     "roleName": {
                         "type": "string",
                         "description": "The name of the role to grant privilege to.\n",
@@ -4961,6 +5375,10 @@
                     "type": "string",
                     "description": "The privilege to grant to the object.\n"
                 },
+                "region": {
+                    "type": "string",
+                    "description": "The region to use for the resource connection. If not set, the default region is used.\n"
+                },
                 "schemaName": {
                     "type": "string",
                     "description": "The default privilege will apply only to objects created in this schema, if specified.\n"
@@ -4989,6 +5407,11 @@
                 "privilege": {
                     "type": "string",
                     "description": "The privilege to grant to the object.\n",
+                    "willReplaceOnChanges": true
+                },
+                "region": {
+                    "type": "string",
+                    "description": "The region to use for the resource connection. If not set, the default region is used.\n",
                     "willReplaceOnChanges": true
                 },
                 "schemaName": {
@@ -5025,6 +5448,11 @@
                         "description": "The privilege to grant to the object.\n",
                         "willReplaceOnChanges": true
                     },
+                    "region": {
+                        "type": "string",
+                        "description": "The region to use for the resource connection. If not set, the default region is used.\n",
+                        "willReplaceOnChanges": true
+                    },
                     "schemaName": {
                         "type": "string",
                         "description": "The default privilege will apply only to objects created in this schema, if specified.\n",
@@ -5049,6 +5477,10 @@
                 "privilege": {
                     "type": "string",
                     "description": "The privilege to grant to the object.\n"
+                },
+                "region": {
+                    "type": "string",
+                    "description": "The region to use for the resource connection. If not set, the default region is used.\n"
                 },
                 "roleName": {
                     "type": "string",
@@ -5079,6 +5511,11 @@
                 "privilege": {
                     "type": "string",
                     "description": "The privilege to grant to the object.\n",
+                    "willReplaceOnChanges": true
+                },
+                "region": {
+                    "type": "string",
+                    "description": "The region to use for the resource connection. If not set, the default region is used.\n",
                     "willReplaceOnChanges": true
                 },
                 "roleName": {
@@ -5117,6 +5554,11 @@
                         "description": "The privilege to grant to the object.\n",
                         "willReplaceOnChanges": true
                     },
+                    "region": {
+                        "type": "string",
+                        "description": "The region to use for the resource connection. If not set, the default region is used.\n",
+                        "willReplaceOnChanges": true
+                    },
                     "roleName": {
                         "type": "string",
                         "description": "The name of the role to grant privilege to.\n",
@@ -5151,6 +5593,10 @@
                     "type": "string",
                     "description": "The privilege to grant to the object.\n"
                 },
+                "region": {
+                    "type": "string",
+                    "description": "The region to use for the resource connection. If not set, the default region is used.\n"
+                },
                 "schemaName": {
                     "type": "string",
                     "description": "The default privilege will apply only to objects created in this schema, if specified.\n"
@@ -5179,6 +5625,11 @@
                 "privilege": {
                     "type": "string",
                     "description": "The privilege to grant to the object.\n",
+                    "willReplaceOnChanges": true
+                },
+                "region": {
+                    "type": "string",
+                    "description": "The region to use for the resource connection. If not set, the default region is used.\n",
                     "willReplaceOnChanges": true
                 },
                 "schemaName": {
@@ -5215,6 +5666,11 @@
                         "description": "The privilege to grant to the object.\n",
                         "willReplaceOnChanges": true
                     },
+                    "region": {
+                        "type": "string",
+                        "description": "The region to use for the resource connection. If not set, the default region is used.\n",
+                        "willReplaceOnChanges": true
+                    },
                     "schemaName": {
                         "type": "string",
                         "description": "The default privilege will apply only to objects created in this schema, if specified.\n",
@@ -5239,6 +5695,10 @@
                 "privilege": {
                     "type": "string",
                     "description": "The privilege to grant to the object.\n"
+                },
+                "region": {
+                    "type": "string",
+                    "description": "The region to use for the resource connection. If not set, the default region is used.\n"
                 },
                 "roleName": {
                     "type": "string",
@@ -5269,6 +5729,11 @@
                 "privilege": {
                     "type": "string",
                     "description": "The privilege to grant to the object.\n",
+                    "willReplaceOnChanges": true
+                },
+                "region": {
+                    "type": "string",
+                    "description": "The region to use for the resource connection. If not set, the default region is used.\n",
                     "willReplaceOnChanges": true
                 },
                 "roleName": {
@@ -5305,6 +5770,11 @@
                     "privilege": {
                         "type": "string",
                         "description": "The privilege to grant to the object.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "region": {
+                        "type": "string",
+                        "description": "The region to use for the resource connection. If not set, the default region is used.\n",
                         "willReplaceOnChanges": true
                     },
                     "roleName": {
@@ -5368,6 +5838,10 @@
                     "type": "string",
                     "description": "The fully qualified name of the index.\n"
                 },
+                "region": {
+                    "type": "string",
+                    "description": "The region to use for the resource connection. If not set, the default region is used.\n"
+                },
                 "schemaName": {
                     "type": "string",
                     "description": "The identifier for the index schema.\n"
@@ -5417,6 +5891,11 @@
                 "objName": {
                     "$ref": "#/types/materialize:index/IndexObjName:IndexObjName",
                     "description": "The name of the source, view, or materialized view on which you want to create an index.\n",
+                    "willReplaceOnChanges": true
+                },
+                "region": {
+                    "type": "string",
+                    "description": "The region to use for the resource connection. If not set, the default region is used.\n",
                     "willReplaceOnChanges": true
                 }
             },
@@ -5472,6 +5951,11 @@
                         "type": "string",
                         "description": "The fully qualified name of the index.\n"
                     },
+                    "region": {
+                        "type": "string",
+                        "description": "The region to use for the resource connection. If not set, the default region is used.\n",
+                        "willReplaceOnChanges": true
+                    },
                     "schemaName": {
                         "type": "string",
                         "description": "The identifier for the index schema.\n"
@@ -5485,7 +5969,7 @@
             "properties": {
                 "clusterName": {
                     "type": "string",
-                    "description": "The cluster to maintain the materialized view. If not specified, defaults to the default cluster.\n"
+                    "description": "The cluster to maintain the materialized view. If not specified, defaults to the quickstart cluster.\n"
                 },
                 "comment": {
                     "type": "string",
@@ -5514,6 +5998,10 @@
                     "type": "string",
                     "description": "The fully qualified name of the materialized view.\n"
                 },
+                "region": {
+                    "type": "string",
+                    "description": "The region to use for the resource connection. If not set, the default region is used.\n"
+                },
                 "schemaName": {
                     "type": "string",
                     "description": "The identifier for the materialized view schema. Defaults to `public`.\n"
@@ -5533,7 +6021,7 @@
             "inputProperties": {
                 "clusterName": {
                     "type": "string",
-                    "description": "The cluster to maintain the materialized view. If not specified, defaults to the default cluster.\n"
+                    "description": "The cluster to maintain the materialized view. If not specified, defaults to the quickstart cluster.\n"
                 },
                 "comment": {
                     "type": "string",
@@ -5560,6 +6048,11 @@
                     "type": "string",
                     "description": "The owernship role of the object.\n"
                 },
+                "region": {
+                    "type": "string",
+                    "description": "The region to use for the resource connection. If not set, the default region is used.\n",
+                    "willReplaceOnChanges": true
+                },
                 "schemaName": {
                     "type": "string",
                     "description": "The identifier for the materialized view schema. Defaults to `public`.\n",
@@ -5579,7 +6072,7 @@
                 "properties": {
                     "clusterName": {
                         "type": "string",
-                        "description": "The cluster to maintain the materialized view. If not specified, defaults to the default cluster.\n"
+                        "description": "The cluster to maintain the materialized view. If not specified, defaults to the quickstart cluster.\n"
                     },
                     "comment": {
                         "type": "string",
@@ -5609,6 +6102,11 @@
                     "qualifiedSqlName": {
                         "type": "string",
                         "description": "The fully qualified name of the materialized view.\n"
+                    },
+                    "region": {
+                        "type": "string",
+                        "description": "The region to use for the resource connection. If not set, the default region is used.\n",
+                        "willReplaceOnChanges": true
                     },
                     "schemaName": {
                         "type": "string",
@@ -5642,6 +6140,10 @@
                 "qualifiedSqlName": {
                     "type": "string",
                     "description": "The fully qualified name of the role.\n"
+                },
+                "region": {
+                    "type": "string",
+                    "description": "The region to use for the resource connection. If not set, the default region is used.\n"
                 }
             },
             "required": [
@@ -5657,6 +6159,11 @@
                 "name": {
                     "type": "string",
                     "description": "The identifier for the role.\n",
+                    "willReplaceOnChanges": true
+                },
+                "region": {
+                    "type": "string",
+                    "description": "The region to use for the resource connection. If not set, the default region is used.\n",
                     "willReplaceOnChanges": true
                 }
             },
@@ -5679,6 +6186,11 @@
                     "qualifiedSqlName": {
                         "type": "string",
                         "description": "The fully qualified name of the role.\n"
+                    },
+                    "region": {
+                        "type": "string",
+                        "description": "The region to use for the resource connection. If not set, the default region is used.\n",
+                        "willReplaceOnChanges": true
                     }
                 },
                 "type": "object"
@@ -5706,6 +6218,10 @@
                 "qualifiedSqlName": {
                     "type": "string",
                     "description": "The fully qualified name of the schema.\n"
+                },
+                "region": {
+                    "type": "string",
+                    "description": "The region to use for the resource connection. If not set, the default region is used.\n"
                 }
             },
             "required": [
@@ -5731,6 +6247,11 @@
                 "ownershipRole": {
                     "type": "string",
                     "description": "The owernship role of the object.\n"
+                },
+                "region": {
+                    "type": "string",
+                    "description": "The region to use for the resource connection. If not set, the default region is used.\n",
+                    "willReplaceOnChanges": true
                 }
             },
             "stateInputs": {
@@ -5757,6 +6278,11 @@
                     "qualifiedSqlName": {
                         "type": "string",
                         "description": "The fully qualified name of the schema.\n"
+                    },
+                    "region": {
+                        "type": "string",
+                        "description": "The region to use for the resource connection. If not set, the default region is used.\n",
+                        "willReplaceOnChanges": true
                     }
                 },
                 "type": "object"
@@ -5784,6 +6310,10 @@
                 "qualifiedSqlName": {
                     "type": "string",
                     "description": "The fully qualified name of the secret.\n"
+                },
+                "region": {
+                    "type": "string",
+                    "description": "The region to use for the resource connection. If not set, the default region is used.\n"
                 },
                 "schemaName": {
                     "type": "string",
@@ -5818,6 +6348,11 @@
                 "ownershipRole": {
                     "type": "string",
                     "description": "The owernship role of the object.\n"
+                },
+                "region": {
+                    "type": "string",
+                    "description": "The region to use for the resource connection. If not set, the default region is used.\n",
+                    "willReplaceOnChanges": true
                 },
                 "schemaName": {
                     "type": "string",
@@ -5857,6 +6392,11 @@
                         "type": "string",
                         "description": "The fully qualified name of the secret.\n"
                     },
+                    "region": {
+                        "type": "string",
+                        "description": "The region to use for the resource connection. If not set, the default region is used.\n",
+                        "willReplaceOnChanges": true
+                    },
                     "schemaName": {
                         "type": "string",
                         "description": "The identifier for the secret schema. Defaults to `public`.\n",
@@ -5881,6 +6421,10 @@
                 "comment": {
                     "type": "string",
                     "description": "**Private Preview** Comment on an object in the database.\n"
+                },
+                "compressionType": {
+                    "type": "string",
+                    "description": "The type of compression to apply to messages before they are sent to Kafka.\n"
                 },
                 "databaseName": {
                     "type": "string",
@@ -5925,6 +6469,10 @@
                     "type": "string",
                     "description": "The fully qualified name of the sink.\n"
                 },
+                "region": {
+                    "type": "string",
+                    "description": "The region to use for the resource connection. If not set, the default region is used.\n"
+                },
                 "schemaName": {
                     "type": "string",
                     "description": "The identifier for the sink schema. Defaults to `public`.\n"
@@ -5961,6 +6509,11 @@
                 "comment": {
                     "type": "string",
                     "description": "**Private Preview** Comment on an object in the database.\n"
+                },
+                "compressionType": {
+                    "type": "string",
+                    "description": "The type of compression to apply to messages before they are sent to Kafka.\n",
+                    "willReplaceOnChanges": true
                 },
                 "databaseName": {
                     "type": "string",
@@ -6008,6 +6561,11 @@
                     "type": "string",
                     "description": "The owernship role of the object.\n"
                 },
+                "region": {
+                    "type": "string",
+                    "description": "The region to use for the resource connection. If not set, the default region is used.\n",
+                    "willReplaceOnChanges": true
+                },
                 "schemaName": {
                     "type": "string",
                     "description": "The identifier for the sink schema. Defaults to `public`.\n",
@@ -6044,6 +6602,11 @@
                     "comment": {
                         "type": "string",
                         "description": "**Private Preview** Comment on an object in the database.\n"
+                    },
+                    "compressionType": {
+                        "type": "string",
+                        "description": "The type of compression to apply to messages before they are sent to Kafka.\n",
+                        "willReplaceOnChanges": true
                     },
                     "databaseName": {
                         "type": "string",
@@ -6094,6 +6657,11 @@
                     "qualifiedSqlName": {
                         "type": "string",
                         "description": "The fully qualified name of the sink.\n"
+                    },
+                    "region": {
+                        "type": "string",
+                        "description": "The region to use for the resource connection. If not set, the default region is used.\n",
+                        "willReplaceOnChanges": true
                     },
                     "schemaName": {
                         "type": "string",
@@ -6204,6 +6772,10 @@
                 "qualifiedSqlName": {
                     "type": "string",
                     "description": "The fully qualified name of the source.\n"
+                },
+                "region": {
+                    "type": "string",
+                    "description": "The region to use for the resource connection. If not set, the default region is used.\n"
                 },
                 "schemaName": {
                     "type": "string",
@@ -6348,6 +6920,11 @@
                     "type": "string",
                     "description": "The owernship role of the object.\n"
                 },
+                "region": {
+                    "type": "string",
+                    "description": "The region to use for the resource connection. If not set, the default region is used.\n",
+                    "willReplaceOnChanges": true
+                },
                 "schemaName": {
                     "type": "string",
                     "description": "The identifier for the source schema. Defaults to `public`.\n",
@@ -6489,6 +7066,11 @@
                         "type": "string",
                         "description": "The fully qualified name of the source.\n"
                     },
+                    "region": {
+                        "type": "string",
+                        "description": "The region to use for the resource connection. If not set, the default region is used.\n",
+                        "willReplaceOnChanges": true
+                    },
                     "schemaName": {
                         "type": "string",
                         "description": "The identifier for the source schema. Defaults to `public`.\n",
@@ -6579,6 +7161,10 @@
                     "type": "string",
                     "description": "The fully qualified name of the source.\n"
                 },
+                "region": {
+                    "type": "string",
+                    "description": "The region to use for the resource connection. If not set, the default region is used.\n"
+                },
                 "schemaName": {
                     "type": "string",
                     "description": "The identifier for the source schema. Defaults to `public`.\n"
@@ -6656,6 +7242,11 @@
                     "type": "string",
                     "description": "The owernship role of the object.\n"
                 },
+                "region": {
+                    "type": "string",
+                    "description": "The region to use for the resource connection. If not set, the default region is used.\n",
+                    "willReplaceOnChanges": true
+                },
                 "schemaName": {
                     "type": "string",
                     "description": "The identifier for the source schema. Defaults to `public`.\n",
@@ -6728,6 +7319,11 @@
                         "type": "string",
                         "description": "The fully qualified name of the source.\n"
                     },
+                    "region": {
+                        "type": "string",
+                        "description": "The region to use for the resource connection. If not set, the default region is used.\n",
+                        "willReplaceOnChanges": true
+                    },
                     "schemaName": {
                         "type": "string",
                         "description": "The identifier for the source schema. Defaults to `public`.\n",
@@ -6791,6 +7387,10 @@
                 "qualifiedSqlName": {
                     "type": "string",
                     "description": "The fully qualified name of the source.\n"
+                },
+                "region": {
+                    "type": "string",
+                    "description": "The region to use for the resource connection. If not set, the default region is used.\n"
                 },
                 "schemaName": {
                     "type": "string",
@@ -6877,6 +7477,11 @@
                     "description": "The PostgreSQL publication (the replication data set containing the tables to be streamed to Materialize).\n",
                     "willReplaceOnChanges": true
                 },
+                "region": {
+                    "type": "string",
+                    "description": "The region to use for the resource connection. If not set, the default region is used.\n",
+                    "willReplaceOnChanges": true
+                },
                 "schemaName": {
                     "type": "string",
                     "description": "The identifier for the source schema. Defaults to `public`.\n",
@@ -6956,6 +7561,11 @@
                     "qualifiedSqlName": {
                         "type": "string",
                         "description": "The fully qualified name of the source.\n"
+                    },
+                    "region": {
+                        "type": "string",
+                        "description": "The region to use for the resource connection. If not set, the default region is used.\n",
+                        "willReplaceOnChanges": true
                     },
                     "schemaName": {
                         "type": "string",
@@ -7052,6 +7662,10 @@
                     "type": "string",
                     "description": "The fully qualified name of the source.\n"
                 },
+                "region": {
+                    "type": "string",
+                    "description": "The region to use for the resource connection. If not set, the default region is used.\n"
+                },
                 "schemaName": {
                     "type": "string",
                     "description": "The identifier for the source schema. Defaults to `public`.\n"
@@ -7130,6 +7744,11 @@
                     "type": "string",
                     "description": "The owernship role of the object.\n"
                 },
+                "region": {
+                    "type": "string",
+                    "description": "The region to use for the resource connection. If not set, the default region is used.\n",
+                    "willReplaceOnChanges": true
+                },
                 "schemaName": {
                     "type": "string",
                     "description": "The identifier for the source schema. Defaults to `public`.\n",
@@ -7199,6 +7818,11 @@
                         "type": "string",
                         "description": "The fully qualified name of the source.\n"
                     },
+                    "region": {
+                        "type": "string",
+                        "description": "The region to use for the resource connection. If not set, the default region is used.\n",
+                        "willReplaceOnChanges": true
+                    },
                     "schemaName": {
                         "type": "string",
                         "description": "The identifier for the source schema. Defaults to `public`.\n",
@@ -7249,6 +7873,10 @@
                     "type": "string",
                     "description": "The fully qualified name of the table.\n"
                 },
+                "region": {
+                    "type": "string",
+                    "description": "The region to use for the resource connection. If not set, the default region is used.\n"
+                },
                 "schemaName": {
                     "type": "string",
                     "description": "The identifier for the table schema. Defaults to `public`.\n"
@@ -7285,6 +7913,11 @@
                 "ownershipRole": {
                     "type": "string",
                     "description": "The owernship role of the object.\n"
+                },
+                "region": {
+                    "type": "string",
+                    "description": "The region to use for the resource connection. If not set, the default region is used.\n",
+                    "willReplaceOnChanges": true
                 },
                 "schemaName": {
                     "type": "string",
@@ -7326,6 +7959,11 @@
                     "qualifiedSqlName": {
                         "type": "string",
                         "description": "The fully qualified name of the table.\n"
+                    },
+                    "region": {
+                        "type": "string",
+                        "description": "The region to use for the resource connection. If not set, the default region is used.\n",
+                        "willReplaceOnChanges": true
                     },
                     "schemaName": {
                         "type": "string",
@@ -7370,6 +8008,10 @@
                 "qualifiedSqlName": {
                     "type": "string",
                     "description": "The fully qualified name of the type.\n"
+                },
+                "region": {
+                    "type": "string",
+                    "description": "The region to use for the resource connection. If not set, the default region is used.\n"
                 },
                 "rowProperties": {
                     "type": "array",
@@ -7417,6 +8059,11 @@
                 "ownershipRole": {
                     "type": "string",
                     "description": "The owernship role of the object.\n"
+                },
+                "region": {
+                    "type": "string",
+                    "description": "The region to use for the resource connection. If not set, the default region is used.\n",
+                    "willReplaceOnChanges": true
                 },
                 "rowProperties": {
                     "type": "array",
@@ -7471,6 +8118,11 @@
                         "type": "string",
                         "description": "The fully qualified name of the type.\n"
                     },
+                    "region": {
+                        "type": "string",
+                        "description": "The region to use for the resource connection. If not set, the default region is used.\n",
+                        "willReplaceOnChanges": true
+                    },
                     "rowProperties": {
                         "type": "array",
                         "items": {
@@ -7483,6 +8135,87 @@
                         "type": "string",
                         "description": "The identifier for the type schema. Defaults to `public`.\n",
                         "willReplaceOnChanges": true
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "materialize:index/user:User": {
+            "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as materialize from \"@pulumi/materialize\";\n\nconst exampleUser = new materialize.User(\"exampleUser\", {\n    email: \"example-user@example.com\",\n    roles: [\n        \"Member\",\n        \"Admin\",\n    ],\n});\n```\n```python\nimport pulumi\nimport pulumi_materialize as materialize\n\nexample_user = materialize.User(\"exampleUser\",\n    email=\"example-user@example.com\",\n    roles=[\n        \"Member\",\n        \"Admin\",\n    ])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Materialize = Pulumi.Materialize;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var exampleUser = new Materialize.User(\"exampleUser\", new()\n    {\n        Email = \"example-user@example.com\",\n        Roles = new[]\n        {\n            \"Member\",\n            \"Admin\",\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-materialize/sdk/go/materialize\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := materialize.NewUser(ctx, \"exampleUser\", \u0026materialize.UserArgs{\n\t\t\tEmail: pulumi.String(\"example-user@example.com\"),\n\t\t\tRoles: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"Member\"),\n\t\t\t\tpulumi.String(\"Admin\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.materialize.User;\nimport com.pulumi.materialize.UserArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var exampleUser = new User(\"exampleUser\", UserArgs.builder()        \n            .email(\"example-user@example.com\")\n            .roles(            \n                \"Member\",\n                \"Admin\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  exampleUser:\n    type: materialize:User\n    properties:\n      email: example-user@example.com\n      roles:\n        - Member\n        - Admin\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nUsers can be imported using the user id\n\n```sh\n $ pulumi import materialize:index/user:User example_user \u003cuser_id\u003e\n```\n\n ",
+            "properties": {
+                "authProvider": {
+                    "type": "string",
+                    "description": "The authentication provider for the user.\n"
+                },
+                "email": {
+                    "type": "string",
+                    "description": "The email address of the user. This must be unique across all users in the organization.\n"
+                },
+                "metadata": {
+                    "type": "string"
+                },
+                "roles": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The roles to assign to the user. Allowed values are 'Member' and 'Admin'.\n"
+                },
+                "verified": {
+                    "type": "boolean"
+                }
+            },
+            "required": [
+                "authProvider",
+                "email",
+                "metadata",
+                "roles",
+                "verified"
+            ],
+            "inputProperties": {
+                "email": {
+                    "type": "string",
+                    "description": "The email address of the user. This must be unique across all users in the organization.\n",
+                    "willReplaceOnChanges": true
+                },
+                "roles": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The roles to assign to the user. Allowed values are 'Member' and 'Admin'.\n",
+                    "willReplaceOnChanges": true
+                }
+            },
+            "requiredInputs": [
+                "email",
+                "roles"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering User resources.\n",
+                "properties": {
+                    "authProvider": {
+                        "type": "string",
+                        "description": "The authentication provider for the user.\n"
+                    },
+                    "email": {
+                        "type": "string",
+                        "description": "The email address of the user. This must be unique across all users in the organization.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "metadata": {
+                        "type": "string"
+                    },
+                    "roles": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "The roles to assign to the user. Allowed values are 'Member' and 'Admin'.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "verified": {
+                        "type": "boolean"
                     }
                 },
                 "type": "object"
@@ -7510,6 +8243,10 @@
                 "qualifiedSqlName": {
                     "type": "string",
                     "description": "The fully qualified name of the view.\n"
+                },
+                "region": {
+                    "type": "string",
+                    "description": "The region to use for the resource connection. If not set, the default region is used.\n"
                 },
                 "schemaName": {
                     "type": "string",
@@ -7543,6 +8280,11 @@
                 "ownershipRole": {
                     "type": "string",
                     "description": "The owernship role of the object.\n"
+                },
+                "region": {
+                    "type": "string",
+                    "description": "The region to use for the resource connection. If not set, the default region is used.\n",
+                    "willReplaceOnChanges": true
                 },
                 "schemaName": {
                     "type": "string",
@@ -7582,6 +8324,11 @@
                         "type": "string",
                         "description": "The fully qualified name of the view.\n"
                     },
+                    "region": {
+                        "type": "string",
+                        "description": "The region to use for the resource connection. If not set, the default region is used.\n",
+                        "willReplaceOnChanges": true
+                    },
                     "schemaName": {
                         "type": "string",
                         "description": "The identifier for the view schema. Defaults to `public`.\n",
@@ -7613,11 +8360,16 @@
                     "id": {
                         "type": "string",
                         "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "region": {
+                        "type": "string",
+                        "description": "The region in which the resource is located.\n"
                     }
                 },
                 "type": "object",
                 "required": [
                     "clusterReplicas",
+                    "region",
                     "id"
                 ]
             }
@@ -7637,11 +8389,16 @@
                     "id": {
                         "type": "string",
                         "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "region": {
+                        "type": "string",
+                        "description": "The region in which the resource is located.\n"
                     }
                 },
                 "type": "object",
                 "required": [
                     "clusters",
+                    "region",
                     "id"
                 ]
             }
@@ -7680,6 +8437,10 @@
                         "type": "string",
                         "description": "The provider-assigned unique ID for this managed resource.\n"
                     },
+                    "region": {
+                        "type": "string",
+                        "description": "The region in which the resource is located.\n"
+                    },
                     "schemaName": {
                         "type": "string",
                         "description": "Limit connections to a specific schema within a specific database\n"
@@ -7688,6 +8449,7 @@
                 "type": "object",
                 "required": [
                     "connections",
+                    "region",
                     "id"
                 ]
             }
@@ -7703,11 +8465,16 @@
                     },
                     "name": {
                         "type": "string"
+                    },
+                    "region": {
+                        "type": "string",
+                        "description": "The region in which the resource is located.\n"
                     }
                 },
                 "type": "object",
                 "required": [
                     "name",
+                    "region",
                     "id"
                 ]
             }
@@ -7723,11 +8490,16 @@
                     },
                     "name": {
                         "type": "string"
+                    },
+                    "region": {
+                        "type": "string",
+                        "description": "The region in which the resource is located.\n"
                     }
                 },
                 "type": "object",
                 "required": [
                     "name",
+                    "region",
                     "id"
                 ]
             }
@@ -7747,11 +8519,16 @@
                     "id": {
                         "type": "string",
                         "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "region": {
+                        "type": "string",
+                        "description": "The region in which the resource is located.\n"
                     }
                 },
                 "type": "object",
                 "required": [
                     "databases",
+                    "region",
                     "id"
                 ]
             }
@@ -7771,11 +8548,16 @@
                     "id": {
                         "type": "string",
                         "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "region": {
+                        "type": "string",
+                        "description": "The region in which the resource is located.\n"
                     }
                 },
                 "type": "object",
                 "required": [
                     "egressIps",
+                    "region",
                     "id"
                 ]
             }
@@ -7814,6 +8596,10 @@
                         },
                         "description": "The indexes in the account\n"
                     },
+                    "region": {
+                        "type": "string",
+                        "description": "The region in which the resource is located.\n"
+                    },
                     "schemaName": {
                         "type": "string",
                         "description": "Limit indexes to a specific schema within a specific database\n"
@@ -7822,6 +8608,7 @@
                 "type": "object",
                 "required": [
                     "indexes",
+                    "region",
                     "id"
                 ]
             }
@@ -7860,6 +8647,10 @@
                         },
                         "description": "The materialized views in the account\n"
                     },
+                    "region": {
+                        "type": "string",
+                        "description": "The region in which the resource is located.\n"
+                    },
                     "schemaName": {
                         "type": "string",
                         "description": "Limit materialized views to a specific schema within a specific database\n"
@@ -7868,6 +8659,7 @@
                 "type": "object",
                 "required": [
                     "materializedViews",
+                    "region",
                     "id"
                 ]
             }
@@ -7881,6 +8673,10 @@
                         "type": "string",
                         "description": "The provider-assigned unique ID for this managed resource.\n"
                     },
+                    "region": {
+                        "type": "string",
+                        "description": "The region in which the resource is located.\n"
+                    },
                     "roles": {
                         "type": "array",
                         "items": {
@@ -7891,6 +8687,7 @@
                 },
                 "type": "object",
                 "required": [
+                    "region",
                     "roles",
                     "id"
                 ]
@@ -7919,6 +8716,10 @@
                         "type": "string",
                         "description": "The provider-assigned unique ID for this managed resource.\n"
                     },
+                    "region": {
+                        "type": "string",
+                        "description": "The region in which the resource is located.\n"
+                    },
                     "schemas": {
                         "type": "array",
                         "items": {
@@ -7929,6 +8730,7 @@
                 },
                 "type": "object",
                 "required": [
+                    "region",
                     "schemas",
                     "id"
                 ]
@@ -7961,6 +8763,10 @@
                         "type": "string",
                         "description": "The provider-assigned unique ID for this managed resource.\n"
                     },
+                    "region": {
+                        "type": "string",
+                        "description": "The region in which the resource is located.\n"
+                    },
                     "schemaName": {
                         "type": "string",
                         "description": "Limit secrets to a specific schema within a specific database\n"
@@ -7975,6 +8781,7 @@
                 },
                 "type": "object",
                 "required": [
+                    "region",
                     "secrets",
                     "id"
                 ]
@@ -8007,6 +8814,10 @@
                         "type": "string",
                         "description": "The provider-assigned unique ID for this managed resource.\n"
                     },
+                    "region": {
+                        "type": "string",
+                        "description": "The region in which the resource is located.\n"
+                    },
                     "schemaName": {
                         "type": "string",
                         "description": "Limit sinks to a specific schema within a specific database\n"
@@ -8021,6 +8832,7 @@
                 },
                 "type": "object",
                 "required": [
+                    "region",
                     "sinks",
                     "id"
                 ]
@@ -8053,6 +8865,10 @@
                         "type": "string",
                         "description": "The provider-assigned unique ID for this managed resource.\n"
                     },
+                    "region": {
+                        "type": "string",
+                        "description": "The region in which the resource is located.\n"
+                    },
                     "schemaName": {
                         "type": "string",
                         "description": "Limit sources to a specific schema within a specific database\n"
@@ -8067,6 +8883,7 @@
                 },
                 "type": "object",
                 "required": [
+                    "region",
                     "sources",
                     "id"
                 ]
@@ -8098,6 +8915,10 @@
                         "type": "string",
                         "description": "The provider-assigned unique ID for this managed resource.\n"
                     },
+                    "region": {
+                        "type": "string",
+                        "description": "The region in which the resource is located.\n"
+                    },
                     "schemaName": {
                         "type": "string",
                         "description": "Limit tables to a specific schema within a specific database\n"
@@ -8112,6 +8933,7 @@
                 },
                 "type": "object",
                 "required": [
+                    "region",
                     "tables",
                     "id"
                 ]
@@ -8143,6 +8965,10 @@
                         "type": "string",
                         "description": "The provider-assigned unique ID for this managed resource.\n"
                     },
+                    "region": {
+                        "type": "string",
+                        "description": "The region in which the resource is located.\n"
+                    },
                     "schemaName": {
                         "type": "string",
                         "description": "Limit types to a specific schema within a specific database\n"
@@ -8157,6 +8983,7 @@
                 },
                 "type": "object",
                 "required": [
+                    "region",
                     "types",
                     "id"
                 ]
@@ -8189,6 +9016,10 @@
                         "type": "string",
                         "description": "The provider-assigned unique ID for this managed resource.\n"
                     },
+                    "region": {
+                        "type": "string",
+                        "description": "The region in which the resource is located.\n"
+                    },
                     "schemaName": {
                         "type": "string",
                         "description": "Limit views to a specific schema within a specific database\n"
@@ -8203,7 +9034,31 @@
                 },
                 "type": "object",
                 "required": [
+                    "region",
                     "views",
+                    "id"
+                ]
+            }
+        },
+        "materialize:index/region:Region": {
+            "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as materialize from \"@pulumi/materialize\";\n\nconst all = materialize.Region({});\nexport const region = all;\n```\n```python\nimport pulumi\nimport pulumi_materialize as materialize\n\nall = materialize.region()\npulumi.export(\"region\", all)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Materialize = Pulumi.Materialize;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var all = Materialize.Region.Invoke();\n\n    return new Dictionary\u003cstring, object?\u003e\n    {\n        [\"region\"] = all,\n    };\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-materialize/sdk/go/materialize\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tall, err := materialize.Region(ctx, nil, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tctx.Export(\"region\", all)\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.materialize.MaterializeFunctions;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var all = MaterializeFunctions.Region();\n\n        ctx.export(\"region\", all.applyValue(regionResult -\u003e regionResult));\n    }\n}\n```\n```yaml\nvariables:\n  all:\n    fn::invoke:\n      Function: materialize:Region\n      Arguments: {}\noutputs:\n  region: ${all}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "outputs": {
+                "description": "A collection of values returned by Region.\n",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "regions": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/materialize:index/RegionRegion:RegionRegion"
+                        }
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "regions",
                     "id"
                 ]
             }
