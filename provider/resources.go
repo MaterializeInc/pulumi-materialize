@@ -65,26 +65,27 @@ func Provider() tfbridge.ProviderInfo {
 		DisplayName:          "Materialize",
 		PreConfigureCallback: preConfigureCallback,
 		Config: map[string]*tfbridge.SchemaInfo{
-			"host": {
-				Default: &tfbridge.DefaultInfo{EnvVars: []string{"MZ_HOST"}},
-			},
-			"user": {
-				Default: &tfbridge.DefaultInfo{EnvVars: []string{"MZ_USER"}},
-			},
 			"password": {
 				Default: &tfbridge.DefaultInfo{EnvVars: []string{"MZ_PASSWORD"}},
 			},
-			"port": {
-				Default: &tfbridge.DefaultInfo{EnvVars: []string{"MZ_PORT"}},
-			},
 			"database": {
 				Default: &tfbridge.DefaultInfo{EnvVars: []string{"MZ_DATABASE"}},
+			},
+			"endpoint": {
+				Default: &tfbridge.DefaultInfo{EnvVars: []string{"MZ_ENDPOINT"}},
+			},
+			"cloud_endpoint": {
+				Default: &tfbridge.DefaultInfo{EnvVars: []string{"MZ_CLOUD_ENDPOINT"}},
+			},
+			"default_region": {
+				Default: &tfbridge.DefaultInfo{EnvVars: []string{"MZ_DEFAULT_REGION"}},
 			},
 			"sslmode": {
 				Default: &tfbridge.DefaultInfo{EnvVars: []string{"MZ_SSLMODE"}},
 			},
 		},
 		Resources: map[string]*tfbridge.ResourceInfo{
+			"materialize_app_password":                         {Tok: tfbridge.MakeResource(mainPkg, mainMod, "AppPassword")},
 			"materialize_cluster":                              {Tok: tfbridge.MakeResource(mainPkg, mainMod, "Cluster")},
 			"materialize_cluster_grant":                        {Tok: tfbridge.MakeResource(mainPkg, mainMod, "GrantCluster")},
 			"materialize_cluster_grant_default_privilege":      {Tok: tfbridge.MakeResource(mainPkg, mainMod, "GrantClusterDefaultPrivilege")},
@@ -125,6 +126,7 @@ func Provider() tfbridge.ProviderInfo {
 			"materialize_type_grant_default_privilege":         {Tok: tfbridge.MakeResource(mainPkg, mainMod, "GrantTypeDefaultPrivilege")},
 			"materialize_view":                                 {Tok: tfbridge.MakeResource(mainPkg, mainMod, "View")},
 			"materialize_view_grant":                           {Tok: tfbridge.MakeResource(mainPkg, mainMod, "GrantView")},
+			"materialize_user":                                 {Tok: tfbridge.MakeResource(mainPkg, mainMod, "User")},
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{
 			"materialize_cluster":           {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "GetClusters")},
@@ -136,6 +138,7 @@ func Provider() tfbridge.ProviderInfo {
 			"materialize_egress_ips":        {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "GetEgressIps")},
 			"materialize_index":             {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "GetIndexes")},
 			"materialize_materialized_view": {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "GetMaterializedViews")},
+			"materialize_region":            {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "Region")},
 			"materialize_role":              {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "GetRoles")},
 			"materialize_schema":            {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "GetSchemas")},
 			"materialize_secret":            {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "GetSecrets")},
