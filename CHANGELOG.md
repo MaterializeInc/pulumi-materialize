@@ -1,6 +1,12 @@
 CHANGELOG
 =========
 
+## 0.1.1 - 2024-01-23
+Update to Terraform Provider [0.6.0](https://github.com/MaterializeInc/terraform-provider-materialize/releases/tag/v0.6.0).
+
+### Breaking Changes
+* Drop `SIZE` support for sources and sinks.
+
 ## 0.1.0 - 2024-01-11
 Update to Terraform Provider [0.5.0](https://github.com/MaterializeInc/terraform-provider-materialize/releases/tag/v0.5.0).
 

@@ -6,7 +6,7 @@ The Pulumi provider is dependent on the [Terraform provider](https://github.com/
 
 ### Updating Terraform provider
 
-To update the Terraform provider, change the version of `github.com/MaterializeInc/terraform-provider-materialize`in the [provider/go.mod](provider/go.mod) and run `go mod tidy`.
+To update the Terraform provider, change the version of `github.com/MaterializeInc/terraform-provider-materialize` in the [provider/go.mod](provider/go.mod) and run `go mod tidy`.
 
 > **Note**
 The repo is configured with dependabot to check for new versions of the Terraform provider.
