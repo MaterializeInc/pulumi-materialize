@@ -931,6 +931,271 @@
                 }
             }
         },
+        "materialize:index/GetSCIMConfigsConfiguration:GetSCIMConfigsConfiguration": {
+            "properties": {
+                "connectionName": {
+                    "type": "string"
+                },
+                "createdAt": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string",
+                    "description": "The ID of this resource.\n"
+                },
+                "source": {
+                    "type": "string"
+                },
+                "syncToUserManagement": {
+                    "type": "boolean"
+                },
+                "tenantId": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "connectionName",
+                "createdAt",
+                "id",
+                "source",
+                "syncToUserManagement",
+                "tenantId"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "materialize:index/GetSCIMGroupsGroup:GetSCIMGroupsGroup": {
+            "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string",
+                    "description": "The ID of this resource.\n"
+                },
+                "managedBy": {
+                    "type": "string"
+                },
+                "metadata": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "roles": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/materialize:index/GetSCIMGroupsGroupRole:GetSCIMGroupsGroupRole"
+                    }
+                },
+                "users": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/materialize:index/GetSCIMGroupsGroupUser:GetSCIMGroupsGroupUser"
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "description",
+                "id",
+                "managedBy",
+                "metadata",
+                "name",
+                "roles",
+                "users"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "materialize:index/GetSCIMGroupsGroupRole:GetSCIMGroupsGroupRole": {
+            "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string",
+                    "description": "The ID of this resource.\n"
+                },
+                "isDefault": {
+                    "type": "boolean"
+                },
+                "key": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "description",
+                "id",
+                "isDefault",
+                "key",
+                "name"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "materialize:index/GetSCIMGroupsGroupUser:GetSCIMGroupsGroupUser": {
+            "properties": {
+                "email": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string",
+                    "description": "The ID of this resource.\n"
+                },
+                "name": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "email",
+                "id",
+                "name"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "materialize:index/GetSSOConfigSsoConfig:GetSSOConfigSsoConfig": {
+            "properties": {
+                "domains": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/materialize:index/GetSSOConfigSsoConfigDomain:GetSSOConfigSsoConfigDomain"
+                    }
+                },
+                "enabled": {
+                    "type": "boolean"
+                },
+                "groups": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/materialize:index/GetSSOConfigSsoConfigGroup:GetSSOConfigSsoConfigGroup"
+                    }
+                },
+                "id": {
+                    "type": "string",
+                    "description": "The ID of this resource.\n"
+                },
+                "oidcClientId": {
+                    "type": "string"
+                },
+                "oidcSecret": {
+                    "type": "string"
+                },
+                "publicCertificate": {
+                    "type": "string"
+                },
+                "roleIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "signRequest": {
+                    "type": "boolean"
+                },
+                "ssoEndpoint": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "domains",
+                "enabled",
+                "groups",
+                "id",
+                "oidcClientId",
+                "oidcSecret",
+                "publicCertificate",
+                "roleIds",
+                "signRequest",
+                "ssoEndpoint",
+                "type"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "materialize:index/GetSSOConfigSsoConfigDomain:GetSSOConfigSsoConfigDomain": {
+            "properties": {
+                "domain": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string",
+                    "description": "The ID of this resource.\n"
+                },
+                "validated": {
+                    "type": "boolean"
+                }
+            },
+            "type": "object",
+            "required": [
+                "domain",
+                "id",
+                "validated"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "materialize:index/GetSSOConfigSsoConfigGroup:GetSSOConfigSsoConfigGroup": {
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                },
+                "group": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string",
+                    "description": "The ID of this resource.\n"
+                },
+                "roleIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "enabled",
+                "group",
+                "id",
+                "roleIds"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
         "materialize:index/GetSchemasSchema:GetSchemasSchema": {
             "properties": {
                 "databaseName": {
@@ -2259,7 +2524,7 @@
             "properties": {
                 "comment": {
                     "type": "string",
-                    "description": "**Private Preview** Comment on an object in the database.\n"
+                    "description": "**Public Preview** Comment on an object in the database.\n"
                 },
                 "default": {
                     "type": "string",
@@ -2487,7 +2752,7 @@
             "properties": {
                 "comment": {
                     "type": "string",
-                    "description": "**Private Preview** Comment on an object in the database.\n"
+                    "description": "**Public Preview** Comment on an object in the database.\n"
                 },
                 "disk": {
                     "type": "boolean",
@@ -2534,7 +2799,7 @@
             "inputProperties": {
                 "comment": {
                     "type": "string",
-                    "description": "**Private Preview** Comment on an object in the database.\n"
+                    "description": "**Public Preview** Comment on an object in the database.\n"
                 },
                 "disk": {
                     "type": "boolean",
@@ -2580,7 +2845,7 @@
                 "properties": {
                     "comment": {
                         "type": "string",
-                        "description": "**Private Preview** Comment on an object in the database.\n"
+                        "description": "**Public Preview** Comment on an object in the database.\n"
                     },
                     "disk": {
                         "type": "boolean",
@@ -2637,7 +2902,7 @@
                 },
                 "comment": {
                     "type": "string",
-                    "description": "**Private Preview** Comment on an object in the database.\n"
+                    "description": "**Public Preview** Comment on an object in the database.\n"
                 },
                 "disk": {
                     "type": "boolean",
@@ -2687,7 +2952,7 @@
                 },
                 "comment": {
                     "type": "string",
-                    "description": "**Private Preview** Comment on an object in the database.\n"
+                    "description": "**Public Preview** Comment on an object in the database.\n"
                 },
                 "disk": {
                     "type": "boolean",
@@ -2744,7 +3009,7 @@
                     },
                     "comment": {
                         "type": "string",
-                        "description": "**Private Preview** Comment on an object in the database.\n"
+                        "description": "**Public Preview** Comment on an object in the database.\n"
                     },
                     "disk": {
                         "type": "boolean",
@@ -2797,7 +3062,7 @@
                 },
                 "comment": {
                     "type": "string",
-                    "description": "**Private Preview** Comment on an object in the database.\n"
+                    "description": "**Public Preview** Comment on an object in the database.\n"
                 },
                 "databaseName": {
                     "type": "string",
@@ -2852,7 +3117,7 @@
                 },
                 "comment": {
                     "type": "string",
-                    "description": "**Private Preview** Comment on an object in the database.\n"
+                    "description": "**Public Preview** Comment on an object in the database.\n"
                 },
                 "databaseName": {
                     "type": "string",
@@ -2900,7 +3165,7 @@
                     },
                     "comment": {
                         "type": "string",
-                        "description": "**Private Preview** Comment on an object in the database.\n"
+                        "description": "**Public Preview** Comment on an object in the database.\n"
                     },
                     "databaseName": {
                         "type": "string",
@@ -2952,7 +3217,7 @@
                 },
                 "comment": {
                     "type": "string",
-                    "description": "**Private Preview** Comment on an object in the database.\n"
+                    "description": "**Public Preview** Comment on an object in the database.\n"
                 },
                 "databaseName": {
                     "type": "string",
@@ -3025,7 +3290,7 @@
                 },
                 "comment": {
                     "type": "string",
-                    "description": "**Private Preview** Comment on an object in the database.\n"
+                    "description": "**Public Preview** Comment on an object in the database.\n"
                 },
                 "databaseName": {
                     "type": "string",
@@ -3102,7 +3367,7 @@
                     },
                     "comment": {
                         "type": "string",
-                        "description": "**Private Preview** Comment on an object in the database.\n"
+                        "description": "**Public Preview** Comment on an object in the database.\n"
                     },
                     "databaseName": {
                         "type": "string",
@@ -3178,7 +3443,7 @@
             "properties": {
                 "comment": {
                     "type": "string",
-                    "description": "**Private Preview** Comment on an object in the database.\n"
+                    "description": "**Public Preview** Comment on an object in the database.\n"
                 },
                 "databaseName": {
                     "type": "string",
@@ -3261,7 +3526,7 @@
             "inputProperties": {
                 "comment": {
                     "type": "string",
-                    "description": "**Private Preview** Comment on an object in the database.\n"
+                    "description": "**Public Preview** Comment on an object in the database.\n"
                 },
                 "databaseName": {
                     "type": "string",
@@ -3352,7 +3617,7 @@
                 "properties": {
                     "comment": {
                         "type": "string",
-                        "description": "**Private Preview** Comment on an object in the database.\n"
+                        "description": "**Public Preview** Comment on an object in the database.\n"
                     },
                     "databaseName": {
                         "type": "string",
@@ -3451,7 +3716,7 @@
                 },
                 "comment": {
                     "type": "string",
-                    "description": "**Private Preview** Comment on an object in the database.\n"
+                    "description": "**Public Preview** Comment on an object in the database.\n"
                 },
                 "database": {
                     "type": "string",
@@ -3538,7 +3803,7 @@
                 },
                 "comment": {
                     "type": "string",
-                    "description": "**Private Preview** Comment on an object in the database.\n"
+                    "description": "**Public Preview** Comment on an object in the database.\n"
                 },
                 "database": {
                     "type": "string",
@@ -3633,7 +3898,7 @@
                     },
                     "comment": {
                         "type": "string",
-                        "description": "**Private Preview** Comment on an object in the database.\n"
+                        "description": "**Public Preview** Comment on an object in the database.\n"
                     },
                     "database": {
                         "type": "string",
@@ -3725,7 +3990,7 @@
             "properties": {
                 "comment": {
                     "type": "string",
-                    "description": "**Private Preview** Comment on an object in the database.\n"
+                    "description": "**Public Preview** Comment on an object in the database.\n"
                 },
                 "databaseName": {
                     "type": "string",
@@ -3785,7 +4050,7 @@
             "inputProperties": {
                 "comment": {
                     "type": "string",
-                    "description": "**Private Preview** Comment on an object in the database.\n"
+                    "description": "**Public Preview** Comment on an object in the database.\n"
                 },
                 "databaseName": {
                     "type": "string",
@@ -3836,7 +4101,7 @@
                 "properties": {
                     "comment": {
                         "type": "string",
-                        "description": "**Private Preview** Comment on an object in the database.\n"
+                        "description": "**Public Preview** Comment on an object in the database.\n"
                     },
                     "databaseName": {
                         "type": "string",
@@ -3897,7 +4162,7 @@
             "properties": {
                 "comment": {
                     "type": "string",
-                    "description": "**Private Preview** Comment on an object in the database.\n"
+                    "description": "**Public Preview** Comment on an object in the database.\n"
                 },
                 "name": {
                     "type": "string",
@@ -3919,7 +4184,7 @@
             "inputProperties": {
                 "comment": {
                     "type": "string",
-                    "description": "**Private Preview** Comment on an object in the database.\n"
+                    "description": "**Public Preview** Comment on an object in the database.\n"
                 },
                 "name": {
                     "type": "string",
@@ -3941,7 +4206,7 @@
                 "properties": {
                     "comment": {
                         "type": "string",
-                        "description": "**Private Preview** Comment on an object in the database.\n"
+                        "description": "**Public Preview** Comment on an object in the database.\n"
                     },
                     "name": {
                         "type": "string",
@@ -5801,7 +6066,7 @@
             "properties": {
                 "clusterName": {
                     "type": "string",
-                    "description": "The cluster to maintain this index. If not specified, defaults to the active cluster.\n"
+                    "description": "The cluster to maintain this index.\n"
                 },
                 "colExprs": {
                     "type": "array",
@@ -5812,7 +6077,7 @@
                 },
                 "comment": {
                     "type": "string",
-                    "description": "**Private Preview** Comment on an object in the database.\n"
+                    "description": "**Public Preview** Comment on an object in the database.\n"
                 },
                 "databaseName": {
                     "type": "string",
@@ -5848,6 +6113,7 @@
                 }
             },
             "required": [
+                "clusterName",
                 "colExprs",
                 "databaseName",
                 "name",
@@ -5858,7 +6124,7 @@
             "inputProperties": {
                 "clusterName": {
                     "type": "string",
-                    "description": "The cluster to maintain this index. If not specified, defaults to the active cluster.\n",
+                    "description": "The cluster to maintain this index.\n",
                     "willReplaceOnChanges": true
                 },
                 "colExprs": {
@@ -5871,7 +6137,7 @@
                 },
                 "comment": {
                     "type": "string",
-                    "description": "**Private Preview** Comment on an object in the database.\n"
+                    "description": "**Public Preview** Comment on an object in the database.\n"
                 },
                 "default": {
                     "type": "boolean",
@@ -5900,6 +6166,7 @@
                 }
             },
             "requiredInputs": [
+                "clusterName",
                 "colExprs",
                 "objName"
             ],
@@ -5908,7 +6175,7 @@
                 "properties": {
                     "clusterName": {
                         "type": "string",
-                        "description": "The cluster to maintain this index. If not specified, defaults to the active cluster.\n",
+                        "description": "The cluster to maintain this index.\n",
                         "willReplaceOnChanges": true
                     },
                     "colExprs": {
@@ -5921,7 +6188,7 @@
                     },
                     "comment": {
                         "type": "string",
-                        "description": "**Private Preview** Comment on an object in the database.\n"
+                        "description": "**Public Preview** Comment on an object in the database.\n"
                     },
                     "databaseName": {
                         "type": "string",
@@ -5969,11 +6236,15 @@
             "properties": {
                 "clusterName": {
                     "type": "string",
-                    "description": "The cluster to maintain the materialized view. If not specified, defaults to the quickstart cluster.\n"
+                    "description": "The cluster to maintain the materialized view.\n"
                 },
                 "comment": {
                     "type": "string",
-                    "description": "**Private Preview** Comment on an object in the database.\n"
+                    "description": "**Public Preview** Comment on an object in the database.\n"
+                },
+                "createSql": {
+                    "type": "string",
+                    "description": "The SQL statement used to create the materialized view.\n"
                 },
                 "databaseName": {
                     "type": "string",
@@ -6013,6 +6284,7 @@
             },
             "required": [
                 "clusterName",
+                "createSql",
                 "name",
                 "ownershipRole",
                 "qualifiedSqlName",
@@ -6021,11 +6293,11 @@
             "inputProperties": {
                 "clusterName": {
                     "type": "string",
-                    "description": "The cluster to maintain the materialized view. If not specified, defaults to the quickstart cluster.\n"
+                    "description": "The cluster to maintain the materialized view.\n"
                 },
                 "comment": {
                     "type": "string",
-                    "description": "**Private Preview** Comment on an object in the database.\n"
+                    "description": "**Public Preview** Comment on an object in the database.\n"
                 },
                 "databaseName": {
                     "type": "string",
@@ -6065,6 +6337,7 @@
                 }
             },
             "requiredInputs": [
+                "clusterName",
                 "statement"
             ],
             "stateInputs": {
@@ -6072,11 +6345,15 @@
                 "properties": {
                     "clusterName": {
                         "type": "string",
-                        "description": "The cluster to maintain the materialized view. If not specified, defaults to the quickstart cluster.\n"
+                        "description": "The cluster to maintain the materialized view.\n"
                     },
                     "comment": {
                         "type": "string",
-                        "description": "**Private Preview** Comment on an object in the database.\n"
+                        "description": "**Public Preview** Comment on an object in the database.\n"
+                    },
+                    "createSql": {
+                        "type": "string",
+                        "description": "The SQL statement used to create the materialized view.\n"
                     },
                     "databaseName": {
                         "type": "string",
@@ -6127,7 +6404,7 @@
             "properties": {
                 "comment": {
                     "type": "string",
-                    "description": "**Private Preview** Comment on an object in the database.\n"
+                    "description": "**Public Preview** Comment on an object in the database.\n"
                 },
                 "inherit": {
                     "type": "boolean",
@@ -6154,7 +6431,7 @@
             "inputProperties": {
                 "comment": {
                     "type": "string",
-                    "description": "**Private Preview** Comment on an object in the database.\n"
+                    "description": "**Public Preview** Comment on an object in the database.\n"
                 },
                 "name": {
                     "type": "string",
@@ -6172,7 +6449,7 @@
                 "properties": {
                     "comment": {
                         "type": "string",
-                        "description": "**Private Preview** Comment on an object in the database.\n"
+                        "description": "**Public Preview** Comment on an object in the database.\n"
                     },
                     "inherit": {
                         "type": "boolean",
@@ -6196,12 +6473,299 @@
                 "type": "object"
             }
         },
+        "materialize:index/sSOConfig:SSOConfig": {
+            "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as materialize from \"@pulumi/materialize\";\n\nconst exampleSsoConfig = new materialize.SSOConfig(\"exampleSsoConfig\", {\n    enabled: true,\n    oidcClientId: \"client-id\",\n    oidcSecret: \"client-secret\",\n    publicCertificate: \"PUBLIC_CERTIFICATE\",\n    signRequest: true,\n    ssoEndpoint: \"https://sso.example2.com\",\n    type: \"saml\",\n});\n```\n```python\nimport pulumi\nimport pulumi_materialize as materialize\n\nexample_sso_config = materialize.SSOConfig(\"exampleSsoConfig\",\n    enabled=True,\n    oidc_client_id=\"client-id\",\n    oidc_secret=\"client-secret\",\n    public_certificate=\"PUBLIC_CERTIFICATE\",\n    sign_request=True,\n    sso_endpoint=\"https://sso.example2.com\",\n    type=\"saml\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Materialize = Pulumi.Materialize;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var exampleSsoConfig = new Materialize.SSOConfig(\"exampleSsoConfig\", new()\n    {\n        Enabled = true,\n        OidcClientId = \"client-id\",\n        OidcSecret = \"client-secret\",\n        PublicCertificate = \"PUBLIC_CERTIFICATE\",\n        SignRequest = true,\n        SsoEndpoint = \"https://sso.example2.com\",\n        Type = \"saml\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-materialize/sdk/go/materialize\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := materialize.NewSSOConfig(ctx, \"exampleSsoConfig\", \u0026materialize.SSOConfigArgs{\n\t\t\tEnabled:           pulumi.Bool(true),\n\t\t\tOidcClientId:      pulumi.String(\"client-id\"),\n\t\t\tOidcSecret:        pulumi.String(\"client-secret\"),\n\t\t\tPublicCertificate: pulumi.String(\"PUBLIC_CERTIFICATE\"),\n\t\t\tSignRequest:       pulumi.Bool(true),\n\t\t\tSsoEndpoint:       pulumi.String(\"https://sso.example2.com\"),\n\t\t\tType:              pulumi.String(\"saml\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.materialize.SSOConfig;\nimport com.pulumi.materialize.SSOConfigArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var exampleSsoConfig = new SSOConfig(\"exampleSsoConfig\", SSOConfigArgs.builder()        \n            .enabled(true)\n            .oidcClientId(\"client-id\")\n            .oidcSecret(\"client-secret\")\n            .publicCertificate(\"PUBLIC_CERTIFICATE\")\n            .signRequest(true)\n            .ssoEndpoint(\"https://sso.example2.com\")\n            .type(\"saml\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  exampleSsoConfig:\n    type: materialize:SSOConfig\n    properties:\n      enabled: true\n      oidcClientId: client-id\n      oidcSecret: client-secret\n      publicCertificate: PUBLIC_CERTIFICATE\n      signRequest: true\n      ssoEndpoint: https://sso.example2.com\n      type: saml\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nSSO Configuration ID can be found in the URL when viewing the SSO Configuration in the UI\n\n```sh\n $ pulumi import materialize:index/sSOConfig:SSOConfig example \u003csso_config_id\u003e\n```\n\n ",
+            "properties": {
+                "enabled": {
+                    "type": "boolean",
+                    "description": "Whether SSO is enabled or not. If enabled, users will be redirected to the SSO endpoint for authentication. The configuration needs to be valid for SSO to work.\n"
+                },
+                "oidcClientId": {
+                    "type": "string",
+                    "description": "The client ID of the OIDC application. This is used to identify the application to the OIDC service. This is required if the type is OIDC.\n"
+                },
+                "oidcSecret": {
+                    "type": "string",
+                    "description": "The client secret of the OIDC application. This is used to authenticate the application to the OIDC service. This is required if the type is OIDC.\n"
+                },
+                "publicCertificate": {
+                    "type": "string",
+                    "description": "The public certificate of the SSO service. This is used to verify the SSO response. The certificate must be in PEM format. The certificate must be accessible from the browser. If the certificate is not accessible from the browser, you can use the public certificate of the Identity Provider (IdP) instead.\n"
+                },
+                "signRequest": {
+                    "type": "boolean",
+                    "description": "Indicates whether the SSO request needs to be digitally signed.\n"
+                },
+                "ssoEndpoint": {
+                    "type": "string",
+                    "description": "The URL endpoint for the SSO service. This is the URL that users will be redirected to for authentication. The URL must be accessible from the browser.\n"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "Defines the type of SSO protocol being used (e.g., saml, oidc).\n"
+                }
+            },
+            "required": [
+                "enabled",
+                "publicCertificate",
+                "signRequest",
+                "ssoEndpoint",
+                "type"
+            ],
+            "inputProperties": {
+                "enabled": {
+                    "type": "boolean",
+                    "description": "Whether SSO is enabled or not. If enabled, users will be redirected to the SSO endpoint for authentication. The configuration needs to be valid for SSO to work.\n"
+                },
+                "oidcClientId": {
+                    "type": "string",
+                    "description": "The client ID of the OIDC application. This is used to identify the application to the OIDC service. This is required if the type is OIDC.\n"
+                },
+                "oidcSecret": {
+                    "type": "string",
+                    "description": "The client secret of the OIDC application. This is used to authenticate the application to the OIDC service. This is required if the type is OIDC.\n"
+                },
+                "publicCertificate": {
+                    "type": "string",
+                    "description": "The public certificate of the SSO service. This is used to verify the SSO response. The certificate must be in PEM format. The certificate must be accessible from the browser. If the certificate is not accessible from the browser, you can use the public certificate of the Identity Provider (IdP) instead.\n"
+                },
+                "signRequest": {
+                    "type": "boolean",
+                    "description": "Indicates whether the SSO request needs to be digitally signed.\n"
+                },
+                "ssoEndpoint": {
+                    "type": "string",
+                    "description": "The URL endpoint for the SSO service. This is the URL that users will be redirected to for authentication. The URL must be accessible from the browser.\n"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "Defines the type of SSO protocol being used (e.g., saml, oidc).\n"
+                }
+            },
+            "requiredInputs": [
+                "enabled",
+                "publicCertificate",
+                "signRequest",
+                "ssoEndpoint",
+                "type"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering SSOConfig resources.\n",
+                "properties": {
+                    "enabled": {
+                        "type": "boolean",
+                        "description": "Whether SSO is enabled or not. If enabled, users will be redirected to the SSO endpoint for authentication. The configuration needs to be valid for SSO to work.\n"
+                    },
+                    "oidcClientId": {
+                        "type": "string",
+                        "description": "The client ID of the OIDC application. This is used to identify the application to the OIDC service. This is required if the type is OIDC.\n"
+                    },
+                    "oidcSecret": {
+                        "type": "string",
+                        "description": "The client secret of the OIDC application. This is used to authenticate the application to the OIDC service. This is required if the type is OIDC.\n"
+                    },
+                    "publicCertificate": {
+                        "type": "string",
+                        "description": "The public certificate of the SSO service. This is used to verify the SSO response. The certificate must be in PEM format. The certificate must be accessible from the browser. If the certificate is not accessible from the browser, you can use the public certificate of the Identity Provider (IdP) instead.\n"
+                    },
+                    "signRequest": {
+                        "type": "boolean",
+                        "description": "Indicates whether the SSO request needs to be digitally signed.\n"
+                    },
+                    "ssoEndpoint": {
+                        "type": "string",
+                        "description": "The URL endpoint for the SSO service. This is the URL that users will be redirected to for authentication. The URL must be accessible from the browser.\n"
+                    },
+                    "type": {
+                        "type": "string",
+                        "description": "Defines the type of SSO protocol being used (e.g., saml, oidc).\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "materialize:index/sSODefaultRoles:SSODefaultRoles": {
+            "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as materialize from \"@pulumi/materialize\";\n\nconst exampleSsoDefaultRoles = new materialize.SSODefaultRoles(\"exampleSsoDefaultRoles\", {\n    ssoConfigId: materialize_sso_config.example_sso_config.id,\n    roles: [\"Admin\"],\n});\nconst exampleSsoDefaultRoles2 = new materialize.SSODefaultRoles(\"exampleSsoDefaultRoles2\", {\n    ssoConfigId: materialize_sso_config.example_sso_config.id,\n    roles: [\n        \"Admin\",\n        \"Member\",\n    ],\n});\n```\n```python\nimport pulumi\nimport pulumi_materialize as materialize\n\nexample_sso_default_roles = materialize.SSODefaultRoles(\"exampleSsoDefaultRoles\",\n    sso_config_id=materialize_sso_config[\"example_sso_config\"][\"id\"],\n    roles=[\"Admin\"])\nexample_sso_default_roles2 = materialize.SSODefaultRoles(\"exampleSsoDefaultRoles2\",\n    sso_config_id=materialize_sso_config[\"example_sso_config\"][\"id\"],\n    roles=[\n        \"Admin\",\n        \"Member\",\n    ])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Materialize = Pulumi.Materialize;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var exampleSsoDefaultRoles = new Materialize.SSODefaultRoles(\"exampleSsoDefaultRoles\", new()\n    {\n        SsoConfigId = materialize_sso_config.Example_sso_config.Id,\n        Roles = new[]\n        {\n            \"Admin\",\n        },\n    });\n\n    var exampleSsoDefaultRoles2 = new Materialize.SSODefaultRoles(\"exampleSsoDefaultRoles2\", new()\n    {\n        SsoConfigId = materialize_sso_config.Example_sso_config.Id,\n        Roles = new[]\n        {\n            \"Admin\",\n            \"Member\",\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-materialize/sdk/go/materialize\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := materialize.NewSSODefaultRoles(ctx, \"exampleSsoDefaultRoles\", \u0026materialize.SSODefaultRolesArgs{\n\t\t\tSsoConfigId: pulumi.Any(materialize_sso_config.Example_sso_config.Id),\n\t\t\tRoles: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"Admin\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = materialize.NewSSODefaultRoles(ctx, \"exampleSsoDefaultRoles2\", \u0026materialize.SSODefaultRolesArgs{\n\t\t\tSsoConfigId: pulumi.Any(materialize_sso_config.Example_sso_config.Id),\n\t\t\tRoles: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"Admin\"),\n\t\t\t\tpulumi.String(\"Member\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.materialize.SSODefaultRoles;\nimport com.pulumi.materialize.SSODefaultRolesArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var exampleSsoDefaultRoles = new SSODefaultRoles(\"exampleSsoDefaultRoles\", SSODefaultRolesArgs.builder()        \n            .ssoConfigId(materialize_sso_config.example_sso_config().id())\n            .roles(\"Admin\")\n            .build());\n\n        var exampleSsoDefaultRoles2 = new SSODefaultRoles(\"exampleSsoDefaultRoles2\", SSODefaultRolesArgs.builder()        \n            .ssoConfigId(materialize_sso_config.example_sso_config().id())\n            .roles(            \n                \"Admin\",\n                \"Member\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  exampleSsoDefaultRoles:\n    type: materialize:SSODefaultRoles\n    properties:\n      ssoConfigId: ${materialize_sso_config.example_sso_config.id}\n      roles:\n        - Admin\n  exampleSsoDefaultRoles2:\n    type: materialize:SSODefaultRoles\n    properties:\n      ssoConfigId: ${materialize_sso_config.example_sso_config.id}\n      roles:\n        - Admin\n        - Member\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nDefault roles can be imported using the role id\n\n```sh\n $ pulumi import materialize:index/sSODefaultRoles:SSODefaultRoles example_role \u003crole_id\u003e\n```\n\n ",
+            "properties": {
+                "roles": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Set of default role names for the SSO configuration.\n"
+                },
+                "ssoConfigId": {
+                    "type": "string",
+                    "description": "The ID of the associated SSO configuration.\n"
+                }
+            },
+            "required": [
+                "roles",
+                "ssoConfigId"
+            ],
+            "inputProperties": {
+                "roles": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Set of default role names for the SSO configuration.\n"
+                },
+                "ssoConfigId": {
+                    "type": "string",
+                    "description": "The ID of the associated SSO configuration.\n"
+                }
+            },
+            "requiredInputs": [
+                "roles",
+                "ssoConfigId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering SSODefaultRoles resources.\n",
+                "properties": {
+                    "roles": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Set of default role names for the SSO configuration.\n"
+                    },
+                    "ssoConfigId": {
+                        "type": "string",
+                        "description": "The ID of the associated SSO configuration.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "materialize:index/sSODomain:SSODomain": {
+            "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as materialize from \"@pulumi/materialize\";\n\nconst exampleSsoDomain = new materialize.SSODomain(\"exampleSsoDomain\", {\n    domain: \"example.com\",\n    ssoConfigId: materialize_sso_config.example_sso_config.id,\n});\n```\n```python\nimport pulumi\nimport pulumi_materialize as materialize\n\nexample_sso_domain = materialize.SSODomain(\"exampleSsoDomain\",\n    domain=\"example.com\",\n    sso_config_id=materialize_sso_config[\"example_sso_config\"][\"id\"])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Materialize = Pulumi.Materialize;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var exampleSsoDomain = new Materialize.SSODomain(\"exampleSsoDomain\", new()\n    {\n        Domain = \"example.com\",\n        SsoConfigId = materialize_sso_config.Example_sso_config.Id,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-materialize/sdk/go/materialize\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := materialize.NewSSODomain(ctx, \"exampleSsoDomain\", \u0026materialize.SSODomainArgs{\n\t\t\tDomain:      pulumi.String(\"example.com\"),\n\t\t\tSsoConfigId: pulumi.Any(materialize_sso_config.Example_sso_config.Id),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.materialize.SSODomain;\nimport com.pulumi.materialize.SSODomainArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var exampleSsoDomain = new SSODomain(\"exampleSsoDomain\", SSODomainArgs.builder()        \n            .domain(\"example.com\")\n            .ssoConfigId(materialize_sso_config.example_sso_config().id())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  exampleSsoDomain:\n    type: materialize:SSODomain\n    properties:\n      domain: example.com\n      ssoConfigId: ${materialize_sso_config.example_sso_config.id}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nSSO Domain ID can be found in the URL when viewing the SSO Domain in the UI\n\n```sh\n $ pulumi import materialize:index/sSODomain:SSODomain example \u003csso_domain_id\u003e\n```\n\n ",
+            "properties": {
+                "domain": {
+                    "type": "string",
+                    "description": "The domain name for the SSO domain configuration.\n"
+                },
+                "ssoConfigId": {
+                    "type": "string",
+                    "description": "The ID of the associated SSO configuration.\n"
+                },
+                "validated": {
+                    "type": "boolean",
+                    "description": "Indicates whether the domain has been validated.\n"
+                }
+            },
+            "required": [
+                "domain",
+                "ssoConfigId",
+                "validated"
+            ],
+            "inputProperties": {
+                "domain": {
+                    "type": "string",
+                    "description": "The domain name for the SSO domain configuration.\n"
+                },
+                "ssoConfigId": {
+                    "type": "string",
+                    "description": "The ID of the associated SSO configuration.\n"
+                }
+            },
+            "requiredInputs": [
+                "domain",
+                "ssoConfigId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering SSODomain resources.\n",
+                "properties": {
+                    "domain": {
+                        "type": "string",
+                        "description": "The domain name for the SSO domain configuration.\n"
+                    },
+                    "ssoConfigId": {
+                        "type": "string",
+                        "description": "The ID of the associated SSO configuration.\n"
+                    },
+                    "validated": {
+                        "type": "boolean",
+                        "description": "Indicates whether the domain has been validated.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "materialize:index/sSORoleGroupMapping:SSORoleGroupMapping": {
+            "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as materialize from \"@pulumi/materialize\";\n\nconst exampleSsoGroupMapping = new materialize.SSORoleGroupMapping(\"exampleSsoGroupMapping\", {\n    group: \"admins\",\n    ssoConfigId: materialize_sso_config.example_sso_config.id,\n    roles: [\"Admin\"],\n});\n```\n```python\nimport pulumi\nimport pulumi_materialize as materialize\n\nexample_sso_group_mapping = materialize.SSORoleGroupMapping(\"exampleSsoGroupMapping\",\n    group=\"admins\",\n    sso_config_id=materialize_sso_config[\"example_sso_config\"][\"id\"],\n    roles=[\"Admin\"])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Materialize = Pulumi.Materialize;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var exampleSsoGroupMapping = new Materialize.SSORoleGroupMapping(\"exampleSsoGroupMapping\", new()\n    {\n        Group = \"admins\",\n        SsoConfigId = materialize_sso_config.Example_sso_config.Id,\n        Roles = new[]\n        {\n            \"Admin\",\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-materialize/sdk/go/materialize\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := materialize.NewSSORoleGroupMapping(ctx, \"exampleSsoGroupMapping\", \u0026materialize.SSORoleGroupMappingArgs{\n\t\t\tGroup:       pulumi.String(\"admins\"),\n\t\t\tSsoConfigId: pulumi.Any(materialize_sso_config.Example_sso_config.Id),\n\t\t\tRoles: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"Admin\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.materialize.SSORoleGroupMapping;\nimport com.pulumi.materialize.SSORoleGroupMappingArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var exampleSsoGroupMapping = new SSORoleGroupMapping(\"exampleSsoGroupMapping\", SSORoleGroupMappingArgs.builder()        \n            .group(\"admins\")\n            .ssoConfigId(materialize_sso_config.example_sso_config().id())\n            .roles(\"Admin\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  exampleSsoGroupMapping:\n    type: materialize:SSORoleGroupMapping\n    properties:\n      group: admins\n      ssoConfigId: ${materialize_sso_config.example_sso_config.id}\n      roles:\n        - Admin\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nSSO group mapping ID can be found in the URL when viewing the SSO group mapping in the UI\n\n```sh\n $ pulumi import materialize:index/sSORoleGroupMapping:SSORoleGroupMapping example \u003csso_group_mapping_id\u003e\n```\n\n ",
+            "properties": {
+                "group": {
+                    "type": "string",
+                    "description": "The name of the SSO group.\n"
+                },
+                "roles": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of role names associated with the group.\n"
+                },
+                "ssoConfigId": {
+                    "type": "string",
+                    "description": "The ID of the associated SSO configuration.\n"
+                }
+            },
+            "required": [
+                "group",
+                "roles",
+                "ssoConfigId"
+            ],
+            "inputProperties": {
+                "group": {
+                    "type": "string",
+                    "description": "The name of the SSO group.\n"
+                },
+                "roles": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of role names associated with the group.\n"
+                },
+                "ssoConfigId": {
+                    "type": "string",
+                    "description": "The ID of the associated SSO configuration.\n"
+                }
+            },
+            "requiredInputs": [
+                "group",
+                "roles",
+                "ssoConfigId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering SSORoleGroupMapping resources.\n",
+                "properties": {
+                    "group": {
+                        "type": "string",
+                        "description": "The name of the SSO group.\n"
+                    },
+                    "roles": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List of role names associated with the group.\n"
+                    },
+                    "ssoConfigId": {
+                        "type": "string",
+                        "description": "The ID of the associated SSO configuration.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
         "materialize:index/schema:Schema": {
             "description": "The second highest level namespace hierarchy in Materialize.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as materialize from \"@pulumi/materialize\";\n\nconst exampleSchema = new materialize.Schema(\"exampleSchema\", {databaseName: \"database\"});\n```\n```python\nimport pulumi\nimport pulumi_materialize as materialize\n\nexample_schema = materialize.Schema(\"exampleSchema\", database_name=\"database\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Materialize = Pulumi.Materialize;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var exampleSchema = new Materialize.Schema(\"exampleSchema\", new()\n    {\n        DatabaseName = \"database\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-materialize/sdk/go/materialize\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := materialize.NewSchema(ctx, \"exampleSchema\", \u0026materialize.SchemaArgs{\n\t\t\tDatabaseName: pulumi.String(\"database\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.materialize.Schema;\nimport com.pulumi.materialize.SchemaArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var exampleSchema = new Schema(\"exampleSchema\", SchemaArgs.builder()        \n            .databaseName(\"database\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  exampleSchema:\n    type: materialize:Schema\n    properties:\n      databaseName: database\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nSchemas can be imported using the schema id\n\n```sh\n $ pulumi import materialize:index/schema:Schema example_schema \u003cregion\u003e:\u003cschema_id\u003e\n```\n\n Schema id and information be found in the `mz_catalog.mz_schemas` table The role is the role where the database is located (e.g. aws/us-east-1) ",
             "properties": {
                 "comment": {
                     "type": "string",
-                    "description": "**Private Preview** Comment on an object in the database.\n"
+                    "description": "**Public Preview** Comment on an object in the database.\n"
                 },
                 "databaseName": {
                     "type": "string",
@@ -6232,7 +6796,7 @@
             "inputProperties": {
                 "comment": {
                     "type": "string",
-                    "description": "**Private Preview** Comment on an object in the database.\n"
+                    "description": "**Public Preview** Comment on an object in the database.\n"
                 },
                 "databaseName": {
                     "type": "string",
@@ -6259,7 +6823,7 @@
                 "properties": {
                     "comment": {
                         "type": "string",
-                        "description": "**Private Preview** Comment on an object in the database.\n"
+                        "description": "**Public Preview** Comment on an object in the database.\n"
                     },
                     "databaseName": {
                         "type": "string",
@@ -6293,7 +6857,7 @@
             "properties": {
                 "comment": {
                     "type": "string",
-                    "description": "**Private Preview** Comment on an object in the database.\n"
+                    "description": "**Public Preview** Comment on an object in the database.\n"
                 },
                 "databaseName": {
                     "type": "string",
@@ -6334,7 +6898,7 @@
             "inputProperties": {
                 "comment": {
                     "type": "string",
-                    "description": "**Private Preview** Comment on an object in the database.\n"
+                    "description": "**Public Preview** Comment on an object in the database.\n"
                 },
                 "databaseName": {
                     "type": "string",
@@ -6373,7 +6937,7 @@
                 "properties": {
                     "comment": {
                         "type": "string",
-                        "description": "**Private Preview** Comment on an object in the database.\n"
+                        "description": "**Public Preview** Comment on an object in the database.\n"
                     },
                     "databaseName": {
                         "type": "string",
@@ -6412,15 +6976,15 @@
             }
         },
         "materialize:index/sinkKafka:SinkKafka": {
-            "description": "A Kafka sink establishes a link to a Kafka cluster that you want Materialize to write data to.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as materialize from \"@pulumi/materialize\";\n\nconst exampleSinkKafka = new materialize.SinkKafka(\"exampleSinkKafka\", {\n    envelope: {\n        upsert: true,\n    },\n    format: {\n        avro: {\n            schemaRegistryConnection: {\n                databaseName: \"database\",\n                name: \"csr_connection\",\n                schemaName: \"schema\",\n            },\n        },\n    },\n    from: {\n        name: \"table\",\n    },\n    kafkaConnection: {\n        name: \"kafka_connection\",\n    },\n    schemaName: \"schema\",\n    size: \"3xsmall\",\n    topic: \"test_avro_topic\",\n});\n```\n```python\nimport pulumi\nimport pulumi_materialize as materialize\n\nexample_sink_kafka = materialize.SinkKafka(\"exampleSinkKafka\",\n    envelope=materialize.SinkKafkaEnvelopeArgs(\n        upsert=True,\n    ),\n    format=materialize.SinkKafkaFormatArgs(\n        avro=materialize.SinkKafkaFormatAvroArgs(\n            schema_registry_connection=materialize.SinkKafkaFormatAvroSchemaRegistryConnectionArgs(\n                database_name=\"database\",\n                name=\"csr_connection\",\n                schema_name=\"schema\",\n            ),\n        ),\n    ),\n    from_=materialize.SinkKafkaFromArgs(\n        name=\"table\",\n    ),\n    kafka_connection=materialize.SinkKafkaKafkaConnectionArgs(\n        name=\"kafka_connection\",\n    ),\n    schema_name=\"schema\",\n    size=\"3xsmall\",\n    topic=\"test_avro_topic\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Materialize = Pulumi.Materialize;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var exampleSinkKafka = new Materialize.SinkKafka(\"exampleSinkKafka\", new()\n    {\n        Envelope = new Materialize.Inputs.SinkKafkaEnvelopeArgs\n        {\n            Upsert = true,\n        },\n        Format = new Materialize.Inputs.SinkKafkaFormatArgs\n        {\n            Avro = new Materialize.Inputs.SinkKafkaFormatAvroArgs\n            {\n                SchemaRegistryConnection = new Materialize.Inputs.SinkKafkaFormatAvroSchemaRegistryConnectionArgs\n                {\n                    DatabaseName = \"database\",\n                    Name = \"csr_connection\",\n                    SchemaName = \"schema\",\n                },\n            },\n        },\n        From = new Materialize.Inputs.SinkKafkaFromArgs\n        {\n            Name = \"table\",\n        },\n        KafkaConnection = new Materialize.Inputs.SinkKafkaKafkaConnectionArgs\n        {\n            Name = \"kafka_connection\",\n        },\n        SchemaName = \"schema\",\n        Size = \"3xsmall\",\n        Topic = \"test_avro_topic\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-materialize/sdk/go/materialize\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := materialize.NewSinkKafka(ctx, \"exampleSinkKafka\", \u0026materialize.SinkKafkaArgs{\n\t\t\tEnvelope: \u0026materialize.SinkKafkaEnvelopeArgs{\n\t\t\t\tUpsert: pulumi.Bool(true),\n\t\t\t},\n\t\t\tFormat: \u0026materialize.SinkKafkaFormatArgs{\n\t\t\t\tAvro: \u0026materialize.SinkKafkaFormatAvroArgs{\n\t\t\t\t\tSchemaRegistryConnection: \u0026materialize.SinkKafkaFormatAvroSchemaRegistryConnectionArgs{\n\t\t\t\t\t\tDatabaseName: pulumi.String(\"database\"),\n\t\t\t\t\t\tName:         pulumi.String(\"csr_connection\"),\n\t\t\t\t\t\tSchemaName:   pulumi.String(\"schema\"),\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t\tFrom: \u0026materialize.SinkKafkaFromArgs{\n\t\t\t\tName: pulumi.String(\"table\"),\n\t\t\t},\n\t\t\tKafkaConnection: \u0026materialize.SinkKafkaKafkaConnectionArgs{\n\t\t\t\tName: pulumi.String(\"kafka_connection\"),\n\t\t\t},\n\t\t\tSchemaName: pulumi.String(\"schema\"),\n\t\t\tSize:       pulumi.String(\"3xsmall\"),\n\t\t\tTopic:      pulumi.String(\"test_avro_topic\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.materialize.SinkKafka;\nimport com.pulumi.materialize.SinkKafkaArgs;\nimport com.pulumi.materialize.inputs.SinkKafkaEnvelopeArgs;\nimport com.pulumi.materialize.inputs.SinkKafkaFormatArgs;\nimport com.pulumi.materialize.inputs.SinkKafkaFormatAvroArgs;\nimport com.pulumi.materialize.inputs.SinkKafkaFormatAvroSchemaRegistryConnectionArgs;\nimport com.pulumi.materialize.inputs.SinkKafkaFromArgs;\nimport com.pulumi.materialize.inputs.SinkKafkaKafkaConnectionArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var exampleSinkKafka = new SinkKafka(\"exampleSinkKafka\", SinkKafkaArgs.builder()        \n            .envelope(SinkKafkaEnvelopeArgs.builder()\n                .upsert(true)\n                .build())\n            .format(SinkKafkaFormatArgs.builder()\n                .avro(SinkKafkaFormatAvroArgs.builder()\n                    .schemaRegistryConnection(SinkKafkaFormatAvroSchemaRegistryConnectionArgs.builder()\n                        .databaseName(\"database\")\n                        .name(\"csr_connection\")\n                        .schemaName(\"schema\")\n                        .build())\n                    .build())\n                .build())\n            .from(SinkKafkaFromArgs.builder()\n                .name(\"table\")\n                .build())\n            .kafkaConnection(SinkKafkaKafkaConnectionArgs.builder()\n                .name(\"kafka_connection\")\n                .build())\n            .schemaName(\"schema\")\n            .size(\"3xsmall\")\n            .topic(\"test_avro_topic\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  exampleSinkKafka:\n    type: materialize:SinkKafka\n    properties:\n      envelope:\n        upsert: true\n      format:\n        avro:\n          schemaRegistryConnection:\n            databaseName: database\n            name: csr_connection\n            schemaName: schema\n      from:\n        name: table\n      kafkaConnection:\n        name: kafka_connection\n      schemaName: schema\n      size: 3xsmall\n      topic: test_avro_topic\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nSinks can be imported using the sink id\n\n```sh\n $ pulumi import materialize:index/sinkKafka:SinkKafka example_sink_kafka \u003cregion\u003e:\u003csink_id\u003e\n```\n\n Sink id and information be found in the `mz_catalog.mz_sinks` table The region is the region where the database is located (e.g. aws/us-east-1) ",
+            "description": "A Kafka sink establishes a link to a Kafka cluster that you want Materialize to write data to.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.materialize.SinkKafka;\nimport com.pulumi.materialize.SinkKafkaArgs;\nimport com.pulumi.materialize.inputs.SinkKafkaEnvelopeArgs;\nimport com.pulumi.materialize.inputs.SinkKafkaFormatArgs;\nimport com.pulumi.materialize.inputs.SinkKafkaFormatAvroArgs;\nimport com.pulumi.materialize.inputs.SinkKafkaFormatAvroSchemaRegistryConnectionArgs;\nimport com.pulumi.materialize.inputs.SinkKafkaFromArgs;\nimport com.pulumi.materialize.inputs.SinkKafkaKafkaConnectionArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var exampleSinkKafka = new SinkKafka(\"exampleSinkKafka\", SinkKafkaArgs.builder()        \n            .envelope(SinkKafkaEnvelopeArgs.builder()\n                .upsert(true)\n                .build())\n            .format(SinkKafkaFormatArgs.builder()\n                .avro(SinkKafkaFormatAvroArgs.builder()\n                    .schemaRegistryConnection(SinkKafkaFormatAvroSchemaRegistryConnectionArgs.builder()\n                        .databaseName(\"database\")\n                        .name(\"csr_connection\")\n                        .schemaName(\"schema\")\n                        .build())\n                    .build())\n                .build())\n            .from(SinkKafkaFromArgs.builder()\n                .name(\"table\")\n                .build())\n            .kafkaConnection(SinkKafkaKafkaConnectionArgs.builder()\n                .name(\"kafka_connection\")\n                .build())\n            .schemaName(\"schema\")\n            .size(\"3xsmall\")\n            .topic(\"test_avro_topic\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  exampleSinkKafka:\n    type: materialize:SinkKafka\n    properties:\n      envelope:\n        upsert: true\n      format:\n        avro:\n          schemaRegistryConnection:\n            databaseName: database\n            name: csr_connection\n            schemaName: schema\n      from:\n        name: table\n      kafkaConnection:\n        name: kafka_connection\n      schemaName: schema\n      size: 3xsmall\n      topic: test_avro_topic\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nSinks can be imported using the sink id\n\n```sh\n $ pulumi import materialize:index/sinkKafka:SinkKafka example_sink_kafka \u003cregion\u003e:\u003csink_id\u003e\n```\n\n Sink id and information be found in the `mz_catalog.mz_sinks` table The region is the region where the database is located (e.g. aws/us-east-1) ",
             "properties": {
                 "clusterName": {
                     "type": "string",
-                    "description": "The cluster to maintain this sink. If not specified, the `size` option must be specified.\n"
+                    "description": "The cluster to maintain this sink.\n"
                 },
                 "comment": {
                     "type": "string",
-                    "description": "**Private Preview** Comment on an object in the database.\n"
+                    "description": "**Public Preview** Comment on an object in the database.\n"
                 },
                 "compressionType": {
                     "type": "string",
@@ -6479,7 +7043,7 @@
                 },
                 "size": {
                     "type": "string",
-                    "description": "The size of the sink. If not specified, the `cluster_name` option must be specified.\n"
+                    "description": "The size of the cluster maintaining this sink.\n"
                 },
                 "snapshot": {
                     "type": "boolean",
@@ -6503,12 +7067,12 @@
             "inputProperties": {
                 "clusterName": {
                     "type": "string",
-                    "description": "The cluster to maintain this sink. If not specified, the `size` option must be specified.\n",
+                    "description": "The cluster to maintain this sink.\n",
                     "willReplaceOnChanges": true
                 },
                 "comment": {
                     "type": "string",
-                    "description": "**Private Preview** Comment on an object in the database.\n"
+                    "description": "**Public Preview** Comment on an object in the database.\n"
                 },
                 "compressionType": {
                     "type": "string",
@@ -6571,10 +7135,6 @@
                     "description": "The identifier for the sink schema. Defaults to `public`.\n",
                     "willReplaceOnChanges": true
                 },
-                "size": {
-                    "type": "string",
-                    "description": "The size of the sink. If not specified, the `cluster_name` option must be specified.\n"
-                },
                 "snapshot": {
                     "type": "boolean",
                     "description": "Whether to emit the consolidated results of the query before the sink was created at the start of the sink.\n",
@@ -6596,12 +7156,12 @@
                 "properties": {
                     "clusterName": {
                         "type": "string",
-                        "description": "The cluster to maintain this sink. If not specified, the `size` option must be specified.\n",
+                        "description": "The cluster to maintain this sink.\n",
                         "willReplaceOnChanges": true
                     },
                     "comment": {
                         "type": "string",
-                        "description": "**Private Preview** Comment on an object in the database.\n"
+                        "description": "**Public Preview** Comment on an object in the database.\n"
                     },
                     "compressionType": {
                         "type": "string",
@@ -6670,7 +7230,7 @@
                     },
                     "size": {
                         "type": "string",
-                        "description": "The size of the sink. If not specified, the `cluster_name` option must be specified.\n"
+                        "description": "The size of the cluster maintaining this sink.\n"
                     },
                     "snapshot": {
                         "type": "boolean",
@@ -6687,15 +7247,15 @@
             }
         },
         "materialize:index/sourceKafka:SourceKafka": {
-            "description": "A Kafka source describes a Kafka cluster you want Materialize to read data from.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as materialize from \"@pulumi/materialize\";\n\nconst exampleSourceKafka = new materialize.SourceKafka(\"exampleSourceKafka\", {\n    envelope: {\n        none: true,\n    },\n    format: {\n        avro: {\n            schemaRegistryConnection: {\n                databaseName: \"database\",\n                name: \"csr_connection\",\n                schemaName: \"schema\",\n            },\n        },\n    },\n    kafkaConnection: {\n        databaseName: \"database\",\n        name: \"kafka_connection\",\n        schemaName: \"schema\",\n    },\n    schemaName: \"schema\",\n    size: \"3xsmall\",\n});\n```\n```python\nimport pulumi\nimport pulumi_materialize as materialize\n\nexample_source_kafka = materialize.SourceKafka(\"exampleSourceKafka\",\n    envelope=materialize.SourceKafkaEnvelopeArgs(\n        none=True,\n    ),\n    format=materialize.SourceKafkaFormatArgs(\n        avro=materialize.SourceKafkaFormatAvroArgs(\n            schema_registry_connection=materialize.SourceKafkaFormatAvroSchemaRegistryConnectionArgs(\n                database_name=\"database\",\n                name=\"csr_connection\",\n                schema_name=\"schema\",\n            ),\n        ),\n    ),\n    kafka_connection=materialize.SourceKafkaKafkaConnectionArgs(\n        database_name=\"database\",\n        name=\"kafka_connection\",\n        schema_name=\"schema\",\n    ),\n    schema_name=\"schema\",\n    size=\"3xsmall\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Materialize = Pulumi.Materialize;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var exampleSourceKafka = new Materialize.SourceKafka(\"exampleSourceKafka\", new()\n    {\n        Envelope = new Materialize.Inputs.SourceKafkaEnvelopeArgs\n        {\n            None = true,\n        },\n        Format = new Materialize.Inputs.SourceKafkaFormatArgs\n        {\n            Avro = new Materialize.Inputs.SourceKafkaFormatAvroArgs\n            {\n                SchemaRegistryConnection = new Materialize.Inputs.SourceKafkaFormatAvroSchemaRegistryConnectionArgs\n                {\n                    DatabaseName = \"database\",\n                    Name = \"csr_connection\",\n                    SchemaName = \"schema\",\n                },\n            },\n        },\n        KafkaConnection = new Materialize.Inputs.SourceKafkaKafkaConnectionArgs\n        {\n            DatabaseName = \"database\",\n            Name = \"kafka_connection\",\n            SchemaName = \"schema\",\n        },\n        SchemaName = \"schema\",\n        Size = \"3xsmall\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-materialize/sdk/go/materialize\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := materialize.NewSourceKafka(ctx, \"exampleSourceKafka\", \u0026materialize.SourceKafkaArgs{\n\t\t\tEnvelope: \u0026materialize.SourceKafkaEnvelopeArgs{\n\t\t\t\tNone: pulumi.Bool(true),\n\t\t\t},\n\t\t\tFormat: \u0026materialize.SourceKafkaFormatArgs{\n\t\t\t\tAvro: \u0026materialize.SourceKafkaFormatAvroArgs{\n\t\t\t\t\tSchemaRegistryConnection: \u0026materialize.SourceKafkaFormatAvroSchemaRegistryConnectionArgs{\n\t\t\t\t\t\tDatabaseName: pulumi.String(\"database\"),\n\t\t\t\t\t\tName:         pulumi.String(\"csr_connection\"),\n\t\t\t\t\t\tSchemaName:   pulumi.String(\"schema\"),\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t\tKafkaConnection: \u0026materialize.SourceKafkaKafkaConnectionArgs{\n\t\t\t\tDatabaseName: pulumi.String(\"database\"),\n\t\t\t\tName:         pulumi.String(\"kafka_connection\"),\n\t\t\t\tSchemaName:   pulumi.String(\"schema\"),\n\t\t\t},\n\t\t\tSchemaName: pulumi.String(\"schema\"),\n\t\t\tSize:       pulumi.String(\"3xsmall\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.materialize.SourceKafka;\nimport com.pulumi.materialize.SourceKafkaArgs;\nimport com.pulumi.materialize.inputs.SourceKafkaEnvelopeArgs;\nimport com.pulumi.materialize.inputs.SourceKafkaFormatArgs;\nimport com.pulumi.materialize.inputs.SourceKafkaFormatAvroArgs;\nimport com.pulumi.materialize.inputs.SourceKafkaFormatAvroSchemaRegistryConnectionArgs;\nimport com.pulumi.materialize.inputs.SourceKafkaKafkaConnectionArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var exampleSourceKafka = new SourceKafka(\"exampleSourceKafka\", SourceKafkaArgs.builder()        \n            .envelope(SourceKafkaEnvelopeArgs.builder()\n                .none(true)\n                .build())\n            .format(SourceKafkaFormatArgs.builder()\n                .avro(SourceKafkaFormatAvroArgs.builder()\n                    .schemaRegistryConnection(SourceKafkaFormatAvroSchemaRegistryConnectionArgs.builder()\n                        .databaseName(\"database\")\n                        .name(\"csr_connection\")\n                        .schemaName(\"schema\")\n                        .build())\n                    .build())\n                .build())\n            .kafkaConnection(SourceKafkaKafkaConnectionArgs.builder()\n                .databaseName(\"database\")\n                .name(\"kafka_connection\")\n                .schemaName(\"schema\")\n                .build())\n            .schemaName(\"schema\")\n            .size(\"3xsmall\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  exampleSourceKafka:\n    type: materialize:SourceKafka\n    properties:\n      envelope:\n        none: true\n      format:\n        avro:\n          schemaRegistryConnection:\n            databaseName: database\n            name: csr_connection\n            schemaName: schema\n      kafkaConnection:\n        databaseName: database\n        name: kafka_connection\n        schemaName: schema\n      schemaName: schema\n      size: 3xsmall\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nSources can be imported using the source id\n\n```sh\n $ pulumi import materialize:index/sourceKafka:SourceKafka example_source_kafka \u003cregion\u003e:\u003csource_id\u003e\n```\n\n Source id and information be found in the `mz_catalog.mz_sources` table The region is the region where the database is located (e.g. aws/us-east-1) ",
+            "description": "A Kafka source describes a Kafka cluster you want Materialize to read data from.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.materialize.SourceKafka;\nimport com.pulumi.materialize.SourceKafkaArgs;\nimport com.pulumi.materialize.inputs.SourceKafkaEnvelopeArgs;\nimport com.pulumi.materialize.inputs.SourceKafkaFormatArgs;\nimport com.pulumi.materialize.inputs.SourceKafkaFormatAvroArgs;\nimport com.pulumi.materialize.inputs.SourceKafkaFormatAvroSchemaRegistryConnectionArgs;\nimport com.pulumi.materialize.inputs.SourceKafkaKafkaConnectionArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var exampleSourceKafka = new SourceKafka(\"exampleSourceKafka\", SourceKafkaArgs.builder()        \n            .envelope(SourceKafkaEnvelopeArgs.builder()\n                .none(true)\n                .build())\n            .format(SourceKafkaFormatArgs.builder()\n                .avro(SourceKafkaFormatAvroArgs.builder()\n                    .schemaRegistryConnection(SourceKafkaFormatAvroSchemaRegistryConnectionArgs.builder()\n                        .databaseName(\"database\")\n                        .name(\"csr_connection\")\n                        .schemaName(\"schema\")\n                        .build())\n                    .build())\n                .build())\n            .kafkaConnection(SourceKafkaKafkaConnectionArgs.builder()\n                .databaseName(\"database\")\n                .name(\"kafka_connection\")\n                .schemaName(\"schema\")\n                .build())\n            .schemaName(\"schema\")\n            .size(\"3xsmall\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  exampleSourceKafka:\n    type: materialize:SourceKafka\n    properties:\n      envelope:\n        none: true\n      format:\n        avro:\n          schemaRegistryConnection:\n            databaseName: database\n            name: csr_connection\n            schemaName: schema\n      kafkaConnection:\n        databaseName: database\n        name: kafka_connection\n        schemaName: schema\n      schemaName: schema\n      size: 3xsmall\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nSources can be imported using the source id\n\n```sh\n $ pulumi import materialize:index/sourceKafka:SourceKafka example_source_kafka \u003cregion\u003e:\u003csource_id\u003e\n```\n\n Source id and information be found in the `mz_catalog.mz_sources` table The region is the region where the database is located (e.g. aws/us-east-1) ",
             "properties": {
                 "clusterName": {
                     "type": "string",
-                    "description": "The cluster to maintain this source. If not specified, the `size` option must be specified.\n"
+                    "description": "The cluster to maintain this source.\n"
                 },
                 "comment": {
                     "type": "string",
-                    "description": "**Private Preview** Comment on an object in the database.\n"
+                    "description": "**Public Preview** Comment on an object in the database.\n"
                 },
                 "databaseName": {
                     "type": "string",
@@ -6783,7 +7343,7 @@
                 },
                 "size": {
                     "type": "string",
-                    "description": "The size of the source. If not specified, the `cluster_name` option must be specified.\n"
+                    "description": "The size of the cluster maintaining this source.\n"
                 },
                 "startOffsets": {
                     "type": "array",
@@ -6825,12 +7385,12 @@
             "inputProperties": {
                 "clusterName": {
                     "type": "string",
-                    "description": "The cluster to maintain this source. If not specified, the `size` option must be specified.\n",
+                    "description": "The cluster to maintain this source.\n",
                     "willReplaceOnChanges": true
                 },
                 "comment": {
                     "type": "string",
-                    "description": "**Private Preview** Comment on an object in the database.\n"
+                    "description": "**Public Preview** Comment on an object in the database.\n"
                 },
                 "databaseName": {
                     "type": "string",
@@ -6930,10 +7490,6 @@
                     "description": "The identifier for the source schema. Defaults to `public`.\n",
                     "willReplaceOnChanges": true
                 },
-                "size": {
-                    "type": "string",
-                    "description": "The size of the source. If not specified, the `cluster_name` option must be specified.\n"
-                },
                 "startOffsets": {
                     "type": "array",
                     "items": {
@@ -6967,12 +7523,12 @@
                 "properties": {
                     "clusterName": {
                         "type": "string",
-                        "description": "The cluster to maintain this source. If not specified, the `size` option must be specified.\n",
+                        "description": "The cluster to maintain this source.\n",
                         "willReplaceOnChanges": true
                     },
                     "comment": {
                         "type": "string",
-                        "description": "**Private Preview** Comment on an object in the database.\n"
+                        "description": "**Public Preview** Comment on an object in the database.\n"
                     },
                     "databaseName": {
                         "type": "string",
@@ -7078,7 +7634,7 @@
                     },
                     "size": {
                         "type": "string",
-                        "description": "The size of the source. If not specified, the `cluster_name` option must be specified.\n"
+                        "description": "The size of the cluster maintaining this source.\n"
                     },
                     "startOffsets": {
                         "type": "array",
@@ -7115,7 +7671,7 @@
             }
         },
         "materialize:index/sourceLoadgen:SourceLoadgen": {
-            "description": "A load generator source produces synthetic data for use in demos and performance tests.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as materialize from \"@pulumi/materialize\";\n\nconst exampleSourceLoadGenerator = new materialize.SourceLoadgen(\"exampleSourceLoadGenerator\", {\n    counterOptions: {\n        scaleFactor: 0.01,\n        tickInterval: \"500ms\",\n    },\n    loadGeneratorType: \"COUNTER\",\n    schemaName: \"schema\",\n    size: \"3xsmall\",\n});\n```\n```python\nimport pulumi\nimport pulumi_materialize as materialize\n\nexample_source_load_generator = materialize.SourceLoadgen(\"exampleSourceLoadGenerator\",\n    counter_options=materialize.SourceLoadgenCounterOptionsArgs(\n        scale_factor=0.01,\n        tick_interval=\"500ms\",\n    ),\n    load_generator_type=\"COUNTER\",\n    schema_name=\"schema\",\n    size=\"3xsmall\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Materialize = Pulumi.Materialize;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var exampleSourceLoadGenerator = new Materialize.SourceLoadgen(\"exampleSourceLoadGenerator\", new()\n    {\n        CounterOptions = new Materialize.Inputs.SourceLoadgenCounterOptionsArgs\n        {\n            ScaleFactor = 0.01,\n            TickInterval = \"500ms\",\n        },\n        LoadGeneratorType = \"COUNTER\",\n        SchemaName = \"schema\",\n        Size = \"3xsmall\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-materialize/sdk/go/materialize\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := materialize.NewSourceLoadgen(ctx, \"exampleSourceLoadGenerator\", \u0026materialize.SourceLoadgenArgs{\n\t\t\tCounterOptions: \u0026materialize.SourceLoadgenCounterOptionsArgs{\n\t\t\t\tScaleFactor:  pulumi.Float64(0.01),\n\t\t\t\tTickInterval: pulumi.String(\"500ms\"),\n\t\t\t},\n\t\t\tLoadGeneratorType: pulumi.String(\"COUNTER\"),\n\t\t\tSchemaName:        pulumi.String(\"schema\"),\n\t\t\tSize:              pulumi.String(\"3xsmall\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.materialize.SourceLoadgen;\nimport com.pulumi.materialize.SourceLoadgenArgs;\nimport com.pulumi.materialize.inputs.SourceLoadgenCounterOptionsArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var exampleSourceLoadGenerator = new SourceLoadgen(\"exampleSourceLoadGenerator\", SourceLoadgenArgs.builder()        \n            .counterOptions(SourceLoadgenCounterOptionsArgs.builder()\n                .scaleFactor(0.01)\n                .tickInterval(\"500ms\")\n                .build())\n            .loadGeneratorType(\"COUNTER\")\n            .schemaName(\"schema\")\n            .size(\"3xsmall\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  exampleSourceLoadGenerator:\n    type: materialize:SourceLoadgen\n    properties:\n      counterOptions:\n        scaleFactor: 0.01\n        tickInterval: 500ms\n      loadGeneratorType: COUNTER\n      schemaName: schema\n      size: 3xsmall\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nSources can be imported using the source id\n\n```sh\n $ pulumi import materialize:index/sourceLoadgen:SourceLoadgen example_source_load_generator \u003cregion\u003e:\u003csource_id\u003e\n```\n\n Source id and information be found in the `mz_catalog.mz_sources` table The region is the region where the database is located (e.g. aws/us-east-1) ",
+            "description": "A load generator source produces synthetic data for use in demos and performance tests.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.materialize.SourceLoadgen;\nimport com.pulumi.materialize.SourceLoadgenArgs;\nimport com.pulumi.materialize.inputs.SourceLoadgenCounterOptionsArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var exampleSourceLoadGenerator = new SourceLoadgen(\"exampleSourceLoadGenerator\", SourceLoadgenArgs.builder()        \n            .counterOptions(SourceLoadgenCounterOptionsArgs.builder()\n                .scaleFactor(0.01)\n                .tickInterval(\"500ms\")\n                .build())\n            .loadGeneratorType(\"COUNTER\")\n            .schemaName(\"schema\")\n            .size(\"3xsmall\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  exampleSourceLoadGenerator:\n    type: materialize:SourceLoadgen\n    properties:\n      counterOptions:\n        scaleFactor: 0.01\n        tickInterval: 500ms\n      loadGeneratorType: COUNTER\n      schemaName: schema\n      size: 3xsmall\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nSources can be imported using the source id\n\n```sh\n $ pulumi import materialize:index/sourceLoadgen:SourceLoadgen example_source_load_generator \u003cregion\u003e:\u003csource_id\u003e\n```\n\n Source id and information be found in the `mz_catalog.mz_sources` table The region is the region where the database is located (e.g. aws/us-east-1) ",
             "properties": {
                 "auctionOptions": {
                     "$ref": "#/types/materialize:index/SourceLoadgenAuctionOptions:SourceLoadgenAuctionOptions",
@@ -7123,11 +7679,11 @@
                 },
                 "clusterName": {
                     "type": "string",
-                    "description": "The cluster to maintain this source. If not specified, the `size` option must be specified.\n"
+                    "description": "The cluster to maintain this source.\n"
                 },
                 "comment": {
                     "type": "string",
-                    "description": "**Private Preview** Comment on an object in the database.\n"
+                    "description": "**Public Preview** Comment on an object in the database.\n"
                 },
                 "counterOptions": {
                     "$ref": "#/types/materialize:index/SourceLoadgenCounterOptions:SourceLoadgenCounterOptions",
@@ -7171,7 +7727,7 @@
                 },
                 "size": {
                     "type": "string",
-                    "description": "The size of the source. If not specified, the `cluster_name` option must be specified.\n"
+                    "description": "The size of the cluster maintaining this source.\n"
                 },
                 "subsources": {
                     "type": "array",
@@ -7202,12 +7758,12 @@
                 },
                 "clusterName": {
                     "type": "string",
-                    "description": "The cluster to maintain this source. If not specified, the `size` option must be specified.\n",
+                    "description": "The cluster to maintain this source.\n",
                     "willReplaceOnChanges": true
                 },
                 "comment": {
                     "type": "string",
-                    "description": "**Private Preview** Comment on an object in the database.\n"
+                    "description": "**Public Preview** Comment on an object in the database.\n"
                 },
                 "counterOptions": {
                     "$ref": "#/types/materialize:index/SourceLoadgenCounterOptions:SourceLoadgenCounterOptions",
@@ -7252,10 +7808,6 @@
                     "description": "The identifier for the source schema. Defaults to `public`.\n",
                     "willReplaceOnChanges": true
                 },
-                "size": {
-                    "type": "string",
-                    "description": "The size of the source. If not specified, the `cluster_name` option must be specified.\n"
-                },
                 "tpchOptions": {
                     "$ref": "#/types/materialize:index/SourceLoadgenTpchOptions:SourceLoadgenTpchOptions",
                     "description": "TPCH Options.\n",
@@ -7275,12 +7827,12 @@
                     },
                     "clusterName": {
                         "type": "string",
-                        "description": "The cluster to maintain this source. If not specified, the `size` option must be specified.\n",
+                        "description": "The cluster to maintain this source.\n",
                         "willReplaceOnChanges": true
                     },
                     "comment": {
                         "type": "string",
-                        "description": "**Private Preview** Comment on an object in the database.\n"
+                        "description": "**Public Preview** Comment on an object in the database.\n"
                     },
                     "counterOptions": {
                         "$ref": "#/types/materialize:index/SourceLoadgenCounterOptions:SourceLoadgenCounterOptions",
@@ -7331,7 +7883,7 @@
                     },
                     "size": {
                         "type": "string",
-                        "description": "The size of the source. If not specified, the `cluster_name` option must be specified.\n"
+                        "description": "The size of the cluster maintaining this source.\n"
                     },
                     "subsources": {
                         "type": "array",
@@ -7350,15 +7902,15 @@
             }
         },
         "materialize:index/sourcePostgres:SourcePostgres": {
-            "description": "A Postgres source describes a PostgreSQL instance you want Materialize to read data from.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as materialize from \"@pulumi/materialize\";\n\nconst exampleSourcePostgres = new materialize.SourcePostgres(\"exampleSourcePostgres\", {\n    postgresConnection: {\n        name: \"pg_connection\",\n    },\n    publication: \"mz_source\",\n    schemaName: \"schema\",\n    size: \"3xsmall\",\n    tables: [\n        {\n            alias: \"s1_table_1\",\n            name: \"schema1.table_1\",\n        },\n        {\n            alias: \"s2_table_1\",\n            name: \"schema2.table_1\",\n        },\n    ],\n});\n```\n```python\nimport pulumi\nimport pulumi_materialize as materialize\n\nexample_source_postgres = materialize.SourcePostgres(\"exampleSourcePostgres\",\n    postgres_connection=materialize.SourcePostgresPostgresConnectionArgs(\n        name=\"pg_connection\",\n    ),\n    publication=\"mz_source\",\n    schema_name=\"schema\",\n    size=\"3xsmall\",\n    tables=[\n        materialize.SourcePostgresTableArgs(\n            alias=\"s1_table_1\",\n            name=\"schema1.table_1\",\n        ),\n        materialize.SourcePostgresTableArgs(\n            alias=\"s2_table_1\",\n            name=\"schema2.table_1\",\n        ),\n    ])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Materialize = Pulumi.Materialize;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var exampleSourcePostgres = new Materialize.SourcePostgres(\"exampleSourcePostgres\", new()\n    {\n        PostgresConnection = new Materialize.Inputs.SourcePostgresPostgresConnectionArgs\n        {\n            Name = \"pg_connection\",\n        },\n        Publication = \"mz_source\",\n        SchemaName = \"schema\",\n        Size = \"3xsmall\",\n        Tables = new[]\n        {\n            new Materialize.Inputs.SourcePostgresTableArgs\n            {\n                Alias = \"s1_table_1\",\n                Name = \"schema1.table_1\",\n            },\n            new Materialize.Inputs.SourcePostgresTableArgs\n            {\n                Alias = \"s2_table_1\",\n                Name = \"schema2.table_1\",\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-materialize/sdk/go/materialize\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := materialize.NewSourcePostgres(ctx, \"exampleSourcePostgres\", \u0026materialize.SourcePostgresArgs{\n\t\t\tPostgresConnection: \u0026materialize.SourcePostgresPostgresConnectionArgs{\n\t\t\t\tName: pulumi.String(\"pg_connection\"),\n\t\t\t},\n\t\t\tPublication: pulumi.String(\"mz_source\"),\n\t\t\tSchemaName:  pulumi.String(\"schema\"),\n\t\t\tSize:        pulumi.String(\"3xsmall\"),\n\t\t\tTables: materialize.SourcePostgresTableArray{\n\t\t\t\t\u0026materialize.SourcePostgresTableArgs{\n\t\t\t\t\tAlias: pulumi.String(\"s1_table_1\"),\n\t\t\t\t\tName:  pulumi.String(\"schema1.table_1\"),\n\t\t\t\t},\n\t\t\t\t\u0026materialize.SourcePostgresTableArgs{\n\t\t\t\t\tAlias: pulumi.String(\"s2_table_1\"),\n\t\t\t\t\tName:  pulumi.String(\"schema2.table_1\"),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.materialize.SourcePostgres;\nimport com.pulumi.materialize.SourcePostgresArgs;\nimport com.pulumi.materialize.inputs.SourcePostgresPostgresConnectionArgs;\nimport com.pulumi.materialize.inputs.SourcePostgresTableArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var exampleSourcePostgres = new SourcePostgres(\"exampleSourcePostgres\", SourcePostgresArgs.builder()        \n            .postgresConnection(SourcePostgresPostgresConnectionArgs.builder()\n                .name(\"pg_connection\")\n                .build())\n            .publication(\"mz_source\")\n            .schemaName(\"schema\")\n            .size(\"3xsmall\")\n            .tables(            \n                SourcePostgresTableArgs.builder()\n                    .alias(\"s1_table_1\")\n                    .name(\"schema1.table_1\")\n                    .build(),\n                SourcePostgresTableArgs.builder()\n                    .alias(\"s2_table_1\")\n                    .name(\"schema2.table_1\")\n                    .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  exampleSourcePostgres:\n    type: materialize:SourcePostgres\n    properties:\n      postgresConnection:\n        name: pg_connection\n      publication: mz_source\n      schemaName: schema\n      size: 3xsmall\n      tables:\n        - alias: s1_table_1\n          name: schema1.table_1\n        - alias: s2_table_1\n          name: schema2.table_1\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nSources can be imported using the source id\n\n```sh\n $ pulumi import materialize:index/sourcePostgres:SourcePostgres example_source_postgres \u003cregion\u003e:\u003csource_id\u003e\n```\n\n Source id and information be found in the `mz_catalog.mz_sources` table The region is the region where the database is located (e.g. aws/us-east-1) ",
+            "description": "A Postgres source describes a PostgreSQL instance you want Materialize to read data from.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.materialize.SourcePostgres;\nimport com.pulumi.materialize.SourcePostgresArgs;\nimport com.pulumi.materialize.inputs.SourcePostgresPostgresConnectionArgs;\nimport com.pulumi.materialize.inputs.SourcePostgresTableArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var exampleSourcePostgres = new SourcePostgres(\"exampleSourcePostgres\", SourcePostgresArgs.builder()        \n            .postgresConnection(SourcePostgresPostgresConnectionArgs.builder()\n                .name(\"pg_connection\")\n                .build())\n            .publication(\"mz_source\")\n            .schemaName(\"schema\")\n            .size(\"3xsmall\")\n            .tables(            \n                SourcePostgresTableArgs.builder()\n                    .alias(\"s1_table_1\")\n                    .name(\"schema1.table_1\")\n                    .build(),\n                SourcePostgresTableArgs.builder()\n                    .alias(\"s2_table_1\")\n                    .name(\"schema2.table_1\")\n                    .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  exampleSourcePostgres:\n    type: materialize:SourcePostgres\n    properties:\n      postgresConnection:\n        name: pg_connection\n      publication: mz_source\n      schemaName: schema\n      size: 3xsmall\n      tables:\n        - alias: s1_table_1\n          name: schema1.table_1\n        - alias: s2_table_1\n          name: schema2.table_1\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nSources can be imported using the source id\n\n```sh\n $ pulumi import materialize:index/sourcePostgres:SourcePostgres example_source_postgres \u003cregion\u003e:\u003csource_id\u003e\n```\n\n Source id and information be found in the `mz_catalog.mz_sources` table The region is the region where the database is located (e.g. aws/us-east-1) ",
             "properties": {
                 "clusterName": {
                     "type": "string",
-                    "description": "The cluster to maintain this source. If not specified, the `size` option must be specified.\n"
+                    "description": "The cluster to maintain this source.\n"
                 },
                 "comment": {
                     "type": "string",
-                    "description": "**Private Preview** Comment on an object in the database.\n"
+                    "description": "**Public Preview** Comment on an object in the database.\n"
                 },
                 "databaseName": {
                     "type": "string",
@@ -7405,7 +7957,7 @@
                 },
                 "size": {
                     "type": "string",
-                    "description": "The size of the source. If not specified, the `cluster_name` option must be specified.\n"
+                    "description": "The size of the cluster maintaining this source.\n"
                 },
                 "subsources": {
                     "type": "array",
@@ -7442,12 +7994,12 @@
             "inputProperties": {
                 "clusterName": {
                     "type": "string",
-                    "description": "The cluster to maintain this source. If not specified, the `size` option must be specified.\n",
+                    "description": "The cluster to maintain this source.\n",
                     "willReplaceOnChanges": true
                 },
                 "comment": {
                     "type": "string",
-                    "description": "**Private Preview** Comment on an object in the database.\n"
+                    "description": "**Public Preview** Comment on an object in the database.\n"
                 },
                 "databaseName": {
                     "type": "string",
@@ -7495,10 +8047,6 @@
                     "description": "Creates subsources for specific schemas. If neither table or schema is specified, will default to ALL TABLES\n",
                     "willReplaceOnChanges": true
                 },
-                "size": {
-                    "type": "string",
-                    "description": "The size of the source. If not specified, the `cluster_name` option must be specified.\n"
-                },
                 "tables": {
                     "type": "array",
                     "items": {
@@ -7523,12 +8071,12 @@
                 "properties": {
                     "clusterName": {
                         "type": "string",
-                        "description": "The cluster to maintain this source. If not specified, the `size` option must be specified.\n",
+                        "description": "The cluster to maintain this source.\n",
                         "willReplaceOnChanges": true
                     },
                     "comment": {
                         "type": "string",
-                        "description": "**Private Preview** Comment on an object in the database.\n"
+                        "description": "**Public Preview** Comment on an object in the database.\n"
                     },
                     "databaseName": {
                         "type": "string",
@@ -7582,7 +8130,7 @@
                     },
                     "size": {
                         "type": "string",
-                        "description": "The size of the source. If not specified, the `cluster_name` option must be specified.\n"
+                        "description": "The size of the cluster maintaining this source.\n"
                     },
                     "subsources": {
                         "type": "array",
@@ -7633,7 +8181,7 @@
                 },
                 "comment": {
                     "type": "string",
-                    "description": "**Private Preview** Comment on an object in the database.\n"
+                    "description": "**Public Preview** Comment on an object in the database.\n"
                 },
                 "databaseName": {
                     "type": "string",
@@ -7672,7 +8220,7 @@
                 },
                 "size": {
                     "type": "string",
-                    "description": "The size of the source.\n"
+                    "description": "The size of the cluster maintaining this source.\n"
                 },
                 "subsources": {
                     "type": "array",
@@ -7716,7 +8264,7 @@
                 },
                 "comment": {
                     "type": "string",
-                    "description": "**Private Preview** Comment on an object in the database.\n"
+                    "description": "**Public Preview** Comment on an object in the database.\n"
                 },
                 "databaseName": {
                     "type": "string",
@@ -7786,7 +8334,7 @@
                     },
                     "comment": {
                         "type": "string",
-                        "description": "**Private Preview** Comment on an object in the database.\n"
+                        "description": "**Public Preview** Comment on an object in the database.\n"
                     },
                     "databaseName": {
                         "type": "string",
@@ -7830,7 +8378,7 @@
                     },
                     "size": {
                         "type": "string",
-                        "description": "The size of the source.\n"
+                        "description": "The size of the cluster maintaining this source.\n"
                     },
                     "subsources": {
                         "type": "array",
@@ -7855,7 +8403,7 @@
                 },
                 "comment": {
                     "type": "string",
-                    "description": "**Private Preview** Comment on an object in the database.\n"
+                    "description": "**Public Preview** Comment on an object in the database.\n"
                 },
                 "databaseName": {
                     "type": "string",
@@ -7899,7 +8447,7 @@
                 },
                 "comment": {
                     "type": "string",
-                    "description": "**Private Preview** Comment on an object in the database.\n"
+                    "description": "**Public Preview** Comment on an object in the database.\n"
                 },
                 "databaseName": {
                     "type": "string",
@@ -7941,7 +8489,7 @@
                     },
                     "comment": {
                         "type": "string",
-                        "description": "**Private Preview** Comment on an object in the database.\n"
+                        "description": "**Public Preview** Comment on an object in the database.\n"
                     },
                     "databaseName": {
                         "type": "string",
@@ -7983,7 +8531,7 @@
                 },
                 "comment": {
                     "type": "string",
-                    "description": "**Private Preview** Comment on an object in the database.\n"
+                    "description": "**Public Preview** Comment on an object in the database.\n"
                 },
                 "databaseName": {
                     "type": "string",
@@ -8034,7 +8582,7 @@
             "inputProperties": {
                 "comment": {
                     "type": "string",
-                    "description": "**Private Preview** Comment on an object in the database.\n"
+                    "description": "**Public Preview** Comment on an object in the database.\n"
                 },
                 "databaseName": {
                     "type": "string",
@@ -8088,7 +8636,7 @@
                     },
                     "comment": {
                         "type": "string",
-                        "description": "**Private Preview** Comment on an object in the database.\n"
+                        "description": "**Public Preview** Comment on an object in the database.\n"
                     },
                     "databaseName": {
                         "type": "string",
@@ -8226,7 +8774,11 @@
             "properties": {
                 "comment": {
                     "type": "string",
-                    "description": "**Private Preview** Comment on an object in the database.\n"
+                    "description": "**Public Preview** Comment on an object in the database.\n"
+                },
+                "createSql": {
+                    "type": "string",
+                    "description": "The SQL statement used to create the view.\n"
                 },
                 "databaseName": {
                     "type": "string",
@@ -8258,6 +8810,7 @@
                 }
             },
             "required": [
+                "createSql",
                 "name",
                 "ownershipRole",
                 "qualifiedSqlName",
@@ -8266,7 +8819,7 @@
             "inputProperties": {
                 "comment": {
                     "type": "string",
-                    "description": "**Private Preview** Comment on an object in the database.\n"
+                    "description": "**Public Preview** Comment on an object in the database.\n"
                 },
                 "databaseName": {
                     "type": "string",
@@ -8305,7 +8858,11 @@
                 "properties": {
                     "comment": {
                         "type": "string",
-                        "description": "**Private Preview** Comment on an object in the database.\n"
+                        "description": "**Public Preview** Comment on an object in the database.\n"
+                    },
+                    "createSql": {
+                        "type": "string",
+                        "description": "The SQL statement used to create the view.\n"
                     },
                     "databaseName": {
                         "type": "string",
@@ -8689,6 +9246,73 @@
                 "required": [
                     "region",
                     "roles",
+                    "id"
+                ]
+            }
+        },
+        "materialize:index/getSCIMConfigs:GetSCIMConfigs": {
+            "outputs": {
+                "description": "A collection of values returned by GetSCIMConfigs.\n",
+                "properties": {
+                    "configurations": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/materialize:index/GetSCIMConfigsConfiguration:GetSCIMConfigsConfiguration"
+                        }
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "configurations",
+                    "id"
+                ]
+            }
+        },
+        "materialize:index/getSCIMGroups:GetSCIMGroups": {
+            "outputs": {
+                "description": "A collection of values returned by GetSCIMGroups.\n",
+                "properties": {
+                    "groups": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/materialize:index/GetSCIMGroupsGroup:GetSCIMGroupsGroup"
+                        }
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "groups",
+                    "id"
+                ]
+            }
+        },
+        "materialize:index/getSSOConfig:GetSSOConfig": {
+            "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as materialize from \"@pulumi/materialize\";\n\nconst all = materialize.GetSSOConfig({});\nexport const ssoConfigs = all.then(all =\u003e all.ssoConfigs);\n```\n```python\nimport pulumi\nimport pulumi_materialize as materialize\n\nall = materialize.get_sso_config()\npulumi.export(\"ssoConfigs\", all.sso_configs)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Materialize = Pulumi.Materialize;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var all = Materialize.GetSSOConfig.Invoke();\n\n    return new Dictionary\u003cstring, object?\u003e\n    {\n        [\"ssoConfigs\"] = all.Apply(getSSOConfigResult =\u003e getSSOConfigResult.SsoConfigs),\n    };\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-materialize/sdk/go/materialize\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tall, err := materialize.GetSSOConfig(ctx, nil, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tctx.Export(\"ssoConfigs\", all.SsoConfigs)\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.materialize.MaterializeFunctions;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var all = MaterializeFunctions.GetSSOConfig();\n\n        ctx.export(\"ssoConfigs\", all.applyValue(getSSOConfigResult -\u003e getSSOConfigResult.ssoConfigs()));\n    }\n}\n```\n```yaml\nvariables:\n  all:\n    fn::invoke:\n      Function: materialize:GetSSOConfig\n      Arguments: {}\noutputs:\n  ssoConfigs: ${all.ssoConfigs}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "outputs": {
+                "description": "A collection of values returned by GetSSOConfig.\n",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "ssoConfigs": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/materialize:index/GetSSOConfigSsoConfig:GetSSOConfigSsoConfig"
+                        }
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "ssoConfigs",
                     "id"
                 ]
             }
