@@ -109,6 +109,7 @@ func Provider() tfbridge.ProviderInfo {
 			"materialize_schema":                               {Tok: tfbridge.MakeResource(mainPkg, mainMod, "Schema")},
 			"materialize_schema_grant":                         {Tok: tfbridge.MakeResource(mainPkg, mainMod, "GrantSchema")},
 			"materialize_schema_grant_default_privilege":       {Tok: tfbridge.MakeResource(mainPkg, mainMod, "GrantSchemaDefaultPrivilege")},
+			"materialize_scim_config":                          {Tok: tfbridge.MakeResource(mainPkg, mainMod, "SCIM2Configuration")},
 			"materialize_secret":                               {Tok: tfbridge.MakeResource(mainPkg, mainMod, "Secret")},
 			"materialize_secret_grant":                         {Tok: tfbridge.MakeResource(mainPkg, mainMod, "GrantSecret")},
 			"materialize_secret_grant_default_privilege":       {Tok: tfbridge.MakeResource(mainPkg, mainMod, "GrantSecretDefaultPrivilege")},
