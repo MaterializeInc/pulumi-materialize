@@ -77,6 +77,9 @@ func Provider() tfbridge.ProviderInfo {
 			"cloud_endpoint": {
 				Default: &tfbridge.DefaultInfo{EnvVars: []string{"MZ_CLOUD_ENDPOINT"}},
 			},
+			"base_endpoint": {
+				Default: &tfbridge.DefaultInfo{EnvVars: []string{"MZ_BASE_ENDPOINT"}},
+			},
 			"default_region": {
 				Default: &tfbridge.DefaultInfo{EnvVars: []string{"MZ_DEFAULT_REGION"}},
 			},
