@@ -19,8 +19,8 @@ pip install pulumi_materialize
 The following configuration points are available for the `materialize` provider:
 
 - `materialize:password` (environment: `MZ_PASSWORD`) - Materialize password.
-- `materialize:endpoint` (environment: `MZ_ENDPOINT`) - The endpoint for the Materialize API.
-- `materialize:cloud_endpoint` (environment: `MZ_CLOUD_ENDPOINT`) - The endpoint for the Materialize Cloud API..
+- `materialize:endpoint` (environment: `MZ_ENDPOINT`) - The endpoint for the Frontegg API.
+- `materialize:cloud_endpoint` (environment: `MZ_CLOUD_ENDPOINT`) - The endpoint for the Materialize Cloud API.
 - `materialize:default_region` (environment: `MZ_DEFAULT_REGION`) - The default region if not specified in the resource.
 - `materialize:database` (environment: `MZ_DATABASE`) - Materialize database.
 

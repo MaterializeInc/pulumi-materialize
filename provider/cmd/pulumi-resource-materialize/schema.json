@@ -1364,6 +1364,30 @@
                 }
             }
         },
+        "materialize:index/GetSystemParametersParameter:GetSystemParametersParameter": {
+            "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "setting": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "description",
+                "name",
+                "setting"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
         "materialize:index/GetTablesTable:GetTablesTable": {
             "properties": {
                 "databaseName": {
@@ -2778,7 +2802,8 @@
                 },
                 "disk": {
                     "type": "boolean",
-                    "description": "**Private Preview**. Whether or not the replica is a *disk-backed replica*.\n"
+                    "description": "**Deprecated**. This attribute is maintained for backward compatibility with existing configurations. New users should use 'cc' sizes for disk access.\n",
+                    "deprecationMessage": "Disk replicas are deprecated and will be removed in a future release. The `disk` attribute will be enabled by default for 'cc' clusters"
                 },
                 "idleArrangementMergeEffort": {
                     "type": "integer",
@@ -2814,6 +2839,7 @@
                 }
             },
             "required": [
+                "disk",
                 "name",
                 "ownershipRole",
                 "replicationFactor"
@@ -2825,7 +2851,8 @@
                 },
                 "disk": {
                     "type": "boolean",
-                    "description": "**Private Preview**. Whether or not the replica is a *disk-backed replica*.\n"
+                    "description": "**Deprecated**. This attribute is maintained for backward compatibility with existing configurations. New users should use 'cc' sizes for disk access.\n",
+                    "deprecationMessage": "Disk replicas are deprecated and will be removed in a future release. The `disk` attribute will be enabled by default for 'cc' clusters"
                 },
                 "idleArrangementMergeEffort": {
                     "type": "integer",
@@ -2871,7 +2898,8 @@
                     },
                     "disk": {
                         "type": "boolean",
-                        "description": "**Private Preview**. Whether or not the replica is a *disk-backed replica*.\n"
+                        "description": "**Deprecated**. This attribute is maintained for backward compatibility with existing configurations. New users should use 'cc' sizes for disk access.\n",
+                        "deprecationMessage": "Disk replicas are deprecated and will be removed in a future release. The `disk` attribute will be enabled by default for 'cc' clusters"
                     },
                     "idleArrangementMergeEffort": {
                         "type": "integer",
@@ -2912,7 +2940,7 @@
             }
         },
         "materialize:index/clusterReplica:ClusterReplica": {
-            "description": "Cluster replicas allocate physical compute resources for a cluster.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as materialize from \"@pulumi/materialize\";\n\nconst exampleClusterReplica = new materialize.ClusterReplica(\"exampleClusterReplica\", {\n    clusterName: \"cluster\",\n    size: \"2xsmall\",\n});\n```\n```python\nimport pulumi\nimport pulumi_materialize as materialize\n\nexample_cluster_replica = materialize.ClusterReplica(\"exampleClusterReplica\",\n    cluster_name=\"cluster\",\n    size=\"2xsmall\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Materialize = Pulumi.Materialize;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var exampleClusterReplica = new Materialize.ClusterReplica(\"exampleClusterReplica\", new()\n    {\n        ClusterName = \"cluster\",\n        Size = \"2xsmall\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-materialize/sdk/go/materialize\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := materialize.NewClusterReplica(ctx, \"exampleClusterReplica\", \u0026materialize.ClusterReplicaArgs{\n\t\t\tClusterName: pulumi.String(\"cluster\"),\n\t\t\tSize:        pulumi.String(\"2xsmall\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.materialize.ClusterReplica;\nimport com.pulumi.materialize.ClusterReplicaArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var exampleClusterReplica = new ClusterReplica(\"exampleClusterReplica\", ClusterReplicaArgs.builder()        \n            .clusterName(\"cluster\")\n            .size(\"2xsmall\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  exampleClusterReplica:\n    type: materialize:ClusterReplica\n    properties:\n      clusterName: cluster\n      size: 2xsmall\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nCluster replicas can be imported using the cluster replica id\n\n```sh\n $ pulumi import materialize:index/clusterReplica:ClusterReplica example_1_cluster_replica \u003cregion\u003e:\u003ccluster_replica_id\u003e\n```\n\n Cluster replica id and information be found in the `mz_catalog.mz_cluster_replicas` table The region is the region where the database is located (e.g. aws/us-east-1) ",
+            "description": "Cluster replicas allocate physical compute resources for a cluster.\n\n*Note*: Cluster replicas are deprecated. We recommend migrating to a managed cluster using the `materialize.Cluster` resource and selecting `size`.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as materialize from \"@pulumi/materialize\";\n\nconst exampleClusterReplica = new materialize.ClusterReplica(\"exampleClusterReplica\", {\n    clusterName: \"cluster\",\n    size: \"2xsmall\",\n});\n```\n```python\nimport pulumi\nimport pulumi_materialize as materialize\n\nexample_cluster_replica = materialize.ClusterReplica(\"exampleClusterReplica\",\n    cluster_name=\"cluster\",\n    size=\"2xsmall\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Materialize = Pulumi.Materialize;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var exampleClusterReplica = new Materialize.ClusterReplica(\"exampleClusterReplica\", new()\n    {\n        ClusterName = \"cluster\",\n        Size = \"2xsmall\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-materialize/sdk/go/materialize\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := materialize.NewClusterReplica(ctx, \"exampleClusterReplica\", \u0026materialize.ClusterReplicaArgs{\n\t\t\tClusterName: pulumi.String(\"cluster\"),\n\t\t\tSize:        pulumi.String(\"2xsmall\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.materialize.ClusterReplica;\nimport com.pulumi.materialize.ClusterReplicaArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var exampleClusterReplica = new ClusterReplica(\"exampleClusterReplica\", ClusterReplicaArgs.builder()        \n            .clusterName(\"cluster\")\n            .size(\"2xsmall\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  exampleClusterReplica:\n    type: materialize:ClusterReplica\n    properties:\n      clusterName: cluster\n      size: 2xsmall\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nCluster replicas can be imported using the cluster replica id\n\n```sh\n $ pulumi import materialize:index/clusterReplica:ClusterReplica example_1_cluster_replica \u003cregion\u003e:\u003ccluster_replica_id\u003e\n```\n\n Cluster replica id and information be found in the `mz_catalog.mz_cluster_replicas` table The region is the region where the database is located (e.g. aws/us-east-1) ",
             "properties": {
                 "availabilityZone": {
                     "type": "string",
@@ -2928,7 +2956,8 @@
                 },
                 "disk": {
                     "type": "boolean",
-                    "description": "**Private Preview**. Whether or not the replica is a *disk-backed replica*.\n"
+                    "description": "**Deprecated**. This attribute is maintained for backward compatibility with existing configurations. New users should use 'cc' sizes for disk access.\n",
+                    "deprecationMessage": "Disk replicas are deprecated and will be removed in a future release. The `disk` attribute will be enabled by default for 'cc' clusters"
                 },
                 "idleArrangementMergeEffort": {
                     "type": "integer",
@@ -2958,6 +2987,7 @@
             "required": [
                 "availabilityZone",
                 "clusterName",
+                "disk",
                 "name",
                 "size"
             ],
@@ -2978,7 +3008,8 @@
                 },
                 "disk": {
                     "type": "boolean",
-                    "description": "**Private Preview**. Whether or not the replica is a *disk-backed replica*.\n",
+                    "description": "**Deprecated**. This attribute is maintained for backward compatibility with existing configurations. New users should use 'cc' sizes for disk access.\n",
+                    "deprecationMessage": "Disk replicas are deprecated and will be removed in a future release. The `disk` attribute will be enabled by default for 'cc' clusters",
                     "willReplaceOnChanges": true
                 },
                 "idleArrangementMergeEffort": {
@@ -3035,7 +3066,8 @@
                     },
                     "disk": {
                         "type": "boolean",
-                        "description": "**Private Preview**. Whether or not the replica is a *disk-backed replica*.\n",
+                        "description": "**Deprecated**. This attribute is maintained for backward compatibility with existing configurations. New users should use 'cc' sizes for disk access.\n",
+                        "deprecationMessage": "Disk replicas are deprecated and will be removed in a future release. The `disk` attribute will be enabled by default for 'cc' clusters",
                         "willReplaceOnChanges": true
                     },
                     "idleArrangementMergeEffort": {
@@ -6703,7 +6735,7 @@
             }
         },
         "materialize:index/sSODefaultRoles:SSODefaultRoles": {
-            "description": "The SSO default roles resource allows you to set the default roles for an SSO configuration. These roles will be assigned to users who sign in with SSO.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as materialize from \"@pulumi/materialize\";\n\nconst exampleSsoDefaultRoles = new materialize.SSODefaultRoles(\"exampleSsoDefaultRoles\", {\n    ssoConfigId: materialize_sso_config.example_sso_config.id,\n    roles: [\"Admin\"],\n});\nconst exampleSsoDefaultRoles2 = new materialize.SSODefaultRoles(\"exampleSsoDefaultRoles2\", {\n    ssoConfigId: materialize_sso_config.example_sso_config.id,\n    roles: [\n        \"Admin\",\n        \"Member\",\n    ],\n});\n```\n```python\nimport pulumi\nimport pulumi_materialize as materialize\n\nexample_sso_default_roles = materialize.SSODefaultRoles(\"exampleSsoDefaultRoles\",\n    sso_config_id=materialize_sso_config[\"example_sso_config\"][\"id\"],\n    roles=[\"Admin\"])\nexample_sso_default_roles2 = materialize.SSODefaultRoles(\"exampleSsoDefaultRoles2\",\n    sso_config_id=materialize_sso_config[\"example_sso_config\"][\"id\"],\n    roles=[\n        \"Admin\",\n        \"Member\",\n    ])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Materialize = Pulumi.Materialize;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var exampleSsoDefaultRoles = new Materialize.SSODefaultRoles(\"exampleSsoDefaultRoles\", new()\n    {\n        SsoConfigId = materialize_sso_config.Example_sso_config.Id,\n        Roles = new[]\n        {\n            \"Admin\",\n        },\n    });\n\n    var exampleSsoDefaultRoles2 = new Materialize.SSODefaultRoles(\"exampleSsoDefaultRoles2\", new()\n    {\n        SsoConfigId = materialize_sso_config.Example_sso_config.Id,\n        Roles = new[]\n        {\n            \"Admin\",\n            \"Member\",\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-materialize/sdk/go/materialize\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := materialize.NewSSODefaultRoles(ctx, \"exampleSsoDefaultRoles\", \u0026materialize.SSODefaultRolesArgs{\n\t\t\tSsoConfigId: pulumi.Any(materialize_sso_config.Example_sso_config.Id),\n\t\t\tRoles: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"Admin\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = materialize.NewSSODefaultRoles(ctx, \"exampleSsoDefaultRoles2\", \u0026materialize.SSODefaultRolesArgs{\n\t\t\tSsoConfigId: pulumi.Any(materialize_sso_config.Example_sso_config.Id),\n\t\t\tRoles: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"Admin\"),\n\t\t\t\tpulumi.String(\"Member\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.materialize.SSODefaultRoles;\nimport com.pulumi.materialize.SSODefaultRolesArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var exampleSsoDefaultRoles = new SSODefaultRoles(\"exampleSsoDefaultRoles\", SSODefaultRolesArgs.builder()        \n            .ssoConfigId(materialize_sso_config.example_sso_config().id())\n            .roles(\"Admin\")\n            .build());\n\n        var exampleSsoDefaultRoles2 = new SSODefaultRoles(\"exampleSsoDefaultRoles2\", SSODefaultRolesArgs.builder()        \n            .ssoConfigId(materialize_sso_config.example_sso_config().id())\n            .roles(            \n                \"Admin\",\n                \"Member\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  exampleSsoDefaultRoles:\n    type: materialize:SSODefaultRoles\n    properties:\n      ssoConfigId: ${materialize_sso_config.example_sso_config.id}\n      roles:\n        - Admin\n  exampleSsoDefaultRoles2:\n    type: materialize:SSODefaultRoles\n    properties:\n      ssoConfigId: ${materialize_sso_config.example_sso_config.id}\n      roles:\n        - Admin\n        - Member\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nDefault roles can be imported using the role id, which can be found using the `materialize_sso_config` data source\n\n```sh\n $ pulumi import materialize:index/sSODefaultRoles:SSODefaultRoles example_role \u003crole_id\u003e\n```\n\n ",
+            "description": "The SSO default roles resource allows you to set the default roles for an SSO configuration. These roles will be assigned to users who sign in with SSO.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as materialize from \"@pulumi/materialize\";\n\nconst exampleSsoDefaultRoles = new materialize.SSODefaultRoles(\"exampleSsoDefaultRoles\", {\n    ssoConfigId: materialize_sso_config.example_sso_config.id,\n    roles: [\"Admin\"],\n});\nconst exampleSsoDefaultRoles2 = new materialize.SSODefaultRoles(\"exampleSsoDefaultRoles2\", {\n    ssoConfigId: materialize_sso_config.example_sso_config.id,\n    roles: [\n        \"Admin\",\n        \"Member\",\n    ],\n});\n```\n```python\nimport pulumi\nimport pulumi_materialize as materialize\n\nexample_sso_default_roles = materialize.SSODefaultRoles(\"exampleSsoDefaultRoles\",\n    sso_config_id=materialize_sso_config[\"example_sso_config\"][\"id\"],\n    roles=[\"Admin\"])\nexample_sso_default_roles2 = materialize.SSODefaultRoles(\"exampleSsoDefaultRoles2\",\n    sso_config_id=materialize_sso_config[\"example_sso_config\"][\"id\"],\n    roles=[\n        \"Admin\",\n        \"Member\",\n    ])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Materialize = Pulumi.Materialize;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var exampleSsoDefaultRoles = new Materialize.SSODefaultRoles(\"exampleSsoDefaultRoles\", new()\n    {\n        SsoConfigId = materialize_sso_config.Example_sso_config.Id,\n        Roles = new[]\n        {\n            \"Admin\",\n        },\n    });\n\n    var exampleSsoDefaultRoles2 = new Materialize.SSODefaultRoles(\"exampleSsoDefaultRoles2\", new()\n    {\n        SsoConfigId = materialize_sso_config.Example_sso_config.Id,\n        Roles = new[]\n        {\n            \"Admin\",\n            \"Member\",\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-materialize/sdk/go/materialize\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := materialize.NewSSODefaultRoles(ctx, \"exampleSsoDefaultRoles\", \u0026materialize.SSODefaultRolesArgs{\n\t\t\tSsoConfigId: pulumi.Any(materialize_sso_config.Example_sso_config.Id),\n\t\t\tRoles: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"Admin\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = materialize.NewSSODefaultRoles(ctx, \"exampleSsoDefaultRoles2\", \u0026materialize.SSODefaultRolesArgs{\n\t\t\tSsoConfigId: pulumi.Any(materialize_sso_config.Example_sso_config.Id),\n\t\t\tRoles: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"Admin\"),\n\t\t\t\tpulumi.String(\"Member\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.materialize.SSODefaultRoles;\nimport com.pulumi.materialize.SSODefaultRolesArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var exampleSsoDefaultRoles = new SSODefaultRoles(\"exampleSsoDefaultRoles\", SSODefaultRolesArgs.builder()        \n            .ssoConfigId(materialize_sso_config.example_sso_config().id())\n            .roles(\"Admin\")\n            .build());\n\n        var exampleSsoDefaultRoles2 = new SSODefaultRoles(\"exampleSsoDefaultRoles2\", SSODefaultRolesArgs.builder()        \n            .ssoConfigId(materialize_sso_config.example_sso_config().id())\n            .roles(            \n                \"Admin\",\n                \"Member\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  exampleSsoDefaultRoles:\n    type: materialize:SSODefaultRoles\n    properties:\n      ssoConfigId: ${materialize_sso_config.example_sso_config.id}\n      roles:\n        - Admin\n  exampleSsoDefaultRoles2:\n    type: materialize:SSODefaultRoles\n    properties:\n      ssoConfigId: ${materialize_sso_config.example_sso_config.id}\n      roles:\n        - Admin\n        - Member\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nDefault roles can be imported using the role id, which can be found using the `materialize_sso_config` data source\n\n```sh\n $ pulumi import materialize:index/sSODefaultRoles:SSODefaultRoles example_role \u003cconfiguration_id\u003e\n```\n\n ",
             "properties": {
                 "roles": {
                     "type": "array",
@@ -8509,6 +8541,66 @@
                 "type": "object"
             }
         },
+        "materialize:index/systemParameter:SystemParameter": {
+            "description": "Manages a system parameter in Materialize.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as materialize from \"@pulumi/materialize\";\n\n// ALTER SYSTEM SET cluster TO 'cluster_name';\nconst exampleSystemParameter = new materialize.SystemParameter(\"exampleSystemParameter\", {value: \"cluster_name\"});\n```\n```python\nimport pulumi\nimport pulumi_materialize as materialize\n\n# ALTER SYSTEM SET cluster TO 'cluster_name';\nexample_system_parameter = materialize.SystemParameter(\"exampleSystemParameter\", value=\"cluster_name\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Materialize = Pulumi.Materialize;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // ALTER SYSTEM SET cluster TO 'cluster_name';\n    var exampleSystemParameter = new Materialize.SystemParameter(\"exampleSystemParameter\", new()\n    {\n        Value = \"cluster_name\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-materialize/sdk/go/materialize\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := materialize.NewSystemParameter(ctx, \"exampleSystemParameter\", \u0026materialize.SystemParameterArgs{\n\t\t\tValue: pulumi.String(\"cluster_name\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.materialize.SystemParameter;\nimport com.pulumi.materialize.SystemParameterArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var exampleSystemParameter = new SystemParameter(\"exampleSystemParameter\", SystemParameterArgs.builder()        \n            .value(\"cluster_name\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # ALTER SYSTEM SET cluster TO 'cluster_name';\n  exampleSystemParameter:\n    type: materialize:SystemParameter\n    properties:\n      value: cluster_name\n```\n{{% /example %}}\n{{% /examples %}}",
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "description": "The name of the system parameter.\n"
+                },
+                "region": {
+                    "type": "string",
+                    "description": "The region to use for the resource connection. If not set, the default region is used.\n"
+                },
+                "value": {
+                    "type": "string",
+                    "description": "The value to set for the system parameter.\n"
+                }
+            },
+            "required": [
+                "name",
+                "value"
+            ],
+            "inputProperties": {
+                "name": {
+                    "type": "string",
+                    "description": "The name of the system parameter.\n",
+                    "willReplaceOnChanges": true
+                },
+                "region": {
+                    "type": "string",
+                    "description": "The region to use for the resource connection. If not set, the default region is used.\n",
+                    "willReplaceOnChanges": true
+                },
+                "value": {
+                    "type": "string",
+                    "description": "The value to set for the system parameter.\n"
+                }
+            },
+            "requiredInputs": [
+                "value"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering SystemParameter resources.\n",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "description": "The name of the system parameter.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "region": {
+                        "type": "string",
+                        "description": "The region to use for the resource connection. If not set, the default region is used.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "value": {
+                        "type": "string",
+                        "description": "The value to set for the system parameter.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
         "materialize:index/table:Table": {
             "description": "A table persists durable storage that can be written to, updated and seamlessly joined with other tables, views or sources\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as materialize from \"@pulumi/materialize\";\n\nconst simpleTable = new materialize.Table(\"simpleTable\", {\n    schemaName: materialize_schema.schema.name,\n    databaseName: materialize_database.database.name,\n    columns: [\n        {\n            name: \"column_1\",\n            type: \"text\",\n        },\n        {\n            name: \"column_2\",\n            type: \"int\",\n        },\n        {\n            name: \"column_3\",\n            type: \"text\",\n            nullable: true,\n        },\n    ],\n});\n```\n```python\nimport pulumi\nimport pulumi_materialize as materialize\n\nsimple_table = materialize.Table(\"simpleTable\",\n    schema_name=materialize_schema[\"schema\"][\"name\"],\n    database_name=materialize_database[\"database\"][\"name\"],\n    columns=[\n        materialize.TableColumnArgs(\n            name=\"column_1\",\n            type=\"text\",\n        ),\n        materialize.TableColumnArgs(\n            name=\"column_2\",\n            type=\"int\",\n        ),\n        materialize.TableColumnArgs(\n            name=\"column_3\",\n            type=\"text\",\n            nullable=True,\n        ),\n    ])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Materialize = Pulumi.Materialize;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var simpleTable = new Materialize.Table(\"simpleTable\", new()\n    {\n        SchemaName = materialize_schema.Schema.Name,\n        DatabaseName = materialize_database.Database.Name,\n        Columns = new[]\n        {\n            new Materialize.Inputs.TableColumnArgs\n            {\n                Name = \"column_1\",\n                Type = \"text\",\n            },\n            new Materialize.Inputs.TableColumnArgs\n            {\n                Name = \"column_2\",\n                Type = \"int\",\n            },\n            new Materialize.Inputs.TableColumnArgs\n            {\n                Name = \"column_3\",\n                Type = \"text\",\n                Nullable = true,\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-materialize/sdk/go/materialize\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := materialize.NewTable(ctx, \"simpleTable\", \u0026materialize.TableArgs{\n\t\t\tSchemaName:   pulumi.Any(materialize_schema.Schema.Name),\n\t\t\tDatabaseName: pulumi.Any(materialize_database.Database.Name),\n\t\t\tColumns: materialize.TableColumnArray{\n\t\t\t\t\u0026materialize.TableColumnArgs{\n\t\t\t\t\tName: pulumi.String(\"column_1\"),\n\t\t\t\t\tType: pulumi.String(\"text\"),\n\t\t\t\t},\n\t\t\t\t\u0026materialize.TableColumnArgs{\n\t\t\t\t\tName: pulumi.String(\"column_2\"),\n\t\t\t\t\tType: pulumi.String(\"int\"),\n\t\t\t\t},\n\t\t\t\t\u0026materialize.TableColumnArgs{\n\t\t\t\t\tName:     pulumi.String(\"column_3\"),\n\t\t\t\t\tType:     pulumi.String(\"text\"),\n\t\t\t\t\tNullable: pulumi.Bool(true),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.materialize.Table;\nimport com.pulumi.materialize.TableArgs;\nimport com.pulumi.materialize.inputs.TableColumnArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var simpleTable = new Table(\"simpleTable\", TableArgs.builder()        \n            .schemaName(materialize_schema.schema().name())\n            .databaseName(materialize_database.database().name())\n            .columns(            \n                TableColumnArgs.builder()\n                    .name(\"column_1\")\n                    .type(\"text\")\n                    .build(),\n                TableColumnArgs.builder()\n                    .name(\"column_2\")\n                    .type(\"int\")\n                    .build(),\n                TableColumnArgs.builder()\n                    .name(\"column_3\")\n                    .type(\"text\")\n                    .nullable(true)\n                    .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  simpleTable:\n    type: materialize:Table\n    properties:\n      schemaName: ${materialize_schema.schema.name}\n      databaseName: ${materialize_database.database.name}\n      columns:\n        - name: column_1\n          type: text\n        - name: column_2\n          type: int\n        - name: column_3\n          type: text\n          nullable: true\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nTables can be imported using the table id\n\n```sh\n $ pulumi import materialize:index/table:Table example_table \u003cregion\u003e:\u003ctable_id\u003e\n```\n\n Table id and information be found in the `mz_catalog.mz_tables` table The region is the region where the database is located (e.g. aws/us-east-1) ",
             "properties": {
@@ -9629,6 +9721,34 @@
                 "required": [
                     "region",
                     "sources",
+                    "id"
+                ]
+            }
+        },
+        "materialize:index/getSystemParameters:GetSystemParameters": {
+            "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as materialize from \"@pulumi/materialize\";\n\nconst all = materialize.GetSystemParameters({});\n```\n```python\nimport pulumi\nimport pulumi_materialize as materialize\n\nall = materialize.get_system_parameters()\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Materialize = Pulumi.Materialize;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var all = Materialize.GetSystemParameters.Invoke();\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-materialize/sdk/go/materialize\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := materialize.GetSystemParameters(ctx, nil, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.materialize.MaterializeFunctions;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var all = MaterializeFunctions.GetSystemParameters();\n\n    }\n}\n```\n```yaml\nvariables:\n  all:\n    fn::invoke:\n      Function: materialize:GetSystemParameters\n      Arguments: {}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "outputs": {
+                "description": "A collection of values returned by GetSystemParameters.\n",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "parameters": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/materialize:index/GetSystemParametersParameter:GetSystemParametersParameter"
+                        }
+                    },
+                    "region": {
+                        "type": "string",
+                        "description": "The region in which the resource is located.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "parameters",
+                    "region",
                     "id"
                 ]
             }
