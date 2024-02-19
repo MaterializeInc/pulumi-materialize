@@ -305,6 +305,45 @@
                 "name"
             ]
         },
+        "materialize:index/ConnectionKafkaAwsPrivatelink:ConnectionKafkaAwsPrivatelink": {
+            "properties": {
+                "privatelinkConnection": {
+                    "$ref": "#/types/materialize:index/ConnectionKafkaAwsPrivatelinkPrivatelinkConnection:ConnectionKafkaAwsPrivatelinkPrivatelinkConnection",
+                    "description": "The AWS PrivateLink connection name in Materialize.\n",
+                    "willReplaceOnChanges": true
+                },
+                "privatelinkConnectionPort": {
+                    "type": "integer",
+                    "description": "The port of the AWS PrivateLink connection.\n",
+                    "willReplaceOnChanges": true
+                }
+            },
+            "type": "object",
+            "required": [
+                "privatelinkConnection",
+                "privatelinkConnectionPort"
+            ]
+        },
+        "materialize:index/ConnectionKafkaAwsPrivatelinkPrivatelinkConnection:ConnectionKafkaAwsPrivatelinkPrivatelinkConnection": {
+            "properties": {
+                "databaseName": {
+                    "type": "string",
+                    "description": "The identifier for the connection database. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The identifier for the connection.\n"
+                },
+                "schemaName": {
+                    "type": "string",
+                    "description": "The identifier for the connection schema. Defaults to `public`.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "name"
+            ]
+        },
         "materialize:index/ConnectionKafkaKafkaBroker:ConnectionKafkaKafkaBroker": {
             "properties": {
                 "availabilityZone": {
@@ -3495,6 +3534,10 @@
         "materialize:index/connectionKafka:ConnectionKafka": {
             "description": "A Kafka connection establishes a link to a Kafka cluster.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as materialize from \"@pulumi/materialize\";\n\n// Create a Kafka Connection\nconst exampleKafkaConnection = new materialize.ConnectionKafka(\"exampleKafkaConnection\", {\n    kafkaBrokers: [{\n        broker: \"b-1.hostname-1:9096\",\n    }],\n    progressTopic: \"example\",\n    saslMechanisms: \"SCRAM-SHA-256\",\n    saslPassword: {\n        databaseName: \"materialize\",\n        name: \"kafka_password\",\n        schemaName: \"public\",\n    },\n    saslUsername: {\n        text: \"user\",\n    },\n});\nconst exampleKafkaConnectionMultipleBrokers = new materialize.ConnectionKafka(\"exampleKafkaConnectionMultipleBrokers\", {kafkaBrokers: [\n    {\n        availabilityZone: \"use1-az1\",\n        broker: \"b-1.hostname-1:9096\",\n        privatelinkConnection: {\n            databaseName: \"materialize\",\n            name: \"example_aws_privatelink_conn\",\n            schemaName: \"public\",\n        },\n        targetGroupPort: 9001,\n    },\n    {\n        availabilityZone: \"use1-az2\",\n        broker: \"b-2.hostname-2:9096\",\n        privatelinkConnection: {\n            databaseName: \"materialize\",\n            name: \"example_aws_privatelink_conn\",\n            schemaName: \"public\",\n        },\n        targetGroupPort: 9002,\n    },\n]});\n```\n```python\nimport pulumi\nimport pulumi_materialize as materialize\n\n# Create a Kafka Connection\nexample_kafka_connection = materialize.ConnectionKafka(\"exampleKafkaConnection\",\n    kafka_brokers=[materialize.ConnectionKafkaKafkaBrokerArgs(\n        broker=\"b-1.hostname-1:9096\",\n    )],\n    progress_topic=\"example\",\n    sasl_mechanisms=\"SCRAM-SHA-256\",\n    sasl_password=materialize.ConnectionKafkaSaslPasswordArgs(\n        database_name=\"materialize\",\n        name=\"kafka_password\",\n        schema_name=\"public\",\n    ),\n    sasl_username=materialize.ConnectionKafkaSaslUsernameArgs(\n        text=\"user\",\n    ))\nexample_kafka_connection_multiple_brokers = materialize.ConnectionKafka(\"exampleKafkaConnectionMultipleBrokers\", kafka_brokers=[\n    materialize.ConnectionKafkaKafkaBrokerArgs(\n        availability_zone=\"use1-az1\",\n        broker=\"b-1.hostname-1:9096\",\n        privatelink_connection=materialize.ConnectionKafkaKafkaBrokerPrivatelinkConnectionArgs(\n            database_name=\"materialize\",\n            name=\"example_aws_privatelink_conn\",\n            schema_name=\"public\",\n        ),\n        target_group_port=9001,\n    ),\n    materialize.ConnectionKafkaKafkaBrokerArgs(\n        availability_zone=\"use1-az2\",\n        broker=\"b-2.hostname-2:9096\",\n        privatelink_connection=materialize.ConnectionKafkaKafkaBrokerPrivatelinkConnectionArgs(\n            database_name=\"materialize\",\n            name=\"example_aws_privatelink_conn\",\n            schema_name=\"public\",\n        ),\n        target_group_port=9002,\n    ),\n])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Materialize = Pulumi.Materialize;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // Create a Kafka Connection\n    var exampleKafkaConnection = new Materialize.ConnectionKafka(\"exampleKafkaConnection\", new()\n    {\n        KafkaBrokers = new[]\n        {\n            new Materialize.Inputs.ConnectionKafkaKafkaBrokerArgs\n            {\n                Broker = \"b-1.hostname-1:9096\",\n            },\n        },\n        ProgressTopic = \"example\",\n        SaslMechanisms = \"SCRAM-SHA-256\",\n        SaslPassword = new Materialize.Inputs.ConnectionKafkaSaslPasswordArgs\n        {\n            DatabaseName = \"materialize\",\n            Name = \"kafka_password\",\n            SchemaName = \"public\",\n        },\n        SaslUsername = new Materialize.Inputs.ConnectionKafkaSaslUsernameArgs\n        {\n            Text = \"user\",\n        },\n    });\n\n    var exampleKafkaConnectionMultipleBrokers = new Materialize.ConnectionKafka(\"exampleKafkaConnectionMultipleBrokers\", new()\n    {\n        KafkaBrokers = new[]\n        {\n            new Materialize.Inputs.ConnectionKafkaKafkaBrokerArgs\n            {\n                AvailabilityZone = \"use1-az1\",\n                Broker = \"b-1.hostname-1:9096\",\n                PrivatelinkConnection = new Materialize.Inputs.ConnectionKafkaKafkaBrokerPrivatelinkConnectionArgs\n                {\n                    DatabaseName = \"materialize\",\n                    Name = \"example_aws_privatelink_conn\",\n                    SchemaName = \"public\",\n                },\n                TargetGroupPort = 9001,\n            },\n            new Materialize.Inputs.ConnectionKafkaKafkaBrokerArgs\n            {\n                AvailabilityZone = \"use1-az2\",\n                Broker = \"b-2.hostname-2:9096\",\n                PrivatelinkConnection = new Materialize.Inputs.ConnectionKafkaKafkaBrokerPrivatelinkConnectionArgs\n                {\n                    DatabaseName = \"materialize\",\n                    Name = \"example_aws_privatelink_conn\",\n                    SchemaName = \"public\",\n                },\n                TargetGroupPort = 9002,\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-materialize/sdk/go/materialize\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := materialize.NewConnectionKafka(ctx, \"exampleKafkaConnection\", \u0026materialize.ConnectionKafkaArgs{\n\t\t\tKafkaBrokers: materialize.ConnectionKafkaKafkaBrokerArray{\n\t\t\t\t\u0026materialize.ConnectionKafkaKafkaBrokerArgs{\n\t\t\t\t\tBroker: pulumi.String(\"b-1.hostname-1:9096\"),\n\t\t\t\t},\n\t\t\t},\n\t\t\tProgressTopic:  pulumi.String(\"example\"),\n\t\t\tSaslMechanisms: pulumi.String(\"SCRAM-SHA-256\"),\n\t\t\tSaslPassword: \u0026materialize.ConnectionKafkaSaslPasswordArgs{\n\t\t\t\tDatabaseName: pulumi.String(\"materialize\"),\n\t\t\t\tName:         pulumi.String(\"kafka_password\"),\n\t\t\t\tSchemaName:   pulumi.String(\"public\"),\n\t\t\t},\n\t\t\tSaslUsername: \u0026materialize.ConnectionKafkaSaslUsernameArgs{\n\t\t\t\tText: pulumi.String(\"user\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = materialize.NewConnectionKafka(ctx, \"exampleKafkaConnectionMultipleBrokers\", \u0026materialize.ConnectionKafkaArgs{\n\t\t\tKafkaBrokers: materialize.ConnectionKafkaKafkaBrokerArray{\n\t\t\t\t\u0026materialize.ConnectionKafkaKafkaBrokerArgs{\n\t\t\t\t\tAvailabilityZone: pulumi.String(\"use1-az1\"),\n\t\t\t\t\tBroker:           pulumi.String(\"b-1.hostname-1:9096\"),\n\t\t\t\t\tPrivatelinkConnection: \u0026materialize.ConnectionKafkaKafkaBrokerPrivatelinkConnectionArgs{\n\t\t\t\t\t\tDatabaseName: pulumi.String(\"materialize\"),\n\t\t\t\t\t\tName:         pulumi.String(\"example_aws_privatelink_conn\"),\n\t\t\t\t\t\tSchemaName:   pulumi.String(\"public\"),\n\t\t\t\t\t},\n\t\t\t\t\tTargetGroupPort: pulumi.Int(9001),\n\t\t\t\t},\n\t\t\t\t\u0026materialize.ConnectionKafkaKafkaBrokerArgs{\n\t\t\t\t\tAvailabilityZone: pulumi.String(\"use1-az2\"),\n\t\t\t\t\tBroker:           pulumi.String(\"b-2.hostname-2:9096\"),\n\t\t\t\t\tPrivatelinkConnection: \u0026materialize.ConnectionKafkaKafkaBrokerPrivatelinkConnectionArgs{\n\t\t\t\t\t\tDatabaseName: pulumi.String(\"materialize\"),\n\t\t\t\t\t\tName:         pulumi.String(\"example_aws_privatelink_conn\"),\n\t\t\t\t\t\tSchemaName:   pulumi.String(\"public\"),\n\t\t\t\t\t},\n\t\t\t\t\tTargetGroupPort: pulumi.Int(9002),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.materialize.ConnectionKafka;\nimport com.pulumi.materialize.ConnectionKafkaArgs;\nimport com.pulumi.materialize.inputs.ConnectionKafkaKafkaBrokerArgs;\nimport com.pulumi.materialize.inputs.ConnectionKafkaSaslPasswordArgs;\nimport com.pulumi.materialize.inputs.ConnectionKafkaSaslUsernameArgs;\nimport com.pulumi.materialize.inputs.ConnectionKafkaKafkaBrokerPrivatelinkConnectionArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var exampleKafkaConnection = new ConnectionKafka(\"exampleKafkaConnection\", ConnectionKafkaArgs.builder()        \n            .kafkaBrokers(ConnectionKafkaKafkaBrokerArgs.builder()\n                .broker(\"b-1.hostname-1:9096\")\n                .build())\n            .progressTopic(\"example\")\n            .saslMechanisms(\"SCRAM-SHA-256\")\n            .saslPassword(ConnectionKafkaSaslPasswordArgs.builder()\n                .databaseName(\"materialize\")\n                .name(\"kafka_password\")\n                .schemaName(\"public\")\n                .build())\n            .saslUsername(ConnectionKafkaSaslUsernameArgs.builder()\n                .text(\"user\")\n                .build())\n            .build());\n\n        var exampleKafkaConnectionMultipleBrokers = new ConnectionKafka(\"exampleKafkaConnectionMultipleBrokers\", ConnectionKafkaArgs.builder()        \n            .kafkaBrokers(            \n                ConnectionKafkaKafkaBrokerArgs.builder()\n                    .availabilityZone(\"use1-az1\")\n                    .broker(\"b-1.hostname-1:9096\")\n                    .privatelinkConnection(ConnectionKafkaKafkaBrokerPrivatelinkConnectionArgs.builder()\n                        .databaseName(\"materialize\")\n                        .name(\"example_aws_privatelink_conn\")\n                        .schemaName(\"public\")\n                        .build())\n                    .targetGroupPort(\"9001\")\n                    .build(),\n                ConnectionKafkaKafkaBrokerArgs.builder()\n                    .availabilityZone(\"use1-az2\")\n                    .broker(\"b-2.hostname-2:9096\")\n                    .privatelinkConnection(ConnectionKafkaKafkaBrokerPrivatelinkConnectionArgs.builder()\n                        .databaseName(\"materialize\")\n                        .name(\"example_aws_privatelink_conn\")\n                        .schemaName(\"public\")\n                        .build())\n                    .targetGroupPort(\"9002\")\n                    .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # Create a Kafka Connection\n  exampleKafkaConnection:\n    type: materialize:ConnectionKafka\n    properties:\n      kafkaBrokers:\n        - broker: b-1.hostname-1:9096\n      progressTopic: example\n      saslMechanisms: SCRAM-SHA-256\n      saslPassword:\n        databaseName: materialize\n        name: kafka_password\n        schemaName: public\n      saslUsername:\n        text: user\n  exampleKafkaConnectionMultipleBrokers:\n    type: materialize:ConnectionKafka\n    properties:\n      kafkaBrokers:\n        - availabilityZone: use1-az1\n          broker: b-1.hostname-1:9096\n          privatelinkConnection:\n            databaseName: materialize\n            name: example_aws_privatelink_conn\n            schemaName: public\n          targetGroupPort: '9001'\n        - availabilityZone: use1-az2\n          broker: b-2.hostname-2:9096\n          privatelinkConnection:\n            databaseName: materialize\n            name: example_aws_privatelink_conn\n            schemaName: public\n          targetGroupPort: '9002'\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nConnections can be imported using the connection id\n\n```sh\n $ pulumi import materialize:index/connectionKafka:ConnectionKafka example \u003cregion\u003e:\u003cconnection_id\u003e\n```\n\n Connection id and information be found in the `mz_catalog.mz_connections` table The region is the region where the database is located (e.g. aws/us-east-1) ",
             "properties": {
+                "awsPrivatelink": {
+                    "$ref": "#/types/materialize:index/ConnectionKafkaAwsPrivatelink:ConnectionKafkaAwsPrivatelink",
+                    "description": "AWS PrivateLink configuration. Conflicts with `kafka_broker`.\n"
+                },
                 "comment": {
                     "type": "string",
                     "description": "**Public Preview** Comment on an object in the database.\n"
@@ -3508,7 +3551,7 @@
                     "items": {
                         "$ref": "#/types/materialize:index/ConnectionKafkaKafkaBroker:ConnectionKafkaKafkaBroker"
                     },
-                    "description": "The Kafka brokers configuration.\n"
+                    "description": "The Kafka broker's configuration.\n"
                 },
                 "name": {
                     "type": "string",
@@ -3572,12 +3615,16 @@
                 }
             },
             "required": [
-                "kafkaBrokers",
                 "name",
                 "ownershipRole",
                 "qualifiedSqlName"
             ],
             "inputProperties": {
+                "awsPrivatelink": {
+                    "$ref": "#/types/materialize:index/ConnectionKafkaAwsPrivatelink:ConnectionKafkaAwsPrivatelink",
+                    "description": "AWS PrivateLink configuration. Conflicts with `kafka_broker`.\n",
+                    "willReplaceOnChanges": true
+                },
                 "comment": {
                     "type": "string",
                     "description": "**Public Preview** Comment on an object in the database.\n"
@@ -3592,7 +3639,7 @@
                     "items": {
                         "$ref": "#/types/materialize:index/ConnectionKafkaKafkaBroker:ConnectionKafkaKafkaBroker"
                     },
-                    "description": "The Kafka brokers configuration.\n",
+                    "description": "The Kafka broker's configuration.\n",
                     "willReplaceOnChanges": true
                 },
                 "name": {
@@ -3663,12 +3710,14 @@
                     "description": "**Private Preview** If the connection should wait for validation.\n"
                 }
             },
-            "requiredInputs": [
-                "kafkaBrokers"
-            ],
             "stateInputs": {
                 "description": "Input properties used for looking up and filtering ConnectionKafka resources.\n",
                 "properties": {
+                    "awsPrivatelink": {
+                        "$ref": "#/types/materialize:index/ConnectionKafkaAwsPrivatelink:ConnectionKafkaAwsPrivatelink",
+                        "description": "AWS PrivateLink configuration. Conflicts with `kafka_broker`.\n",
+                        "willReplaceOnChanges": true
+                    },
                     "comment": {
                         "type": "string",
                         "description": "**Public Preview** Comment on an object in the database.\n"
@@ -3683,7 +3732,7 @@
                         "items": {
                             "$ref": "#/types/materialize:index/ConnectionKafkaKafkaBroker:ConnectionKafkaKafkaBroker"
                         },
-                        "description": "The Kafka brokers configuration.\n",
+                        "description": "The Kafka broker's configuration.\n",
                         "willReplaceOnChanges": true
                     },
                     "name": {
