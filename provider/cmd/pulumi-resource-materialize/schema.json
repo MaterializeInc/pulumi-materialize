@@ -120,6 +120,96 @@
         }
     },
     "types": {
+        "materialize:index/ConnectionAwsAccessKeyId:ConnectionAwsAccessKeyId": {
+            "properties": {
+                "secret": {
+                    "$ref": "#/types/materialize:index/ConnectionAwsAccessKeyIdSecret:ConnectionAwsAccessKeyIdSecret",
+                    "description": "The `access_key_id` secret value. Conflicts with `text` within this block.\n",
+                    "willReplaceOnChanges": true
+                },
+                "text": {
+                    "type": "string",
+                    "description": "The `access_key_id` text value. Conflicts with `secret` within this block\n",
+                    "secret": true
+                }
+            },
+            "type": "object"
+        },
+        "materialize:index/ConnectionAwsAccessKeyIdSecret:ConnectionAwsAccessKeyIdSecret": {
+            "properties": {
+                "databaseName": {
+                    "type": "string",
+                    "description": "The identifier for the connection database in Materialize. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The identifier for the connection.\n"
+                },
+                "schemaName": {
+                    "type": "string",
+                    "description": "The identifier for the connection schema in Materialize. Defaults to `public`.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "name"
+            ]
+        },
+        "materialize:index/ConnectionAwsSecretAccessKey:ConnectionAwsSecretAccessKey": {
+            "properties": {
+                "databaseName": {
+                    "type": "string",
+                    "description": "The secret*access*key database name. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The secret*access*key name.\n"
+                },
+                "schemaName": {
+                    "type": "string",
+                    "description": "The secret*access*key schema name. Defaults to `public`.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "name"
+            ]
+        },
+        "materialize:index/ConnectionAwsSessionToken:ConnectionAwsSessionToken": {
+            "properties": {
+                "secret": {
+                    "$ref": "#/types/materialize:index/ConnectionAwsSessionTokenSecret:ConnectionAwsSessionTokenSecret",
+                    "description": "The `session_token` secret value. Conflicts with `text` within this block.\n",
+                    "willReplaceOnChanges": true
+                },
+                "text": {
+                    "type": "string",
+                    "description": "The `session_token` text value. Conflicts with `secret` within this block\n",
+                    "secret": true
+                }
+            },
+            "type": "object"
+        },
+        "materialize:index/ConnectionAwsSessionTokenSecret:ConnectionAwsSessionTokenSecret": {
+            "properties": {
+                "databaseName": {
+                    "type": "string",
+                    "description": "The identifier for the connection database in Materialize. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The identifier for the connection.\n"
+                },
+                "schemaName": {
+                    "type": "string",
+                    "description": "The identifier for the connection schema in Materialize. Defaults to `public`.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "name"
+            ]
+        },
         "materialize:index/ConnectionConfluentSchemaRegistryAwsPrivatelink:ConnectionConfluentSchemaRegistryAwsPrivatelink": {
             "properties": {
                 "databaseName": {
@@ -214,7 +304,7 @@
             "properties": {
                 "databaseName": {
                     "type": "string",
-                    "description": "The identifier for the connection database. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
+                    "description": "The identifier for the connection database in Materialize. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
                 },
                 "name": {
                     "type": "string",
@@ -222,7 +312,7 @@
                 },
                 "schemaName": {
                     "type": "string",
-                    "description": "The identifier for the connection schema. Defaults to `public`.\n"
+                    "description": "The identifier for the connection schema in Materialize. Defaults to `public`.\n"
                 }
             },
             "type": "object",
@@ -234,7 +324,7 @@
             "properties": {
                 "databaseName": {
                     "type": "string",
-                    "description": "The identifier for the connection database. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
+                    "description": "The identifier for the connection database in Materialize. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
                 },
                 "name": {
                     "type": "string",
@@ -242,7 +332,7 @@
                 },
                 "schemaName": {
                     "type": "string",
-                    "description": "The identifier for the connection schema. Defaults to `public`.\n"
+                    "description": "The identifier for the connection schema in Materialize. Defaults to `public`.\n"
                 }
             },
             "type": "object",
@@ -289,7 +379,7 @@
             "properties": {
                 "databaseName": {
                     "type": "string",
-                    "description": "The identifier for the connection database. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
+                    "description": "The identifier for the connection database in Materialize. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
                 },
                 "name": {
                     "type": "string",
@@ -297,7 +387,7 @@
                 },
                 "schemaName": {
                     "type": "string",
-                    "description": "The identifier for the connection schema. Defaults to `public`.\n"
+                    "description": "The identifier for the connection schema in Materialize. Defaults to `public`.\n"
                 }
             },
             "type": "object",
@@ -328,7 +418,7 @@
             "properties": {
                 "databaseName": {
                     "type": "string",
-                    "description": "The identifier for the connection database. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
+                    "description": "The identifier for the connection database in Materialize. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
                 },
                 "name": {
                     "type": "string",
@@ -336,7 +426,7 @@
                 },
                 "schemaName": {
                     "type": "string",
-                    "description": "The identifier for the connection schema. Defaults to `public`.\n"
+                    "description": "The identifier for the connection schema in Materialize. Defaults to `public`.\n"
                 }
             },
             "type": "object",
@@ -378,7 +468,7 @@
             "properties": {
                 "databaseName": {
                     "type": "string",
-                    "description": "The identifier for the connection database. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
+                    "description": "The identifier for the connection database in Materialize. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
                 },
                 "name": {
                     "type": "string",
@@ -386,7 +476,7 @@
                 },
                 "schemaName": {
                     "type": "string",
-                    "description": "The identifier for the connection schema. Defaults to `public`.\n"
+                    "description": "The identifier for the connection schema in Materialize. Defaults to `public`.\n"
                 }
             },
             "type": "object",
@@ -453,7 +543,7 @@
             "properties": {
                 "databaseName": {
                     "type": "string",
-                    "description": "The identifier for the connection database. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
+                    "description": "The identifier for the connection database in Materialize. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
                 },
                 "name": {
                     "type": "string",
@@ -461,7 +551,7 @@
                 },
                 "schemaName": {
                     "type": "string",
-                    "description": "The identifier for the connection schema. Defaults to `public`.\n"
+                    "description": "The identifier for the connection schema in Materialize. Defaults to `public`.\n"
                 }
             },
             "type": "object",
@@ -523,7 +613,7 @@
             "properties": {
                 "databaseName": {
                     "type": "string",
-                    "description": "The identifier for the connection database. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
+                    "description": "The identifier for the connection database in Materialize. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
                 },
                 "name": {
                     "type": "string",
@@ -531,7 +621,7 @@
                 },
                 "schemaName": {
                     "type": "string",
-                    "description": "The identifier for the connection schema. Defaults to `public`.\n"
+                    "description": "The identifier for the connection schema in Materialize. Defaults to `public`.\n"
                 }
             },
             "type": "object",
@@ -543,7 +633,7 @@
             "properties": {
                 "databaseName": {
                     "type": "string",
-                    "description": "The identifier for the connection database. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
+                    "description": "The identifier for the connection database in Materialize. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
                 },
                 "name": {
                     "type": "string",
@@ -551,7 +641,7 @@
                 },
                 "schemaName": {
                     "type": "string",
-                    "description": "The identifier for the connection schema. Defaults to `public`.\n"
+                    "description": "The identifier for the connection schema in Materialize. Defaults to `public`.\n"
                 }
             },
             "type": "object",
@@ -572,6 +662,191 @@
                 "schemaName": {
                     "type": "string",
                     "description": "The ssl_key schema name. Defaults to `public`.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "name"
+            ]
+        },
+        "materialize:index/ConnectionMysqlAwsPrivatelink:ConnectionMysqlAwsPrivatelink": {
+            "properties": {
+                "databaseName": {
+                    "type": "string",
+                    "description": "The aws_privatelink database name. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The aws_privatelink name.\n"
+                },
+                "schemaName": {
+                    "type": "string",
+                    "description": "The aws_privatelink schema name. Defaults to `public`.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "name"
+            ]
+        },
+        "materialize:index/ConnectionMysqlPassword:ConnectionMysqlPassword": {
+            "properties": {
+                "databaseName": {
+                    "type": "string",
+                    "description": "The password database name. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The password name.\n"
+                },
+                "schemaName": {
+                    "type": "string",
+                    "description": "The password schema name. Defaults to `public`.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "name"
+            ]
+        },
+        "materialize:index/ConnectionMysqlSshTunnel:ConnectionMysqlSshTunnel": {
+            "properties": {
+                "databaseName": {
+                    "type": "string",
+                    "description": "The ssh_tunnel database name. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The ssh_tunnel name.\n"
+                },
+                "schemaName": {
+                    "type": "string",
+                    "description": "The ssh_tunnel schema name. Defaults to `public`.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "name"
+            ]
+        },
+        "materialize:index/ConnectionMysqlSslCertificate:ConnectionMysqlSslCertificate": {
+            "properties": {
+                "secret": {
+                    "$ref": "#/types/materialize:index/ConnectionMysqlSslCertificateSecret:ConnectionMysqlSslCertificateSecret",
+                    "description": "The `ssl_certificate` secret value. Conflicts with `text` within this block.\n",
+                    "willReplaceOnChanges": true
+                },
+                "text": {
+                    "type": "string",
+                    "description": "The `ssl_certificate` text value. Conflicts with `secret` within this block\n",
+                    "secret": true
+                }
+            },
+            "type": "object"
+        },
+        "materialize:index/ConnectionMysqlSslCertificateAuthority:ConnectionMysqlSslCertificateAuthority": {
+            "properties": {
+                "secret": {
+                    "$ref": "#/types/materialize:index/ConnectionMysqlSslCertificateAuthoritySecret:ConnectionMysqlSslCertificateAuthoritySecret",
+                    "description": "The `ssl_certificate_authority` secret value. Conflicts with `text` within this block.\n",
+                    "willReplaceOnChanges": true
+                },
+                "text": {
+                    "type": "string",
+                    "description": "The `ssl_certificate_authority` text value. Conflicts with `secret` within this block\n",
+                    "secret": true
+                }
+            },
+            "type": "object"
+        },
+        "materialize:index/ConnectionMysqlSslCertificateAuthoritySecret:ConnectionMysqlSslCertificateAuthoritySecret": {
+            "properties": {
+                "databaseName": {
+                    "type": "string",
+                    "description": "The identifier for the connection database in Materialize. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The identifier for the connection.\n"
+                },
+                "schemaName": {
+                    "type": "string",
+                    "description": "The identifier for the connection schema in Materialize. Defaults to `public`.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "name"
+            ]
+        },
+        "materialize:index/ConnectionMysqlSslCertificateSecret:ConnectionMysqlSslCertificateSecret": {
+            "properties": {
+                "databaseName": {
+                    "type": "string",
+                    "description": "The identifier for the connection database in Materialize. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The identifier for the connection.\n"
+                },
+                "schemaName": {
+                    "type": "string",
+                    "description": "The identifier for the connection schema in Materialize. Defaults to `public`.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "name"
+            ]
+        },
+        "materialize:index/ConnectionMysqlSslKey:ConnectionMysqlSslKey": {
+            "properties": {
+                "databaseName": {
+                    "type": "string",
+                    "description": "The ssl_key database name. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The ssl_key name.\n"
+                },
+                "schemaName": {
+                    "type": "string",
+                    "description": "The ssl_key schema name. Defaults to `public`.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "name"
+            ]
+        },
+        "materialize:index/ConnectionMysqlUser:ConnectionMysqlUser": {
+            "properties": {
+                "secret": {
+                    "$ref": "#/types/materialize:index/ConnectionMysqlUserSecret:ConnectionMysqlUserSecret",
+                    "description": "The `user` secret value. Conflicts with `text` within this block.\n",
+                    "willReplaceOnChanges": true
+                },
+                "text": {
+                    "type": "string",
+                    "description": "The `user` text value. Conflicts with `secret` within this block\n",
+                    "secret": true
+                }
+            },
+            "type": "object"
+        },
+        "materialize:index/ConnectionMysqlUserSecret:ConnectionMysqlUserSecret": {
+            "properties": {
+                "databaseName": {
+                    "type": "string",
+                    "description": "The identifier for the connection database in Materialize. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The identifier for the connection.\n"
+                },
+                "schemaName": {
+                    "type": "string",
+                    "description": "The identifier for the connection schema in Materialize. Defaults to `public`.\n"
                 }
             },
             "type": "object",
@@ -673,7 +948,7 @@
             "properties": {
                 "databaseName": {
                     "type": "string",
-                    "description": "The identifier for the connection database. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
+                    "description": "The identifier for the connection database in Materialize. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
                 },
                 "name": {
                     "type": "string",
@@ -681,7 +956,7 @@
                 },
                 "schemaName": {
                     "type": "string",
-                    "description": "The identifier for the connection schema. Defaults to `public`.\n"
+                    "description": "The identifier for the connection schema in Materialize. Defaults to `public`.\n"
                 }
             },
             "type": "object",
@@ -693,7 +968,7 @@
             "properties": {
                 "databaseName": {
                     "type": "string",
-                    "description": "The identifier for the connection database. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
+                    "description": "The identifier for the connection database in Materialize. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
                 },
                 "name": {
                     "type": "string",
@@ -701,7 +976,7 @@
                 },
                 "schemaName": {
                     "type": "string",
-                    "description": "The identifier for the connection schema. Defaults to `public`.\n"
+                    "description": "The identifier for the connection schema in Materialize. Defaults to `public`.\n"
                 }
             },
             "type": "object",
@@ -748,7 +1023,7 @@
             "properties": {
                 "databaseName": {
                     "type": "string",
-                    "description": "The identifier for the connection database. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
+                    "description": "The identifier for the connection database in Materialize. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
                 },
                 "name": {
                     "type": "string",
@@ -756,7 +1031,7 @@
                 },
                 "schemaName": {
                     "type": "string",
-                    "description": "The identifier for the connection schema. Defaults to `public`.\n"
+                    "description": "The identifier for the connection schema in Materialize. Defaults to `public`.\n"
                 }
             },
             "type": "object",
@@ -1682,7 +1957,7 @@
             "properties": {
                 "databaseName": {
                     "type": "string",
-                    "description": "The identifier for the sink database. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
+                    "description": "The identifier for the sink database in Materialize. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
                 },
                 "name": {
                     "type": "string",
@@ -1690,7 +1965,7 @@
                 },
                 "schemaName": {
                     "type": "string",
-                    "description": "The identifier for the sink schema. Defaults to `public`.\n"
+                    "description": "The identifier for the sink schema in Materialize. Defaults to `public`.\n"
                 }
             },
             "type": "object",
@@ -1725,7 +2000,7 @@
             "properties": {
                 "databaseName": {
                     "type": "string",
-                    "description": "The identifier for the sink database. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
+                    "description": "The identifier for the sink database in Materialize. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
                 },
                 "name": {
                     "type": "string",
@@ -1733,7 +2008,7 @@
                 },
                 "schemaName": {
                     "type": "string",
-                    "description": "The identifier for the sink schema. Defaults to `public`.\n"
+                    "description": "The identifier for the sink schema in Materialize. Defaults to `public`.\n"
                 }
             },
             "type": "object",
@@ -1745,7 +2020,7 @@
             "properties": {
                 "databaseName": {
                     "type": "string",
-                    "description": "The identifier for the sink database. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
+                    "description": "The identifier for the sink database in Materialize. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
                 },
                 "name": {
                     "type": "string",
@@ -1753,7 +2028,7 @@
                 },
                 "schemaName": {
                     "type": "string",
-                    "description": "The identifier for the sink schema. Defaults to `public`.\n"
+                    "description": "The identifier for the sink schema in Materialize. Defaults to `public`.\n"
                 }
             },
             "type": "object",
@@ -1903,7 +2178,7 @@
             "properties": {
                 "databaseName": {
                     "type": "string",
-                    "description": "The identifier for the source database. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
+                    "description": "The identifier for the source database in Materialize. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
                 },
                 "name": {
                     "type": "string",
@@ -1911,7 +2186,7 @@
                 },
                 "schemaName": {
                     "type": "string",
-                    "description": "The identifier for the source schema. Defaults to `public`.\n"
+                    "description": "The identifier for the source schema in Materialize. Defaults to `public`.\n"
                 }
             },
             "type": "object",
@@ -1960,7 +2235,7 @@
             "properties": {
                 "databaseName": {
                     "type": "string",
-                    "description": "The identifier for the source database. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
+                    "description": "The identifier for the source database in Materialize. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
                 },
                 "name": {
                     "type": "string",
@@ -1968,7 +2243,7 @@
                 },
                 "schemaName": {
                     "type": "string",
-                    "description": "The identifier for the source schema. Defaults to `public`.\n"
+                    "description": "The identifier for the source schema in Materialize. Defaults to `public`.\n"
                 }
             },
             "type": "object",
@@ -2058,7 +2333,7 @@
             "properties": {
                 "databaseName": {
                     "type": "string",
-                    "description": "The identifier for the source database. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
+                    "description": "The identifier for the source database in Materialize. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
                 },
                 "name": {
                     "type": "string",
@@ -2066,7 +2341,7 @@
                 },
                 "schemaName": {
                     "type": "string",
-                    "description": "The identifier for the source schema. Defaults to `public`.\n"
+                    "description": "The identifier for the source schema in Materialize. Defaults to `public`.\n"
                 }
             },
             "type": "object",
@@ -2115,7 +2390,7 @@
             "properties": {
                 "databaseName": {
                     "type": "string",
-                    "description": "The identifier for the source database. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
+                    "description": "The identifier for the source database in Materialize. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
                 },
                 "name": {
                     "type": "string",
@@ -2123,7 +2398,7 @@
                 },
                 "schemaName": {
                     "type": "string",
-                    "description": "The identifier for the source schema. Defaults to `public`.\n"
+                    "description": "The identifier for the source schema in Materialize. Defaults to `public`.\n"
                 }
             },
             "type": "object",
@@ -2135,7 +2410,7 @@
             "properties": {
                 "databaseName": {
                     "type": "string",
-                    "description": "The identifier for the source database. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
+                    "description": "The identifier for the source database in Materialize. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
                     "willReplaceOnChanges": true
                 },
                 "name": {
@@ -2144,7 +2419,7 @@
                 },
                 "schemaName": {
                     "type": "string",
-                    "description": "The identifier for the source schema. Defaults to `public`.\n",
+                    "description": "The identifier for the source schema in Materialize. Defaults to `public`.\n",
                     "willReplaceOnChanges": true
                 }
             },
@@ -2215,7 +2490,7 @@
             "properties": {
                 "databaseName": {
                     "type": "string",
-                    "description": "The identifier for the source database. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
+                    "description": "The identifier for the source database in Materialize. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
                 },
                 "name": {
                     "type": "string",
@@ -2223,7 +2498,7 @@
                 },
                 "schemaName": {
                     "type": "string",
-                    "description": "The identifier for the source schema. Defaults to `public`.\n"
+                    "description": "The identifier for the source schema in Materialize. Defaults to `public`.\n"
                 }
             },
             "type": "object",
@@ -2272,7 +2547,7 @@
             "properties": {
                 "databaseName": {
                     "type": "string",
-                    "description": "The identifier for the source database. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
+                    "description": "The identifier for the source database in Materialize. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
                 },
                 "name": {
                     "type": "string",
@@ -2280,7 +2555,7 @@
                 },
                 "schemaName": {
                     "type": "string",
-                    "description": "The identifier for the source schema. Defaults to `public`.\n"
+                    "description": "The identifier for the source schema in Materialize. Defaults to `public`.\n"
                 }
             },
             "type": "object",
@@ -2362,7 +2637,7 @@
             "properties": {
                 "databaseName": {
                     "type": "string",
-                    "description": "The identifier for the source database. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
+                    "description": "The identifier for the source database in Materialize. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
                     "willReplaceOnChanges": true
                 },
                 "name": {
@@ -2371,7 +2646,7 @@
                 },
                 "schemaName": {
                     "type": "string",
-                    "description": "The identifier for the source schema. Defaults to `public`.\n",
+                    "description": "The identifier for the source schema in Materialize. Defaults to `public`.\n",
                     "willReplaceOnChanges": true
                 }
             },
@@ -2394,6 +2669,64 @@
                 }
             },
             "type": "object"
+        },
+        "materialize:index/SourceMysqlMysqlConnection:SourceMysqlMysqlConnection": {
+            "properties": {
+                "databaseName": {
+                    "type": "string",
+                    "description": "The mysql_connection database name. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The mysql_connection name.\n"
+                },
+                "schemaName": {
+                    "type": "string",
+                    "description": "The mysql_connection schema name. Defaults to `public`.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "name"
+            ]
+        },
+        "materialize:index/SourceMysqlSubsource:SourceMysqlSubsource": {
+            "properties": {
+                "databaseName": {
+                    "type": "string",
+                    "description": "The identifier for the source database in Materialize. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
+                    "willReplaceOnChanges": true
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The identifier for the source.\n"
+                },
+                "schemaName": {
+                    "type": "string",
+                    "description": "The identifier for the source schema in Materialize. Defaults to `public`.\n",
+                    "willReplaceOnChanges": true
+                }
+            },
+            "type": "object",
+            "required": [
+                "name"
+            ]
+        },
+        "materialize:index/SourceMysqlTable:SourceMysqlTable": {
+            "properties": {
+                "alias": {
+                    "type": "string",
+                    "description": "An alias for the table, used in Materialize.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the table.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "name"
+            ]
         },
         "materialize:index/SourcePostgresExposeProgress:SourcePostgresExposeProgress": {
             "properties": {
@@ -2439,7 +2772,7 @@
             "properties": {
                 "databaseName": {
                     "type": "string",
-                    "description": "The identifier for the source database. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
+                    "description": "The identifier for the source database in Materialize. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
                     "willReplaceOnChanges": true
                 },
                 "name": {
@@ -2448,7 +2781,7 @@
                 },
                 "schemaName": {
                     "type": "string",
-                    "description": "The identifier for the source schema. Defaults to `public`.\n",
+                    "description": "The identifier for the source schema in Materialize. Defaults to `public`.\n",
                     "willReplaceOnChanges": true
                 }
             },
@@ -2512,7 +2845,7 @@
             "properties": {
                 "databaseName": {
                     "type": "string",
-                    "description": "The identifier for the source database. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
+                    "description": "The identifier for the source database in Materialize. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
                 },
                 "name": {
                     "type": "string",
@@ -2520,7 +2853,7 @@
                 },
                 "schemaName": {
                     "type": "string",
-                    "description": "The identifier for the source schema. Defaults to `public`.\n"
+                    "description": "The identifier for the source schema in Materialize. Defaults to `public`.\n"
                 }
             },
             "type": "object",
@@ -2575,7 +2908,7 @@
             "properties": {
                 "databaseName": {
                     "type": "string",
-                    "description": "The identifier for the source database. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
+                    "description": "The identifier for the source database in Materialize. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
                     "willReplaceOnChanges": true
                 },
                 "name": {
@@ -2584,7 +2917,7 @@
                 },
                 "schemaName": {
                     "type": "string",
-                    "description": "The identifier for the source schema. Defaults to `public`.\n",
+                    "description": "The identifier for the source schema in Materialize. Defaults to `public`.\n",
                     "willReplaceOnChanges": true
                 }
             },
@@ -3144,8 +3477,222 @@
                 "type": "object"
             }
         },
+        "materialize:index/connectionAws:ConnectionAws": {
+            "description": "An Amazon Web Services (AWS) connection provides Materialize with access to an Identity and Access Management (IAM) user or role in your AWS account.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as materialize from \"@pulumi/materialize\";\n\n// Create a AWS Connection\nconst exampleConnection = new materialize.ConnectionAws(\"exampleConnection\", {\n    accessKeyId: \"foo\",\n    schemaName: \"public\",\n    secretAccessKey: \"bar\",\n});\n```\n```python\nimport pulumi\nimport pulumi_materialize as materialize\n\n# Create a AWS Connection\nexample_connection = materialize.ConnectionAws(\"exampleConnection\",\n    access_key_id=\"foo\",\n    schema_name=\"public\",\n    secret_access_key=\"bar\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Materialize = Pulumi.Materialize;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // Create a AWS Connection\n    var exampleConnection = new Materialize.ConnectionAws(\"exampleConnection\", new()\n    {\n        AccessKeyId = \"foo\",\n        SchemaName = \"public\",\n        SecretAccessKey = \"bar\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-materialize/sdk/go/materialize\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := materialize.NewConnectionAws(ctx, \"exampleConnection\", \u0026materialize.ConnectionAwsArgs{\n\t\t\tAccessKeyId:     \"foo\",\n\t\t\tSchemaName:      pulumi.String(\"public\"),\n\t\t\tSecretAccessKey: \"bar\",\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.materialize.ConnectionAws;\nimport com.pulumi.materialize.ConnectionAwsArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var exampleConnection = new ConnectionAws(\"exampleConnection\", ConnectionAwsArgs.builder()        \n            .accessKeyId(\"foo\")\n            .schemaName(\"public\")\n            .secretAccessKey(\"bar\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # Create a AWS Connection\n  exampleConnection:\n    type: materialize:ConnectionAws\n    properties:\n      accessKeyId: foo\n      schemaName: public\n      secretAccessKey: bar\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\n#Connections can be imported using the connection id\n\n```sh\n $ pulumi import materialize:index/connectionAws:ConnectionAws example \u003cregion\u003e:\u003cconnection_id\u003e\n```\n\n Connection id and information be found in the `mz_catalog.mz_connections` table The region is the region where the database is located (e.g. aws/us-east-1) ",
+            "properties": {
+                "accessKeyId": {
+                    "$ref": "#/types/materialize:index/ConnectionAwsAccessKeyId:ConnectionAwsAccessKeyId",
+                    "description": "The access key ID to connect with.. Can be supplied as either free text using `text` or reference to a secret object using `secret`.\n"
+                },
+                "assumeRoleArn": {
+                    "type": "string",
+                    "description": "The Amazon Resource Name (ARN) of the IAM role to assume.\n"
+                },
+                "assumeRoleSessionName": {
+                    "type": "string",
+                    "description": "The session name to use when assuming the role.\n"
+                },
+                "awsRegion": {
+                    "type": "string",
+                    "description": "The AWS region to connect to.\n"
+                },
+                "comment": {
+                    "type": "string",
+                    "description": "**Public Preview** Comment on an object in the database.\n"
+                },
+                "databaseName": {
+                    "type": "string",
+                    "description": "The identifier for the connection database in Materialize. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
+                },
+                "endpoint": {
+                    "type": "string",
+                    "description": "Override the default AWS endpoint URL.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The identifier for the connection.\n"
+                },
+                "ownershipRole": {
+                    "type": "string",
+                    "description": "The owernship role of the object.\n"
+                },
+                "qualifiedSqlName": {
+                    "type": "string",
+                    "description": "The fully qualified name of the connection.\n"
+                },
+                "region": {
+                    "type": "string",
+                    "description": "The region to use for the resource connection. If not set, the default region is used.\n"
+                },
+                "schemaName": {
+                    "type": "string",
+                    "description": "The identifier for the connection schema in Materialize. Defaults to `public`.\n"
+                },
+                "secretAccessKey": {
+                    "$ref": "#/types/materialize:index/ConnectionAwsSecretAccessKey:ConnectionAwsSecretAccessKey",
+                    "description": "The secret access key corresponding to the specified access key ID.\n"
+                },
+                "sessionToken": {
+                    "$ref": "#/types/materialize:index/ConnectionAwsSessionToken:ConnectionAwsSessionToken",
+                    "description": "The session token corresponding to the specified access key ID.. Can be supplied as either free text using `text` or reference to a secret object using `secret`.\n"
+                },
+                "validate": {
+                    "type": "boolean",
+                    "description": "**Private Preview** If the connection should wait for validation.\n"
+                }
+            },
+            "required": [
+                "name",
+                "ownershipRole",
+                "qualifiedSqlName"
+            ],
+            "inputProperties": {
+                "accessKeyId": {
+                    "$ref": "#/types/materialize:index/ConnectionAwsAccessKeyId:ConnectionAwsAccessKeyId",
+                    "description": "The access key ID to connect with.. Can be supplied as either free text using `text` or reference to a secret object using `secret`.\n",
+                    "willReplaceOnChanges": true
+                },
+                "assumeRoleArn": {
+                    "type": "string",
+                    "description": "The Amazon Resource Name (ARN) of the IAM role to assume.\n",
+                    "willReplaceOnChanges": true
+                },
+                "assumeRoleSessionName": {
+                    "type": "string",
+                    "description": "The session name to use when assuming the role.\n",
+                    "willReplaceOnChanges": true
+                },
+                "awsRegion": {
+                    "type": "string",
+                    "description": "The AWS region to connect to.\n",
+                    "willReplaceOnChanges": true
+                },
+                "comment": {
+                    "type": "string",
+                    "description": "**Public Preview** Comment on an object in the database.\n"
+                },
+                "databaseName": {
+                    "type": "string",
+                    "description": "The identifier for the connection database in Materialize. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
+                    "willReplaceOnChanges": true
+                },
+                "endpoint": {
+                    "type": "string",
+                    "description": "Override the default AWS endpoint URL.\n",
+                    "willReplaceOnChanges": true
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The identifier for the connection.\n"
+                },
+                "ownershipRole": {
+                    "type": "string",
+                    "description": "The owernship role of the object.\n"
+                },
+                "region": {
+                    "type": "string",
+                    "description": "The region to use for the resource connection. If not set, the default region is used.\n",
+                    "willReplaceOnChanges": true
+                },
+                "schemaName": {
+                    "type": "string",
+                    "description": "The identifier for the connection schema in Materialize. Defaults to `public`.\n",
+                    "willReplaceOnChanges": true
+                },
+                "secretAccessKey": {
+                    "$ref": "#/types/materialize:index/ConnectionAwsSecretAccessKey:ConnectionAwsSecretAccessKey",
+                    "description": "The secret access key corresponding to the specified access key ID.\n",
+                    "willReplaceOnChanges": true
+                },
+                "sessionToken": {
+                    "$ref": "#/types/materialize:index/ConnectionAwsSessionToken:ConnectionAwsSessionToken",
+                    "description": "The session token corresponding to the specified access key ID.. Can be supplied as either free text using `text` or reference to a secret object using `secret`.\n",
+                    "willReplaceOnChanges": true
+                },
+                "validate": {
+                    "type": "boolean",
+                    "description": "**Private Preview** If the connection should wait for validation.\n"
+                }
+            },
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering ConnectionAws resources.\n",
+                "properties": {
+                    "accessKeyId": {
+                        "$ref": "#/types/materialize:index/ConnectionAwsAccessKeyId:ConnectionAwsAccessKeyId",
+                        "description": "The access key ID to connect with.. Can be supplied as either free text using `text` or reference to a secret object using `secret`.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "assumeRoleArn": {
+                        "type": "string",
+                        "description": "The Amazon Resource Name (ARN) of the IAM role to assume.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "assumeRoleSessionName": {
+                        "type": "string",
+                        "description": "The session name to use when assuming the role.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "awsRegion": {
+                        "type": "string",
+                        "description": "The AWS region to connect to.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "comment": {
+                        "type": "string",
+                        "description": "**Public Preview** Comment on an object in the database.\n"
+                    },
+                    "databaseName": {
+                        "type": "string",
+                        "description": "The identifier for the connection database in Materialize. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "endpoint": {
+                        "type": "string",
+                        "description": "Override the default AWS endpoint URL.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The identifier for the connection.\n"
+                    },
+                    "ownershipRole": {
+                        "type": "string",
+                        "description": "The owernship role of the object.\n"
+                    },
+                    "qualifiedSqlName": {
+                        "type": "string",
+                        "description": "The fully qualified name of the connection.\n"
+                    },
+                    "region": {
+                        "type": "string",
+                        "description": "The region to use for the resource connection. If not set, the default region is used.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "schemaName": {
+                        "type": "string",
+                        "description": "The identifier for the connection schema in Materialize. Defaults to `public`.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "secretAccessKey": {
+                        "$ref": "#/types/materialize:index/ConnectionAwsSecretAccessKey:ConnectionAwsSecretAccessKey",
+                        "description": "The secret access key corresponding to the specified access key ID.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "sessionToken": {
+                        "$ref": "#/types/materialize:index/ConnectionAwsSessionToken:ConnectionAwsSessionToken",
+                        "description": "The session token corresponding to the specified access key ID.. Can be supplied as either free text using `text` or reference to a secret object using `secret`.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "validate": {
+                        "type": "boolean",
+                        "description": "**Private Preview** If the connection should wait for validation.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
         "materialize:index/connectionAwsPrivatelink:ConnectionAwsPrivatelink": {
-            "description": "An AWS PrivateLink connection establishes a link to an AWS PrivateLink service.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as materialize from \"@pulumi/materialize\";\n\n// # Create a AWS Private Connection\n// Note: you need the max_aws_privatelink_connections increased for this to work:\n// show max_aws_privatelink_connections;\nconst examplePrivatelinkConnection = new materialize.ConnectionAwsPrivatelink(\"examplePrivatelinkConnection\", {\n    availabilityZones: [\n        \"use1-az2\",\n        \"use1-az6\",\n    ],\n    schemaName: \"public\",\n    serviceName: \"com.amazonaws.us-east-1.materialize.example\",\n});\n```\n```python\nimport pulumi\nimport pulumi_materialize as materialize\n\n# # Create a AWS Private Connection\n# Note: you need the max_aws_privatelink_connections increased for this to work:\n# show max_aws_privatelink_connections;\nexample_privatelink_connection = materialize.ConnectionAwsPrivatelink(\"examplePrivatelinkConnection\",\n    availability_zones=[\n        \"use1-az2\",\n        \"use1-az6\",\n    ],\n    schema_name=\"public\",\n    service_name=\"com.amazonaws.us-east-1.materialize.example\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Materialize = Pulumi.Materialize;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // # Create a AWS Private Connection\n    // Note: you need the max_aws_privatelink_connections increased for this to work:\n    // show max_aws_privatelink_connections;\n    var examplePrivatelinkConnection = new Materialize.ConnectionAwsPrivatelink(\"examplePrivatelinkConnection\", new()\n    {\n        AvailabilityZones = new[]\n        {\n            \"use1-az2\",\n            \"use1-az6\",\n        },\n        SchemaName = \"public\",\n        ServiceName = \"com.amazonaws.us-east-1.materialize.example\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-materialize/sdk/go/materialize\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := materialize.NewConnectionAwsPrivatelink(ctx, \"examplePrivatelinkConnection\", \u0026materialize.ConnectionAwsPrivatelinkArgs{\n\t\t\tAvailabilityZones: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"use1-az2\"),\n\t\t\t\tpulumi.String(\"use1-az6\"),\n\t\t\t},\n\t\t\tSchemaName:  pulumi.String(\"public\"),\n\t\t\tServiceName: pulumi.String(\"com.amazonaws.us-east-1.materialize.example\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.materialize.ConnectionAwsPrivatelink;\nimport com.pulumi.materialize.ConnectionAwsPrivatelinkArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var examplePrivatelinkConnection = new ConnectionAwsPrivatelink(\"examplePrivatelinkConnection\", ConnectionAwsPrivatelinkArgs.builder()        \n            .availabilityZones(            \n                \"use1-az2\",\n                \"use1-az6\")\n            .schemaName(\"public\")\n            .serviceName(\"com.amazonaws.us-east-1.materialize.example\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # Create a AWS Private Connection\n  # // Note: you need the max_aws_privatelink_connections increased for this to work:\n  # // show max_aws_privatelink_connections;\n  examplePrivatelinkConnection:\n    type: materialize:ConnectionAwsPrivatelink\n    properties:\n      availabilityZones:\n        - use1-az2\n        - use1-az6\n      schemaName: public\n      serviceName: com.amazonaws.us-east-1.materialize.example\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\n#Connections can be imported using the connection id\n\n```sh\n $ pulumi import materialize:index/connectionAwsPrivatelink:ConnectionAwsPrivatelink example \u003cregion\u003e:\u003cconnection_id\u003e\n```\n\n Connection id and information be found in the `mz_catalog.mz_connections` table The region is the region where the database is located (e.g. aws/us-east-1) ",
+            "description": "An AWS PrivateLink connection establishes a link to an AWS PrivateLink service.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as materialize from \"@pulumi/materialize\";\n\n// Create a AWS Private Connection\n// Note: you need the max_aws_privatelink_connections increased for this to work:\n// show max_aws_privatelink_connections;\nconst examplePrivatelinkConnection = new materialize.ConnectionAwsPrivatelink(\"examplePrivatelinkConnection\", {\n    availabilityZones: [\n        \"use1-az2\",\n        \"use1-az6\",\n    ],\n    schemaName: \"public\",\n    serviceName: \"com.amazonaws.us-east-1.materialize.example\",\n});\n```\n```python\nimport pulumi\nimport pulumi_materialize as materialize\n\n# Create a AWS Private Connection\n# Note: you need the max_aws_privatelink_connections increased for this to work:\n# show max_aws_privatelink_connections;\nexample_privatelink_connection = materialize.ConnectionAwsPrivatelink(\"examplePrivatelinkConnection\",\n    availability_zones=[\n        \"use1-az2\",\n        \"use1-az6\",\n    ],\n    schema_name=\"public\",\n    service_name=\"com.amazonaws.us-east-1.materialize.example\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Materialize = Pulumi.Materialize;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // Create a AWS Private Connection\n    // Note: you need the max_aws_privatelink_connections increased for this to work:\n    // show max_aws_privatelink_connections;\n    var examplePrivatelinkConnection = new Materialize.ConnectionAwsPrivatelink(\"examplePrivatelinkConnection\", new()\n    {\n        AvailabilityZones = new[]\n        {\n            \"use1-az2\",\n            \"use1-az6\",\n        },\n        SchemaName = \"public\",\n        ServiceName = \"com.amazonaws.us-east-1.materialize.example\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-materialize/sdk/go/materialize\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := materialize.NewConnectionAwsPrivatelink(ctx, \"examplePrivatelinkConnection\", \u0026materialize.ConnectionAwsPrivatelinkArgs{\n\t\t\tAvailabilityZones: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"use1-az2\"),\n\t\t\t\tpulumi.String(\"use1-az6\"),\n\t\t\t},\n\t\t\tSchemaName:  pulumi.String(\"public\"),\n\t\t\tServiceName: pulumi.String(\"com.amazonaws.us-east-1.materialize.example\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.materialize.ConnectionAwsPrivatelink;\nimport com.pulumi.materialize.ConnectionAwsPrivatelinkArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var examplePrivatelinkConnection = new ConnectionAwsPrivatelink(\"examplePrivatelinkConnection\", ConnectionAwsPrivatelinkArgs.builder()        \n            .availabilityZones(            \n                \"use1-az2\",\n                \"use1-az6\")\n            .schemaName(\"public\")\n            .serviceName(\"com.amazonaws.us-east-1.materialize.example\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # Create a AWS Private Connection\n  # // Note: you need the max_aws_privatelink_connections increased for this to work:\n  # // show max_aws_privatelink_connections;\n  examplePrivatelinkConnection:\n    type: materialize:ConnectionAwsPrivatelink\n    properties:\n      availabilityZones:\n        - use1-az2\n        - use1-az6\n      schemaName: public\n      serviceName: com.amazonaws.us-east-1.materialize.example\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\n#Connections can be imported using the connection id\n\n```sh\n $ pulumi import materialize:index/connectionAwsPrivatelink:ConnectionAwsPrivatelink example \u003cregion\u003e:\u003cconnection_id\u003e\n```\n\n Connection id and information be found in the `mz_catalog.mz_connections` table The region is the region where the database is located (e.g. aws/us-east-1) ",
             "properties": {
                 "availabilityZones": {
                     "type": "array",
@@ -3160,7 +3707,7 @@
                 },
                 "databaseName": {
                     "type": "string",
-                    "description": "The identifier for the connection database. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
+                    "description": "The identifier for the connection database in Materialize. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
                 },
                 "name": {
                     "type": "string",
@@ -3185,7 +3732,7 @@
                 },
                 "schemaName": {
                     "type": "string",
-                    "description": "The identifier for the connection schema. Defaults to `public`.\n"
+                    "description": "The identifier for the connection schema in Materialize. Defaults to `public`.\n"
                 },
                 "serviceName": {
                     "type": "string",
@@ -3215,7 +3762,7 @@
                 },
                 "databaseName": {
                     "type": "string",
-                    "description": "The identifier for the connection database. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
+                    "description": "The identifier for the connection database in Materialize. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
                     "willReplaceOnChanges": true
                 },
                 "name": {
@@ -3233,7 +3780,7 @@
                 },
                 "schemaName": {
                     "type": "string",
-                    "description": "The identifier for the connection schema. Defaults to `public`.\n",
+                    "description": "The identifier for the connection schema in Materialize. Defaults to `public`.\n",
                     "willReplaceOnChanges": true
                 },
                 "serviceName": {
@@ -3263,7 +3810,7 @@
                     },
                     "databaseName": {
                         "type": "string",
-                        "description": "The identifier for the connection database. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
+                        "description": "The identifier for the connection database in Materialize. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
                         "willReplaceOnChanges": true
                     },
                     "name": {
@@ -3290,7 +3837,7 @@
                     },
                     "schemaName": {
                         "type": "string",
-                        "description": "The identifier for the connection schema. Defaults to `public`.\n",
+                        "description": "The identifier for the connection schema in Materialize. Defaults to `public`.\n",
                         "willReplaceOnChanges": true
                     },
                     "serviceName": {
@@ -3315,7 +3862,7 @@
                 },
                 "databaseName": {
                     "type": "string",
-                    "description": "The identifier for the connection database. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
+                    "description": "The identifier for the connection database in Materialize. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
                 },
                 "name": {
                     "type": "string",
@@ -3339,7 +3886,7 @@
                 },
                 "schemaName": {
                     "type": "string",
-                    "description": "The identifier for the connection schema. Defaults to `public`.\n"
+                    "description": "The identifier for the connection schema in Materialize. Defaults to `public`.\n"
                 },
                 "sshTunnel": {
                     "$ref": "#/types/materialize:index/ConnectionConfluentSchemaRegistrySshTunnel:ConnectionConfluentSchemaRegistrySshTunnel",
@@ -3388,7 +3935,7 @@
                 },
                 "databaseName": {
                     "type": "string",
-                    "description": "The identifier for the connection database. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
+                    "description": "The identifier for the connection database in Materialize. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
                     "willReplaceOnChanges": true
                 },
                 "name": {
@@ -3411,7 +3958,7 @@
                 },
                 "schemaName": {
                     "type": "string",
-                    "description": "The identifier for the connection schema. Defaults to `public`.\n",
+                    "description": "The identifier for the connection schema in Materialize. Defaults to `public`.\n",
                     "willReplaceOnChanges": true
                 },
                 "sshTunnel": {
@@ -3465,7 +4012,7 @@
                     },
                     "databaseName": {
                         "type": "string",
-                        "description": "The identifier for the connection database. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
+                        "description": "The identifier for the connection database in Materialize. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
                         "willReplaceOnChanges": true
                     },
                     "name": {
@@ -3492,7 +4039,7 @@
                     },
                     "schemaName": {
                         "type": "string",
-                        "description": "The identifier for the connection schema. Defaults to `public`.\n",
+                        "description": "The identifier for the connection schema in Materialize. Defaults to `public`.\n",
                         "willReplaceOnChanges": true
                     },
                     "sshTunnel": {
@@ -3545,7 +4092,7 @@
                 },
                 "databaseName": {
                     "type": "string",
-                    "description": "The identifier for the connection database. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
+                    "description": "The identifier for the connection database in Materialize. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
                 },
                 "kafkaBrokers": {
                     "type": "array",
@@ -3588,7 +4135,7 @@
                 },
                 "schemaName": {
                     "type": "string",
-                    "description": "The identifier for the connection schema. Defaults to `public`.\n"
+                    "description": "The identifier for the connection schema in Materialize. Defaults to `public`.\n"
                 },
                 "securityProtocol": {
                     "type": "string",
@@ -3632,7 +4179,7 @@
                 },
                 "databaseName": {
                     "type": "string",
-                    "description": "The identifier for the connection database. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
+                    "description": "The identifier for the connection database in Materialize. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
                     "willReplaceOnChanges": true
                 },
                 "kafkaBrokers": {
@@ -3678,7 +4225,7 @@
                 },
                 "schemaName": {
                     "type": "string",
-                    "description": "The identifier for the connection schema. Defaults to `public`.\n",
+                    "description": "The identifier for the connection schema in Materialize. Defaults to `public`.\n",
                     "willReplaceOnChanges": true
                 },
                 "securityProtocol": {
@@ -3725,7 +4272,7 @@
                     },
                     "databaseName": {
                         "type": "string",
-                        "description": "The identifier for the connection database. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
+                        "description": "The identifier for the connection database in Materialize. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
                         "willReplaceOnChanges": true
                     },
                     "kafkaBrokers": {
@@ -3775,7 +4322,7 @@
                     },
                     "schemaName": {
                         "type": "string",
-                        "description": "The identifier for the connection schema. Defaults to `public`.\n",
+                        "description": "The identifier for the connection schema in Materialize. Defaults to `public`.\n",
                         "willReplaceOnChanges": true
                     },
                     "securityProtocol": {
@@ -3811,6 +4358,268 @@
                 "type": "object"
             }
         },
+        "materialize:index/connectionMysql:ConnectionMysql": {
+            "description": "A MySQL connection establishes a link to a single database of a MySQL server.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as materialize from \"@pulumi/materialize\";\n\n// Create a MySQL Connection with SSH tunnel \u0026 plain text user\nconst exampleMysqlConnection = new materialize.ConnectionMysql(\"exampleMysqlConnection\", {\n    host: \"instance.foo000.us-west-1.rds.amazonaws.com\",\n    password: {\n        databaseName: \"database\",\n        name: \"example\",\n        schemaName: \"schema\",\n    },\n    port: 3306,\n    sshTunnel: {\n        name: \"example\",\n    },\n    user: {\n        text: \"my_user\",\n    },\n});\n```\n```python\nimport pulumi\nimport pulumi_materialize as materialize\n\n# Create a MySQL Connection with SSH tunnel \u0026 plain text user\nexample_mysql_connection = materialize.ConnectionMysql(\"exampleMysqlConnection\",\n    host=\"instance.foo000.us-west-1.rds.amazonaws.com\",\n    password=materialize.ConnectionMysqlPasswordArgs(\n        database_name=\"database\",\n        name=\"example\",\n        schema_name=\"schema\",\n    ),\n    port=3306,\n    ssh_tunnel=materialize.ConnectionMysqlSshTunnelArgs(\n        name=\"example\",\n    ),\n    user=materialize.ConnectionMysqlUserArgs(\n        text=\"my_user\",\n    ))\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Materialize = Pulumi.Materialize;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // Create a MySQL Connection with SSH tunnel \u0026 plain text user\n    var exampleMysqlConnection = new Materialize.ConnectionMysql(\"exampleMysqlConnection\", new()\n    {\n        Host = \"instance.foo000.us-west-1.rds.amazonaws.com\",\n        Password = new Materialize.Inputs.ConnectionMysqlPasswordArgs\n        {\n            DatabaseName = \"database\",\n            Name = \"example\",\n            SchemaName = \"schema\",\n        },\n        Port = 3306,\n        SshTunnel = new Materialize.Inputs.ConnectionMysqlSshTunnelArgs\n        {\n            Name = \"example\",\n        },\n        User = new Materialize.Inputs.ConnectionMysqlUserArgs\n        {\n            Text = \"my_user\",\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-materialize/sdk/go/materialize\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := materialize.NewConnectionMysql(ctx, \"exampleMysqlConnection\", \u0026materialize.ConnectionMysqlArgs{\n\t\t\tHost: pulumi.String(\"instance.foo000.us-west-1.rds.amazonaws.com\"),\n\t\t\tPassword: \u0026materialize.ConnectionMysqlPasswordArgs{\n\t\t\t\tDatabaseName: pulumi.String(\"database\"),\n\t\t\t\tName:         pulumi.String(\"example\"),\n\t\t\t\tSchemaName:   pulumi.String(\"schema\"),\n\t\t\t},\n\t\t\tPort: pulumi.Int(3306),\n\t\t\tSshTunnel: \u0026materialize.ConnectionMysqlSshTunnelArgs{\n\t\t\t\tName: pulumi.String(\"example\"),\n\t\t\t},\n\t\t\tUser: \u0026materialize.ConnectionMysqlUserArgs{\n\t\t\t\tText: pulumi.String(\"my_user\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.materialize.ConnectionMysql;\nimport com.pulumi.materialize.ConnectionMysqlArgs;\nimport com.pulumi.materialize.inputs.ConnectionMysqlPasswordArgs;\nimport com.pulumi.materialize.inputs.ConnectionMysqlSshTunnelArgs;\nimport com.pulumi.materialize.inputs.ConnectionMysqlUserArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var exampleMysqlConnection = new ConnectionMysql(\"exampleMysqlConnection\", ConnectionMysqlArgs.builder()        \n            .host(\"instance.foo000.us-west-1.rds.amazonaws.com\")\n            .password(ConnectionMysqlPasswordArgs.builder()\n                .databaseName(\"database\")\n                .name(\"example\")\n                .schemaName(\"schema\")\n                .build())\n            .port(3306)\n            .sshTunnel(ConnectionMysqlSshTunnelArgs.builder()\n                .name(\"example\")\n                .build())\n            .user(ConnectionMysqlUserArgs.builder()\n                .text(\"my_user\")\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # Create a MySQL Connection with SSH tunnel \u0026 plain text user\n  exampleMysqlConnection:\n    type: materialize:ConnectionMysql\n    properties:\n      host: instance.foo000.us-west-1.rds.amazonaws.com\n      password:\n        databaseName: database\n        name: example\n        schemaName: schema\n      port: 3306\n      sshTunnel:\n        name: example\n      user:\n        text: my_user\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nConnections can be imported using the connection id\n\n```sh\n $ pulumi import materialize:index/connectionMysql:ConnectionMysql example \u003cregion\u003e:\u003cconnection_id\u003e\n```\n\n Connection id and information be found in the `mz_catalog.mz_connections` table The region is the region where the database is located (e.g. aws/us-east-1) ",
+            "properties": {
+                "awsPrivatelink": {
+                    "$ref": "#/types/materialize:index/ConnectionMysqlAwsPrivatelink:ConnectionMysqlAwsPrivatelink",
+                    "description": "The AWS PrivateLink configuration for the MySQL database.\n"
+                },
+                "comment": {
+                    "type": "string",
+                    "description": "**Public Preview** Comment on an object in the database.\n"
+                },
+                "databaseName": {
+                    "type": "string",
+                    "description": "The identifier for the connection database in Materialize. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
+                },
+                "host": {
+                    "type": "string",
+                    "description": "The MySQL database hostname.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The identifier for the connection.\n"
+                },
+                "ownershipRole": {
+                    "type": "string",
+                    "description": "The owernship role of the object.\n"
+                },
+                "password": {
+                    "$ref": "#/types/materialize:index/ConnectionMysqlPassword:ConnectionMysqlPassword",
+                    "description": "The MySQL database password.\n"
+                },
+                "port": {
+                    "type": "integer",
+                    "description": "The MySQL database port.\n"
+                },
+                "qualifiedSqlName": {
+                    "type": "string",
+                    "description": "The fully qualified name of the connection.\n"
+                },
+                "region": {
+                    "type": "string",
+                    "description": "The region to use for the resource connection. If not set, the default region is used.\n"
+                },
+                "schemaName": {
+                    "type": "string",
+                    "description": "The identifier for the connection schema in Materialize. Defaults to `public`.\n"
+                },
+                "sshTunnel": {
+                    "$ref": "#/types/materialize:index/ConnectionMysqlSshTunnel:ConnectionMysqlSshTunnel",
+                    "description": "The SSH tunnel configuration for the MySQL database.\n"
+                },
+                "sslCertificate": {
+                    "$ref": "#/types/materialize:index/ConnectionMysqlSslCertificate:ConnectionMysqlSslCertificate",
+                    "description": "The client certificate for the MySQL database.. Can be supplied as either free text using `text` or reference to a secret object using `secret`.\n"
+                },
+                "sslCertificateAuthority": {
+                    "$ref": "#/types/materialize:index/ConnectionMysqlSslCertificateAuthority:ConnectionMysqlSslCertificateAuthority",
+                    "description": "The CA certificate for the MySQL database.. Can be supplied as either free text using `text` or reference to a secret object using `secret`.\n"
+                },
+                "sslKey": {
+                    "$ref": "#/types/materialize:index/ConnectionMysqlSslKey:ConnectionMysqlSslKey",
+                    "description": "The client key for the MySQL database.\n"
+                },
+                "sslMode": {
+                    "type": "string",
+                    "description": "The SSL mode for the MySQL database. Allowed values are disabled, required, verify-ca, verify-identity.\n"
+                },
+                "user": {
+                    "$ref": "#/types/materialize:index/ConnectionMysqlUser:ConnectionMysqlUser",
+                    "description": "The MySQL database username.. Can be supplied as either free text using `text` or reference to a secret object using `secret`.\n"
+                },
+                "validate": {
+                    "type": "boolean",
+                    "description": "**Private Preview** If the connection should wait for validation.\n"
+                }
+            },
+            "required": [
+                "host",
+                "name",
+                "ownershipRole",
+                "qualifiedSqlName",
+                "user"
+            ],
+            "inputProperties": {
+                "awsPrivatelink": {
+                    "$ref": "#/types/materialize:index/ConnectionMysqlAwsPrivatelink:ConnectionMysqlAwsPrivatelink",
+                    "description": "The AWS PrivateLink configuration for the MySQL database.\n",
+                    "willReplaceOnChanges": true
+                },
+                "comment": {
+                    "type": "string",
+                    "description": "**Public Preview** Comment on an object in the database.\n"
+                },
+                "databaseName": {
+                    "type": "string",
+                    "description": "The identifier for the connection database in Materialize. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
+                    "willReplaceOnChanges": true
+                },
+                "host": {
+                    "type": "string",
+                    "description": "The MySQL database hostname.\n",
+                    "willReplaceOnChanges": true
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The identifier for the connection.\n"
+                },
+                "ownershipRole": {
+                    "type": "string",
+                    "description": "The owernship role of the object.\n"
+                },
+                "password": {
+                    "$ref": "#/types/materialize:index/ConnectionMysqlPassword:ConnectionMysqlPassword",
+                    "description": "The MySQL database password.\n",
+                    "willReplaceOnChanges": true
+                },
+                "port": {
+                    "type": "integer",
+                    "description": "The MySQL database port.\n",
+                    "willReplaceOnChanges": true
+                },
+                "region": {
+                    "type": "string",
+                    "description": "The region to use for the resource connection. If not set, the default region is used.\n",
+                    "willReplaceOnChanges": true
+                },
+                "schemaName": {
+                    "type": "string",
+                    "description": "The identifier for the connection schema in Materialize. Defaults to `public`.\n",
+                    "willReplaceOnChanges": true
+                },
+                "sshTunnel": {
+                    "$ref": "#/types/materialize:index/ConnectionMysqlSshTunnel:ConnectionMysqlSshTunnel",
+                    "description": "The SSH tunnel configuration for the MySQL database.\n",
+                    "willReplaceOnChanges": true
+                },
+                "sslCertificate": {
+                    "$ref": "#/types/materialize:index/ConnectionMysqlSslCertificate:ConnectionMysqlSslCertificate",
+                    "description": "The client certificate for the MySQL database.. Can be supplied as either free text using `text` or reference to a secret object using `secret`.\n",
+                    "willReplaceOnChanges": true
+                },
+                "sslCertificateAuthority": {
+                    "$ref": "#/types/materialize:index/ConnectionMysqlSslCertificateAuthority:ConnectionMysqlSslCertificateAuthority",
+                    "description": "The CA certificate for the MySQL database.. Can be supplied as either free text using `text` or reference to a secret object using `secret`.\n",
+                    "willReplaceOnChanges": true
+                },
+                "sslKey": {
+                    "$ref": "#/types/materialize:index/ConnectionMysqlSslKey:ConnectionMysqlSslKey",
+                    "description": "The client key for the MySQL database.\n",
+                    "willReplaceOnChanges": true
+                },
+                "sslMode": {
+                    "type": "string",
+                    "description": "The SSL mode for the MySQL database. Allowed values are disabled, required, verify-ca, verify-identity.\n",
+                    "willReplaceOnChanges": true
+                },
+                "user": {
+                    "$ref": "#/types/materialize:index/ConnectionMysqlUser:ConnectionMysqlUser",
+                    "description": "The MySQL database username.. Can be supplied as either free text using `text` or reference to a secret object using `secret`.\n",
+                    "willReplaceOnChanges": true
+                },
+                "validate": {
+                    "type": "boolean",
+                    "description": "**Private Preview** If the connection should wait for validation.\n"
+                }
+            },
+            "requiredInputs": [
+                "host",
+                "user"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering ConnectionMysql resources.\n",
+                "properties": {
+                    "awsPrivatelink": {
+                        "$ref": "#/types/materialize:index/ConnectionMysqlAwsPrivatelink:ConnectionMysqlAwsPrivatelink",
+                        "description": "The AWS PrivateLink configuration for the MySQL database.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "comment": {
+                        "type": "string",
+                        "description": "**Public Preview** Comment on an object in the database.\n"
+                    },
+                    "databaseName": {
+                        "type": "string",
+                        "description": "The identifier for the connection database in Materialize. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "host": {
+                        "type": "string",
+                        "description": "The MySQL database hostname.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The identifier for the connection.\n"
+                    },
+                    "ownershipRole": {
+                        "type": "string",
+                        "description": "The owernship role of the object.\n"
+                    },
+                    "password": {
+                        "$ref": "#/types/materialize:index/ConnectionMysqlPassword:ConnectionMysqlPassword",
+                        "description": "The MySQL database password.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "port": {
+                        "type": "integer",
+                        "description": "The MySQL database port.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "qualifiedSqlName": {
+                        "type": "string",
+                        "description": "The fully qualified name of the connection.\n"
+                    },
+                    "region": {
+                        "type": "string",
+                        "description": "The region to use for the resource connection. If not set, the default region is used.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "schemaName": {
+                        "type": "string",
+                        "description": "The identifier for the connection schema in Materialize. Defaults to `public`.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "sshTunnel": {
+                        "$ref": "#/types/materialize:index/ConnectionMysqlSshTunnel:ConnectionMysqlSshTunnel",
+                        "description": "The SSH tunnel configuration for the MySQL database.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "sslCertificate": {
+                        "$ref": "#/types/materialize:index/ConnectionMysqlSslCertificate:ConnectionMysqlSslCertificate",
+                        "description": "The client certificate for the MySQL database.. Can be supplied as either free text using `text` or reference to a secret object using `secret`.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "sslCertificateAuthority": {
+                        "$ref": "#/types/materialize:index/ConnectionMysqlSslCertificateAuthority:ConnectionMysqlSslCertificateAuthority",
+                        "description": "The CA certificate for the MySQL database.. Can be supplied as either free text using `text` or reference to a secret object using `secret`.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "sslKey": {
+                        "$ref": "#/types/materialize:index/ConnectionMysqlSslKey:ConnectionMysqlSslKey",
+                        "description": "The client key for the MySQL database.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "sslMode": {
+                        "type": "string",
+                        "description": "The SSL mode for the MySQL database. Allowed values are disabled, required, verify-ca, verify-identity.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "user": {
+                        "$ref": "#/types/materialize:index/ConnectionMysqlUser:ConnectionMysqlUser",
+                        "description": "The MySQL database username.. Can be supplied as either free text using `text` or reference to a secret object using `secret`.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "validate": {
+                        "type": "boolean",
+                        "description": "**Private Preview** If the connection should wait for validation.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
         "materialize:index/connectionPostgres:ConnectionPostgres": {
             "description": "A Postgres connection establishes a link to a single database of a PostgreSQL server.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as materialize from \"@pulumi/materialize\";\n\n// Create a Postgres Connection with SSH tunnel \u0026 plain text user\nconst examplePostgresConnection = new materialize.ConnectionPostgres(\"examplePostgresConnection\", {\n    database: \"example\",\n    host: \"instance.foo000.us-west-1.rds.amazonaws.com\",\n    password: {\n        databaseName: \"database\",\n        name: \"example\",\n        schemaName: \"schema\",\n    },\n    port: 5432,\n    sshTunnel: {\n        name: \"example\",\n    },\n    user: {\n        text: \"my_user\",\n    },\n});\n```\n```python\nimport pulumi\nimport pulumi_materialize as materialize\n\n# Create a Postgres Connection with SSH tunnel \u0026 plain text user\nexample_postgres_connection = materialize.ConnectionPostgres(\"examplePostgresConnection\",\n    database=\"example\",\n    host=\"instance.foo000.us-west-1.rds.amazonaws.com\",\n    password=materialize.ConnectionPostgresPasswordArgs(\n        database_name=\"database\",\n        name=\"example\",\n        schema_name=\"schema\",\n    ),\n    port=5432,\n    ssh_tunnel=materialize.ConnectionPostgresSshTunnelArgs(\n        name=\"example\",\n    ),\n    user=materialize.ConnectionPostgresUserArgs(\n        text=\"my_user\",\n    ))\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Materialize = Pulumi.Materialize;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // Create a Postgres Connection with SSH tunnel \u0026 plain text user\n    var examplePostgresConnection = new Materialize.ConnectionPostgres(\"examplePostgresConnection\", new()\n    {\n        Database = \"example\",\n        Host = \"instance.foo000.us-west-1.rds.amazonaws.com\",\n        Password = new Materialize.Inputs.ConnectionPostgresPasswordArgs\n        {\n            DatabaseName = \"database\",\n            Name = \"example\",\n            SchemaName = \"schema\",\n        },\n        Port = 5432,\n        SshTunnel = new Materialize.Inputs.ConnectionPostgresSshTunnelArgs\n        {\n            Name = \"example\",\n        },\n        User = new Materialize.Inputs.ConnectionPostgresUserArgs\n        {\n            Text = \"my_user\",\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-materialize/sdk/go/materialize\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := materialize.NewConnectionPostgres(ctx, \"examplePostgresConnection\", \u0026materialize.ConnectionPostgresArgs{\n\t\t\tDatabase: pulumi.String(\"example\"),\n\t\t\tHost:     pulumi.String(\"instance.foo000.us-west-1.rds.amazonaws.com\"),\n\t\t\tPassword: \u0026materialize.ConnectionPostgresPasswordArgs{\n\t\t\t\tDatabaseName: pulumi.String(\"database\"),\n\t\t\t\tName:         pulumi.String(\"example\"),\n\t\t\t\tSchemaName:   pulumi.String(\"schema\"),\n\t\t\t},\n\t\t\tPort: pulumi.Int(5432),\n\t\t\tSshTunnel: \u0026materialize.ConnectionPostgresSshTunnelArgs{\n\t\t\t\tName: pulumi.String(\"example\"),\n\t\t\t},\n\t\t\tUser: \u0026materialize.ConnectionPostgresUserArgs{\n\t\t\t\tText: pulumi.String(\"my_user\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.materialize.ConnectionPostgres;\nimport com.pulumi.materialize.ConnectionPostgresArgs;\nimport com.pulumi.materialize.inputs.ConnectionPostgresPasswordArgs;\nimport com.pulumi.materialize.inputs.ConnectionPostgresSshTunnelArgs;\nimport com.pulumi.materialize.inputs.ConnectionPostgresUserArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var examplePostgresConnection = new ConnectionPostgres(\"examplePostgresConnection\", ConnectionPostgresArgs.builder()        \n            .database(\"example\")\n            .host(\"instance.foo000.us-west-1.rds.amazonaws.com\")\n            .password(ConnectionPostgresPasswordArgs.builder()\n                .databaseName(\"database\")\n                .name(\"example\")\n                .schemaName(\"schema\")\n                .build())\n            .port(5432)\n            .sshTunnel(ConnectionPostgresSshTunnelArgs.builder()\n                .name(\"example\")\n                .build())\n            .user(ConnectionPostgresUserArgs.builder()\n                .text(\"my_user\")\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # Create a Postgres Connection with SSH tunnel \u0026 plain text user\n  examplePostgresConnection:\n    type: materialize:ConnectionPostgres\n    properties:\n      database: example\n      host: instance.foo000.us-west-1.rds.amazonaws.com\n      password:\n        databaseName: database\n        name: example\n        schemaName: schema\n      port: 5432\n      sshTunnel:\n        name: example\n      user:\n        text: my_user\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nConnections can be imported using the connection id\n\n```sh\n $ pulumi import materialize:index/connectionPostgres:ConnectionPostgres example \u003cregion\u003e:\u003cconnection_id\u003e\n```\n\n Connection id and information be found in the `mz_catalog.mz_connections` table The region is the region where the database is located (e.g. aws/us-east-1) ",
             "properties": {
@@ -3828,7 +4637,7 @@
                 },
                 "databaseName": {
                     "type": "string",
-                    "description": "The identifier for the connection database. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
+                    "description": "The identifier for the connection database in Materialize. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
                 },
                 "host": {
                     "type": "string",
@@ -3860,7 +4669,7 @@
                 },
                 "schemaName": {
                     "type": "string",
-                    "description": "The identifier for the connection schema. Defaults to `public`.\n"
+                    "description": "The identifier for the connection schema in Materialize. Defaults to `public`.\n"
                 },
                 "sshTunnel": {
                     "$ref": "#/types/materialize:index/ConnectionPostgresSshTunnel:ConnectionPostgresSshTunnel",
@@ -3916,7 +4725,7 @@
                 },
                 "databaseName": {
                     "type": "string",
-                    "description": "The identifier for the connection database. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
+                    "description": "The identifier for the connection database in Materialize. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
                     "willReplaceOnChanges": true
                 },
                 "host": {
@@ -3949,7 +4758,7 @@
                 },
                 "schemaName": {
                     "type": "string",
-                    "description": "The identifier for the connection schema. Defaults to `public`.\n",
+                    "description": "The identifier for the connection schema in Materialize. Defaults to `public`.\n",
                     "willReplaceOnChanges": true
                 },
                 "sshTunnel": {
@@ -4011,7 +4820,7 @@
                     },
                     "databaseName": {
                         "type": "string",
-                        "description": "The identifier for the connection database. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
+                        "description": "The identifier for the connection database in Materialize. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
                         "willReplaceOnChanges": true
                     },
                     "host": {
@@ -4048,7 +4857,7 @@
                     },
                     "schemaName": {
                         "type": "string",
-                        "description": "The identifier for the connection schema. Defaults to `public`.\n",
+                        "description": "The identifier for the connection schema in Materialize. Defaults to `public`.\n",
                         "willReplaceOnChanges": true
                     },
                     "sshTunnel": {
@@ -4098,7 +4907,7 @@
                 },
                 "databaseName": {
                     "type": "string",
-                    "description": "The identifier for the connection database. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
+                    "description": "The identifier for the connection database in Materialize. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
                 },
                 "host": {
                     "type": "string",
@@ -4134,7 +4943,7 @@
                 },
                 "schemaName": {
                     "type": "string",
-                    "description": "The identifier for the connection schema. Defaults to `public`.\n"
+                    "description": "The identifier for the connection schema in Materialize. Defaults to `public`.\n"
                 },
                 "user": {
                     "type": "string",
@@ -4158,7 +4967,7 @@
                 },
                 "databaseName": {
                     "type": "string",
-                    "description": "The identifier for the connection database. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
+                    "description": "The identifier for the connection database in Materialize. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
                     "willReplaceOnChanges": true
                 },
                 "host": {
@@ -4186,7 +4995,7 @@
                 },
                 "schemaName": {
                     "type": "string",
-                    "description": "The identifier for the connection schema. Defaults to `public`.\n",
+                    "description": "The identifier for the connection schema in Materialize. Defaults to `public`.\n",
                     "willReplaceOnChanges": true
                 },
                 "user": {
@@ -4209,7 +5018,7 @@
                     },
                     "databaseName": {
                         "type": "string",
-                        "description": "The identifier for the connection database. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
+                        "description": "The identifier for the connection database in Materialize. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
                         "willReplaceOnChanges": true
                     },
                     "host": {
@@ -4249,7 +5058,7 @@
                     },
                     "schemaName": {
                         "type": "string",
-                        "description": "The identifier for the connection schema. Defaults to `public`.\n",
+                        "description": "The identifier for the connection schema in Materialize. Defaults to `public`.\n",
                         "willReplaceOnChanges": true
                     },
                     "user": {
@@ -6352,7 +7161,7 @@
                 },
                 "databaseName": {
                     "type": "string",
-                    "description": "The identifier for the materialized view database. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
+                    "description": "The identifier for the materialized view database in Materialize. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
                 },
                 "name": {
                     "type": "string",
@@ -6379,7 +7188,7 @@
                 },
                 "schemaName": {
                     "type": "string",
-                    "description": "The identifier for the materialized view schema. Defaults to `public`.\n"
+                    "description": "The identifier for the materialized view schema in Materialize. Defaults to `public`.\n"
                 },
                 "statement": {
                     "type": "string",
@@ -6405,7 +7214,7 @@
                 },
                 "databaseName": {
                     "type": "string",
-                    "description": "The identifier for the materialized view database. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
+                    "description": "The identifier for the materialized view database in Materialize. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
                     "willReplaceOnChanges": true
                 },
                 "name": {
@@ -6431,7 +7240,7 @@
                 },
                 "schemaName": {
                     "type": "string",
-                    "description": "The identifier for the materialized view schema. Defaults to `public`.\n",
+                    "description": "The identifier for the materialized view schema in Materialize. Defaults to `public`.\n",
                     "willReplaceOnChanges": true
                 },
                 "statement": {
@@ -6461,7 +7270,7 @@
                     },
                     "databaseName": {
                         "type": "string",
-                        "description": "The identifier for the materialized view database. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
+                        "description": "The identifier for the materialized view database in Materialize. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
                         "willReplaceOnChanges": true
                     },
                     "name": {
@@ -6491,7 +7300,7 @@
                     },
                     "schemaName": {
                         "type": "string",
-                        "description": "The identifier for the materialized view schema. Defaults to `public`.\n",
+                        "description": "The identifier for the materialized view schema in Materialize. Defaults to `public`.\n",
                         "willReplaceOnChanges": true
                     },
                     "statement": {
@@ -6969,7 +7778,7 @@
                 },
                 "databaseName": {
                     "type": "string",
-                    "description": "The identifier for the schema database. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
+                    "description": "The identifier for the schema database in Materialize. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
                 },
                 "name": {
                     "type": "string",
@@ -7000,7 +7809,7 @@
                 },
                 "databaseName": {
                     "type": "string",
-                    "description": "The identifier for the schema database. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
+                    "description": "The identifier for the schema database in Materialize. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
                     "willReplaceOnChanges": true
                 },
                 "name": {
@@ -7026,7 +7835,7 @@
                     },
                     "databaseName": {
                         "type": "string",
-                        "description": "The identifier for the schema database. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
+                        "description": "The identifier for the schema database in Materialize. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
                         "willReplaceOnChanges": true
                     },
                     "name": {
@@ -7059,7 +7868,7 @@
                 },
                 "databaseName": {
                     "type": "string",
-                    "description": "The identifier for the secret database. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
+                    "description": "The identifier for the secret database in Materialize. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
                 },
                 "name": {
                     "type": "string",
@@ -7079,7 +7888,7 @@
                 },
                 "schemaName": {
                     "type": "string",
-                    "description": "The identifier for the secret schema. Defaults to `public`.\n"
+                    "description": "The identifier for the secret schema in Materialize. Defaults to `public`.\n"
                 },
                 "value": {
                     "type": "string",
@@ -7100,7 +7909,7 @@
                 },
                 "databaseName": {
                     "type": "string",
-                    "description": "The identifier for the secret database. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
+                    "description": "The identifier for the secret database in Materialize. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
                     "willReplaceOnChanges": true
                 },
                 "name": {
@@ -7118,7 +7927,7 @@
                 },
                 "schemaName": {
                     "type": "string",
-                    "description": "The identifier for the secret schema. Defaults to `public`.\n",
+                    "description": "The identifier for the secret schema in Materialize. Defaults to `public`.\n",
                     "willReplaceOnChanges": true
                 },
                 "value": {
@@ -7139,7 +7948,7 @@
                     },
                     "databaseName": {
                         "type": "string",
-                        "description": "The identifier for the secret database. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
+                        "description": "The identifier for the secret database in Materialize. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
                         "willReplaceOnChanges": true
                     },
                     "name": {
@@ -7161,7 +7970,7 @@
                     },
                     "schemaName": {
                         "type": "string",
-                        "description": "The identifier for the secret schema. Defaults to `public`.\n",
+                        "description": "The identifier for the secret schema in Materialize. Defaults to `public`.\n",
                         "willReplaceOnChanges": true
                     },
                     "value": {
@@ -7190,7 +7999,7 @@
                 },
                 "databaseName": {
                     "type": "string",
-                    "description": "The identifier for the sink database. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
+                    "description": "The identifier for the sink database in Materialize. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
                 },
                 "envelope": {
                     "$ref": "#/types/materialize:index/SinkKafkaEnvelope:SinkKafkaEnvelope",
@@ -7237,7 +8046,7 @@
                 },
                 "schemaName": {
                     "type": "string",
-                    "description": "The identifier for the sink schema. Defaults to `public`.\n"
+                    "description": "The identifier for the sink schema in Materialize. Defaults to `public`.\n"
                 },
                 "size": {
                     "type": "string",
@@ -7279,7 +8088,7 @@
                 },
                 "databaseName": {
                     "type": "string",
-                    "description": "The identifier for the sink database. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
+                    "description": "The identifier for the sink database in Materialize. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
                     "willReplaceOnChanges": true
                 },
                 "envelope": {
@@ -7330,7 +8139,7 @@
                 },
                 "schemaName": {
                     "type": "string",
-                    "description": "The identifier for the sink schema. Defaults to `public`.\n",
+                    "description": "The identifier for the sink schema in Materialize. Defaults to `public`.\n",
                     "willReplaceOnChanges": true
                 },
                 "snapshot": {
@@ -7368,7 +8177,7 @@
                     },
                     "databaseName": {
                         "type": "string",
-                        "description": "The identifier for the sink database. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
+                        "description": "The identifier for the sink database in Materialize. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
                         "willReplaceOnChanges": true
                     },
                     "envelope": {
@@ -7423,7 +8232,7 @@
                     },
                     "schemaName": {
                         "type": "string",
-                        "description": "The identifier for the sink schema. Defaults to `public`.\n",
+                        "description": "The identifier for the sink schema in Materialize. Defaults to `public`.\n",
                         "willReplaceOnChanges": true
                     },
                     "size": {
@@ -7457,7 +8266,7 @@
                 },
                 "databaseName": {
                     "type": "string",
-                    "description": "The identifier for the source database. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
+                    "description": "The identifier for the source database in Materialize. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
                 },
                 "envelope": {
                     "$ref": "#/types/materialize:index/SourceKafkaEnvelope:SourceKafkaEnvelope",
@@ -7537,7 +8346,7 @@
                 },
                 "schemaName": {
                     "type": "string",
-                    "description": "The identifier for the source schema. Defaults to `public`.\n"
+                    "description": "The identifier for the source schema in Materialize. Defaults to `public`.\n"
                 },
                 "size": {
                     "type": "string",
@@ -7592,7 +8401,7 @@
                 },
                 "databaseName": {
                     "type": "string",
-                    "description": "The identifier for the source database. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
+                    "description": "The identifier for the source database in Materialize. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
                     "willReplaceOnChanges": true
                 },
                 "envelope": {
@@ -7685,7 +8494,7 @@
                 },
                 "schemaName": {
                     "type": "string",
-                    "description": "The identifier for the source schema. Defaults to `public`.\n",
+                    "description": "The identifier for the source schema in Materialize. Defaults to `public`.\n",
                     "willReplaceOnChanges": true
                 },
                 "startOffsets": {
@@ -7730,7 +8539,7 @@
                     },
                     "databaseName": {
                         "type": "string",
-                        "description": "The identifier for the source database. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
+                        "description": "The identifier for the source database in Materialize. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
                         "willReplaceOnChanges": true
                     },
                     "envelope": {
@@ -7827,7 +8636,7 @@
                     },
                     "schemaName": {
                         "type": "string",
-                        "description": "The identifier for the source schema. Defaults to `public`.\n",
+                        "description": "The identifier for the source schema in Materialize. Defaults to `public`.\n",
                         "willReplaceOnChanges": true
                     },
                     "size": {
@@ -7889,7 +8698,7 @@
                 },
                 "databaseName": {
                     "type": "string",
-                    "description": "The identifier for the source database. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
+                    "description": "The identifier for the source database in Materialize. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
                 },
                 "exposeProgress": {
                     "$ref": "#/types/materialize:index/SourceLoadgenExposeProgress:SourceLoadgenExposeProgress",
@@ -7921,7 +8730,7 @@
                 },
                 "schemaName": {
                     "type": "string",
-                    "description": "The identifier for the source schema. Defaults to `public`.\n"
+                    "description": "The identifier for the source schema in Materialize. Defaults to `public`.\n"
                 },
                 "size": {
                     "type": "string",
@@ -7970,7 +8779,7 @@
                 },
                 "databaseName": {
                     "type": "string",
-                    "description": "The identifier for the source database. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
+                    "description": "The identifier for the source database in Materialize. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
                     "willReplaceOnChanges": true
                 },
                 "exposeProgress": {
@@ -8003,7 +8812,7 @@
                 },
                 "schemaName": {
                     "type": "string",
-                    "description": "The identifier for the source schema. Defaults to `public`.\n",
+                    "description": "The identifier for the source schema in Materialize. Defaults to `public`.\n",
                     "willReplaceOnChanges": true
                 },
                 "tpchOptions": {
@@ -8039,7 +8848,7 @@
                     },
                     "databaseName": {
                         "type": "string",
-                        "description": "The identifier for the source database. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
+                        "description": "The identifier for the source database in Materialize. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
                         "willReplaceOnChanges": true
                     },
                     "exposeProgress": {
@@ -8076,7 +8885,7 @@
                     },
                     "schemaName": {
                         "type": "string",
-                        "description": "The identifier for the source schema. Defaults to `public`.\n",
+                        "description": "The identifier for the source schema in Materialize. Defaults to `public`.\n",
                         "willReplaceOnChanges": true
                     },
                     "size": {
@@ -8099,6 +8908,232 @@
                 "type": "object"
             }
         },
+        "materialize:index/sourceMysql:SourceMysql": {
+            "description": "A MySQL source describes a MySQL instance you want Materialize to read data from.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as materialize from \"@pulumi/materialize\";\n\nconst test = new materialize.SourceMysql(\"test\", {\n    schemaName: materialize_schema.test.name,\n    databaseName: materialize_database.test.name,\n    clusterName: \"quickstart\",\n    mysqlConnection: {\n        name: materialize_connection_mysql.test.name,\n    },\n    tables: [\n        {\n            name: \"shop.mysql_table1\",\n            alias: \"alias_mysql_table1\",\n        },\n        {\n            name: \"shop.mysql_table2\",\n            alias: \"alias_mysql_table2\",\n        },\n    ],\n});\n```\n```python\nimport pulumi\nimport pulumi_materialize as materialize\n\ntest = materialize.SourceMysql(\"test\",\n    schema_name=materialize_schema[\"test\"][\"name\"],\n    database_name=materialize_database[\"test\"][\"name\"],\n    cluster_name=\"quickstart\",\n    mysql_connection=materialize.SourceMysqlMysqlConnectionArgs(\n        name=materialize_connection_mysql[\"test\"][\"name\"],\n    ),\n    tables=[\n        materialize.SourceMysqlTableArgs(\n            name=\"shop.mysql_table1\",\n            alias=\"alias_mysql_table1\",\n        ),\n        materialize.SourceMysqlTableArgs(\n            name=\"shop.mysql_table2\",\n            alias=\"alias_mysql_table2\",\n        ),\n    ])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Materialize = Pulumi.Materialize;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var test = new Materialize.SourceMysql(\"test\", new()\n    {\n        SchemaName = materialize_schema.Test.Name,\n        DatabaseName = materialize_database.Test.Name,\n        ClusterName = \"quickstart\",\n        MysqlConnection = new Materialize.Inputs.SourceMysqlMysqlConnectionArgs\n        {\n            Name = materialize_connection_mysql.Test.Name,\n        },\n        Tables = new[]\n        {\n            new Materialize.Inputs.SourceMysqlTableArgs\n            {\n                Name = \"shop.mysql_table1\",\n                Alias = \"alias_mysql_table1\",\n            },\n            new Materialize.Inputs.SourceMysqlTableArgs\n            {\n                Name = \"shop.mysql_table2\",\n                Alias = \"alias_mysql_table2\",\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-materialize/sdk/go/materialize\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := materialize.NewSourceMysql(ctx, \"test\", \u0026materialize.SourceMysqlArgs{\n\t\t\tSchemaName:   pulumi.Any(materialize_schema.Test.Name),\n\t\t\tDatabaseName: pulumi.Any(materialize_database.Test.Name),\n\t\t\tClusterName:  pulumi.String(\"quickstart\"),\n\t\t\tMysqlConnection: \u0026materialize.SourceMysqlMysqlConnectionArgs{\n\t\t\t\tName: pulumi.Any(materialize_connection_mysql.Test.Name),\n\t\t\t},\n\t\t\tTables: materialize.SourceMysqlTableArray{\n\t\t\t\t\u0026materialize.SourceMysqlTableArgs{\n\t\t\t\t\tName:  pulumi.String(\"shop.mysql_table1\"),\n\t\t\t\t\tAlias: pulumi.String(\"alias_mysql_table1\"),\n\t\t\t\t},\n\t\t\t\t\u0026materialize.SourceMysqlTableArgs{\n\t\t\t\t\tName:  pulumi.String(\"shop.mysql_table2\"),\n\t\t\t\t\tAlias: pulumi.String(\"alias_mysql_table2\"),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.materialize.SourceMysql;\nimport com.pulumi.materialize.SourceMysqlArgs;\nimport com.pulumi.materialize.inputs.SourceMysqlMysqlConnectionArgs;\nimport com.pulumi.materialize.inputs.SourceMysqlTableArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var test = new SourceMysql(\"test\", SourceMysqlArgs.builder()        \n            .schemaName(materialize_schema.test().name())\n            .databaseName(materialize_database.test().name())\n            .clusterName(\"quickstart\")\n            .mysqlConnection(SourceMysqlMysqlConnectionArgs.builder()\n                .name(materialize_connection_mysql.test().name())\n                .build())\n            .tables(            \n                SourceMysqlTableArgs.builder()\n                    .name(\"shop.mysql_table1\")\n                    .alias(\"alias_mysql_table1\")\n                    .build(),\n                SourceMysqlTableArgs.builder()\n                    .name(\"shop.mysql_table2\")\n                    .alias(\"alias_mysql_table2\")\n                    .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  test:\n    type: materialize:SourceMysql\n    properties:\n      schemaName: ${materialize_schema.test.name}\n      databaseName: ${materialize_database.test.name}\n      clusterName: quickstart\n      mysqlConnection:\n        name: ${materialize_connection_mysql.test.name}\n      tables:\n        - name: shop.mysql_table1\n          alias: alias_mysql_table1\n        - name: shop.mysql_table2\n          alias: alias_mysql_table2\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nSources can be imported using the source id\n\n```sh\n $ pulumi import materialize:index/sourceMysql:SourceMysql example_source_mysql \u003cregion\u003e:\u003csource_id\u003e\n```\n\n Source id and information be found in the `mz_catalog.mz_sources` table The region is the region where the database is located (e.g. aws/us-east-1) ",
+            "properties": {
+                "clusterName": {
+                    "type": "string",
+                    "description": "The cluster to maintain this source.\n"
+                },
+                "comment": {
+                    "type": "string",
+                    "description": "**Public Preview** Comment on an object in the database.\n"
+                },
+                "databaseName": {
+                    "type": "string",
+                    "description": "The identifier for the source database in Materialize. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
+                },
+                "ignoreColumns": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Ignore specific columns when reading data from MySQL. Can only be updated in place when also updating a corresponding `table` attribute.\n"
+                },
+                "mysqlConnection": {
+                    "$ref": "#/types/materialize:index/SourceMysqlMysqlConnection:SourceMysqlMysqlConnection",
+                    "description": "The MySQL connection to use in the source.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The identifier for the source.\n"
+                },
+                "ownershipRole": {
+                    "type": "string",
+                    "description": "The owernship role of the object.\n"
+                },
+                "qualifiedSqlName": {
+                    "type": "string",
+                    "description": "The fully qualified name of the source.\n"
+                },
+                "region": {
+                    "type": "string",
+                    "description": "The region to use for the resource connection. If not set, the default region is used.\n"
+                },
+                "schemaName": {
+                    "type": "string",
+                    "description": "The identifier for the source schema in Materialize. Defaults to `public`.\n"
+                },
+                "size": {
+                    "type": "string",
+                    "description": "The size of the cluster maintaining this source.\n"
+                },
+                "subsources": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/materialize:index/SourceMysqlSubsource:SourceMysqlSubsource"
+                    },
+                    "description": "Subsources of a source.\n"
+                },
+                "tables": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/materialize:index/SourceMysqlTable:SourceMysqlTable"
+                    },
+                    "description": "Specifies the tables to be included in the source. If not specified, all tables are included.\n"
+                },
+                "textColumns": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Decode data as text for specific columns that contain MySQL types that are unsupported in Materialize. Can only be updated in place when also updating a corresponding `table` attribute.\n"
+                }
+            },
+            "required": [
+                "clusterName",
+                "mysqlConnection",
+                "name",
+                "ownershipRole",
+                "qualifiedSqlName",
+                "size",
+                "subsources"
+            ],
+            "inputProperties": {
+                "clusterName": {
+                    "type": "string",
+                    "description": "The cluster to maintain this source.\n",
+                    "willReplaceOnChanges": true
+                },
+                "comment": {
+                    "type": "string",
+                    "description": "**Public Preview** Comment on an object in the database.\n"
+                },
+                "databaseName": {
+                    "type": "string",
+                    "description": "The identifier for the source database in Materialize. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
+                    "willReplaceOnChanges": true
+                },
+                "ignoreColumns": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Ignore specific columns when reading data from MySQL. Can only be updated in place when also updating a corresponding `table` attribute.\n"
+                },
+                "mysqlConnection": {
+                    "$ref": "#/types/materialize:index/SourceMysqlMysqlConnection:SourceMysqlMysqlConnection",
+                    "description": "The MySQL connection to use in the source.\n",
+                    "willReplaceOnChanges": true
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The identifier for the source.\n"
+                },
+                "ownershipRole": {
+                    "type": "string",
+                    "description": "The owernship role of the object.\n"
+                },
+                "region": {
+                    "type": "string",
+                    "description": "The region to use for the resource connection. If not set, the default region is used.\n",
+                    "willReplaceOnChanges": true
+                },
+                "schemaName": {
+                    "type": "string",
+                    "description": "The identifier for the source schema in Materialize. Defaults to `public`.\n",
+                    "willReplaceOnChanges": true
+                },
+                "tables": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/materialize:index/SourceMysqlTable:SourceMysqlTable"
+                    },
+                    "description": "Specifies the tables to be included in the source. If not specified, all tables are included.\n",
+                    "willReplaceOnChanges": true
+                },
+                "textColumns": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Decode data as text for specific columns that contain MySQL types that are unsupported in Materialize. Can only be updated in place when also updating a corresponding `table` attribute.\n"
+                }
+            },
+            "requiredInputs": [
+                "mysqlConnection"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering SourceMysql resources.\n",
+                "properties": {
+                    "clusterName": {
+                        "type": "string",
+                        "description": "The cluster to maintain this source.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "comment": {
+                        "type": "string",
+                        "description": "**Public Preview** Comment on an object in the database.\n"
+                    },
+                    "databaseName": {
+                        "type": "string",
+                        "description": "The identifier for the source database in Materialize. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "ignoreColumns": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Ignore specific columns when reading data from MySQL. Can only be updated in place when also updating a corresponding `table` attribute.\n"
+                    },
+                    "mysqlConnection": {
+                        "$ref": "#/types/materialize:index/SourceMysqlMysqlConnection:SourceMysqlMysqlConnection",
+                        "description": "The MySQL connection to use in the source.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The identifier for the source.\n"
+                    },
+                    "ownershipRole": {
+                        "type": "string",
+                        "description": "The owernship role of the object.\n"
+                    },
+                    "qualifiedSqlName": {
+                        "type": "string",
+                        "description": "The fully qualified name of the source.\n"
+                    },
+                    "region": {
+                        "type": "string",
+                        "description": "The region to use for the resource connection. If not set, the default region is used.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "schemaName": {
+                        "type": "string",
+                        "description": "The identifier for the source schema in Materialize. Defaults to `public`.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "size": {
+                        "type": "string",
+                        "description": "The size of the cluster maintaining this source.\n"
+                    },
+                    "subsources": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/materialize:index/SourceMysqlSubsource:SourceMysqlSubsource"
+                        },
+                        "description": "Subsources of a source.\n"
+                    },
+                    "tables": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/materialize:index/SourceMysqlTable:SourceMysqlTable"
+                        },
+                        "description": "Specifies the tables to be included in the source. If not specified, all tables are included.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "textColumns": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Decode data as text for specific columns that contain MySQL types that are unsupported in Materialize. Can only be updated in place when also updating a corresponding `table` attribute.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
         "materialize:index/sourcePostgres:SourcePostgres": {
             "description": "A Postgres source describes a PostgreSQL instance you want Materialize to read data from.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as materialize from \"@pulumi/materialize\";\n\nconst exampleSourcePostgres = new materialize.SourcePostgres(\"exampleSourcePostgres\", {\n    clusterName: \"quickstart\",\n    postgresConnection: {\n        name: \"pg_connection\",\n    },\n    publication: \"mz_source\",\n    schemaName: \"schema\",\n    tables: [\n        {\n            alias: \"s1_table_1\",\n            name: \"schema1.table_1\",\n        },\n        {\n            alias: \"s2_table_1\",\n            name: \"schema2.table_1\",\n        },\n    ],\n});\n```\n```python\nimport pulumi\nimport pulumi_materialize as materialize\n\nexample_source_postgres = materialize.SourcePostgres(\"exampleSourcePostgres\",\n    cluster_name=\"quickstart\",\n    postgres_connection=materialize.SourcePostgresPostgresConnectionArgs(\n        name=\"pg_connection\",\n    ),\n    publication=\"mz_source\",\n    schema_name=\"schema\",\n    tables=[\n        materialize.SourcePostgresTableArgs(\n            alias=\"s1_table_1\",\n            name=\"schema1.table_1\",\n        ),\n        materialize.SourcePostgresTableArgs(\n            alias=\"s2_table_1\",\n            name=\"schema2.table_1\",\n        ),\n    ])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Materialize = Pulumi.Materialize;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var exampleSourcePostgres = new Materialize.SourcePostgres(\"exampleSourcePostgres\", new()\n    {\n        ClusterName = \"quickstart\",\n        PostgresConnection = new Materialize.Inputs.SourcePostgresPostgresConnectionArgs\n        {\n            Name = \"pg_connection\",\n        },\n        Publication = \"mz_source\",\n        SchemaName = \"schema\",\n        Tables = new[]\n        {\n            new Materialize.Inputs.SourcePostgresTableArgs\n            {\n                Alias = \"s1_table_1\",\n                Name = \"schema1.table_1\",\n            },\n            new Materialize.Inputs.SourcePostgresTableArgs\n            {\n                Alias = \"s2_table_1\",\n                Name = \"schema2.table_1\",\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-materialize/sdk/go/materialize\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := materialize.NewSourcePostgres(ctx, \"exampleSourcePostgres\", \u0026materialize.SourcePostgresArgs{\n\t\t\tClusterName: pulumi.String(\"quickstart\"),\n\t\t\tPostgresConnection: \u0026materialize.SourcePostgresPostgresConnectionArgs{\n\t\t\t\tName: pulumi.String(\"pg_connection\"),\n\t\t\t},\n\t\t\tPublication: pulumi.String(\"mz_source\"),\n\t\t\tSchemaName:  pulumi.String(\"schema\"),\n\t\t\tTables: materialize.SourcePostgresTableArray{\n\t\t\t\t\u0026materialize.SourcePostgresTableArgs{\n\t\t\t\t\tAlias: pulumi.String(\"s1_table_1\"),\n\t\t\t\t\tName:  pulumi.String(\"schema1.table_1\"),\n\t\t\t\t},\n\t\t\t\t\u0026materialize.SourcePostgresTableArgs{\n\t\t\t\t\tAlias: pulumi.String(\"s2_table_1\"),\n\t\t\t\t\tName:  pulumi.String(\"schema2.table_1\"),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.materialize.SourcePostgres;\nimport com.pulumi.materialize.SourcePostgresArgs;\nimport com.pulumi.materialize.inputs.SourcePostgresPostgresConnectionArgs;\nimport com.pulumi.materialize.inputs.SourcePostgresTableArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var exampleSourcePostgres = new SourcePostgres(\"exampleSourcePostgres\", SourcePostgresArgs.builder()        \n            .clusterName(\"quickstart\")\n            .postgresConnection(SourcePostgresPostgresConnectionArgs.builder()\n                .name(\"pg_connection\")\n                .build())\n            .publication(\"mz_source\")\n            .schemaName(\"schema\")\n            .tables(            \n                SourcePostgresTableArgs.builder()\n                    .alias(\"s1_table_1\")\n                    .name(\"schema1.table_1\")\n                    .build(),\n                SourcePostgresTableArgs.builder()\n                    .alias(\"s2_table_1\")\n                    .name(\"schema2.table_1\")\n                    .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  exampleSourcePostgres:\n    type: materialize:SourcePostgres\n    properties:\n      clusterName: quickstart\n      postgresConnection:\n        name: pg_connection\n      publication: mz_source\n      schemaName: schema\n      tables:\n        - alias: s1_table_1\n          name: schema1.table_1\n        - alias: s2_table_1\n          name: schema2.table_1\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nSources can be imported using the source id\n\n```sh\n $ pulumi import materialize:index/sourcePostgres:SourcePostgres example_source_postgres \u003cregion\u003e:\u003csource_id\u003e\n```\n\n Source id and information be found in the `mz_catalog.mz_sources` table The region is the region where the database is located (e.g. aws/us-east-1) ",
             "properties": {
@@ -8112,7 +9147,7 @@
                 },
                 "databaseName": {
                     "type": "string",
-                    "description": "The identifier for the source database. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
+                    "description": "The identifier for the source database in Materialize. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
                 },
                 "exposeProgress": {
                     "$ref": "#/types/materialize:index/SourcePostgresExposeProgress:SourcePostgresExposeProgress",
@@ -8144,7 +9179,7 @@
                 },
                 "schemaName": {
                     "type": "string",
-                    "description": "The identifier for the source schema. Defaults to `public`.\n"
+                    "description": "The identifier for the source schema in Materialize. Defaults to `public`.\n"
                 },
                 "schemas": {
                     "type": "array",
@@ -8201,7 +9236,7 @@
                 },
                 "databaseName": {
                     "type": "string",
-                    "description": "The identifier for the source database. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
+                    "description": "The identifier for the source database in Materialize. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
                     "willReplaceOnChanges": true
                 },
                 "exposeProgress": {
@@ -8234,7 +9269,7 @@
                 },
                 "schemaName": {
                     "type": "string",
-                    "description": "The identifier for the source schema. Defaults to `public`.\n",
+                    "description": "The identifier for the source schema in Materialize. Defaults to `public`.\n",
                     "willReplaceOnChanges": true
                 },
                 "schemas": {
@@ -8278,7 +9313,7 @@
                     },
                     "databaseName": {
                         "type": "string",
-                        "description": "The identifier for the source database. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
+                        "description": "The identifier for the source database in Materialize. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
                         "willReplaceOnChanges": true
                     },
                     "exposeProgress": {
@@ -8315,7 +9350,7 @@
                     },
                     "schemaName": {
                         "type": "string",
-                        "description": "The identifier for the source schema. Defaults to `public`.\n",
+                        "description": "The identifier for the source schema in Materialize. Defaults to `public`.\n",
                         "willReplaceOnChanges": true
                     },
                     "schemas": {
@@ -8383,7 +9418,7 @@
                 },
                 "databaseName": {
                     "type": "string",
-                    "description": "The identifier for the source database. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
+                    "description": "The identifier for the source database in Materialize. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
                 },
                 "includeHeader": {
                     "type": "array",
@@ -8414,7 +9449,7 @@
                 },
                 "schemaName": {
                     "type": "string",
-                    "description": "The identifier for the source schema. Defaults to `public`.\n"
+                    "description": "The identifier for the source schema in Materialize. Defaults to `public`.\n"
                 },
                 "size": {
                     "type": "string",
@@ -8466,7 +9501,7 @@
                 },
                 "databaseName": {
                     "type": "string",
-                    "description": "The identifier for the source database. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
+                    "description": "The identifier for the source database in Materialize. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
                     "willReplaceOnChanges": true
                 },
                 "includeHeader": {
@@ -8497,7 +9532,7 @@
                 },
                 "schemaName": {
                     "type": "string",
-                    "description": "The identifier for the source schema. Defaults to `public`.\n",
+                    "description": "The identifier for the source schema in Materialize. Defaults to `public`.\n",
                     "willReplaceOnChanges": true
                 }
             },
@@ -8536,7 +9571,7 @@
                     },
                     "databaseName": {
                         "type": "string",
-                        "description": "The identifier for the source database. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
+                        "description": "The identifier for the source database in Materialize. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
                         "willReplaceOnChanges": true
                     },
                     "includeHeader": {
@@ -8571,7 +9606,7 @@
                     },
                     "schemaName": {
                         "type": "string",
-                        "description": "The identifier for the source schema. Defaults to `public`.\n",
+                        "description": "The identifier for the source schema in Materialize. Defaults to `public`.\n",
                         "willReplaceOnChanges": true
                     },
                     "size": {
@@ -8665,7 +9700,7 @@
                 },
                 "databaseName": {
                     "type": "string",
-                    "description": "The identifier for the table database. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
+                    "description": "The identifier for the table database in Materialize. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
                 },
                 "name": {
                     "type": "string",
@@ -8685,7 +9720,7 @@
                 },
                 "schemaName": {
                     "type": "string",
-                    "description": "The identifier for the table schema. Defaults to `public`.\n"
+                    "description": "The identifier for the table schema in Materialize. Defaults to `public`.\n"
                 }
             },
             "required": [
@@ -8709,7 +9744,7 @@
                 },
                 "databaseName": {
                     "type": "string",
-                    "description": "The identifier for the table database. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
+                    "description": "The identifier for the table database in Materialize. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
                     "willReplaceOnChanges": true
                 },
                 "name": {
@@ -8727,7 +9762,7 @@
                 },
                 "schemaName": {
                     "type": "string",
-                    "description": "The identifier for the table schema. Defaults to `public`.\n",
+                    "description": "The identifier for the table schema in Materialize. Defaults to `public`.\n",
                     "willReplaceOnChanges": true
                 }
             },
@@ -8751,7 +9786,7 @@
                     },
                     "databaseName": {
                         "type": "string",
-                        "description": "The identifier for the table database. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
+                        "description": "The identifier for the table database in Materialize. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
                         "willReplaceOnChanges": true
                     },
                     "name": {
@@ -8773,7 +9808,7 @@
                     },
                     "schemaName": {
                         "type": "string",
-                        "description": "The identifier for the table schema. Defaults to `public`.\n",
+                        "description": "The identifier for the table schema in Materialize. Defaults to `public`.\n",
                         "willReplaceOnChanges": true
                     }
                 },
@@ -8793,7 +9828,7 @@
                 },
                 "databaseName": {
                     "type": "string",
-                    "description": "The identifier for the type database. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
+                    "description": "The identifier for the type database in Materialize. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
                 },
                 "listProperties": {
                     "$ref": "#/types/materialize:index/TypeListProperties:TypeListProperties",
@@ -8828,7 +9863,7 @@
                 },
                 "schemaName": {
                     "type": "string",
-                    "description": "The identifier for the type schema. Defaults to `public`.\n"
+                    "description": "The identifier for the type schema in Materialize. Defaults to `public`.\n"
                 }
             },
             "required": [
@@ -8844,7 +9879,7 @@
                 },
                 "databaseName": {
                     "type": "string",
-                    "description": "The identifier for the type database. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
+                    "description": "The identifier for the type database in Materialize. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
                     "willReplaceOnChanges": true
                 },
                 "listProperties": {
@@ -8881,7 +9916,7 @@
                 },
                 "schemaName": {
                     "type": "string",
-                    "description": "The identifier for the type schema. Defaults to `public`.\n",
+                    "description": "The identifier for the type schema in Materialize. Defaults to `public`.\n",
                     "willReplaceOnChanges": true
                 }
             },
@@ -8898,7 +9933,7 @@
                     },
                     "databaseName": {
                         "type": "string",
-                        "description": "The identifier for the type database. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
+                        "description": "The identifier for the type database in Materialize. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
                         "willReplaceOnChanges": true
                     },
                     "listProperties": {
@@ -8939,7 +9974,7 @@
                     },
                     "schemaName": {
                         "type": "string",
-                        "description": "The identifier for the type schema. Defaults to `public`.\n",
+                        "description": "The identifier for the type schema in Materialize. Defaults to `public`.\n",
                         "willReplaceOnChanges": true
                     }
                 },
@@ -9040,7 +10075,7 @@
                 },
                 "databaseName": {
                     "type": "string",
-                    "description": "The identifier for the view database. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
+                    "description": "The identifier for the view database in Materialize. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
                 },
                 "name": {
                     "type": "string",
@@ -9060,7 +10095,7 @@
                 },
                 "schemaName": {
                     "type": "string",
-                    "description": "The identifier for the view schema. Defaults to `public`.\n"
+                    "description": "The identifier for the view schema in Materialize. Defaults to `public`.\n"
                 },
                 "statement": {
                     "type": "string",
@@ -9081,7 +10116,7 @@
                 },
                 "databaseName": {
                     "type": "string",
-                    "description": "The identifier for the view database. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
+                    "description": "The identifier for the view database in Materialize. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
                     "willReplaceOnChanges": true
                 },
                 "name": {
@@ -9099,7 +10134,7 @@
                 },
                 "schemaName": {
                     "type": "string",
-                    "description": "The identifier for the view schema. Defaults to `public`.\n",
+                    "description": "The identifier for the view schema in Materialize. Defaults to `public`.\n",
                     "willReplaceOnChanges": true
                 },
                 "statement": {
@@ -9124,7 +10159,7 @@
                     },
                     "databaseName": {
                         "type": "string",
-                        "description": "The identifier for the view database. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
+                        "description": "The identifier for the view database in Materialize. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
                         "willReplaceOnChanges": true
                     },
                     "name": {
@@ -9146,7 +10181,7 @@
                     },
                     "schemaName": {
                         "type": "string",
-                        "description": "The identifier for the view schema. Defaults to `public`.\n",
+                        "description": "The identifier for the view schema in Materialize. Defaults to `public`.\n",
                         "willReplaceOnChanges": true
                     },
                     "statement": {
