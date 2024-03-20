@@ -2567,7 +2567,8 @@
             "properties": {
                 "scaleFactor": {
                     "type": "number",
-                    "description": "The scale factor for the generator. Defaults to 0.01 (~ 10MB).\n",
+                    "description": "(Deprecated) The scale factor for the generator. Defaults to 0.01 (~ 10MB).\n",
+                    "deprecationMessage": "Scale factor is deprecated and will be removed in a future release.",
                     "willReplaceOnChanges": true
                 },
                 "tickInterval": {
@@ -2587,7 +2588,8 @@
                 },
                 "scaleFactor": {
                     "type": "number",
-                    "description": "The scale factor for the generator. Defaults to 0.01 (~ 10MB).\n",
+                    "description": "(Deprecated) The scale factor for the generator. Defaults to 0.01 (~ 10MB).\n",
+                    "deprecationMessage": "Scale factor is deprecated and will be removed in a future release.",
                     "willReplaceOnChanges": true
                 },
                 "tickInterval": {
@@ -2622,7 +2624,8 @@
             "properties": {
                 "scaleFactor": {
                     "type": "number",
-                    "description": "The scale factor for the generator. Defaults to 0.01 (~ 10MB).\n",
+                    "description": "(Deprecated) The scale factor for the generator. Defaults to 0.01 (~ 10MB).\n",
+                    "deprecationMessage": "Scale factor is deprecated and will be removed in a future release.",
                     "willReplaceOnChanges": true
                 },
                 "tickInterval": {
@@ -3169,6 +3172,13 @@
         "materialize:index/cluster:Cluster": {
             "description": "Clusters describe logical compute resources that can be used by sources, sinks, indexes, and materialized views. Managed clusters are created by setting the `size` attribute\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as materialize from \"@pulumi/materialize\";\n\nconst exampleCluster = new materialize.Cluster(\"exampleCluster\", {});\n```\n```python\nimport pulumi\nimport pulumi_materialize as materialize\n\nexample_cluster = materialize.Cluster(\"exampleCluster\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Materialize = Pulumi.Materialize;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var exampleCluster = new Materialize.Cluster(\"exampleCluster\");\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-materialize/sdk/go/materialize\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := materialize.NewCluster(ctx, \"exampleCluster\", nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.materialize.Cluster;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var exampleCluster = new Cluster(\"exampleCluster\");\n\n    }\n}\n```\n```yaml\nresources:\n  exampleCluster:\n    type: materialize:Cluster\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nClusters can be imported using the cluster id\n\n```sh\n $ pulumi import materialize:index/cluster:Cluster example_cluster \u003cregion\u003e:\u003ccluster_id\u003e\n```\n\n Cluster id and information be found in the `mz_catalog.mz_clusters` table The region is the region where the database is located (e.g. aws/us-east-1) ",
             "properties": {
+                "availabilityZones": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The specific availability zones of the cluster.\n"
+                },
                 "comment": {
                     "type": "string",
                     "description": "**Public Preview** Comment on an object in the database.\n"
@@ -3212,12 +3222,20 @@
                 }
             },
             "required": [
+                "availabilityZones",
                 "disk",
                 "name",
                 "ownershipRole",
                 "replicationFactor"
             ],
             "inputProperties": {
+                "availabilityZones": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The specific availability zones of the cluster.\n"
+                },
                 "comment": {
                     "type": "string",
                     "description": "**Public Preview** Comment on an object in the database.\n"
@@ -3265,6 +3283,13 @@
             "stateInputs": {
                 "description": "Input properties used for looking up and filtering Cluster resources.\n",
                 "properties": {
+                    "availabilityZones": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "The specific availability zones of the cluster.\n"
+                    },
                     "comment": {
                         "type": "string",
                         "description": "**Public Preview** Comment on an object in the database.\n"
@@ -7704,6 +7729,10 @@
         "materialize:index/sSORoleGroupMapping:SSORoleGroupMapping": {
             "description": "The SSO group role mapping resource allows you to set the roles for an SSO group. This allows you to automatically assign additional roles according to your identity provider groups\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as materialize from \"@pulumi/materialize\";\n\nconst exampleSsoGroupMapping = new materialize.SSORoleGroupMapping(\"exampleSsoGroupMapping\", {\n    group: \"admins\",\n    ssoConfigId: materialize_sso_config.example_sso_config.id,\n    roles: [\"Admin\"],\n});\n```\n```python\nimport pulumi\nimport pulumi_materialize as materialize\n\nexample_sso_group_mapping = materialize.SSORoleGroupMapping(\"exampleSsoGroupMapping\",\n    group=\"admins\",\n    sso_config_id=materialize_sso_config[\"example_sso_config\"][\"id\"],\n    roles=[\"Admin\"])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Materialize = Pulumi.Materialize;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var exampleSsoGroupMapping = new Materialize.SSORoleGroupMapping(\"exampleSsoGroupMapping\", new()\n    {\n        Group = \"admins\",\n        SsoConfigId = materialize_sso_config.Example_sso_config.Id,\n        Roles = new[]\n        {\n            \"Admin\",\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-materialize/sdk/go/materialize\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := materialize.NewSSORoleGroupMapping(ctx, \"exampleSsoGroupMapping\", \u0026materialize.SSORoleGroupMappingArgs{\n\t\t\tGroup:       pulumi.String(\"admins\"),\n\t\t\tSsoConfigId: pulumi.Any(materialize_sso_config.Example_sso_config.Id),\n\t\t\tRoles: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"Admin\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.materialize.SSORoleGroupMapping;\nimport com.pulumi.materialize.SSORoleGroupMappingArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var exampleSsoGroupMapping = new SSORoleGroupMapping(\"exampleSsoGroupMapping\", SSORoleGroupMappingArgs.builder()        \n            .group(\"admins\")\n            .ssoConfigId(materialize_sso_config.example_sso_config().id())\n            .roles(\"Admin\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  exampleSsoGroupMapping:\n    type: materialize:SSORoleGroupMapping\n    properties:\n      group: admins\n      ssoConfigId: ${materialize_sso_config.example_sso_config.id}\n      roles:\n        - Admin\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nThe SSO Configuration ID and the Group Mapping ID can be found using the `materialize_sso_config` data source\n\n```sh\n $ pulumi import materialize:index/sSORoleGroupMapping:SSORoleGroupMapping example \u003csso_config_id\u003e:\u003csso_group_mapping_id\u003e\n```\n\n ",
             "properties": {
+                "enabled": {
+                    "type": "boolean",
+                    "description": "Whether the group mapping is enabled.\n"
+                },
                 "group": {
                     "type": "string",
                     "description": "The name of the SSO group.\n"
@@ -7721,6 +7750,7 @@
                 }
             },
             "required": [
+                "enabled",
                 "group",
                 "roles",
                 "ssoConfigId"
@@ -7750,6 +7780,10 @@
             "stateInputs": {
                 "description": "Input properties used for looking up and filtering SSORoleGroupMapping resources.\n",
                 "properties": {
+                    "enabled": {
+                        "type": "boolean",
+                        "description": "Whether the group mapping is enabled.\n"
+                    },
                     "group": {
                         "type": "string",
                         "description": "The name of the SSO group.\n"
@@ -8678,7 +8712,7 @@
             }
         },
         "materialize:index/sourceLoadgen:SourceLoadgen": {
-            "description": "A load generator source produces synthetic data for use in demos and performance tests.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as materialize from \"@pulumi/materialize\";\n\nconst exampleSourceLoadGenerator = new materialize.SourceLoadgen(\"exampleSourceLoadGenerator\", {\n    clusterName: \"quickstart\",\n    counterOptions: {\n        scaleFactor: 0.01,\n        tickInterval: \"500ms\",\n    },\n    loadGeneratorType: \"COUNTER\",\n    schemaName: \"schema\",\n});\n```\n```python\nimport pulumi\nimport pulumi_materialize as materialize\n\nexample_source_load_generator = materialize.SourceLoadgen(\"exampleSourceLoadGenerator\",\n    cluster_name=\"quickstart\",\n    counter_options=materialize.SourceLoadgenCounterOptionsArgs(\n        scale_factor=0.01,\n        tick_interval=\"500ms\",\n    ),\n    load_generator_type=\"COUNTER\",\n    schema_name=\"schema\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Materialize = Pulumi.Materialize;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var exampleSourceLoadGenerator = new Materialize.SourceLoadgen(\"exampleSourceLoadGenerator\", new()\n    {\n        ClusterName = \"quickstart\",\n        CounterOptions = new Materialize.Inputs.SourceLoadgenCounterOptionsArgs\n        {\n            ScaleFactor = 0.01,\n            TickInterval = \"500ms\",\n        },\n        LoadGeneratorType = \"COUNTER\",\n        SchemaName = \"schema\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-materialize/sdk/go/materialize\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := materialize.NewSourceLoadgen(ctx, \"exampleSourceLoadGenerator\", \u0026materialize.SourceLoadgenArgs{\n\t\t\tClusterName: pulumi.String(\"quickstart\"),\n\t\t\tCounterOptions: \u0026materialize.SourceLoadgenCounterOptionsArgs{\n\t\t\t\tScaleFactor:  pulumi.Float64(0.01),\n\t\t\t\tTickInterval: pulumi.String(\"500ms\"),\n\t\t\t},\n\t\t\tLoadGeneratorType: pulumi.String(\"COUNTER\"),\n\t\t\tSchemaName:        pulumi.String(\"schema\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.materialize.SourceLoadgen;\nimport com.pulumi.materialize.SourceLoadgenArgs;\nimport com.pulumi.materialize.inputs.SourceLoadgenCounterOptionsArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var exampleSourceLoadGenerator = new SourceLoadgen(\"exampleSourceLoadGenerator\", SourceLoadgenArgs.builder()        \n            .clusterName(\"quickstart\")\n            .counterOptions(SourceLoadgenCounterOptionsArgs.builder()\n                .scaleFactor(0.01)\n                .tickInterval(\"500ms\")\n                .build())\n            .loadGeneratorType(\"COUNTER\")\n            .schemaName(\"schema\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  exampleSourceLoadGenerator:\n    type: materialize:SourceLoadgen\n    properties:\n      clusterName: quickstart\n      counterOptions:\n        scaleFactor: 0.01\n        tickInterval: 500ms\n      loadGeneratorType: COUNTER\n      schemaName: schema\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nSources can be imported using the source id\n\n```sh\n $ pulumi import materialize:index/sourceLoadgen:SourceLoadgen example_source_load_generator \u003cregion\u003e:\u003csource_id\u003e\n```\n\n Source id and information be found in the `mz_catalog.mz_sources` table The region is the region where the database is located (e.g. aws/us-east-1) ",
+            "description": "A load generator source produces synthetic data for use in demos and performance tests.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as materialize from \"@pulumi/materialize\";\n\nconst exampleSourceLoadGenerator = new materialize.SourceLoadgen(\"exampleSourceLoadGenerator\", {\n    clusterName: \"quickstart\",\n    counterOptions: {\n        tickInterval: \"500ms\",\n    },\n    loadGeneratorType: \"COUNTER\",\n    schemaName: \"schema\",\n});\n```\n```python\nimport pulumi\nimport pulumi_materialize as materialize\n\nexample_source_load_generator = materialize.SourceLoadgen(\"exampleSourceLoadGenerator\",\n    cluster_name=\"quickstart\",\n    counter_options=materialize.SourceLoadgenCounterOptionsArgs(\n        tick_interval=\"500ms\",\n    ),\n    load_generator_type=\"COUNTER\",\n    schema_name=\"schema\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Materialize = Pulumi.Materialize;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var exampleSourceLoadGenerator = new Materialize.SourceLoadgen(\"exampleSourceLoadGenerator\", new()\n    {\n        ClusterName = \"quickstart\",\n        CounterOptions = new Materialize.Inputs.SourceLoadgenCounterOptionsArgs\n        {\n            TickInterval = \"500ms\",\n        },\n        LoadGeneratorType = \"COUNTER\",\n        SchemaName = \"schema\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-materialize/sdk/go/materialize\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := materialize.NewSourceLoadgen(ctx, \"exampleSourceLoadGenerator\", \u0026materialize.SourceLoadgenArgs{\n\t\t\tClusterName: pulumi.String(\"quickstart\"),\n\t\t\tCounterOptions: \u0026materialize.SourceLoadgenCounterOptionsArgs{\n\t\t\t\tTickInterval: pulumi.String(\"500ms\"),\n\t\t\t},\n\t\t\tLoadGeneratorType: pulumi.String(\"COUNTER\"),\n\t\t\tSchemaName:        pulumi.String(\"schema\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.materialize.SourceLoadgen;\nimport com.pulumi.materialize.SourceLoadgenArgs;\nimport com.pulumi.materialize.inputs.SourceLoadgenCounterOptionsArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var exampleSourceLoadGenerator = new SourceLoadgen(\"exampleSourceLoadGenerator\", SourceLoadgenArgs.builder()        \n            .clusterName(\"quickstart\")\n            .counterOptions(SourceLoadgenCounterOptionsArgs.builder()\n                .tickInterval(\"500ms\")\n                .build())\n            .loadGeneratorType(\"COUNTER\")\n            .schemaName(\"schema\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  exampleSourceLoadGenerator:\n    type: materialize:SourceLoadgen\n    properties:\n      clusterName: quickstart\n      counterOptions:\n        tickInterval: 500ms\n      loadGeneratorType: COUNTER\n      schemaName: schema\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nSources can be imported using the source id\n\n```sh\n $ pulumi import materialize:index/sourceLoadgen:SourceLoadgen example_source_load_generator \u003cregion\u003e:\u003csource_id\u003e\n```\n\n Source id and information be found in the `mz_catalog.mz_sources` table The region is the region where the database is located (e.g. aws/us-east-1) ",
             "properties": {
                 "auctionOptions": {
                     "$ref": "#/types/materialize:index/SourceLoadgenAuctionOptions:SourceLoadgenAuctionOptions",
@@ -10196,7 +10230,17 @@
     },
     "functions": {
         "materialize:index/getClusterReplicas:GetClusterReplicas": {
-            "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as materialize from \"@pulumi/materialize\";\n\nconst all = materialize.GetClusterReplicas({});\n```\n```python\nimport pulumi\nimport pulumi_materialize as materialize\n\nall = materialize.get_cluster_replicas()\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Materialize = Pulumi.Materialize;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var all = Materialize.GetClusterReplicas.Invoke();\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-materialize/sdk/go/materialize\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := materialize.GetClusterReplicas(ctx, nil, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.materialize.MaterializeFunctions;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var all = MaterializeFunctions.GetClusterReplicas();\n\n    }\n}\n```\n```yaml\nvariables:\n  all:\n    fn::invoke:\n      Function: materialize:GetClusterReplicas\n      Arguments: {}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as materialize from \"@pulumi/materialize\";\n\nconst all = materialize.GetClusterReplicas({});\n```\n```python\nimport pulumi\nimport pulumi_materialize as materialize\n\nall = materialize.get_cluster_replicas()\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Materialize = Pulumi.Materialize;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var all = Materialize.GetClusterReplicas.Invoke();\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-materialize/sdk/go/materialize\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := materialize.GetClusterReplicas(ctx, nil, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.materialize.MaterializeFunctions;\nimport com.pulumi.materialize.inputs.GetClusterReplicasArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var all = MaterializeFunctions.GetClusterReplicas();\n\n    }\n}\n```\n```yaml\nvariables:\n  all:\n    fn::invoke:\n      Function: materialize:GetClusterReplicas\n      Arguments: {}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "inputs": {
+                "description": "A collection of arguments for invoking GetClusterReplicas.\n",
+                "properties": {
+                    "region": {
+                        "type": "string",
+                        "description": "The region in which the resource is located.\n"
+                    }
+                },
+                "type": "object"
+            },
             "outputs": {
                 "description": "A collection of values returned by GetClusterReplicas.\n",
                 "properties": {
@@ -10225,7 +10269,17 @@
             }
         },
         "materialize:index/getClusters:GetClusters": {
-            "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as materialize from \"@pulumi/materialize\";\n\nconst all = materialize.GetClusters({});\n```\n```python\nimport pulumi\nimport pulumi_materialize as materialize\n\nall = materialize.get_clusters()\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Materialize = Pulumi.Materialize;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var all = Materialize.GetClusters.Invoke();\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-materialize/sdk/go/materialize\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := materialize.GetClusters(ctx, nil, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.materialize.MaterializeFunctions;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var all = MaterializeFunctions.GetClusters();\n\n    }\n}\n```\n```yaml\nvariables:\n  all:\n    fn::invoke:\n      Function: materialize:GetClusters\n      Arguments: {}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as materialize from \"@pulumi/materialize\";\n\nconst all = materialize.GetClusters({});\n```\n```python\nimport pulumi\nimport pulumi_materialize as materialize\n\nall = materialize.get_clusters()\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Materialize = Pulumi.Materialize;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var all = Materialize.GetClusters.Invoke();\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-materialize/sdk/go/materialize\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := materialize.GetClusters(ctx, nil, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.materialize.MaterializeFunctions;\nimport com.pulumi.materialize.inputs.GetClustersArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var all = MaterializeFunctions.GetClusters();\n\n    }\n}\n```\n```yaml\nvariables:\n  all:\n    fn::invoke:\n      Function: materialize:GetClusters\n      Arguments: {}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "inputs": {
+                "description": "A collection of arguments for invoking GetClusters.\n",
+                "properties": {
+                    "region": {
+                        "type": "string",
+                        "description": "The region in which the resource is located.\n"
+                    }
+                },
+                "type": "object"
+            },
             "outputs": {
                 "description": "A collection of values returned by GetClusters.\n",
                 "properties": {
@@ -10261,6 +10315,10 @@
                     "databaseName": {
                         "type": "string",
                         "description": "Limit connections to a specific database\n"
+                    },
+                    "region": {
+                        "type": "string",
+                        "description": "The region in which the resource is located.\n"
                     },
                     "schemaName": {
                         "type": "string",
@@ -10305,7 +10363,17 @@
             }
         },
         "materialize:index/getCurrentCluster:GetCurrentCluster": {
-            "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as materialize from \"@pulumi/materialize\";\n\nconst current = materialize.GetCurrentCluster({});\nexport const clusterName = current.then(current =\u003e current.name);\n```\n```python\nimport pulumi\nimport pulumi_materialize as materialize\n\ncurrent = materialize.get_current_cluster()\npulumi.export(\"clusterName\", current.name)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Materialize = Pulumi.Materialize;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var current = Materialize.GetCurrentCluster.Invoke();\n\n    return new Dictionary\u003cstring, object?\u003e\n    {\n        [\"clusterName\"] = current.Apply(getCurrentClusterResult =\u003e getCurrentClusterResult.Name),\n    };\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-materialize/sdk/go/materialize\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tcurrent, err := materialize.GetCurrentCluster(ctx, nil, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tctx.Export(\"clusterName\", current.Name)\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.materialize.MaterializeFunctions;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var current = MaterializeFunctions.GetCurrentCluster();\n\n        ctx.export(\"clusterName\", current.applyValue(getCurrentClusterResult -\u003e getCurrentClusterResult.name()));\n    }\n}\n```\n```yaml\nvariables:\n  current:\n    fn::invoke:\n      Function: materialize:GetCurrentCluster\n      Arguments: {}\noutputs:\n  clusterName: ${current.name}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as materialize from \"@pulumi/materialize\";\n\nconst current = materialize.GetCurrentCluster({});\nexport const clusterName = current.then(current =\u003e current.name);\n```\n```python\nimport pulumi\nimport pulumi_materialize as materialize\n\ncurrent = materialize.get_current_cluster()\npulumi.export(\"clusterName\", current.name)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Materialize = Pulumi.Materialize;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var current = Materialize.GetCurrentCluster.Invoke();\n\n    return new Dictionary\u003cstring, object?\u003e\n    {\n        [\"clusterName\"] = current.Apply(getCurrentClusterResult =\u003e getCurrentClusterResult.Name),\n    };\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-materialize/sdk/go/materialize\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tcurrent, err := materialize.GetCurrentCluster(ctx, nil, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tctx.Export(\"clusterName\", current.Name)\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.materialize.MaterializeFunctions;\nimport com.pulumi.materialize.inputs.GetCurrentClusterArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var current = MaterializeFunctions.GetCurrentCluster();\n\n        ctx.export(\"clusterName\", current.applyValue(getCurrentClusterResult -\u003e getCurrentClusterResult.name()));\n    }\n}\n```\n```yaml\nvariables:\n  current:\n    fn::invoke:\n      Function: materialize:GetCurrentCluster\n      Arguments: {}\noutputs:\n  clusterName: ${current.name}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "inputs": {
+                "description": "A collection of arguments for invoking GetCurrentCluster.\n",
+                "properties": {
+                    "region": {
+                        "type": "string",
+                        "description": "The region in which the resource is located.\n"
+                    }
+                },
+                "type": "object"
+            },
             "outputs": {
                 "description": "A collection of values returned by GetCurrentCluster.\n",
                 "properties": {
@@ -10330,7 +10398,17 @@
             }
         },
         "materialize:index/getCurrentDatabase:GetCurrentDatabase": {
-            "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as materialize from \"@pulumi/materialize\";\n\nconst current = materialize.GetCurrentDatabase({});\nexport const databaseName = current.then(current =\u003e current.name);\n```\n```python\nimport pulumi\nimport pulumi_materialize as materialize\n\ncurrent = materialize.get_current_database()\npulumi.export(\"databaseName\", current.name)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Materialize = Pulumi.Materialize;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var current = Materialize.GetCurrentDatabase.Invoke();\n\n    return new Dictionary\u003cstring, object?\u003e\n    {\n        [\"databaseName\"] = current.Apply(getCurrentDatabaseResult =\u003e getCurrentDatabaseResult.Name),\n    };\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-materialize/sdk/go/materialize\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tcurrent, err := materialize.GetCurrentDatabase(ctx, nil, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tctx.Export(\"databaseName\", current.Name)\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.materialize.MaterializeFunctions;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var current = MaterializeFunctions.GetCurrentDatabase();\n\n        ctx.export(\"databaseName\", current.applyValue(getCurrentDatabaseResult -\u003e getCurrentDatabaseResult.name()));\n    }\n}\n```\n```yaml\nvariables:\n  current:\n    fn::invoke:\n      Function: materialize:GetCurrentDatabase\n      Arguments: {}\noutputs:\n  databaseName: ${current.name}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as materialize from \"@pulumi/materialize\";\n\nconst current = materialize.GetCurrentDatabase({});\nexport const databaseName = current.then(current =\u003e current.name);\n```\n```python\nimport pulumi\nimport pulumi_materialize as materialize\n\ncurrent = materialize.get_current_database()\npulumi.export(\"databaseName\", current.name)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Materialize = Pulumi.Materialize;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var current = Materialize.GetCurrentDatabase.Invoke();\n\n    return new Dictionary\u003cstring, object?\u003e\n    {\n        [\"databaseName\"] = current.Apply(getCurrentDatabaseResult =\u003e getCurrentDatabaseResult.Name),\n    };\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-materialize/sdk/go/materialize\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tcurrent, err := materialize.GetCurrentDatabase(ctx, nil, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tctx.Export(\"databaseName\", current.Name)\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.materialize.MaterializeFunctions;\nimport com.pulumi.materialize.inputs.GetCurrentDatabaseArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var current = MaterializeFunctions.GetCurrentDatabase();\n\n        ctx.export(\"databaseName\", current.applyValue(getCurrentDatabaseResult -\u003e getCurrentDatabaseResult.name()));\n    }\n}\n```\n```yaml\nvariables:\n  current:\n    fn::invoke:\n      Function: materialize:GetCurrentDatabase\n      Arguments: {}\noutputs:\n  databaseName: ${current.name}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "inputs": {
+                "description": "A collection of arguments for invoking GetCurrentDatabase.\n",
+                "properties": {
+                    "region": {
+                        "type": "string",
+                        "description": "The region in which the resource is located.\n"
+                    }
+                },
+                "type": "object"
+            },
             "outputs": {
                 "description": "A collection of values returned by GetCurrentDatabase.\n",
                 "properties": {
@@ -10355,7 +10433,17 @@
             }
         },
         "materialize:index/getDatabases:GetDatabases": {
-            "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as materialize from \"@pulumi/materialize\";\n\nconst all = materialize.GetDatabases({});\n```\n```python\nimport pulumi\nimport pulumi_materialize as materialize\n\nall = materialize.get_databases()\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Materialize = Pulumi.Materialize;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var all = Materialize.GetDatabases.Invoke();\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-materialize/sdk/go/materialize\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := materialize.GetDatabases(ctx, nil, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.materialize.MaterializeFunctions;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var all = MaterializeFunctions.GetDatabases();\n\n    }\n}\n```\n```yaml\nvariables:\n  all:\n    fn::invoke:\n      Function: materialize:GetDatabases\n      Arguments: {}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as materialize from \"@pulumi/materialize\";\n\nconst all = materialize.GetDatabases({});\n```\n```python\nimport pulumi\nimport pulumi_materialize as materialize\n\nall = materialize.get_databases()\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Materialize = Pulumi.Materialize;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var all = Materialize.GetDatabases.Invoke();\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-materialize/sdk/go/materialize\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := materialize.GetDatabases(ctx, nil, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.materialize.MaterializeFunctions;\nimport com.pulumi.materialize.inputs.GetDatabasesArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var all = MaterializeFunctions.GetDatabases();\n\n    }\n}\n```\n```yaml\nvariables:\n  all:\n    fn::invoke:\n      Function: materialize:GetDatabases\n      Arguments: {}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "inputs": {
+                "description": "A collection of arguments for invoking GetDatabases.\n",
+                "properties": {
+                    "region": {
+                        "type": "string",
+                        "description": "The region in which the resource is located.\n"
+                    }
+                },
+                "type": "object"
+            },
             "outputs": {
                 "description": "A collection of values returned by GetDatabases.\n",
                 "properties": {
@@ -10384,7 +10472,17 @@
             }
         },
         "materialize:index/getEgressIps:GetEgressIps": {
-            "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as materialize from \"@pulumi/materialize\";\n\nconst all = materialize.GetEgressIps({});\nexport const ips = all.then(all =\u003e all.egressIps);\n```\n```python\nimport pulumi\nimport pulumi_materialize as materialize\n\nall = materialize.get_egress_ips()\npulumi.export(\"ips\", all.egress_ips)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Materialize = Pulumi.Materialize;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var all = Materialize.GetEgressIps.Invoke();\n\n    return new Dictionary\u003cstring, object?\u003e\n    {\n        [\"ips\"] = all.Apply(getEgressIpsResult =\u003e getEgressIpsResult.EgressIps),\n    };\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-materialize/sdk/go/materialize\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tall, err := materialize.GetEgressIps(ctx, nil, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tctx.Export(\"ips\", all.EgressIps)\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.materialize.MaterializeFunctions;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var all = MaterializeFunctions.GetEgressIps();\n\n        ctx.export(\"ips\", all.applyValue(getEgressIpsResult -\u003e getEgressIpsResult.egressIps()));\n    }\n}\n```\n```yaml\nvariables:\n  all:\n    fn::invoke:\n      Function: materialize:GetEgressIps\n      Arguments: {}\noutputs:\n  ips: ${all.egressIps}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as materialize from \"@pulumi/materialize\";\n\nconst all = materialize.GetEgressIps({});\nexport const ips = all.then(all =\u003e all.egressIps);\n```\n```python\nimport pulumi\nimport pulumi_materialize as materialize\n\nall = materialize.get_egress_ips()\npulumi.export(\"ips\", all.egress_ips)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Materialize = Pulumi.Materialize;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var all = Materialize.GetEgressIps.Invoke();\n\n    return new Dictionary\u003cstring, object?\u003e\n    {\n        [\"ips\"] = all.Apply(getEgressIpsResult =\u003e getEgressIpsResult.EgressIps),\n    };\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-materialize/sdk/go/materialize\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tall, err := materialize.GetEgressIps(ctx, nil, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tctx.Export(\"ips\", all.EgressIps)\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.materialize.MaterializeFunctions;\nimport com.pulumi.materialize.inputs.GetEgressIpsArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var all = MaterializeFunctions.GetEgressIps();\n\n        ctx.export(\"ips\", all.applyValue(getEgressIpsResult -\u003e getEgressIpsResult.egressIps()));\n    }\n}\n```\n```yaml\nvariables:\n  all:\n    fn::invoke:\n      Function: materialize:GetEgressIps\n      Arguments: {}\noutputs:\n  ips: ${all.egressIps}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "inputs": {
+                "description": "A collection of arguments for invoking GetEgressIps.\n",
+                "properties": {
+                    "region": {
+                        "type": "string",
+                        "description": "The region in which the resource is located.\n"
+                    }
+                },
+                "type": "object"
+            },
             "outputs": {
                 "description": "A collection of values returned by GetEgressIps.\n",
                 "properties": {
@@ -10420,6 +10518,10 @@
                     "databaseName": {
                         "type": "string",
                         "description": "Limit indexes to a specific database\n"
+                    },
+                    "region": {
+                        "type": "string",
+                        "description": "The region in which the resource is located.\n"
                     },
                     "schemaName": {
                         "type": "string",
@@ -10472,6 +10574,10 @@
                         "type": "string",
                         "description": "Limit materialized views to a specific database\n"
                     },
+                    "region": {
+                        "type": "string",
+                        "description": "The region in which the resource is located.\n"
+                    },
                     "schemaName": {
                         "type": "string",
                         "description": "Limit materialized views to a specific schema within a specific database\n"
@@ -10515,7 +10621,17 @@
             }
         },
         "materialize:index/getRoles:GetRoles": {
-            "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as materialize from \"@pulumi/materialize\";\n\nconst all = materialize.GetRoles({});\n```\n```python\nimport pulumi\nimport pulumi_materialize as materialize\n\nall = materialize.get_roles()\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Materialize = Pulumi.Materialize;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var all = Materialize.GetRoles.Invoke();\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-materialize/sdk/go/materialize\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := materialize.GetRoles(ctx, nil, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.materialize.MaterializeFunctions;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var all = MaterializeFunctions.GetRoles();\n\n    }\n}\n```\n```yaml\nvariables:\n  all:\n    fn::invoke:\n      Function: materialize:GetRoles\n      Arguments: {}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as materialize from \"@pulumi/materialize\";\n\nconst all = materialize.GetRoles({});\n```\n```python\nimport pulumi\nimport pulumi_materialize as materialize\n\nall = materialize.get_roles()\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Materialize = Pulumi.Materialize;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var all = Materialize.GetRoles.Invoke();\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-materialize/sdk/go/materialize\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := materialize.GetRoles(ctx, nil, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.materialize.MaterializeFunctions;\nimport com.pulumi.materialize.inputs.GetRolesArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var all = MaterializeFunctions.GetRoles();\n\n    }\n}\n```\n```yaml\nvariables:\n  all:\n    fn::invoke:\n      Function: materialize:GetRoles\n      Arguments: {}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "inputs": {
+                "description": "A collection of arguments for invoking GetRoles.\n",
+                "properties": {
+                    "region": {
+                        "type": "string",
+                        "description": "The region in which the resource is located.\n"
+                    }
+                },
+                "type": "object"
+            },
             "outputs": {
                 "description": "A collection of values returned by GetRoles.\n",
                 "properties": {
@@ -10620,6 +10736,10 @@
                     "databaseName": {
                         "type": "string",
                         "description": "Limit schemas to a specific database\n"
+                    },
+                    "region": {
+                        "type": "string",
+                        "description": "The region in which the resource is located.\n"
                     }
                 },
                 "type": "object"
@@ -10663,6 +10783,10 @@
                     "databaseName": {
                         "type": "string",
                         "description": "Limit secrets to a specific database\n"
+                    },
+                    "region": {
+                        "type": "string",
+                        "description": "The region in which the resource is located.\n"
                     },
                     "schemaName": {
                         "type": "string",
@@ -10715,6 +10839,10 @@
                         "type": "string",
                         "description": "Limit sinks to a specific database\n"
                     },
+                    "region": {
+                        "type": "string",
+                        "description": "The region in which the resource is located.\n"
+                    },
                     "schemaName": {
                         "type": "string",
                         "description": "Limit sinks to a specific schema within a specific database\n"
@@ -10766,6 +10894,10 @@
                         "type": "string",
                         "description": "Limit sources to a specific database\n"
                     },
+                    "region": {
+                        "type": "string",
+                        "description": "The region in which the resource is located.\n"
+                    },
                     "schemaName": {
                         "type": "string",
                         "description": "Limit sources to a specific schema within a specific database\n"
@@ -10816,6 +10948,10 @@
                     "name": {
                         "type": "string",
                         "description": "The name of the specific system parameter to fetch.\n"
+                    },
+                    "region": {
+                        "type": "string",
+                        "description": "The region in which the resource is located.\n"
                     }
                 },
                 "type": "object"
@@ -10857,6 +10993,10 @@
                     "databaseName": {
                         "type": "string",
                         "description": "Limit tables to a specific database\n"
+                    },
+                    "region": {
+                        "type": "string",
+                        "description": "The region in which the resource is located.\n"
                     },
                     "schemaName": {
                         "type": "string",
@@ -10908,6 +11048,10 @@
                         "type": "string",
                         "description": "Limit types to a specific database\n"
                     },
+                    "region": {
+                        "type": "string",
+                        "description": "The region in which the resource is located.\n"
+                    },
                     "schemaName": {
                         "type": "string",
                         "description": "Limit types to a specific schema within a specific database\n"
@@ -10958,6 +11102,10 @@
                     "databaseName": {
                         "type": "string",
                         "description": "Limit views to a specific database\n"
+                    },
+                    "region": {
+                        "type": "string",
+                        "description": "The region in which the resource is located.\n"
                     },
                     "schemaName": {
                         "type": "string",
