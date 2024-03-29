@@ -4736,8 +4736,7 @@
             "inputProperties": {
                 "awsPrivatelink": {
                     "$ref": "#/types/materialize:index/ConnectionPostgresAwsPrivatelink:ConnectionPostgresAwsPrivatelink",
-                    "description": "The AWS PrivateLink configuration for the Postgres database.\n",
-                    "willReplaceOnChanges": true
+                    "description": "The AWS PrivateLink configuration for the Postgres database.\n"
                 },
                 "comment": {
                     "type": "string",
@@ -4745,8 +4744,7 @@
                 },
                 "database": {
                     "type": "string",
-                    "description": "The target Postgres database.\n",
-                    "willReplaceOnChanges": true
+                    "description": "The target Postgres database.\n"
                 },
                 "databaseName": {
                     "type": "string",
@@ -4755,8 +4753,7 @@
                 },
                 "host": {
                     "type": "string",
-                    "description": "The Postgres database hostname.\n",
-                    "willReplaceOnChanges": true
+                    "description": "The Postgres database hostname.\n"
                 },
                 "name": {
                     "type": "string",
@@ -4768,13 +4765,11 @@
                 },
                 "password": {
                     "$ref": "#/types/materialize:index/ConnectionPostgresPassword:ConnectionPostgresPassword",
-                    "description": "The Postgres database password.\n",
-                    "willReplaceOnChanges": true
+                    "description": "The Postgres database password.\n"
                 },
                 "port": {
                     "type": "integer",
-                    "description": "The Postgres database port.\n",
-                    "willReplaceOnChanges": true
+                    "description": "The Postgres database port.\n"
                 },
                 "region": {
                     "type": "string",
@@ -4788,33 +4783,27 @@
                 },
                 "sshTunnel": {
                     "$ref": "#/types/materialize:index/ConnectionPostgresSshTunnel:ConnectionPostgresSshTunnel",
-                    "description": "The SSH tunnel configuration for the Postgres database.\n",
-                    "willReplaceOnChanges": true
+                    "description": "The SSH tunnel configuration for the Postgres database.\n"
                 },
                 "sslCertificate": {
                     "$ref": "#/types/materialize:index/ConnectionPostgresSslCertificate:ConnectionPostgresSslCertificate",
-                    "description": "The client certificate for the Postgres database.. Can be supplied as either free text using `text` or reference to a secret object using `secret`.\n",
-                    "willReplaceOnChanges": true
+                    "description": "The client certificate for the Postgres database.. Can be supplied as either free text using `text` or reference to a secret object using `secret`.\n"
                 },
                 "sslCertificateAuthority": {
                     "$ref": "#/types/materialize:index/ConnectionPostgresSslCertificateAuthority:ConnectionPostgresSslCertificateAuthority",
-                    "description": "The CA certificate for the Postgres database.. Can be supplied as either free text using `text` or reference to a secret object using `secret`.\n",
-                    "willReplaceOnChanges": true
+                    "description": "The CA certificate for the Postgres database.. Can be supplied as either free text using `text` or reference to a secret object using `secret`.\n"
                 },
                 "sslKey": {
                     "$ref": "#/types/materialize:index/ConnectionPostgresSslKey:ConnectionPostgresSslKey",
-                    "description": "The client key for the Postgres database.\n",
-                    "willReplaceOnChanges": true
+                    "description": "The client key for the Postgres database.\n"
                 },
                 "sslMode": {
                     "type": "string",
-                    "description": "The SSL mode for the Postgres database.\n",
-                    "willReplaceOnChanges": true
+                    "description": "The SSL mode for the Postgres database.\n"
                 },
                 "user": {
                     "$ref": "#/types/materialize:index/ConnectionPostgresUser:ConnectionPostgresUser",
-                    "description": "The Postgres database username.. Can be supplied as either free text using `text` or reference to a secret object using `secret`.\n",
-                    "willReplaceOnChanges": true
+                    "description": "The Postgres database username.. Can be supplied as either free text using `text` or reference to a secret object using `secret`.\n"
                 },
                 "validate": {
                     "type": "boolean",
@@ -4831,8 +4820,7 @@
                 "properties": {
                     "awsPrivatelink": {
                         "$ref": "#/types/materialize:index/ConnectionPostgresAwsPrivatelink:ConnectionPostgresAwsPrivatelink",
-                        "description": "The AWS PrivateLink configuration for the Postgres database.\n",
-                        "willReplaceOnChanges": true
+                        "description": "The AWS PrivateLink configuration for the Postgres database.\n"
                     },
                     "comment": {
                         "type": "string",
@@ -4840,8 +4828,7 @@
                     },
                     "database": {
                         "type": "string",
-                        "description": "The target Postgres database.\n",
-                        "willReplaceOnChanges": true
+                        "description": "The target Postgres database.\n"
                     },
                     "databaseName": {
                         "type": "string",
@@ -4850,8 +4837,7 @@
                     },
                     "host": {
                         "type": "string",
-                        "description": "The Postgres database hostname.\n",
-                        "willReplaceOnChanges": true
+                        "description": "The Postgres database hostname.\n"
                     },
                     "name": {
                         "type": "string",
@@ -4863,13 +4849,11 @@
                     },
                     "password": {
                         "$ref": "#/types/materialize:index/ConnectionPostgresPassword:ConnectionPostgresPassword",
-                        "description": "The Postgres database password.\n",
-                        "willReplaceOnChanges": true
+                        "description": "The Postgres database password.\n"
                     },
                     "port": {
                         "type": "integer",
-                        "description": "The Postgres database port.\n",
-                        "willReplaceOnChanges": true
+                        "description": "The Postgres database port.\n"
                     },
                     "qualifiedSqlName": {
                         "type": "string",
@@ -4887,33 +4871,27 @@
                     },
                     "sshTunnel": {
                         "$ref": "#/types/materialize:index/ConnectionPostgresSshTunnel:ConnectionPostgresSshTunnel",
-                        "description": "The SSH tunnel configuration for the Postgres database.\n",
-                        "willReplaceOnChanges": true
+                        "description": "The SSH tunnel configuration for the Postgres database.\n"
                     },
                     "sslCertificate": {
                         "$ref": "#/types/materialize:index/ConnectionPostgresSslCertificate:ConnectionPostgresSslCertificate",
-                        "description": "The client certificate for the Postgres database.. Can be supplied as either free text using `text` or reference to a secret object using `secret`.\n",
-                        "willReplaceOnChanges": true
+                        "description": "The client certificate for the Postgres database.. Can be supplied as either free text using `text` or reference to a secret object using `secret`.\n"
                     },
                     "sslCertificateAuthority": {
                         "$ref": "#/types/materialize:index/ConnectionPostgresSslCertificateAuthority:ConnectionPostgresSslCertificateAuthority",
-                        "description": "The CA certificate for the Postgres database.. Can be supplied as either free text using `text` or reference to a secret object using `secret`.\n",
-                        "willReplaceOnChanges": true
+                        "description": "The CA certificate for the Postgres database.. Can be supplied as either free text using `text` or reference to a secret object using `secret`.\n"
                     },
                     "sslKey": {
                         "$ref": "#/types/materialize:index/ConnectionPostgresSslKey:ConnectionPostgresSslKey",
-                        "description": "The client key for the Postgres database.\n",
-                        "willReplaceOnChanges": true
+                        "description": "The client key for the Postgres database.\n"
                     },
                     "sslMode": {
                         "type": "string",
-                        "description": "The SSL mode for the Postgres database.\n",
-                        "willReplaceOnChanges": true
+                        "description": "The SSL mode for the Postgres database.\n"
                     },
                     "user": {
                         "$ref": "#/types/materialize:index/ConnectionPostgresUser:ConnectionPostgresUser",
-                        "description": "The Postgres database username.. Can be supplied as either free text using `text` or reference to a secret object using `secret`.\n",
-                        "willReplaceOnChanges": true
+                        "description": "The Postgres database username.. Can be supplied as either free text using `text` or reference to a secret object using `secret`.\n"
                     },
                     "validate": {
                         "type": "boolean",
@@ -4973,6 +4951,10 @@
                 "user": {
                     "type": "string",
                     "description": "The user of the SSH tunnel.\n"
+                },
+                "validate": {
+                    "type": "boolean",
+                    "description": "**Private Preview** If the connection should wait for validation.\n"
                 }
             },
             "required": [
@@ -4997,8 +4979,7 @@
                 },
                 "host": {
                     "type": "string",
-                    "description": "The host of the SSH tunnel.\n",
-                    "willReplaceOnChanges": true
+                    "description": "The host of the SSH tunnel.\n"
                 },
                 "name": {
                     "type": "string",
@@ -5010,8 +4991,7 @@
                 },
                 "port": {
                     "type": "integer",
-                    "description": "The port of the SSH tunnel.\n",
-                    "willReplaceOnChanges": true
+                    "description": "The port of the SSH tunnel.\n"
                 },
                 "region": {
                     "type": "string",
@@ -5025,8 +5005,11 @@
                 },
                 "user": {
                     "type": "string",
-                    "description": "The user of the SSH tunnel.\n",
-                    "willReplaceOnChanges": true
+                    "description": "The user of the SSH tunnel.\n"
+                },
+                "validate": {
+                    "type": "boolean",
+                    "description": "**Private Preview** If the connection should wait for validation.\n"
                 }
             },
             "requiredInputs": [
@@ -5048,8 +5031,7 @@
                     },
                     "host": {
                         "type": "string",
-                        "description": "The host of the SSH tunnel.\n",
-                        "willReplaceOnChanges": true
+                        "description": "The host of the SSH tunnel.\n"
                     },
                     "name": {
                         "type": "string",
@@ -5061,8 +5043,7 @@
                     },
                     "port": {
                         "type": "integer",
-                        "description": "The port of the SSH tunnel.\n",
-                        "willReplaceOnChanges": true
+                        "description": "The port of the SSH tunnel.\n"
                     },
                     "publicKey1": {
                         "type": "string",
@@ -5088,8 +5069,11 @@
                     },
                     "user": {
                         "type": "string",
-                        "description": "The user of the SSH tunnel.\n",
-                        "willReplaceOnChanges": true
+                        "description": "The user of the SSH tunnel.\n"
+                    },
+                    "validate": {
+                        "type": "boolean",
+                        "description": "**Private Preview** If the connection should wait for validation.\n"
                     }
                 },
                 "type": "object"
@@ -7406,6 +7390,81 @@
                         "type": "string",
                         "description": "The region to use for the resource connection. If not set, the default region is used.\n",
                         "willReplaceOnChanges": true
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "materialize:index/roleParameter:RoleParameter": {
+            "description": "Manages a system parameter in Materialize.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as materialize from \"@pulumi/materialize\";\n\n// ALTER ROLE some_role SET transaction_isolation = 'strict serializable';\nconst exampleRole = new materialize.Role(\"exampleRole\", {});\nconst exampleRoleParameter = new materialize.RoleParameter(\"exampleRoleParameter\", {\n    roleName: exampleRole.name,\n    variableName: \"transaction_isolation\",\n    variableValue: \"strict serializable\",\n});\n```\n```python\nimport pulumi\nimport pulumi_materialize as materialize\n\n# ALTER ROLE some_role SET transaction_isolation = 'strict serializable';\nexample_role = materialize.Role(\"exampleRole\")\nexample_role_parameter = materialize.RoleParameter(\"exampleRoleParameter\",\n    role_name=example_role.name,\n    variable_name=\"transaction_isolation\",\n    variable_value=\"strict serializable\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Materialize = Pulumi.Materialize;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // ALTER ROLE some_role SET transaction_isolation = 'strict serializable';\n    var exampleRole = new Materialize.Role(\"exampleRole\");\n\n    var exampleRoleParameter = new Materialize.RoleParameter(\"exampleRoleParameter\", new()\n    {\n        RoleName = exampleRole.Name,\n        VariableName = \"transaction_isolation\",\n        VariableValue = \"strict serializable\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-materialize/sdk/go/materialize\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\texampleRole, err := materialize.NewRole(ctx, \"exampleRole\", nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = materialize.NewRoleParameter(ctx, \"exampleRoleParameter\", \u0026materialize.RoleParameterArgs{\n\t\t\tRoleName:      exampleRole.Name,\n\t\t\tVariableName:  pulumi.String(\"transaction_isolation\"),\n\t\t\tVariableValue: pulumi.String(\"strict serializable\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.materialize.Role;\nimport com.pulumi.materialize.RoleParameter;\nimport com.pulumi.materialize.RoleParameterArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var exampleRole = new Role(\"exampleRole\");\n\n        var exampleRoleParameter = new RoleParameter(\"exampleRoleParameter\", RoleParameterArgs.builder()        \n            .roleName(exampleRole.name())\n            .variableName(\"transaction_isolation\")\n            .variableValue(\"strict serializable\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # ALTER ROLE some_role SET transaction_isolation = 'strict serializable';\n  exampleRole:\n    type: materialize:Role\n  exampleRoleParameter:\n    type: materialize:RoleParameter\n    properties:\n      roleName: ${exampleRole.name}\n      variableName: transaction_isolation\n      variableValue: strict serializable\n```\n{{% /example %}}\n{{% /examples %}}",
+            "properties": {
+                "region": {
+                    "type": "string",
+                    "description": "The region to use for the resource connection. If not set, the default region is used.\n"
+                },
+                "roleName": {
+                    "type": "string",
+                    "description": "The name of the role to grant privilege to.\n"
+                },
+                "variableName": {
+                    "type": "string",
+                    "description": "The name of the session variable to modify.\n"
+                },
+                "variableValue": {
+                    "type": "string",
+                    "description": "The value to assign to the session variable.\n"
+                }
+            },
+            "required": [
+                "roleName",
+                "variableName",
+                "variableValue"
+            ],
+            "inputProperties": {
+                "region": {
+                    "type": "string",
+                    "description": "The region to use for the resource connection. If not set, the default region is used.\n",
+                    "willReplaceOnChanges": true
+                },
+                "roleName": {
+                    "type": "string",
+                    "description": "The name of the role to grant privilege to.\n",
+                    "willReplaceOnChanges": true
+                },
+                "variableName": {
+                    "type": "string",
+                    "description": "The name of the session variable to modify.\n"
+                },
+                "variableValue": {
+                    "type": "string",
+                    "description": "The value to assign to the session variable.\n"
+                }
+            },
+            "requiredInputs": [
+                "roleName",
+                "variableName",
+                "variableValue"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering RoleParameter resources.\n",
+                "properties": {
+                    "region": {
+                        "type": "string",
+                        "description": "The region to use for the resource connection. If not set, the default region is used.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "roleName": {
+                        "type": "string",
+                        "description": "The name of the role to grant privilege to.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "variableName": {
+                        "type": "string",
+                        "description": "The name of the session variable to modify.\n"
+                    },
+                    "variableValue": {
+                        "type": "string",
+                        "description": "The value to assign to the session variable.\n"
                     }
                 },
                 "type": "object"
