@@ -111,6 +111,7 @@ func Provider() tfbridge.ProviderInfo {
 			"materialize_materialized_view_grant":              {Tok: tfbridge.MakeResource(mainPkg, mainMod, "GrantMaterializedView")},
 			"materialize_role":                                 {Tok: tfbridge.MakeResource(mainPkg, mainMod, "Role")},
 			"materialize_role_grant":                           {Tok: tfbridge.MakeResource(mainPkg, mainMod, "GrantRole")},
+			"materialize_role_parameter":                       {Tok: tfbridge.MakeResource(mainPkg, mainMod, "RoleParameter")},
 			"materialize_schema":                               {Tok: tfbridge.MakeResource(mainPkg, mainMod, "Schema")},
 			"materialize_schema_grant":                         {Tok: tfbridge.MakeResource(mainPkg, mainMod, "GrantSchema")},
 			"materialize_schema_grant_default_privilege":       {Tok: tfbridge.MakeResource(mainPkg, mainMod, "GrantSchemaDefaultPrivilege")},
