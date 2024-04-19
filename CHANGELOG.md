@@ -1,5 +1,8 @@
 CHANGELOG
 =========
+## 0.1.10 - 2024-04-01
+Update to Terraform Provider [0.6.10](https://github.com/MaterializeInc/terraform-provider-materialize/releases/tag/v0.6.10).
+
 ## 0.1.9 - 2024-03-29
 Update to Terraform Provider [0.6.9](https://github.com/MaterializeInc/terraform-provider-materialize/releases/tag/v0.6.9).
 
