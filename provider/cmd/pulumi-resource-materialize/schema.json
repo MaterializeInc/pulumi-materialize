@@ -120,6 +120,26 @@
         }
     },
     "types": {
+        "materialize:index/ClusterScheduling:ClusterScheduling": {
+            "properties": {
+                "onRefresh": {
+                    "$ref": "#/types/materialize:index/ClusterSchedulingOnRefresh:ClusterSchedulingOnRefresh",
+                    "description": "Configuration for refreshing the cluster.\n"
+                }
+            },
+            "type": "object"
+        },
+        "materialize:index/ClusterSchedulingOnRefresh:ClusterSchedulingOnRefresh": {
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                },
+                "rehydrationTimeEstimate": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
         "materialize:index/ConnectionAwsAccessKeyId:ConnectionAwsAccessKeyId": {
             "properties": {
                 "secret": {
@@ -3332,6 +3352,10 @@
                     "type": "integer",
                     "description": "The number of replicas of each dataflow-powered object to maintain.\n"
                 },
+                "scheduling": {
+                    "$ref": "#/types/materialize:index/ClusterScheduling:ClusterScheduling",
+                    "description": "Defines the scheduling parameters for the cluster.\n"
+                },
                 "size": {
                     "type": "string",
                     "description": "The size of the managed cluster.\n"
@@ -3387,6 +3411,10 @@
                     "type": "integer",
                     "description": "The number of replicas of each dataflow-powered object to maintain.\n"
                 },
+                "scheduling": {
+                    "$ref": "#/types/materialize:index/ClusterScheduling:ClusterScheduling",
+                    "description": "Defines the scheduling parameters for the cluster.\n"
+                },
                 "size": {
                     "type": "string",
                     "description": "The size of the managed cluster.\n"
@@ -3436,6 +3464,10 @@
                     "replicationFactor": {
                         "type": "integer",
                         "description": "The number of replicas of each dataflow-powered object to maintain.\n"
+                    },
+                    "scheduling": {
+                        "$ref": "#/types/materialize:index/ClusterScheduling:ClusterScheduling",
+                        "description": "Defines the scheduling parameters for the cluster.\n"
                     },
                     "size": {
                         "type": "string",
@@ -5118,7 +5150,7 @@
             }
         },
         "materialize:index/database:Database": {
-            "description": "The highest level namespace hierarchy in Materialize.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as materialize from \"@pulumi/materialize\";\n\nconst exampleDatabase = new materialize.Database(\"exampleDatabase\", {});\n```\n```python\nimport pulumi\nimport pulumi_materialize as materialize\n\nexample_database = materialize.Database(\"exampleDatabase\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Materialize = Pulumi.Materialize;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var exampleDatabase = new Materialize.Database(\"exampleDatabase\");\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-materialize/sdk/go/materialize\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := materialize.NewDatabase(ctx, \"exampleDatabase\", nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.materialize.Database;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var exampleDatabase = new Database(\"exampleDatabase\");\n\n    }\n}\n```\n```yaml\nresources:\n  exampleDatabase:\n    type: materialize:Database\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nDatabases can be imported using the database id\n\n```sh\n $ pulumi import materialize:index/database:Database example_database \u003cregion\u003e:\u003cdatabase_id\u003e\n```\n\n Database id and information be found in the `mz_catalog.mz_databases` table The region is the region where the database is located (e.g. aws/us-east-1) ",
+            "description": "The highest level namespace hierarchy in Materialize.\n\n**Note**: This resource will not automatically create a public schema.If needed, the public schema must be explicitly defined in your configuration using the `materialize.Schema` resource.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as materialize from \"@pulumi/materialize\";\n\n// Create a Materialize database without a public schema\nconst example = new materialize.Database(\"example\", {});\n// By default, Materialize creates a public schema in each database\n// The Terraform provider on the other hand does not create a public schema by default\n// Optionally you can create a public schema in the database using the materialize_schema resource\nconst _public = new materialize.Schema(\"public\", {databaseName: example.name});\n// Grant USAGE to the PUBLIC pseudo-role for the public schema\n// This matches the default behavior of Materialize\nconst schemaGrantUsage = new materialize.GrantSchema(\"schemaGrantUsage\", {\n    roleName: \"PUBLIC\",\n    privilege: \"USAGE\",\n    databaseName: example.name,\n    schemaName: _public.name,\n});\n```\n```python\nimport pulumi\nimport pulumi_materialize as materialize\n\n# Create a Materialize database without a public schema\nexample = materialize.Database(\"example\")\n# By default, Materialize creates a public schema in each database\n# The Terraform provider on the other hand does not create a public schema by default\n# Optionally you can create a public schema in the database using the materialize_schema resource\npublic = materialize.Schema(\"public\", database_name=example.name)\n# Grant USAGE to the PUBLIC pseudo-role for the public schema\n# This matches the default behavior of Materialize\nschema_grant_usage = materialize.GrantSchema(\"schemaGrantUsage\",\n    role_name=\"PUBLIC\",\n    privilege=\"USAGE\",\n    database_name=example.name,\n    schema_name=public.name)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Materialize = Pulumi.Materialize;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // Create a Materialize database without a public schema\n    var example = new Materialize.Database(\"example\");\n\n    // By default, Materialize creates a public schema in each database\n    // The Terraform provider on the other hand does not create a public schema by default\n    // Optionally you can create a public schema in the database using the materialize_schema resource\n    var @public = new Materialize.Schema(\"public\", new()\n    {\n        DatabaseName = example.Name,\n    });\n\n    // Grant USAGE to the PUBLIC pseudo-role for the public schema\n    // This matches the default behavior of Materialize\n    var schemaGrantUsage = new Materialize.GrantSchema(\"schemaGrantUsage\", new()\n    {\n        RoleName = \"PUBLIC\",\n        Privilege = \"USAGE\",\n        DatabaseName = example.Name,\n        SchemaName = @public.Name,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-materialize/sdk/go/materialize\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\texample, err := materialize.NewDatabase(ctx, \"example\", nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tpublic, err := materialize.NewSchema(ctx, \"public\", \u0026materialize.SchemaArgs{\n\t\t\tDatabaseName: example.Name,\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = materialize.NewGrantSchema(ctx, \"schemaGrantUsage\", \u0026materialize.GrantSchemaArgs{\n\t\t\tRoleName:     pulumi.String(\"PUBLIC\"),\n\t\t\tPrivilege:    pulumi.String(\"USAGE\"),\n\t\t\tDatabaseName: example.Name,\n\t\t\tSchemaName:   public.Name,\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.materialize.Database;\nimport com.pulumi.materialize.Schema;\nimport com.pulumi.materialize.SchemaArgs;\nimport com.pulumi.materialize.GrantSchema;\nimport com.pulumi.materialize.GrantSchemaArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new Database(\"example\");\n\n        var public_ = new Schema(\"public\", SchemaArgs.builder()        \n            .databaseName(example.name())\n            .build());\n\n        var schemaGrantUsage = new GrantSchema(\"schemaGrantUsage\", GrantSchemaArgs.builder()        \n            .roleName(\"PUBLIC\")\n            .privilege(\"USAGE\")\n            .databaseName(example.name())\n            .schemaName(public_.name())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # Create a Materialize database without a public schema\n  example:\n    type: materialize:Database\n  # By default, Materialize creates a public schema in each database\n  # The Terraform provider on the other hand does not create a public schema by default\n  # Optionally you can create a public schema in the database using the materialize_schema resource\n  public:\n    type: materialize:Schema\n    properties:\n      databaseName: ${example.name}\n  # Grant USAGE to the PUBLIC pseudo-role for the public schema\n  # This matches the default behavior of Materialize\n  schemaGrantUsage:\n    type: materialize:GrantSchema\n    properties:\n      roleName: PUBLIC\n      privilege: USAGE\n      databaseName: ${example.name}\n      schemaName: ${public.name}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nDatabases can be imported using the database id\n\n```sh\n $ pulumi import materialize:index/database:Database example_database \u003cregion\u003e:\u003cdatabase_id\u003e\n```\n\n Database id and information be found in the `mz_catalog.mz_databases` table The region is the region where the database is located (e.g. aws/us-east-1) ",
             "properties": {
                 "comment": {
                     "type": "string",
