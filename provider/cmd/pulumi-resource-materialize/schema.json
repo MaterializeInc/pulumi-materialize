@@ -3366,6 +3366,7 @@
                 "disk",
                 "name",
                 "ownershipRole",
+                "region",
                 "replicationFactor"
             ],
             "inputProperties": {
@@ -3523,6 +3524,7 @@
                 "clusterName",
                 "disk",
                 "name",
+                "region",
                 "size"
             ],
             "inputProperties": {
@@ -3695,7 +3697,8 @@
             "required": [
                 "name",
                 "ownershipRole",
-                "qualifiedSqlName"
+                "qualifiedSqlName",
+                "region"
             ],
             "inputProperties": {
                 "accessKeyId": {
@@ -3886,6 +3889,7 @@
                 "ownershipRole",
                 "principal",
                 "qualifiedSqlName",
+                "region",
                 "serviceName"
             ],
             "inputProperties": {
@@ -4066,6 +4070,7 @@
                 "name",
                 "ownershipRole",
                 "qualifiedSqlName",
+                "region",
                 "url"
             ],
             "inputProperties": {
@@ -4300,7 +4305,8 @@
             "required": [
                 "name",
                 "ownershipRole",
-                "qualifiedSqlName"
+                "qualifiedSqlName",
+                "region"
             ],
             "inputProperties": {
                 "awsPrivatelink": {
@@ -4554,6 +4560,7 @@
                 "name",
                 "ownershipRole",
                 "qualifiedSqlName",
+                "region",
                 "user"
             ],
             "inputProperties": {
@@ -4801,6 +4808,7 @@
                 "name",
                 "ownershipRole",
                 "qualifiedSqlName",
+                "region",
                 "user"
             ],
             "inputProperties": {
@@ -5035,6 +5043,7 @@
                 "publicKey1",
                 "publicKey2",
                 "qualifiedSqlName",
+                "region",
                 "user"
             ],
             "inputProperties": {
@@ -5171,7 +5180,8 @@
             },
             "required": [
                 "name",
-                "ownershipRole"
+                "ownershipRole",
+                "region"
             ],
             "inputProperties": {
                 "comment": {
@@ -5241,6 +5251,7 @@
             "required": [
                 "clusterName",
                 "privilege",
+                "region",
                 "roleName"
             ],
             "inputProperties": {
@@ -5320,6 +5331,7 @@
             "required": [
                 "granteeName",
                 "privilege",
+                "region",
                 "targetRoleName"
             ],
             "inputProperties": {
@@ -5408,6 +5420,7 @@
                 "connectionName",
                 "databaseName",
                 "privilege",
+                "region",
                 "roleName",
                 "schemaName"
             ],
@@ -5518,6 +5531,7 @@
             "required": [
                 "granteeName",
                 "privilege",
+                "region",
                 "targetRoleName"
             ],
             "inputProperties": {
@@ -5617,6 +5631,7 @@
             "required": [
                 "databaseName",
                 "privilege",
+                "region",
                 "roleName"
             ],
             "inputProperties": {
@@ -5696,6 +5711,7 @@
             "required": [
                 "granteeName",
                 "privilege",
+                "region",
                 "targetRoleName"
             ],
             "inputProperties": {
@@ -5784,6 +5800,7 @@
                 "databaseName",
                 "materializedViewName",
                 "privilege",
+                "region",
                 "roleName",
                 "schemaName"
             ],
@@ -5881,6 +5898,7 @@
             },
             "required": [
                 "memberName",
+                "region",
                 "roleName"
             ],
             "inputProperties": {
@@ -5953,6 +5971,7 @@
             "required": [
                 "databaseName",
                 "privilege",
+                "region",
                 "roleName",
                 "schemaName"
             ],
@@ -6048,6 +6067,7 @@
             "required": [
                 "granteeName",
                 "privilege",
+                "region",
                 "targetRoleName"
             ],
             "inputProperties": {
@@ -6145,6 +6165,7 @@
             "required": [
                 "databaseName",
                 "privilege",
+                "region",
                 "roleName",
                 "schemaName",
                 "secretName"
@@ -6256,6 +6277,7 @@
             "required": [
                 "granteeName",
                 "privilege",
+                "region",
                 "targetRoleName"
             ],
             "inputProperties": {
@@ -6363,6 +6385,7 @@
             "required": [
                 "databaseName",
                 "privilege",
+                "region",
                 "roleName",
                 "schemaName",
                 "sourceName"
@@ -6461,6 +6484,7 @@
             },
             "required": [
                 "privilege",
+                "region",
                 "roleName"
             ],
             "inputProperties": {
@@ -6537,6 +6561,7 @@
             "required": [
                 "databaseName",
                 "privilege",
+                "region",
                 "roleName",
                 "schemaName",
                 "tableName"
@@ -6648,6 +6673,7 @@
             "required": [
                 "granteeName",
                 "privilege",
+                "region",
                 "targetRoleName"
             ],
             "inputProperties": {
@@ -6755,6 +6781,7 @@
             "required": [
                 "databaseName",
                 "privilege",
+                "region",
                 "roleName",
                 "schemaName",
                 "typeName"
@@ -6866,6 +6893,7 @@
             "required": [
                 "granteeName",
                 "privilege",
+                "region",
                 "targetRoleName"
             ],
             "inputProperties": {
@@ -6973,6 +7001,7 @@
             "required": [
                 "databaseName",
                 "privilege",
+                "region",
                 "roleName",
                 "schemaName",
                 "viewName"
@@ -7111,6 +7140,7 @@
                 "name",
                 "objName",
                 "qualifiedSqlName",
+                "region",
                 "schemaName"
             ],
             "inputProperties": {
@@ -7280,6 +7310,7 @@
                 "name",
                 "ownershipRole",
                 "qualifiedSqlName",
+                "region",
                 "statement"
             ],
             "inputProperties": {
@@ -7418,7 +7449,8 @@
             "required": [
                 "inherit",
                 "name",
-                "qualifiedSqlName"
+                "qualifiedSqlName",
+                "region"
             ],
             "inputProperties": {
                 "comment": {
@@ -7486,6 +7518,7 @@
                 }
             },
             "required": [
+                "region",
                 "roleName",
                 "variableName",
                 "variableValue"
@@ -8107,7 +8140,8 @@
             "required": [
                 "name",
                 "ownershipRole",
-                "qualifiedSqlName"
+                "qualifiedSqlName",
+                "region"
             ],
             "inputProperties": {
                 "comment": {
@@ -8207,6 +8241,7 @@
                 "name",
                 "ownershipRole",
                 "qualifiedSqlName",
+                "region",
                 "value"
             ],
             "inputProperties": {
@@ -8375,6 +8410,7 @@
                 "name",
                 "ownershipRole",
                 "qualifiedSqlName",
+                "region",
                 "size",
                 "topic"
             ],
@@ -8692,6 +8728,7 @@
                 "name",
                 "ownershipRole",
                 "qualifiedSqlName",
+                "region",
                 "size",
                 "subsources",
                 "topic"
@@ -9065,6 +9102,7 @@
                 "name",
                 "ownershipRole",
                 "qualifiedSqlName",
+                "region",
                 "size",
                 "subsources"
             ],
@@ -9307,6 +9345,7 @@
                 "name",
                 "ownershipRole",
                 "qualifiedSqlName",
+                "region",
                 "size",
                 "subsources"
             ],
@@ -9542,6 +9581,7 @@
                 "postgresConnection",
                 "publication",
                 "qualifiedSqlName",
+                "region",
                 "size",
                 "subsources"
             ],
@@ -9789,6 +9829,7 @@
                 "name",
                 "ownershipRole",
                 "qualifiedSqlName",
+                "region",
                 "size",
                 "subsources"
             ],
@@ -9963,6 +10004,7 @@
             },
             "required": [
                 "name",
+                "region",
                 "value"
             ],
             "inputProperties": {
@@ -10048,7 +10090,8 @@
                 "columns",
                 "name",
                 "ownershipRole",
-                "qualifiedSqlName"
+                "qualifiedSqlName",
+                "region"
             ],
             "inputProperties": {
                 "columns": {
@@ -10191,7 +10234,8 @@
                 "category",
                 "name",
                 "ownershipRole",
-                "qualifiedSqlName"
+                "qualifiedSqlName",
+                "region"
             ],
             "inputProperties": {
                 "comment": {
@@ -10428,6 +10472,7 @@
                 "name",
                 "ownershipRole",
                 "qualifiedSqlName",
+                "region",
                 "statement"
             ],
             "inputProperties": {
@@ -10595,10 +10640,14 @@
             }
         },
         "materialize:index/getConnections:GetConnections": {
-            "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as materialize from \"@pulumi/materialize\";\n\nconst all = materialize.GetConnections({});\nconst materialize = materialize.GetConnections({\n    databaseName: \"materialize\",\n});\nconst materializeSchema = materialize.GetConnections({\n    databaseName: \"materialize\",\n    schemaName: \"schema\",\n});\n```\n```python\nimport pulumi\nimport pulumi_materialize as materialize\n\nall = materialize.get_connections()\nmaterialize = materialize.get_connections(database_name=\"materialize\")\nmaterialize_schema = materialize.get_connections(database_name=\"materialize\",\n    schema_name=\"schema\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Materialize = Pulumi.Materialize;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var all = Materialize.GetConnections.Invoke();\n\n    var materialize = Materialize.GetConnections.Invoke(new()\n    {\n        DatabaseName = \"materialize\",\n    });\n\n    var materializeSchema = Materialize.GetConnections.Invoke(new()\n    {\n        DatabaseName = \"materialize\",\n        SchemaName = \"schema\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-materialize/sdk/go/materialize\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := materialize.GetConnections(ctx, nil, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = materialize.GetConnections(ctx, \u0026materialize.GetConnectionsArgs{\n\t\t\tDatabaseName: pulumi.StringRef(\"materialize\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = materialize.GetConnections(ctx, \u0026materialize.GetConnectionsArgs{\n\t\t\tDatabaseName: pulumi.StringRef(\"materialize\"),\n\t\t\tSchemaName:   pulumi.StringRef(\"schema\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.materialize.MaterializeFunctions;\nimport com.pulumi.materialize.inputs.GetConnectionsArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var all = MaterializeFunctions.GetConnections();\n\n        final var materialize = MaterializeFunctions.GetConnections(GetConnectionsArgs.builder()\n            .databaseName(\"materialize\")\n            .build());\n\n        final var materializeSchema = MaterializeFunctions.GetConnections(GetConnectionsArgs.builder()\n            .databaseName(\"materialize\")\n            .schemaName(\"schema\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  all:\n    fn::invoke:\n      Function: materialize:GetConnections\n      Arguments: {}\n  materialize:\n    fn::invoke:\n      Function: materialize:GetConnections\n      Arguments:\n        databaseName: materialize\n  materializeSchema:\n    fn::invoke:\n      Function: materialize:GetConnections\n      Arguments:\n        databaseName: materialize\n        schemaName: schema\n```\n{{% /example %}}\n{{% /examples %}}",
+            "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as materialize from \"@pulumi/materialize\";\n\nconst all = materialize.GetConnections({});\nconst materialize = materialize.GetConnections({\n    databaseName: \"materialize\",\n});\nconst materializeSchema = materialize.GetConnections({\n    databaseName: \"materialize\",\n    schemaName: \"schema\",\n});\nconst byId = materialize.GetConnections({\n    connectionId: \"u1234\",\n});\n```\n```python\nimport pulumi\nimport pulumi_materialize as materialize\n\nall = materialize.get_connections()\nmaterialize = materialize.get_connections(database_name=\"materialize\")\nmaterialize_schema = materialize.get_connections(database_name=\"materialize\",\n    schema_name=\"schema\")\nby_id = materialize.get_connections(connection_id=\"u1234\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Materialize = Pulumi.Materialize;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var all = Materialize.GetConnections.Invoke();\n\n    var materialize = Materialize.GetConnections.Invoke(new()\n    {\n        DatabaseName = \"materialize\",\n    });\n\n    var materializeSchema = Materialize.GetConnections.Invoke(new()\n    {\n        DatabaseName = \"materialize\",\n        SchemaName = \"schema\",\n    });\n\n    var byId = Materialize.GetConnections.Invoke(new()\n    {\n        ConnectionId = \"u1234\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-materialize/sdk/go/materialize\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := materialize.GetConnections(ctx, nil, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = materialize.GetConnections(ctx, \u0026materialize.GetConnectionsArgs{\n\t\t\tDatabaseName: pulumi.StringRef(\"materialize\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = materialize.GetConnections(ctx, \u0026materialize.GetConnectionsArgs{\n\t\t\tDatabaseName: pulumi.StringRef(\"materialize\"),\n\t\t\tSchemaName:   pulumi.StringRef(\"schema\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = materialize.GetConnections(ctx, \u0026materialize.GetConnectionsArgs{\n\t\t\tConnectionId: pulumi.StringRef(\"u1234\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.materialize.MaterializeFunctions;\nimport com.pulumi.materialize.inputs.GetConnectionsArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var all = MaterializeFunctions.GetConnections();\n\n        final var materialize = MaterializeFunctions.GetConnections(GetConnectionsArgs.builder()\n            .databaseName(\"materialize\")\n            .build());\n\n        final var materializeSchema = MaterializeFunctions.GetConnections(GetConnectionsArgs.builder()\n            .databaseName(\"materialize\")\n            .schemaName(\"schema\")\n            .build());\n\n        final var byId = MaterializeFunctions.GetConnections(GetConnectionsArgs.builder()\n            .connectionId(\"u1234\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  all:\n    fn::invoke:\n      Function: materialize:GetConnections\n      Arguments: {}\n  materialize:\n    fn::invoke:\n      Function: materialize:GetConnections\n      Arguments:\n        databaseName: materialize\n  materializeSchema:\n    fn::invoke:\n      Function: materialize:GetConnections\n      Arguments:\n        databaseName: materialize\n        schemaName: schema\n  byId:\n    fn::invoke:\n      Function: materialize:GetConnections\n      Arguments:\n        connectionId: u1234\n```\n{{% /example %}}\n{{% /examples %}}",
             "inputs": {
                 "description": "A collection of arguments for invoking GetConnections.\n",
                 "properties": {
+                    "connectionId": {
+                        "type": "string",
+                        "description": "Limit connections to a specific connection ID\n"
+                    },
                     "databaseName": {
                         "type": "string",
                         "description": "Limit connections to a specific database\n"
@@ -10617,6 +10666,10 @@
             "outputs": {
                 "description": "A collection of values returned by GetConnections.\n",
                 "properties": {
+                    "connectionId": {
+                        "type": "string",
+                        "description": "Limit connections to a specific connection ID\n"
+                    },
                     "connections": {
                         "type": "array",
                         "items": {
