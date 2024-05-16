@@ -2422,28 +2422,6 @@
                 "name"
             ]
         },
-        "materialize:index/SourceKafkaSubsource:SourceKafkaSubsource": {
-            "properties": {
-                "databaseName": {
-                    "type": "string",
-                    "description": "The identifier for the source database in Materialize. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
-                    "willReplaceOnChanges": true
-                },
-                "name": {
-                    "type": "string",
-                    "description": "The identifier for the source.\n"
-                },
-                "schemaName": {
-                    "type": "string",
-                    "description": "The identifier for the source schema in Materialize. Defaults to `public`.\n",
-                    "willReplaceOnChanges": true
-                }
-            },
-            "type": "object",
-            "required": [
-                "name"
-            ]
-        },
         "materialize:index/SourceKafkaValueFormat:SourceKafkaValueFormat": {
             "properties": {
                 "avro": {
@@ -2700,28 +2678,6 @@
             },
             "type": "object"
         },
-        "materialize:index/SourceLoadgenSubsource:SourceLoadgenSubsource": {
-            "properties": {
-                "databaseName": {
-                    "type": "string",
-                    "description": "The identifier for the source database in Materialize. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
-                    "willReplaceOnChanges": true
-                },
-                "name": {
-                    "type": "string",
-                    "description": "The identifier for the source.\n"
-                },
-                "schemaName": {
-                    "type": "string",
-                    "description": "The identifier for the source schema in Materialize. Defaults to `public`.\n",
-                    "willReplaceOnChanges": true
-                }
-            },
-            "type": "object",
-            "required": [
-                "name"
-            ]
-        },
         "materialize:index/SourceLoadgenTpchOptions:SourceLoadgenTpchOptions": {
             "properties": {
                 "scaleFactor": {
@@ -2736,6 +2692,26 @@
                 }
             },
             "type": "object"
+        },
+        "materialize:index/SourceMysqlExposeProgress:SourceMysqlExposeProgress": {
+            "properties": {
+                "databaseName": {
+                    "type": "string",
+                    "description": "The expose_progress database name. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The expose_progress name.\n"
+                },
+                "schemaName": {
+                    "type": "string",
+                    "description": "The expose_progress schema name. Defaults to `public`.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "name"
+            ]
         },
         "materialize:index/SourceMysqlMysqlConnection:SourceMysqlMysqlConnection": {
             "properties": {
@@ -2757,43 +2733,49 @@
                 "name"
             ]
         },
-        "materialize:index/SourceMysqlSubsource:SourceMysqlSubsource": {
+        "materialize:index/SourceMysqlTable:SourceMysqlTable": {
             "properties": {
                 "databaseName": {
                     "type": "string",
-                    "description": "The identifier for the source database in Materialize. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
+                    "description": "The database of the table in Materialize.\n",
                     "willReplaceOnChanges": true
                 },
                 "name": {
                     "type": "string",
-                    "description": "The identifier for the source.\n"
+                    "description": "The name for the table, used in Materialize.\n",
+                    "willReplaceOnChanges": true
                 },
                 "schemaName": {
                     "type": "string",
-                    "description": "The identifier for the source schema in Materialize. Defaults to `public`.\n",
+                    "description": "The schema of the table in Materialize.\n",
+                    "willReplaceOnChanges": true
+                },
+                "upstreamName": {
+                    "type": "string",
+                    "description": "The name of the table in the upstream MySQL database.\n",
+                    "willReplaceOnChanges": true
+                },
+                "upstreamSchemaName": {
+                    "type": "string",
+                    "description": "The schema of the table in the upstream MySQL database.\n",
                     "willReplaceOnChanges": true
                 }
             },
             "type": "object",
             "required": [
-                "name"
-            ]
-        },
-        "materialize:index/SourceMysqlTable:SourceMysqlTable": {
-            "properties": {
-                "alias": {
-                    "type": "string",
-                    "description": "An alias for the table, used in Materialize.\n"
-                },
-                "name": {
-                    "type": "string",
-                    "description": "The name of the table.\n"
+                "upstreamName"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "databaseName",
+                        "name",
+                        "schemaName",
+                        "upstreamName",
+                        "upstreamSchemaName"
+                    ]
                 }
-            },
-            "type": "object",
-            "required": [
-                "name"
-            ]
+            }
         },
         "materialize:index/SourcePostgresExposeProgress:SourcePostgresExposeProgress": {
             "properties": {
@@ -2835,43 +2817,44 @@
                 "name"
             ]
         },
-        "materialize:index/SourcePostgresSubsource:SourcePostgresSubsource": {
+        "materialize:index/SourcePostgresTable:SourcePostgresTable": {
             "properties": {
                 "databaseName": {
                     "type": "string",
-                    "description": "The identifier for the source database in Materialize. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
-                    "willReplaceOnChanges": true
+                    "description": "The database of the table in Materialize.\n"
                 },
                 "name": {
                     "type": "string",
-                    "description": "The identifier for the source.\n"
+                    "description": "The name of the table in Materialize.\n"
                 },
                 "schemaName": {
                     "type": "string",
-                    "description": "The identifier for the source schema in Materialize. Defaults to `public`.\n",
-                    "willReplaceOnChanges": true
-                }
-            },
-            "type": "object",
-            "required": [
-                "name"
-            ]
-        },
-        "materialize:index/SourcePostgresTable:SourcePostgresTable": {
-            "properties": {
-                "alias": {
-                    "type": "string",
-                    "description": "The alias of the table.\n"
+                    "description": "The schema of the table in Materialize.\n"
                 },
-                "name": {
+                "upstreamName": {
                     "type": "string",
-                    "description": "The name of the table.\n"
+                    "description": "The name of the table in the upstream Postgres database.\n"
+                },
+                "upstreamSchemaName": {
+                    "type": "string",
+                    "description": "The schema of the table in the upstream Postgres database.\n"
                 }
             },
             "type": "object",
             "required": [
-                "name"
-            ]
+                "upstreamName"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "databaseName",
+                        "name",
+                        "schemaName",
+                        "upstreamName",
+                        "upstreamSchemaName"
+                    ]
+                }
+            }
         },
         "materialize:index/SourceWebhookCheckOption:SourceWebhookCheckOption": {
             "properties": {
@@ -2970,28 +2953,6 @@
                 }
             },
             "type": "object"
-        },
-        "materialize:index/SourceWebhookSubsource:SourceWebhookSubsource": {
-            "properties": {
-                "databaseName": {
-                    "type": "string",
-                    "description": "The identifier for the source database in Materialize. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
-                    "willReplaceOnChanges": true
-                },
-                "name": {
-                    "type": "string",
-                    "description": "The identifier for the source.\n"
-                },
-                "schemaName": {
-                    "type": "string",
-                    "description": "The identifier for the source schema in Materialize. Defaults to `public`.\n",
-                    "willReplaceOnChanges": true
-                }
-            },
-            "type": "object",
-            "required": [
-                "name"
-            ]
         },
         "materialize:index/TableColumn:TableColumn": {
             "properties": {
@@ -8617,7 +8578,7 @@
                 },
                 "exposeProgress": {
                     "$ref": "#/types/materialize:index/SourceKafkaExposeProgress:SourceKafkaExposeProgress",
-                    "description": "The name of the progress subsource for the source. If this is not specified, the subsource will be named `\u003csrc_name\u003e_progress`.\n"
+                    "description": "The name of the progress collection for the source. If this is not specified, the collection will be named `\u003csrc_name\u003e_progress`.\n"
                 },
                 "format": {
                     "$ref": "#/types/materialize:index/SourceKafkaFormat:SourceKafkaFormat",
@@ -8706,13 +8667,6 @@
                     "type": "integer",
                     "description": "Use the specified value to set `START OFFSET` based on the Kafka timestamp.\n"
                 },
-                "subsources": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/materialize:index/SourceKafkaSubsource:SourceKafkaSubsource"
-                    },
-                    "description": "Subsources of a source.\n"
-                },
                 "topic": {
                     "type": "string",
                     "description": "The Kafka topic you want to subscribe to.\n"
@@ -8730,7 +8684,6 @@
                 "qualifiedSqlName",
                 "region",
                 "size",
-                "subsources",
                 "topic"
             ],
             "inputProperties": {
@@ -8755,7 +8708,7 @@
                 },
                 "exposeProgress": {
                     "$ref": "#/types/materialize:index/SourceKafkaExposeProgress:SourceKafkaExposeProgress",
-                    "description": "The name of the progress subsource for the source. If this is not specified, the subsource will be named `\u003csrc_name\u003e_progress`.\n",
+                    "description": "The name of the progress collection for the source. If this is not specified, the collection will be named `\u003csrc_name\u003e_progress`.\n",
                     "willReplaceOnChanges": true
                 },
                 "format": {
@@ -8893,7 +8846,7 @@
                     },
                     "exposeProgress": {
                         "$ref": "#/types/materialize:index/SourceKafkaExposeProgress:SourceKafkaExposeProgress",
-                        "description": "The name of the progress subsource for the source. If this is not specified, the subsource will be named `\u003csrc_name\u003e_progress`.\n",
+                        "description": "The name of the progress collection for the source. If this is not specified, the collection will be named `\u003csrc_name\u003e_progress`.\n",
                         "willReplaceOnChanges": true
                     },
                     "format": {
@@ -9000,13 +8953,6 @@
                         "description": "Use the specified value to set `START OFFSET` based on the Kafka timestamp.\n",
                         "willReplaceOnChanges": true
                     },
-                    "subsources": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/types/materialize:index/SourceKafkaSubsource:SourceKafkaSubsource"
-                        },
-                        "description": "Subsources of a source.\n"
-                    },
                     "topic": {
                         "type": "string",
                         "description": "The Kafka topic you want to subscribe to.\n",
@@ -9046,7 +8992,7 @@
                 },
                 "exposeProgress": {
                     "$ref": "#/types/materialize:index/SourceLoadgenExposeProgress:SourceLoadgenExposeProgress",
-                    "description": "The name of the progress subsource for the source. If this is not specified, the subsource will be named `\u003csrc_name\u003e_progress`.\n"
+                    "description": "The name of the progress collection for the source. If this is not specified, the collection will be named `\u003csrc_name\u003e_progress`.\n"
                 },
                 "keyValueOptions": {
                     "$ref": "#/types/materialize:index/SourceLoadgenKeyValueOptions:SourceLoadgenKeyValueOptions",
@@ -9084,13 +9030,6 @@
                     "type": "string",
                     "description": "The size of the cluster maintaining this source.\n"
                 },
-                "subsources": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/materialize:index/SourceLoadgenSubsource:SourceLoadgenSubsource"
-                    },
-                    "description": "Subsources of a source.\n"
-                },
                 "tpchOptions": {
                     "$ref": "#/types/materialize:index/SourceLoadgenTpchOptions:SourceLoadgenTpchOptions",
                     "description": "TPCH Options.\n"
@@ -9103,8 +9042,7 @@
                 "ownershipRole",
                 "qualifiedSqlName",
                 "region",
-                "size",
-                "subsources"
+                "size"
             ],
             "inputProperties": {
                 "auctionOptions": {
@@ -9133,7 +9071,7 @@
                 },
                 "exposeProgress": {
                     "$ref": "#/types/materialize:index/SourceLoadgenExposeProgress:SourceLoadgenExposeProgress",
-                    "description": "The name of the progress subsource for the source. If this is not specified, the subsource will be named `\u003csrc_name\u003e_progress`.\n",
+                    "description": "The name of the progress collection for the source. If this is not specified, the collection will be named `\u003csrc_name\u003e_progress`.\n",
                     "willReplaceOnChanges": true
                 },
                 "keyValueOptions": {
@@ -9207,7 +9145,7 @@
                     },
                     "exposeProgress": {
                         "$ref": "#/types/materialize:index/SourceLoadgenExposeProgress:SourceLoadgenExposeProgress",
-                        "description": "The name of the progress subsource for the source. If this is not specified, the subsource will be named `\u003csrc_name\u003e_progress`.\n",
+                        "description": "The name of the progress collection for the source. If this is not specified, the collection will be named `\u003csrc_name\u003e_progress`.\n",
                         "willReplaceOnChanges": true
                     },
                     "keyValueOptions": {
@@ -9251,13 +9189,6 @@
                         "type": "string",
                         "description": "The size of the cluster maintaining this source.\n"
                     },
-                    "subsources": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/types/materialize:index/SourceLoadgenSubsource:SourceLoadgenSubsource"
-                        },
-                        "description": "Subsources of a source.\n"
-                    },
                     "tpchOptions": {
                         "$ref": "#/types/materialize:index/SourceLoadgenTpchOptions:SourceLoadgenTpchOptions",
                         "description": "TPCH Options.\n",
@@ -9268,7 +9199,7 @@
             }
         },
         "materialize:index/sourceMysql:SourceMysql": {
-            "description": "A MySQL source describes a MySQL instance you want Materialize to read data from.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as materialize from \"@pulumi/materialize\";\n\nconst test = new materialize.SourceMysql(\"test\", {\n    schemaName: materialize_schema.test.name,\n    databaseName: materialize_database.test.name,\n    clusterName: \"quickstart\",\n    mysqlConnection: {\n        name: materialize_connection_mysql.test.name,\n    },\n    tables: [\n        {\n            name: \"shop.mysql_table1\",\n            alias: \"alias_mysql_table1\",\n        },\n        {\n            name: \"shop.mysql_table2\",\n            alias: \"alias_mysql_table2\",\n        },\n    ],\n});\n```\n```python\nimport pulumi\nimport pulumi_materialize as materialize\n\ntest = materialize.SourceMysql(\"test\",\n    schema_name=materialize_schema[\"test\"][\"name\"],\n    database_name=materialize_database[\"test\"][\"name\"],\n    cluster_name=\"quickstart\",\n    mysql_connection=materialize.SourceMysqlMysqlConnectionArgs(\n        name=materialize_connection_mysql[\"test\"][\"name\"],\n    ),\n    tables=[\n        materialize.SourceMysqlTableArgs(\n            name=\"shop.mysql_table1\",\n            alias=\"alias_mysql_table1\",\n        ),\n        materialize.SourceMysqlTableArgs(\n            name=\"shop.mysql_table2\",\n            alias=\"alias_mysql_table2\",\n        ),\n    ])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Materialize = Pulumi.Materialize;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var test = new Materialize.SourceMysql(\"test\", new()\n    {\n        SchemaName = materialize_schema.Test.Name,\n        DatabaseName = materialize_database.Test.Name,\n        ClusterName = \"quickstart\",\n        MysqlConnection = new Materialize.Inputs.SourceMysqlMysqlConnectionArgs\n        {\n            Name = materialize_connection_mysql.Test.Name,\n        },\n        Tables = new[]\n        {\n            new Materialize.Inputs.SourceMysqlTableArgs\n            {\n                Name = \"shop.mysql_table1\",\n                Alias = \"alias_mysql_table1\",\n            },\n            new Materialize.Inputs.SourceMysqlTableArgs\n            {\n                Name = \"shop.mysql_table2\",\n                Alias = \"alias_mysql_table2\",\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-materialize/sdk/go/materialize\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := materialize.NewSourceMysql(ctx, \"test\", \u0026materialize.SourceMysqlArgs{\n\t\t\tSchemaName:   pulumi.Any(materialize_schema.Test.Name),\n\t\t\tDatabaseName: pulumi.Any(materialize_database.Test.Name),\n\t\t\tClusterName:  pulumi.String(\"quickstart\"),\n\t\t\tMysqlConnection: \u0026materialize.SourceMysqlMysqlConnectionArgs{\n\t\t\t\tName: pulumi.Any(materialize_connection_mysql.Test.Name),\n\t\t\t},\n\t\t\tTables: materialize.SourceMysqlTableArray{\n\t\t\t\t\u0026materialize.SourceMysqlTableArgs{\n\t\t\t\t\tName:  pulumi.String(\"shop.mysql_table1\"),\n\t\t\t\t\tAlias: pulumi.String(\"alias_mysql_table1\"),\n\t\t\t\t},\n\t\t\t\t\u0026materialize.SourceMysqlTableArgs{\n\t\t\t\t\tName:  pulumi.String(\"shop.mysql_table2\"),\n\t\t\t\t\tAlias: pulumi.String(\"alias_mysql_table2\"),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.materialize.SourceMysql;\nimport com.pulumi.materialize.SourceMysqlArgs;\nimport com.pulumi.materialize.inputs.SourceMysqlMysqlConnectionArgs;\nimport com.pulumi.materialize.inputs.SourceMysqlTableArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var test = new SourceMysql(\"test\", SourceMysqlArgs.builder()        \n            .schemaName(materialize_schema.test().name())\n            .databaseName(materialize_database.test().name())\n            .clusterName(\"quickstart\")\n            .mysqlConnection(SourceMysqlMysqlConnectionArgs.builder()\n                .name(materialize_connection_mysql.test().name())\n                .build())\n            .tables(            \n                SourceMysqlTableArgs.builder()\n                    .name(\"shop.mysql_table1\")\n                    .alias(\"alias_mysql_table1\")\n                    .build(),\n                SourceMysqlTableArgs.builder()\n                    .name(\"shop.mysql_table2\")\n                    .alias(\"alias_mysql_table2\")\n                    .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  test:\n    type: materialize:SourceMysql\n    properties:\n      schemaName: ${materialize_schema.test.name}\n      databaseName: ${materialize_database.test.name}\n      clusterName: quickstart\n      mysqlConnection:\n        name: ${materialize_connection_mysql.test.name}\n      tables:\n        - name: shop.mysql_table1\n          alias: alias_mysql_table1\n        - name: shop.mysql_table2\n          alias: alias_mysql_table2\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nSources can be imported using the source id\n\n```sh\n $ pulumi import materialize:index/sourceMysql:SourceMysql example_source_mysql \u003cregion\u003e:\u003csource_id\u003e\n```\n\n Source id and information be found in the `mz_catalog.mz_sources` table The region is the region where the database is located (e.g. aws/us-east-1) ",
+            "description": "A MySQL source describes a MySQL instance you want Materialize to read data from.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.materialize.SourceMysql;\nimport com.pulumi.materialize.SourceMysqlArgs;\nimport com.pulumi.materialize.inputs.SourceMysqlMysqlConnectionArgs;\nimport com.pulumi.materialize.inputs.SourceMysqlTableArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var test = new SourceMysql(\"test\", SourceMysqlArgs.builder()        \n            .schemaName(materialize_schema.test().name())\n            .databaseName(materialize_database.test().name())\n            .clusterName(\"quickstart\")\n            .mysqlConnection(SourceMysqlMysqlConnectionArgs.builder()\n                .name(materialize_connection_mysql.test().name())\n                .build())\n            .tables(            \n                SourceMysqlTableArgs.builder()\n                    .name(\"shop.mysql_table1\")\n                    .alias(\"alias_mysql_table1\")\n                    .build(),\n                SourceMysqlTableArgs.builder()\n                    .name(\"shop.mysql_table2\")\n                    .alias(\"alias_mysql_table2\")\n                    .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  test:\n    type: materialize:SourceMysql\n    properties:\n      schemaName: ${materialize_schema.test.name}\n      databaseName: ${materialize_database.test.name}\n      clusterName: quickstart\n      mysqlConnection:\n        name: ${materialize_connection_mysql.test.name}\n      tables:\n        - name: shop.mysql_table1\n          alias: alias_mysql_table1\n        - name: shop.mysql_table2\n          alias: alias_mysql_table2\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nSources can be imported using the source id\n\n```sh\n $ pulumi import materialize:index/sourceMysql:SourceMysql example_source_mysql \u003cregion\u003e:\u003csource_id\u003e\n```\n\n Source id and information be found in the `mz_catalog.mz_sources` table The region is the region where the database is located (e.g. aws/us-east-1) ",
             "properties": {
                 "clusterName": {
                     "type": "string",
@@ -9281,6 +9212,10 @@
                 "databaseName": {
                     "type": "string",
                     "description": "The identifier for the source database in Materialize. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
+                },
+                "exposeProgress": {
+                    "$ref": "#/types/materialize:index/SourceMysqlExposeProgress:SourceMysqlExposeProgress",
+                    "description": "The name of the progress collection for the source. If this is not specified, the collection will be named `\u003csrc_name\u003e_progress`.\n"
                 },
                 "ignoreColumns": {
                     "type": "array",
@@ -9317,19 +9252,12 @@
                     "type": "string",
                     "description": "The size of the cluster maintaining this source.\n"
                 },
-                "subsources": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/materialize:index/SourceMysqlSubsource:SourceMysqlSubsource"
-                    },
-                    "description": "Subsources of a source.\n"
-                },
                 "tables": {
                     "type": "array",
                     "items": {
                         "$ref": "#/types/materialize:index/SourceMysqlTable:SourceMysqlTable"
                     },
-                    "description": "Specifies the tables to be included in the source. If not specified, all tables are included.\n"
+                    "description": "Specify the tables to be included in the source. If not specified, all tables are included.\n"
                 },
                 "textColumns": {
                     "type": "array",
@@ -9346,8 +9274,7 @@
                 "ownershipRole",
                 "qualifiedSqlName",
                 "region",
-                "size",
-                "subsources"
+                "size"
             ],
             "inputProperties": {
                 "clusterName": {
@@ -9362,6 +9289,11 @@
                 "databaseName": {
                     "type": "string",
                     "description": "The identifier for the source database in Materialize. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
+                    "willReplaceOnChanges": true
+                },
+                "exposeProgress": {
+                    "$ref": "#/types/materialize:index/SourceMysqlExposeProgress:SourceMysqlExposeProgress",
+                    "description": "The name of the progress collection for the source. If this is not specified, the collection will be named `\u003csrc_name\u003e_progress`.\n",
                     "willReplaceOnChanges": true
                 },
                 "ignoreColumns": {
@@ -9399,7 +9331,7 @@
                     "items": {
                         "$ref": "#/types/materialize:index/SourceMysqlTable:SourceMysqlTable"
                     },
-                    "description": "Specifies the tables to be included in the source. If not specified, all tables are included.\n",
+                    "description": "Specify the tables to be included in the source. If not specified, all tables are included.\n",
                     "willReplaceOnChanges": true
                 },
                 "textColumns": {
@@ -9428,6 +9360,11 @@
                     "databaseName": {
                         "type": "string",
                         "description": "The identifier for the source database in Materialize. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "exposeProgress": {
+                        "$ref": "#/types/materialize:index/SourceMysqlExposeProgress:SourceMysqlExposeProgress",
+                        "description": "The name of the progress collection for the source. If this is not specified, the collection will be named `\u003csrc_name\u003e_progress`.\n",
                         "willReplaceOnChanges": true
                     },
                     "ignoreColumns": {
@@ -9468,19 +9405,12 @@
                         "type": "string",
                         "description": "The size of the cluster maintaining this source.\n"
                     },
-                    "subsources": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/types/materialize:index/SourceMysqlSubsource:SourceMysqlSubsource"
-                        },
-                        "description": "Subsources of a source.\n"
-                    },
                     "tables": {
                         "type": "array",
                         "items": {
                             "$ref": "#/types/materialize:index/SourceMysqlTable:SourceMysqlTable"
                         },
-                        "description": "Specifies the tables to be included in the source. If not specified, all tables are included.\n",
+                        "description": "Specify the tables to be included in the source. If not specified, all tables are included.\n",
                         "willReplaceOnChanges": true
                     },
                     "textColumns": {
@@ -9495,7 +9425,7 @@
             }
         },
         "materialize:index/sourcePostgres:SourcePostgres": {
-            "description": "A Postgres source describes a PostgreSQL instance you want Materialize to read data from.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as materialize from \"@pulumi/materialize\";\n\nconst exampleSourcePostgres = new materialize.SourcePostgres(\"exampleSourcePostgres\", {\n    clusterName: \"quickstart\",\n    postgresConnection: {\n        name: \"pg_connection\",\n    },\n    publication: \"mz_source\",\n    schemaName: \"schema\",\n    tables: [\n        {\n            alias: \"s1_table_1\",\n            name: \"schema1.table_1\",\n        },\n        {\n            alias: \"s2_table_1\",\n            name: \"schema2.table_1\",\n        },\n    ],\n});\n```\n```python\nimport pulumi\nimport pulumi_materialize as materialize\n\nexample_source_postgres = materialize.SourcePostgres(\"exampleSourcePostgres\",\n    cluster_name=\"quickstart\",\n    postgres_connection=materialize.SourcePostgresPostgresConnectionArgs(\n        name=\"pg_connection\",\n    ),\n    publication=\"mz_source\",\n    schema_name=\"schema\",\n    tables=[\n        materialize.SourcePostgresTableArgs(\n            alias=\"s1_table_1\",\n            name=\"schema1.table_1\",\n        ),\n        materialize.SourcePostgresTableArgs(\n            alias=\"s2_table_1\",\n            name=\"schema2.table_1\",\n        ),\n    ])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Materialize = Pulumi.Materialize;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var exampleSourcePostgres = new Materialize.SourcePostgres(\"exampleSourcePostgres\", new()\n    {\n        ClusterName = \"quickstart\",\n        PostgresConnection = new Materialize.Inputs.SourcePostgresPostgresConnectionArgs\n        {\n            Name = \"pg_connection\",\n        },\n        Publication = \"mz_source\",\n        SchemaName = \"schema\",\n        Tables = new[]\n        {\n            new Materialize.Inputs.SourcePostgresTableArgs\n            {\n                Alias = \"s1_table_1\",\n                Name = \"schema1.table_1\",\n            },\n            new Materialize.Inputs.SourcePostgresTableArgs\n            {\n                Alias = \"s2_table_1\",\n                Name = \"schema2.table_1\",\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-materialize/sdk/go/materialize\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := materialize.NewSourcePostgres(ctx, \"exampleSourcePostgres\", \u0026materialize.SourcePostgresArgs{\n\t\t\tClusterName: pulumi.String(\"quickstart\"),\n\t\t\tPostgresConnection: \u0026materialize.SourcePostgresPostgresConnectionArgs{\n\t\t\t\tName: pulumi.String(\"pg_connection\"),\n\t\t\t},\n\t\t\tPublication: pulumi.String(\"mz_source\"),\n\t\t\tSchemaName:  pulumi.String(\"schema\"),\n\t\t\tTables: materialize.SourcePostgresTableArray{\n\t\t\t\t\u0026materialize.SourcePostgresTableArgs{\n\t\t\t\t\tAlias: pulumi.String(\"s1_table_1\"),\n\t\t\t\t\tName:  pulumi.String(\"schema1.table_1\"),\n\t\t\t\t},\n\t\t\t\t\u0026materialize.SourcePostgresTableArgs{\n\t\t\t\t\tAlias: pulumi.String(\"s2_table_1\"),\n\t\t\t\t\tName:  pulumi.String(\"schema2.table_1\"),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.materialize.SourcePostgres;\nimport com.pulumi.materialize.SourcePostgresArgs;\nimport com.pulumi.materialize.inputs.SourcePostgresPostgresConnectionArgs;\nimport com.pulumi.materialize.inputs.SourcePostgresTableArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var exampleSourcePostgres = new SourcePostgres(\"exampleSourcePostgres\", SourcePostgresArgs.builder()        \n            .clusterName(\"quickstart\")\n            .postgresConnection(SourcePostgresPostgresConnectionArgs.builder()\n                .name(\"pg_connection\")\n                .build())\n            .publication(\"mz_source\")\n            .schemaName(\"schema\")\n            .tables(            \n                SourcePostgresTableArgs.builder()\n                    .alias(\"s1_table_1\")\n                    .name(\"schema1.table_1\")\n                    .build(),\n                SourcePostgresTableArgs.builder()\n                    .alias(\"s2_table_1\")\n                    .name(\"schema2.table_1\")\n                    .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  exampleSourcePostgres:\n    type: materialize:SourcePostgres\n    properties:\n      clusterName: quickstart\n      postgresConnection:\n        name: pg_connection\n      publication: mz_source\n      schemaName: schema\n      tables:\n        - alias: s1_table_1\n          name: schema1.table_1\n        - alias: s2_table_1\n          name: schema2.table_1\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nSources can be imported using the source id\n\n```sh\n $ pulumi import materialize:index/sourcePostgres:SourcePostgres example_source_postgres \u003cregion\u003e:\u003csource_id\u003e\n```\n\n Source id and information be found in the `mz_catalog.mz_sources` table The region is the region where the database is located (e.g. aws/us-east-1) ",
+            "description": "A Postgres source describes a PostgreSQL instance you want Materialize to read data from.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.materialize.SourcePostgres;\nimport com.pulumi.materialize.SourcePostgresArgs;\nimport com.pulumi.materialize.inputs.SourcePostgresPostgresConnectionArgs;\nimport com.pulumi.materialize.inputs.SourcePostgresTableArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var exampleSourcePostgres = new SourcePostgres(\"exampleSourcePostgres\", SourcePostgresArgs.builder()        \n            .clusterName(\"quickstart\")\n            .postgresConnection(SourcePostgresPostgresConnectionArgs.builder()\n                .name(\"pg_connection\")\n                .build())\n            .publication(\"mz_source\")\n            .schemaName(\"schema\")\n            .tables(            \n                SourcePostgresTableArgs.builder()\n                    .alias(\"s1_table_1\")\n                    .name(\"schema1.table_1\")\n                    .build(),\n                SourcePostgresTableArgs.builder()\n                    .alias(\"s2_table_1\")\n                    .name(\"schema2.table_1\")\n                    .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  exampleSourcePostgres:\n    type: materialize:SourcePostgres\n    properties:\n      clusterName: quickstart\n      postgresConnection:\n        name: pg_connection\n      publication: mz_source\n      schemaName: schema\n      tables:\n        - alias: s1_table_1\n          name: schema1.table_1\n        - alias: s2_table_1\n          name: schema2.table_1\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nSources can be imported using the source id\n\n```sh\n $ pulumi import materialize:index/sourcePostgres:SourcePostgres example_source_postgres \u003cregion\u003e:\u003csource_id\u003e\n```\n\n Source id and information be found in the `mz_catalog.mz_sources` table The region is the region where the database is located (e.g. aws/us-east-1) ",
             "properties": {
                 "clusterName": {
                     "type": "string",
@@ -9511,7 +9441,7 @@
                 },
                 "exposeProgress": {
                     "$ref": "#/types/materialize:index/SourcePostgresExposeProgress:SourcePostgresExposeProgress",
-                    "description": "The name of the progress subsource for the source. If this is not specified, the subsource will be named `\u003csrc_name\u003e_progress`.\n"
+                    "description": "The name of the progress collection for the source. If this is not specified, the collection will be named `\u003csrc_name\u003e_progress`.\n"
                 },
                 "name": {
                     "type": "string",
@@ -9541,30 +9471,16 @@
                     "type": "string",
                     "description": "The identifier for the source schema in Materialize. Defaults to `public`.\n"
                 },
-                "schemas": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    },
-                    "description": "Creates subsources for specific schemas. If neither table or schema is specified, will default to ALL TABLES\n"
-                },
                 "size": {
                     "type": "string",
                     "description": "The size of the cluster maintaining this source.\n"
-                },
-                "subsources": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/materialize:index/SourcePostgresSubsource:SourcePostgresSubsource"
-                    },
-                    "description": "Subsources of a source.\n"
                 },
                 "tables": {
                     "type": "array",
                     "items": {
                         "$ref": "#/types/materialize:index/SourcePostgresTable:SourcePostgresTable"
                     },
-                    "description": "Creates subsources for specific tables. If neither table or schema is specified, will default to ALL TABLES\n"
+                    "description": "Creates subsources for specific tables in the Postgres connection.\n"
                 },
                 "textColumns": {
                     "type": "array",
@@ -9583,7 +9499,7 @@
                 "qualifiedSqlName",
                 "region",
                 "size",
-                "subsources"
+                "tables"
             ],
             "inputProperties": {
                 "clusterName": {
@@ -9602,7 +9518,7 @@
                 },
                 "exposeProgress": {
                     "$ref": "#/types/materialize:index/SourcePostgresExposeProgress:SourcePostgresExposeProgress",
-                    "description": "The name of the progress subsource for the source. If this is not specified, the subsource will be named `\u003csrc_name\u003e_progress`.\n",
+                    "description": "The name of the progress collection for the source. If this is not specified, the collection will be named `\u003csrc_name\u003e_progress`.\n",
                     "willReplaceOnChanges": true
                 },
                 "name": {
@@ -9633,20 +9549,12 @@
                     "description": "The identifier for the source schema in Materialize. Defaults to `public`.\n",
                     "willReplaceOnChanges": true
                 },
-                "schemas": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    },
-                    "description": "Creates subsources for specific schemas. If neither table or schema is specified, will default to ALL TABLES\n",
-                    "willReplaceOnChanges": true
-                },
                 "tables": {
                     "type": "array",
                     "items": {
                         "$ref": "#/types/materialize:index/SourcePostgresTable:SourcePostgresTable"
                     },
-                    "description": "Creates subsources for specific tables. If neither table or schema is specified, will default to ALL TABLES\n"
+                    "description": "Creates subsources for specific tables in the Postgres connection.\n"
                 },
                 "textColumns": {
                     "type": "array",
@@ -9658,7 +9566,8 @@
             },
             "requiredInputs": [
                 "postgresConnection",
-                "publication"
+                "publication",
+                "tables"
             ],
             "stateInputs": {
                 "description": "Input properties used for looking up and filtering SourcePostgres resources.\n",
@@ -9679,7 +9588,7 @@
                     },
                     "exposeProgress": {
                         "$ref": "#/types/materialize:index/SourcePostgresExposeProgress:SourcePostgresExposeProgress",
-                        "description": "The name of the progress subsource for the source. If this is not specified, the subsource will be named `\u003csrc_name\u003e_progress`.\n",
+                        "description": "The name of the progress collection for the source. If this is not specified, the collection will be named `\u003csrc_name\u003e_progress`.\n",
                         "willReplaceOnChanges": true
                     },
                     "name": {
@@ -9714,31 +9623,16 @@
                         "description": "The identifier for the source schema in Materialize. Defaults to `public`.\n",
                         "willReplaceOnChanges": true
                     },
-                    "schemas": {
-                        "type": "array",
-                        "items": {
-                            "type": "string"
-                        },
-                        "description": "Creates subsources for specific schemas. If neither table or schema is specified, will default to ALL TABLES\n",
-                        "willReplaceOnChanges": true
-                    },
                     "size": {
                         "type": "string",
                         "description": "The size of the cluster maintaining this source.\n"
-                    },
-                    "subsources": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/types/materialize:index/SourcePostgresSubsource:SourcePostgresSubsource"
-                        },
-                        "description": "Subsources of a source.\n"
                     },
                     "tables": {
                         "type": "array",
                         "items": {
                             "$ref": "#/types/materialize:index/SourcePostgresTable:SourcePostgresTable"
                         },
-                        "description": "Creates subsources for specific tables. If neither table or schema is specified, will default to ALL TABLES\n"
+                        "description": "Creates subsources for specific tables in the Postgres connection.\n"
                     },
                     "textColumns": {
                         "type": "array",
@@ -9815,13 +9709,6 @@
                 "size": {
                     "type": "string",
                     "description": "The size of the cluster maintaining this source.\n"
-                },
-                "subsources": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/materialize:index/SourceWebhookSubsource:SourceWebhookSubsource"
-                    },
-                    "description": "Subsources of a source.\n"
                 }
             },
             "required": [
@@ -9830,8 +9717,7 @@
                 "ownershipRole",
                 "qualifiedSqlName",
                 "region",
-                "size",
-                "subsources"
+                "size"
             ],
             "inputProperties": {
                 "bodyFormat": {
@@ -9974,13 +9860,6 @@
                     "size": {
                         "type": "string",
                         "description": "The size of the cluster maintaining this source.\n"
-                    },
-                    "subsources": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/types/materialize:index/SourceWebhookSubsource:SourceWebhookSubsource"
-                        },
-                        "description": "Subsources of a source.\n"
                     }
                 },
                 "type": "object"
