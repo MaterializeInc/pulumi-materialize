@@ -3136,36 +3136,69 @@
     },
     "resources": {
         "materialize:index/appPassword:AppPassword": {
-            "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as materialize from \"@pulumi/materialize\";\n\nconst exampleAppPassword = new materialize.AppPassword(\"exampleAppPassword\", {});\n```\n```python\nimport pulumi\nimport pulumi_materialize as materialize\n\nexample_app_password = materialize.AppPassword(\"exampleAppPassword\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Materialize = Pulumi.Materialize;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var exampleAppPassword = new Materialize.AppPassword(\"exampleAppPassword\");\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-materialize/sdk/go/materialize\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := materialize.NewAppPassword(ctx, \"exampleAppPassword\", nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.materialize.AppPassword;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var exampleAppPassword = new AppPassword(\"exampleAppPassword\");\n\n    }\n}\n```\n```yaml\nresources:\n  exampleAppPassword:\n    type: materialize:AppPassword\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nApp passwords can be imported using the app password id\n\n```sh\n $ pulumi import materialize:index/appPassword:AppPassword example_app_password \u003capp_password_id\u003e\n```\n\n ",
+            "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as materialize from \"@pulumi/materialize\";\n\n// Create a service user and app password\nconst productionDashboard = new materialize.Role(\"productionDashboard\", {});\nconst productionDashboardAppPassword = new materialize.AppPassword(\"productionDashboardAppPassword\", {\n    type: \"service\",\n    user: productionDashboard.name,\n    roles: [\"Member\"],\n});\nconst databaseGrantUsage = new materialize.GrantDatabase(\"databaseGrantUsage\", {\n    roleName: productionDashboard.name,\n    privilege: \"USAGE\",\n    databaseName: \"production_analytics\",\n});\n// Create a personal app password for the current user\nconst exampleAppPassword = new materialize.AppPassword(\"exampleAppPassword\", {});\n```\n```python\nimport pulumi\nimport pulumi_materialize as materialize\n\n# Create a service user and app password\nproduction_dashboard = materialize.Role(\"productionDashboard\")\nproduction_dashboard_app_password = materialize.AppPassword(\"productionDashboardAppPassword\",\n    type=\"service\",\n    user=production_dashboard.name,\n    roles=[\"Member\"])\ndatabase_grant_usage = materialize.GrantDatabase(\"databaseGrantUsage\",\n    role_name=production_dashboard.name,\n    privilege=\"USAGE\",\n    database_name=\"production_analytics\")\n# Create a personal app password for the current user\nexample_app_password = materialize.AppPassword(\"exampleAppPassword\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Materialize = Pulumi.Materialize;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // Create a service user and app password\n    var productionDashboard = new Materialize.Role(\"productionDashboard\");\n\n    var productionDashboardAppPassword = new Materialize.AppPassword(\"productionDashboardAppPassword\", new()\n    {\n        Type = \"service\",\n        User = productionDashboard.Name,\n        Roles = new[]\n        {\n            \"Member\",\n        },\n    });\n\n    var databaseGrantUsage = new Materialize.GrantDatabase(\"databaseGrantUsage\", new()\n    {\n        RoleName = productionDashboard.Name,\n        Privilege = \"USAGE\",\n        DatabaseName = \"production_analytics\",\n    });\n\n    // Create a personal app password for the current user\n    var exampleAppPassword = new Materialize.AppPassword(\"exampleAppPassword\");\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-materialize/sdk/go/materialize\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tproductionDashboard, err := materialize.NewRole(ctx, \"productionDashboard\", nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = materialize.NewAppPassword(ctx, \"productionDashboardAppPassword\", \u0026materialize.AppPasswordArgs{\n\t\t\tType: pulumi.String(\"service\"),\n\t\t\tUser: productionDashboard.Name,\n\t\t\tRoles: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"Member\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = materialize.NewGrantDatabase(ctx, \"databaseGrantUsage\", \u0026materialize.GrantDatabaseArgs{\n\t\t\tRoleName:     productionDashboard.Name,\n\t\t\tPrivilege:    pulumi.String(\"USAGE\"),\n\t\t\tDatabaseName: pulumi.String(\"production_analytics\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = materialize.NewAppPassword(ctx, \"exampleAppPassword\", nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.materialize.Role;\nimport com.pulumi.materialize.AppPassword;\nimport com.pulumi.materialize.AppPasswordArgs;\nimport com.pulumi.materialize.GrantDatabase;\nimport com.pulumi.materialize.GrantDatabaseArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var productionDashboard = new Role(\"productionDashboard\");\n\n        var productionDashboardAppPassword = new AppPassword(\"productionDashboardAppPassword\", AppPasswordArgs.builder()        \n            .type(\"service\")\n            .user(productionDashboard.name())\n            .roles(\"Member\")\n            .build());\n\n        var databaseGrantUsage = new GrantDatabase(\"databaseGrantUsage\", GrantDatabaseArgs.builder()        \n            .roleName(productionDashboard.name())\n            .privilege(\"USAGE\")\n            .databaseName(\"production_analytics\")\n            .build());\n\n        var exampleAppPassword = new AppPassword(\"exampleAppPassword\");\n\n    }\n}\n```\n```yaml\nresources:\n  # Create a service user and app password\n  productionDashboard:\n    type: materialize:Role\n  productionDashboardAppPassword:\n    type: materialize:AppPassword\n    properties:\n      type: service\n      user: ${productionDashboard.name}\n      roles:\n        - Member\n  databaseGrantUsage:\n    type: materialize:GrantDatabase\n    properties:\n      roleName: ${productionDashboard.name}\n      privilege: USAGE\n      databaseName: production_analytics\n  # Create a personal app password for the current user\n  exampleAppPassword:\n    type: materialize:AppPassword\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nApp passwords can be imported using the app password id\n\n```sh\n $ pulumi import materialize:index/appPassword:AppPassword example_app_password \u003capp_password_id\u003e\n```\n\n ",
             "properties": {
                 "createdAt": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The time at which the app password was created.\n"
                 },
                 "name": {
-                    "type": "string"
-                },
-                "owner": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "A human-readable name for the app password.\n"
                 },
                 "password": {
                     "type": "string",
+                    "description": "The value of the app password.\n",
                     "secret": true
+                },
+                "roles": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The roles to assign to the app password. Allowed values are 'Member' and 'Admin'. Only valid with service-type app passwords.\n"
                 },
                 "secret": {
                     "type": "string",
                     "secret": true
+                },
+                "type": {
+                    "type": "string",
+                    "description": "The type of the app password: personal or service.\n"
+                },
+                "user": {
+                    "type": "string",
+                    "description": "The user to associate with the app password. Only valid with service-type app passwords.\n"
                 }
             },
             "required": [
                 "createdAt",
                 "name",
-                "owner",
                 "password",
                 "secret"
             ],
             "inputProperties": {
                 "name": {
                     "type": "string",
+                    "description": "A human-readable name for the app password.\n",
+                    "willReplaceOnChanges": true
+                },
+                "roles": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The roles to assign to the app password. Allowed values are 'Member' and 'Admin'. Only valid with service-type app passwords.\n",
+                    "willReplaceOnChanges": true
+                },
+                "type": {
+                    "type": "string",
+                    "description": "The type of the app password: personal or service.\n",
+                    "willReplaceOnChanges": true
+                },
+                "user": {
+                    "type": "string",
+                    "description": "The user to associate with the app password. Only valid with service-type app passwords.\n",
                     "willReplaceOnChanges": true
                 }
             },
@@ -3173,22 +3206,40 @@
                 "description": "Input properties used for looking up and filtering AppPassword resources.\n",
                 "properties": {
                     "createdAt": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "The time at which the app password was created.\n"
                     },
                     "name": {
                         "type": "string",
+                        "description": "A human-readable name for the app password.\n",
                         "willReplaceOnChanges": true
-                    },
-                    "owner": {
-                        "type": "string"
                     },
                     "password": {
                         "type": "string",
+                        "description": "The value of the app password.\n",
                         "secret": true
+                    },
+                    "roles": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "The roles to assign to the app password. Allowed values are 'Member' and 'Admin'. Only valid with service-type app passwords.\n",
+                        "willReplaceOnChanges": true
                     },
                     "secret": {
                         "type": "string",
                         "secret": true
+                    },
+                    "type": {
+                        "type": "string",
+                        "description": "The type of the app password: personal or service.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "user": {
+                        "type": "string",
+                        "description": "The user to associate with the app password. Only valid with service-type app passwords.\n",
+                        "willReplaceOnChanges": true
                     }
                 },
                 "type": "object"
@@ -8407,8 +8458,7 @@
                 },
                 "from": {
                     "$ref": "#/types/materialize:index/SinkKafkaFrom:SinkKafkaFrom",
-                    "description": "The name of the source, table or materialized view you want to send to the sink.\n",
-                    "willReplaceOnChanges": true
+                    "description": "The name of the source, table or materialized view you want to send to the sink.\n"
                 },
                 "kafkaConnection": {
                     "$ref": "#/types/materialize:index/SinkKafkaKafkaConnection:SinkKafkaKafkaConnection",
@@ -8496,8 +8546,7 @@
                     },
                     "from": {
                         "$ref": "#/types/materialize:index/SinkKafkaFrom:SinkKafkaFrom",
-                        "description": "The name of the source, table or materialized view you want to send to the sink.\n",
-                        "willReplaceOnChanges": true
+                        "description": "The name of the source, table or materialized view you want to send to the sink.\n"
                     },
                     "kafkaConnection": {
                         "$ref": "#/types/materialize:index/SinkKafkaKafkaConnection:SinkKafkaKafkaConnection",
@@ -10246,6 +10295,10 @@
                     },
                     "description": "The roles to assign to the user. Allowed values are 'Member' and 'Admin'.\n"
                 },
+                "sendActivationEmail": {
+                    "type": "boolean",
+                    "description": "Whether to send an email either inviting the user to activate their account, if the user is new, or inviting the user to join the organization, if the user already exists in another organization. Changing this property after the resource is created has no effect.\n"
+                },
                 "verified": {
                     "type": "boolean"
                 }
@@ -10270,6 +10323,10 @@
                     },
                     "description": "The roles to assign to the user. Allowed values are 'Member' and 'Admin'.\n",
                     "willReplaceOnChanges": true
+                },
+                "sendActivationEmail": {
+                    "type": "boolean",
+                    "description": "Whether to send an email either inviting the user to activate their account, if the user is new, or inviting the user to join the organization, if the user already exists in another organization. Changing this property after the resource is created has no effect.\n"
                 }
             },
             "requiredInputs": [
@@ -10298,6 +10355,10 @@
                         },
                         "description": "The roles to assign to the user. Allowed values are 'Member' and 'Admin'.\n",
                         "willReplaceOnChanges": true
+                    },
+                    "sendActivationEmail": {
+                        "type": "boolean",
+                        "description": "Whether to send an email either inviting the user to activate their account, if the user is new, or inviting the user to join the organization, if the user already exists in another organization. Changing this property after the resource is created has no effect.\n"
                     },
                     "verified": {
                         "type": "boolean"
