@@ -2108,6 +2108,20 @@
                     "type": "boolean",
                     "description": "Use the upsert envelope, which uses message keys to handle CRUD operations.\n",
                     "willReplaceOnChanges": true
+                },
+                "upsertOptions": {
+                    "$ref": "#/types/materialize:index/SourceKafkaEnvelopeUpsertOptions:SourceKafkaEnvelopeUpsertOptions",
+                    "description": "Options for the upsert envelope.\n",
+                    "willReplaceOnChanges": true
+                }
+            },
+            "type": "object"
+        },
+        "materialize:index/SourceKafkaEnvelopeUpsertOptions:SourceKafkaEnvelopeUpsertOptions": {
+            "properties": {
+                "valueDecodingErrors": {
+                    "type": "string",
+                    "willReplaceOnChanges": true
                 }
             },
             "type": "object"
@@ -8367,6 +8381,10 @@
                     "$ref": "#/types/materialize:index/SinkKafkaFrom:SinkKafkaFrom",
                     "description": "The name of the source, table or materialized view you want to send to the sink.\n"
                 },
+                "headers": {
+                    "type": "string",
+                    "description": "The name of a column containing additional headers to add to each message emitted by the sink. The column must be of type map[text =\u003e text] or map[text =\u003e bytea].\n"
+                },
                 "kafkaConnection": {
                     "$ref": "#/types/materialize:index/SinkKafkaKafkaConnection:SinkKafkaKafkaConnection",
                     "description": "The name of the Kafka connection to use in the sink.\n"
@@ -8460,6 +8478,11 @@
                     "$ref": "#/types/materialize:index/SinkKafkaFrom:SinkKafkaFrom",
                     "description": "The name of the source, table or materialized view you want to send to the sink.\n"
                 },
+                "headers": {
+                    "type": "string",
+                    "description": "The name of a column containing additional headers to add to each message emitted by the sink. The column must be of type map[text =\u003e text] or map[text =\u003e bytea].\n",
+                    "willReplaceOnChanges": true
+                },
                 "kafkaConnection": {
                     "$ref": "#/types/materialize:index/SinkKafkaKafkaConnection:SinkKafkaKafkaConnection",
                     "description": "The name of the Kafka connection to use in the sink.\n",
@@ -8547,6 +8570,11 @@
                     "from": {
                         "$ref": "#/types/materialize:index/SinkKafkaFrom:SinkKafkaFrom",
                         "description": "The name of the source, table or materialized view you want to send to the sink.\n"
+                    },
+                    "headers": {
+                        "type": "string",
+                        "description": "The name of a column containing additional headers to add to each message emitted by the sink. The column must be of type map[text =\u003e text] or map[text =\u003e bytea].\n",
+                        "willReplaceOnChanges": true
                     },
                     "kafkaConnection": {
                         "$ref": "#/types/materialize:index/SinkKafkaKafkaConnection:SinkKafkaKafkaConnection",
