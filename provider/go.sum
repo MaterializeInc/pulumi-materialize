@@ -1257,8 +1257,8 @@ github.com/Masterminds/semver/v3 v3.2.0/go.mod h1:qvl/7zhW3nngYb5+80sSMF+FG2BjYr
 github.com/Masterminds/sprig/v3 v3.2.1/go.mod h1:UoaO7Yp8KlPnJIYWTFkMaqPUYKTfGFPhxNuwnnxkKlk=
 github.com/Masterminds/sprig/v3 v3.2.3 h1:eL2fZNezLomi0uOLqjQoN6BfsDD+fyLtgbJMAj9n6YA=
 github.com/Masterminds/sprig/v3 v3.2.3/go.mod h1:rXcFaZ2zZbLRJv/xSysmlgIM1u11eBaRMhvYXJNkGuM=
-github.com/MaterializeInc/terraform-provider-materialize v0.8.2 h1:nv+ILjLZcOl5OKwp0RGDNj5qGb+PcgShmig24EmAkBA=
-github.com/MaterializeInc/terraform-provider-materialize v0.8.2/go.mod h1:LUEZUKVCP+Zy0V0uSD7SIRLDdW92HvExCu2BHo1xnQk=
+github.com/MaterializeInc/terraform-provider-materialize v0.8.3 h1:GwozIdqFBDjA6BTO9dkAjyWcc1SNWBcvXc4NFln7LmQ=
+github.com/MaterializeInc/terraform-provider-materialize v0.8.3/go.mod h1:LUEZUKVCP+Zy0V0uSD7SIRLDdW92HvExCu2BHo1xnQk=
 github.com/Microsoft/go-winio v0.4.11/go.mod h1:VhR8bwka0BXejwEJY73c50VrPtXAaKcyvVC4A4RozmA=
 github.com/Microsoft/go-winio v0.4.14/go.mod h1:qXqCSQ3Xa7+6tgxaGTIe4Kpcdsi+P8jBhyzoq1bpyYA=
 github.com/Microsoft/go-winio v0.4.15-0.20190919025122-fc70bd9a86b5/go.mod h1:tTuCMEN+UleMWgg9dVx4Hu52b1bJo+59jBh3ajtinzw=
