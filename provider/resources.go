@@ -168,6 +168,7 @@ func Provider() tfbridge.ProviderInfo {
 			"materialize_table":             {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "GetTables")},
 			"materialize_type":              {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "GetTypes")},
 			"materialize_view":              {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "GetViews")},
+			"materialize_user":              {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "GetUsers")},
 		},
 		JavaScript: &tfbridge.JavaScriptInfo{
 			// List any npm dependencies and their versions

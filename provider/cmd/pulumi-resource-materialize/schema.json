@@ -10303,7 +10303,7 @@
             }
         },
         "materialize:index/user:User": {
-            "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as materialize from \"@pulumi/materialize\";\n\nconst exampleUser = new materialize.User(\"exampleUser\", {\n    email: \"example-user@example.com\",\n    roles: [\n        \"Member\",\n        \"Admin\",\n    ],\n});\n```\n```python\nimport pulumi\nimport pulumi_materialize as materialize\n\nexample_user = materialize.User(\"exampleUser\",\n    email=\"example-user@example.com\",\n    roles=[\n        \"Member\",\n        \"Admin\",\n    ])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Materialize = Pulumi.Materialize;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var exampleUser = new Materialize.User(\"exampleUser\", new()\n    {\n        Email = \"example-user@example.com\",\n        Roles = new[]\n        {\n            \"Member\",\n            \"Admin\",\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-materialize/sdk/go/materialize\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := materialize.NewUser(ctx, \"exampleUser\", \u0026materialize.UserArgs{\n\t\t\tEmail: pulumi.String(\"example-user@example.com\"),\n\t\t\tRoles: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"Member\"),\n\t\t\t\tpulumi.String(\"Admin\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.materialize.User;\nimport com.pulumi.materialize.UserArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var exampleUser = new User(\"exampleUser\", UserArgs.builder()        \n            .email(\"example-user@example.com\")\n            .roles(            \n                \"Member\",\n                \"Admin\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  exampleUser:\n    type: materialize:User\n    properties:\n      email: example-user@example.com\n      roles:\n        - Member\n        - Admin\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nUsers can be imported using the user id\n\n```sh\n $ pulumi import materialize:index/user:User example_user \u003cuser_id\u003e\n```\n\n ",
+            "description": "The user resource allows you to invite and delete users in your Materialize organization.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as materialize from \"@pulumi/materialize\";\n\nconst exampleUser = new materialize.User(\"exampleUser\", {\n    email: \"example-user@example.com\",\n    roles: [\n        \"Member\",\n        \"Admin\",\n    ],\n});\n```\n```python\nimport pulumi\nimport pulumi_materialize as materialize\n\nexample_user = materialize.User(\"exampleUser\",\n    email=\"example-user@example.com\",\n    roles=[\n        \"Member\",\n        \"Admin\",\n    ])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Materialize = Pulumi.Materialize;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var exampleUser = new Materialize.User(\"exampleUser\", new()\n    {\n        Email = \"example-user@example.com\",\n        Roles = new[]\n        {\n            \"Member\",\n            \"Admin\",\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-materialize/sdk/go/materialize\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := materialize.NewUser(ctx, \"exampleUser\", \u0026materialize.UserArgs{\n\t\t\tEmail: pulumi.String(\"example-user@example.com\"),\n\t\t\tRoles: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"Member\"),\n\t\t\t\tpulumi.String(\"Admin\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.materialize.User;\nimport com.pulumi.materialize.UserArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var exampleUser = new User(\"exampleUser\", UserArgs.builder()        \n            .email(\"example-user@example.com\")\n            .roles(            \n                \"Member\",\n                \"Admin\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  exampleUser:\n    type: materialize:User\n    properties:\n      email: example-user@example.com\n      roles:\n        - Member\n        - Admin\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nUsers can be imported using the user id. The user id can be retrieved by using the `materialize_user` data source.\n\n```sh\n $ pulumi import materialize:index/user:User example_user \u003cuser_id\u003e\n```\n\n ",
             "properties": {
                 "authProvider": {
                     "type": "string",
@@ -11399,6 +11399,45 @@
                     "region",
                     "types",
                     "id"
+                ]
+            }
+        },
+        "materialize:index/getUsers:GetUsers": {
+            "description": "The user data source allows you to retrieve information about a user in your Materialize organization.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as materialize from \"@pulumi/materialize\";\n\nconst exampleUser = materialize.GetUsers({\n    email: \"example@example.com\",\n});\n```\n```python\nimport pulumi\nimport pulumi_materialize as materialize\n\nexample_user = materialize.get_users(email=\"example@example.com\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Materialize = Pulumi.Materialize;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var exampleUser = Materialize.GetUsers.Invoke(new()\n    {\n        Email = \"example@example.com\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-materialize/sdk/go/materialize\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := materialize.GetUsers(ctx, \u0026materialize.GetUsersArgs{\n\t\t\tEmail: \"example@example.com\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.materialize.MaterializeFunctions;\nimport com.pulumi.materialize.inputs.GetUsersArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var exampleUser = MaterializeFunctions.GetUsers(GetUsersArgs.builder()\n            .email(\"example@example.com\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  exampleUser:\n    fn::invoke:\n      Function: materialize:GetUsers\n      Arguments:\n        email: example@example.com\n```\n{{% /example %}}\n{{% /examples %}}",
+            "inputs": {
+                "description": "A collection of arguments for invoking GetUsers.\n",
+                "properties": {
+                    "email": {
+                        "type": "string",
+                        "description": "The email address of the user to retrieve.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "email"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by GetUsers.\n",
+                "properties": {
+                    "email": {
+                        "type": "string",
+                        "description": "The email address of the user to retrieve.\n"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The unique (UUID) identifier of the user.\n"
+                    },
+                    "verified": {
+                        "type": "boolean",
+                        "description": "Whether the user's email address has been verified.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "email",
+                    "id",
+                    "verified"
                 ]
             }
         },
