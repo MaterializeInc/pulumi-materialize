@@ -1932,8 +1932,16 @@
                     "type": "string",
                     "willReplaceOnChanges": true
                 },
+                "keyCompatibilityLevel": {
+                    "type": "string",
+                    "willReplaceOnChanges": true
+                },
                 "schemaRegistryConnection": {
                     "$ref": "#/types/materialize:index/SinkKafkaFormatAvroSchemaRegistryConnection:SinkKafkaFormatAvroSchemaRegistryConnection",
+                    "willReplaceOnChanges": true
+                },
+                "valueCompatibilityLevel": {
+                    "type": "string",
                     "willReplaceOnChanges": true
                 }
             },
@@ -2751,28 +2759,23 @@
             "properties": {
                 "databaseName": {
                     "type": "string",
-                    "description": "The database of the table in Materialize.\n",
-                    "willReplaceOnChanges": true
+                    "description": "The database of the table in Materialize.\n"
                 },
                 "name": {
                     "type": "string",
-                    "description": "The name for the table, used in Materialize.\n",
-                    "willReplaceOnChanges": true
+                    "description": "The name for the table, used in Materialize.\n"
                 },
                 "schemaName": {
                     "type": "string",
-                    "description": "The schema of the table in Materialize.\n",
-                    "willReplaceOnChanges": true
+                    "description": "The schema of the table in Materialize.\n"
                 },
                 "upstreamName": {
                     "type": "string",
-                    "description": "The name of the table in the upstream MySQL database.\n",
-                    "willReplaceOnChanges": true
+                    "description": "The name of the table in the upstream MySQL database.\n"
                 },
                 "upstreamSchemaName": {
                     "type": "string",
-                    "description": "The schema of the table in the upstream MySQL database.\n",
-                    "willReplaceOnChanges": true
+                    "description": "The schema of the table in the upstream MySQL database.\n"
                 }
             },
             "type": "object",
@@ -4279,6 +4282,10 @@
                     "type": "string",
                     "description": "The name of a topic that Kafka sinks can use to track internal consistency metadata.\n"
                 },
+                "progressTopicReplicationFactor": {
+                    "type": "integer",
+                    "description": "The replication factor to use when creating the Kafka progress topic (if the Kafka topic does not already exist).\n"
+                },
                 "qualifiedSqlName": {
                     "type": "string",
                     "description": "The fully qualified name of the connection.\n"
@@ -4368,6 +4375,11 @@
                     "description": "The name of a topic that Kafka sinks can use to track internal consistency metadata.\n",
                     "willReplaceOnChanges": true
                 },
+                "progressTopicReplicationFactor": {
+                    "type": "integer",
+                    "description": "The replication factor to use when creating the Kafka progress topic (if the Kafka topic does not already exist).\n",
+                    "willReplaceOnChanges": true
+                },
                 "region": {
                     "type": "string",
                     "description": "The region to use for the resource connection. If not set, the default region is used.\n",
@@ -4449,6 +4461,11 @@
                     "progressTopic": {
                         "type": "string",
                         "description": "The name of a topic that Kafka sinks can use to track internal consistency metadata.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "progressTopicReplicationFactor": {
+                        "type": "integer",
+                        "description": "The replication factor to use when creating the Kafka progress topic (if the Kafka topic does not already exist).\n",
                         "willReplaceOnChanges": true
                     },
                     "qualifiedSqlName": {
@@ -8351,7 +8368,7 @@
             }
         },
         "materialize:index/sinkKafka:SinkKafka": {
-            "description": "A Kafka sink establishes a link to a Kafka cluster that you want Materialize to write data to.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as materialize from \"@pulumi/materialize\";\n\nconst exampleSinkKafka = new materialize.SinkKafka(\"exampleSinkKafka\", {\n    clusterName: \"quickstart\",\n    envelope: {\n        upsert: true,\n    },\n    format: {\n        avro: {\n            schemaRegistryConnection: {\n                databaseName: \"database\",\n                name: \"csr_connection\",\n                schemaName: \"schema\",\n            },\n        },\n    },\n    from: {\n        name: \"table\",\n    },\n    kafkaConnection: {\n        name: \"kafka_connection\",\n    },\n    schemaName: \"schema\",\n    topic: \"test_avro_topic\",\n});\n```\n```python\nimport pulumi\nimport pulumi_materialize as materialize\n\nexample_sink_kafka = materialize.SinkKafka(\"exampleSinkKafka\",\n    cluster_name=\"quickstart\",\n    envelope=materialize.SinkKafkaEnvelopeArgs(\n        upsert=True,\n    ),\n    format=materialize.SinkKafkaFormatArgs(\n        avro=materialize.SinkKafkaFormatAvroArgs(\n            schema_registry_connection=materialize.SinkKafkaFormatAvroSchemaRegistryConnectionArgs(\n                database_name=\"database\",\n                name=\"csr_connection\",\n                schema_name=\"schema\",\n            ),\n        ),\n    ),\n    from_=materialize.SinkKafkaFromArgs(\n        name=\"table\",\n    ),\n    kafka_connection=materialize.SinkKafkaKafkaConnectionArgs(\n        name=\"kafka_connection\",\n    ),\n    schema_name=\"schema\",\n    topic=\"test_avro_topic\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Materialize = Pulumi.Materialize;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var exampleSinkKafka = new Materialize.SinkKafka(\"exampleSinkKafka\", new()\n    {\n        ClusterName = \"quickstart\",\n        Envelope = new Materialize.Inputs.SinkKafkaEnvelopeArgs\n        {\n            Upsert = true,\n        },\n        Format = new Materialize.Inputs.SinkKafkaFormatArgs\n        {\n            Avro = new Materialize.Inputs.SinkKafkaFormatAvroArgs\n            {\n                SchemaRegistryConnection = new Materialize.Inputs.SinkKafkaFormatAvroSchemaRegistryConnectionArgs\n                {\n                    DatabaseName = \"database\",\n                    Name = \"csr_connection\",\n                    SchemaName = \"schema\",\n                },\n            },\n        },\n        From = new Materialize.Inputs.SinkKafkaFromArgs\n        {\n            Name = \"table\",\n        },\n        KafkaConnection = new Materialize.Inputs.SinkKafkaKafkaConnectionArgs\n        {\n            Name = \"kafka_connection\",\n        },\n        SchemaName = \"schema\",\n        Topic = \"test_avro_topic\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-materialize/sdk/go/materialize\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := materialize.NewSinkKafka(ctx, \"exampleSinkKafka\", \u0026materialize.SinkKafkaArgs{\n\t\t\tClusterName: pulumi.String(\"quickstart\"),\n\t\t\tEnvelope: \u0026materialize.SinkKafkaEnvelopeArgs{\n\t\t\t\tUpsert: pulumi.Bool(true),\n\t\t\t},\n\t\t\tFormat: \u0026materialize.SinkKafkaFormatArgs{\n\t\t\t\tAvro: \u0026materialize.SinkKafkaFormatAvroArgs{\n\t\t\t\t\tSchemaRegistryConnection: \u0026materialize.SinkKafkaFormatAvroSchemaRegistryConnectionArgs{\n\t\t\t\t\t\tDatabaseName: pulumi.String(\"database\"),\n\t\t\t\t\t\tName:         pulumi.String(\"csr_connection\"),\n\t\t\t\t\t\tSchemaName:   pulumi.String(\"schema\"),\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t\tFrom: \u0026materialize.SinkKafkaFromArgs{\n\t\t\t\tName: pulumi.String(\"table\"),\n\t\t\t},\n\t\t\tKafkaConnection: \u0026materialize.SinkKafkaKafkaConnectionArgs{\n\t\t\t\tName: pulumi.String(\"kafka_connection\"),\n\t\t\t},\n\t\t\tSchemaName: pulumi.String(\"schema\"),\n\t\t\tTopic:      pulumi.String(\"test_avro_topic\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.materialize.SinkKafka;\nimport com.pulumi.materialize.SinkKafkaArgs;\nimport com.pulumi.materialize.inputs.SinkKafkaEnvelopeArgs;\nimport com.pulumi.materialize.inputs.SinkKafkaFormatArgs;\nimport com.pulumi.materialize.inputs.SinkKafkaFormatAvroArgs;\nimport com.pulumi.materialize.inputs.SinkKafkaFormatAvroSchemaRegistryConnectionArgs;\nimport com.pulumi.materialize.inputs.SinkKafkaFromArgs;\nimport com.pulumi.materialize.inputs.SinkKafkaKafkaConnectionArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var exampleSinkKafka = new SinkKafka(\"exampleSinkKafka\", SinkKafkaArgs.builder()        \n            .clusterName(\"quickstart\")\n            .envelope(SinkKafkaEnvelopeArgs.builder()\n                .upsert(true)\n                .build())\n            .format(SinkKafkaFormatArgs.builder()\n                .avro(SinkKafkaFormatAvroArgs.builder()\n                    .schemaRegistryConnection(SinkKafkaFormatAvroSchemaRegistryConnectionArgs.builder()\n                        .databaseName(\"database\")\n                        .name(\"csr_connection\")\n                        .schemaName(\"schema\")\n                        .build())\n                    .build())\n                .build())\n            .from(SinkKafkaFromArgs.builder()\n                .name(\"table\")\n                .build())\n            .kafkaConnection(SinkKafkaKafkaConnectionArgs.builder()\n                .name(\"kafka_connection\")\n                .build())\n            .schemaName(\"schema\")\n            .topic(\"test_avro_topic\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  exampleSinkKafka:\n    type: materialize:SinkKafka\n    properties:\n      clusterName: quickstart\n      envelope:\n        upsert: true\n      format:\n        avro:\n          schemaRegistryConnection:\n            databaseName: database\n            name: csr_connection\n            schemaName: schema\n      from:\n        name: table\n      kafkaConnection:\n        name: kafka_connection\n      schemaName: schema\n      topic: test_avro_topic\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nSinks can be imported using the sink id\n\n```sh\n $ pulumi import materialize:index/sinkKafka:SinkKafka example_sink_kafka \u003cregion\u003e:\u003csink_id\u003e\n```\n\n Sink id and information be found in the `mz_catalog.mz_sinks` table The region is the region where the database is located (e.g. aws/us-east-1) ",
+            "description": "A Kafka sink establishes a link to a Kafka cluster that you want Materialize to write data to.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as materialize from \"@pulumi/materialize\";\n\nconst exampleSinkKafka = new materialize.SinkKafka(\"exampleSinkKafka\", {\n    clusterName: \"quickstart\",\n    envelope: {\n        upsert: true,\n    },\n    format: {\n        avro: {\n            schemaRegistryConnection: {\n                databaseName: \"database\",\n                name: \"csr_connection\",\n                schemaName: \"schema\",\n            },\n        },\n    },\n    from: {\n        name: \"table\",\n    },\n    kafkaConnection: {\n        name: \"kafka_connection\",\n    },\n    schemaName: \"schema\",\n    topic: \"test_avro_topic\",\n});\n```\n```python\nimport pulumi\nimport pulumi_materialize as materialize\n\nexample_sink_kafka = materialize.SinkKafka(\"exampleSinkKafka\",\n    cluster_name=\"quickstart\",\n    envelope=materialize.SinkKafkaEnvelopeArgs(\n        upsert=True,\n    ),\n    format=materialize.SinkKafkaFormatArgs(\n        avro=materialize.SinkKafkaFormatAvroArgs(\n            schema_registry_connection=materialize.SinkKafkaFormatAvroSchemaRegistryConnectionArgs(\n                database_name=\"database\",\n                name=\"csr_connection\",\n                schema_name=\"schema\",\n            ),\n        ),\n    ),\n    from_=materialize.SinkKafkaFromArgs(\n        name=\"table\",\n    ),\n    kafka_connection=materialize.SinkKafkaKafkaConnectionArgs(\n        name=\"kafka_connection\",\n    ),\n    schema_name=\"schema\",\n    topic=\"test_avro_topic\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Materialize = Pulumi.Materialize;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var exampleSinkKafka = new Materialize.SinkKafka(\"exampleSinkKafka\", new()\n    {\n        ClusterName = \"quickstart\",\n        Envelope = new Materialize.Inputs.SinkKafkaEnvelopeArgs\n        {\n            Upsert = true,\n        },\n        Format = new Materialize.Inputs.SinkKafkaFormatArgs\n        {\n            Avro = new Materialize.Inputs.SinkKafkaFormatAvroArgs\n            {\n                SchemaRegistryConnection = new Materialize.Inputs.SinkKafkaFormatAvroSchemaRegistryConnectionArgs\n                {\n                    DatabaseName = \"database\",\n                    Name = \"csr_connection\",\n                    SchemaName = \"schema\",\n                },\n            },\n        },\n        From = new Materialize.Inputs.SinkKafkaFromArgs\n        {\n            Name = \"table\",\n        },\n        KafkaConnection = new Materialize.Inputs.SinkKafkaKafkaConnectionArgs\n        {\n            Name = \"kafka_connection\",\n        },\n        SchemaName = \"schema\",\n        Topic = \"test_avro_topic\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-materialize/sdk/go/materialize\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := materialize.NewSinkKafka(ctx, \"exampleSinkKafka\", \u0026materialize.SinkKafkaArgs{\n\t\t\tClusterName: pulumi.String(\"quickstart\"),\n\t\t\tEnvelope: \u0026materialize.SinkKafkaEnvelopeArgs{\n\t\t\t\tUpsert: pulumi.Bool(true),\n\t\t\t},\n\t\t\tFormat: \u0026materialize.SinkKafkaFormatArgs{\n\t\t\t\tAvro: \u0026materialize.SinkKafkaFormatAvroArgs{\n\t\t\t\t\tSchemaRegistryConnection: \u0026materialize.SinkKafkaFormatAvroSchemaRegistryConnectionArgs{\n\t\t\t\t\t\tDatabaseName: pulumi.String(\"database\"),\n\t\t\t\t\t\tName:         pulumi.String(\"csr_connection\"),\n\t\t\t\t\t\tSchemaName:   pulumi.String(\"schema\"),\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t\tFrom: \u0026materialize.SinkKafkaFromArgs{\n\t\t\t\tName: pulumi.String(\"table\"),\n\t\t\t},\n\t\t\tKafkaConnection: \u0026materialize.SinkKafkaKafkaConnectionArgs{\n\t\t\t\tName: pulumi.String(\"kafka_connection\"),\n\t\t\t},\n\t\t\tSchemaName: pulumi.String(\"schema\"),\n\t\t\tTopic:      pulumi.String(\"test_avro_topic\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.materialize.SinkKafka;\nimport com.pulumi.materialize.SinkKafkaArgs;\nimport com.pulumi.materialize.inputs.SinkKafkaEnvelopeArgs;\nimport com.pulumi.materialize.inputs.SinkKafkaFormatArgs;\nimport com.pulumi.materialize.inputs.SinkKafkaFormatAvroArgs;\nimport com.pulumi.materialize.inputs.SinkKafkaFormatAvroSchemaRegistryConnectionArgs;\nimport com.pulumi.materialize.inputs.SinkKafkaFromArgs;\nimport com.pulumi.materialize.inputs.SinkKafkaKafkaConnectionArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var exampleSinkKafka = new SinkKafka(\"exampleSinkKafka\", SinkKafkaArgs.builder()        \n            .clusterName(\"quickstart\")\n            .envelope(SinkKafkaEnvelopeArgs.builder()\n                .upsert(true)\n                .build())\n            .format(SinkKafkaFormatArgs.builder()\n                .avro(SinkKafkaFormatAvroArgs.builder()\n                    .schemaRegistryConnection(SinkKafkaFormatAvroSchemaRegistryConnectionArgs.builder()\n                        .databaseName(\"database\")\n                        .name(\"csr_connection\")\n                        .schemaName(\"schema\")\n                        .build())\n                    .build())\n                .build())\n            .from(SinkKafkaFromArgs.builder()\n                .name(\"table\")\n                .build())\n            .kafkaConnection(SinkKafkaKafkaConnectionArgs.builder()\n                .name(\"kafka_connection\")\n                .build())\n            .schemaName(\"schema\")\n            .topic(\"test_avro_topic\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  exampleSinkKafka:\n    type: materialize:SinkKafka\n    properties:\n      clusterName: quickstart\n      envelope:\n        upsert: true\n      # Optional topic configuration parameters:\n      #     // topic_replication_factor = 1\n      #     // topic_partition_count    = 6\n      #     // topic_config = {\n      #     //   \"cleanup.policy\" = \"compact\"\n      #     //   \"retention.ms\"   = \"86400000\"\n      #     // }\n      format:\n        avro:\n          schemaRegistryConnection:\n            databaseName: database\n            name: csr_connection\n            schemaName: schema\n      from:\n        name: table\n      kafkaConnection:\n        name: kafka_connection\n      schemaName: schema\n      topic: test_avro_topic\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nSinks can be imported using the sink id\n\n```sh\n $ pulumi import materialize:index/sinkKafka:SinkKafka example_sink_kafka \u003cregion\u003e:\u003csink_id\u003e\n```\n\n Sink id and information be found in the `mz_catalog.mz_sinks` table The region is the region where the database is located (e.g. aws/us-east-1) ",
             "properties": {
                 "clusterName": {
                     "type": "string",
@@ -8431,6 +8448,21 @@
                 "topic": {
                     "type": "string",
                     "description": "The Kafka topic you want to subscribe to.\n"
+                },
+                "topicConfig": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Any topic-level configs to use when creating the Kafka topic (if the Kafka topic does not already exist).\n"
+                },
+                "topicPartitionCount": {
+                    "type": "integer",
+                    "description": "The partition count to use when creating the Kafka topic (if the Kafka topic does not already exist).\n"
+                },
+                "topicReplicationFactor": {
+                    "type": "integer",
+                    "description": "The replication factor to use when creating the Kafka topic (if the Kafka topic does not already exist).\n"
                 }
             },
             "required": [
@@ -8527,6 +8559,24 @@
                 "topic": {
                     "type": "string",
                     "description": "The Kafka topic you want to subscribe to.\n",
+                    "willReplaceOnChanges": true
+                },
+                "topicConfig": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Any topic-level configs to use when creating the Kafka topic (if the Kafka topic does not already exist).\n",
+                    "willReplaceOnChanges": true
+                },
+                "topicPartitionCount": {
+                    "type": "integer",
+                    "description": "The partition count to use when creating the Kafka topic (if the Kafka topic does not already exist).\n",
+                    "willReplaceOnChanges": true
+                },
+                "topicReplicationFactor": {
+                    "type": "integer",
+                    "description": "The replication factor to use when creating the Kafka topic (if the Kafka topic does not already exist).\n",
                     "willReplaceOnChanges": true
                 }
             },
@@ -8628,6 +8678,24 @@
                     "topic": {
                         "type": "string",
                         "description": "The Kafka topic you want to subscribe to.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "topicConfig": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "description": "Any topic-level configs to use when creating the Kafka topic (if the Kafka topic does not already exist).\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "topicPartitionCount": {
+                        "type": "integer",
+                        "description": "The partition count to use when creating the Kafka topic (if the Kafka topic does not already exist).\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "topicReplicationFactor": {
+                        "type": "integer",
+                        "description": "The replication factor to use when creating the Kafka topic (if the Kafka topic does not already exist).\n",
                         "willReplaceOnChanges": true
                     }
                 },
@@ -9408,8 +9476,7 @@
                     "items": {
                         "$ref": "#/types/materialize:index/SourceMysqlTable:SourceMysqlTable"
                     },
-                    "description": "Specify the tables to be included in the source. If not specified, all tables are included.\n",
-                    "willReplaceOnChanges": true
+                    "description": "Specify the tables to be included in the source. If not specified, all tables are included.\n"
                 },
                 "textColumns": {
                     "type": "array",
@@ -9487,8 +9554,7 @@
                         "items": {
                             "$ref": "#/types/materialize:index/SourceMysqlTable:SourceMysqlTable"
                         },
-                        "description": "Specify the tables to be included in the source. If not specified, all tables are included.\n",
-                        "willReplaceOnChanges": true
+                        "description": "Specify the tables to be included in the source. If not specified, all tables are included.\n"
                     },
                     "textColumns": {
                         "type": "array",
@@ -10349,8 +10415,7 @@
                     "items": {
                         "type": "string"
                     },
-                    "description": "The roles to assign to the user. Allowed values are 'Member' and 'Admin'.\n",
-                    "willReplaceOnChanges": true
+                    "description": "The roles to assign to the user. Allowed values are 'Member' and 'Admin'.\n"
                 },
                 "sendActivationEmail": {
                     "type": "boolean",
@@ -10381,8 +10446,7 @@
                         "items": {
                             "type": "string"
                         },
-                        "description": "The roles to assign to the user. Allowed values are 'Member' and 'Admin'.\n",
-                        "willReplaceOnChanges": true
+                        "description": "The roles to assign to the user. Allowed values are 'Member' and 'Admin'.\n"
                     },
                     "sendActivationEmail": {
                         "type": "boolean",
