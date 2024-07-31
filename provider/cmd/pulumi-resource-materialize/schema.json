@@ -3362,7 +3362,7 @@
             }
         },
         "materialize:index/cluster:Cluster": {
-            "description": "Clusters describe logical compute resources that can be used by sources, sinks, indexes, and materialized views. Managed clusters are created by setting the `size` attribute\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as materialize from \"@pulumi/materialize\";\n\nconst exampleCluster = new materialize.Cluster(\"exampleCluster\", {});\n```\n```python\nimport pulumi\nimport pulumi_materialize as materialize\n\nexample_cluster = materialize.Cluster(\"exampleCluster\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Materialize = Pulumi.Materialize;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var exampleCluster = new Materialize.Cluster(\"exampleCluster\");\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-materialize/sdk/go/materialize\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := materialize.NewCluster(ctx, \"exampleCluster\", nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.materialize.Cluster;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var exampleCluster = new Cluster(\"exampleCluster\");\n\n    }\n}\n```\n```yaml\nresources:\n  exampleCluster:\n    type: materialize:Cluster\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nClusters can be imported using the cluster id\n\n```sh\n $ pulumi import materialize:index/cluster:Cluster example_cluster \u003cregion\u003e:\u003ccluster_id\u003e\n```\n\n Cluster id and information be found in the `mz_catalog.mz_clusters` table The region is the region where the database is located (e.g. aws/us-east-1) ",
+            "description": "Clusters describe logical compute resources that can be used by sources, sinks, indexes, and materialized views. Managed clusters are created by setting the `size` attribute\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as materialize from \"@pulumi/materialize\";\n\nconst exampleCluster = new materialize.Cluster(\"exampleCluster\", {});\n```\n```python\nimport pulumi\nimport pulumi_materialize as materialize\n\nexample_cluster = materialize.Cluster(\"exampleCluster\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Materialize = Pulumi.Materialize;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var exampleCluster = new Materialize.Cluster(\"exampleCluster\");\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-materialize/sdk/go/materialize\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := materialize.NewCluster(ctx, \"exampleCluster\", nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.materialize.Cluster;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var exampleCluster = new Cluster(\"exampleCluster\");\n\n    }\n}\n```\n```yaml\nresources:\n  exampleCluster:\n    type: materialize:Cluster\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nClusters can be imported using the cluster id or name\n\n```sh\n $ pulumi import materialize:index/cluster:Cluster example_cluster \u003cregion\u003e:id:\u003ccluster_id\u003e\n```\n\n To import using the cluster name, you need to set the `identify_by_name` attribute to true\n\n```sh\n $ pulumi import materialize:index/cluster:Cluster example_cluster \u003cregion\u003e:name:\u003ccluster_name\u003e\n```\n\n Cluster id and information be found in the `mz_catalog.mz_clusters` table The region is the region where the database is located (e.g. aws/us-east-1) ",
             "properties": {
                 "availabilityZones": {
                     "type": "array",
@@ -3379,6 +3379,10 @@
                     "type": "boolean",
                     "description": "**Deprecated**. This attribute is maintained for backward compatibility with existing configurations. New users should use 'cc' sizes for disk access.\n",
                     "deprecationMessage": "Disk replicas are deprecated and will be removed in a future release. The `disk` attribute will be enabled by default for 'cc' clusters"
+                },
+                "identifyByName": {
+                    "type": "boolean",
+                    "description": "Use the cluster name as the Terraform resource ID instead of the internal cluster ID.\n"
                 },
                 "introspectionDebugging": {
                     "type": "boolean",
@@ -3438,6 +3442,10 @@
                     "description": "**Deprecated**. This attribute is maintained for backward compatibility with existing configurations. New users should use 'cc' sizes for disk access.\n",
                     "deprecationMessage": "Disk replicas are deprecated and will be removed in a future release. The `disk` attribute will be enabled by default for 'cc' clusters"
                 },
+                "identifyByName": {
+                    "type": "boolean",
+                    "description": "Use the cluster name as the Terraform resource ID instead of the internal cluster ID.\n"
+                },
                 "introspectionDebugging": {
                     "type": "boolean",
                     "description": "Whether to introspect the gathering of the introspection data.\n"
@@ -3491,6 +3499,10 @@
                         "type": "boolean",
                         "description": "**Deprecated**. This attribute is maintained for backward compatibility with existing configurations. New users should use 'cc' sizes for disk access.\n",
                         "deprecationMessage": "Disk replicas are deprecated and will be removed in a future release. The `disk` attribute will be enabled by default for 'cc' clusters"
+                    },
+                    "identifyByName": {
+                        "type": "boolean",
+                        "description": "Use the cluster name as the Terraform resource ID instead of the internal cluster ID.\n"
                     },
                     "introspectionDebugging": {
                         "type": "boolean",
