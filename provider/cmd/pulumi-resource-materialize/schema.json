@@ -144,6 +144,23 @@
             },
             "type": "object"
         },
+        "materialize:index/ClusterWaitUntilReady:ClusterWaitUntilReady": {
+            "properties": {
+                "enabled": {
+                    "type": "boolean",
+                    "description": "Enable wait*until*ready.\n"
+                },
+                "onTimeout": {
+                    "type": "string",
+                    "description": "Action to take on timeout: COMMIT|ROLLBACK\n"
+                },
+                "timeout": {
+                    "type": "string",
+                    "description": "Max duration to wait for the new replicas to be ready.\n"
+                }
+            },
+            "type": "object"
+        },
         "materialize:index/ConnectionAwsAccessKeyId:ConnectionAwsAccessKeyId": {
             "properties": {
                 "secret": {
@@ -3435,6 +3452,10 @@
                 "size": {
                     "type": "string",
                     "description": "The size of the managed cluster.\n"
+                },
+                "waitUntilReady": {
+                    "$ref": "#/types/materialize:index/ClusterWaitUntilReady:ClusterWaitUntilReady",
+                    "description": "Defines the parameters for the WAIT UNTIL READY options\n"
                 }
             },
             "required": [
@@ -3499,6 +3520,10 @@
                 "size": {
                     "type": "string",
                     "description": "The size of the managed cluster.\n"
+                },
+                "waitUntilReady": {
+                    "$ref": "#/types/materialize:index/ClusterWaitUntilReady:ClusterWaitUntilReady",
+                    "description": "Defines the parameters for the WAIT UNTIL READY options\n"
                 }
             },
             "stateInputs": {
@@ -3557,6 +3582,10 @@
                     "size": {
                         "type": "string",
                         "description": "The size of the managed cluster.\n"
+                    },
+                    "waitUntilReady": {
+                        "$ref": "#/types/materialize:index/ClusterWaitUntilReady:ClusterWaitUntilReady",
+                        "description": "Defines the parameters for the WAIT UNTIL READY options\n"
                     }
                 },
                 "type": "object"
