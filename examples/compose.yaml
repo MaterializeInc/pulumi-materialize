@@ -25,12 +25,12 @@ services:
     healthcheck: {test: curl -f localhost:6878/api/readyz, interval: 1s, start_period: 35s}
 
   test-certs:
-    image: materialize/test-certs:devel-67251c0eb77e76eb6ef81bb78e2fb128dea2b1fb
+    image: materialize/test-certs:v0.116.0
     volumes:
       - certs:/secrets
 
   frontegg:
-    image: materialize/frontegg-mock:devel-67251c0eb77e76eb6ef81bb78e2fb128dea2b1fb
+    image: materialize/frontegg-mock:v0.116.0
     depends_on:
       - test-certs
     ports:
