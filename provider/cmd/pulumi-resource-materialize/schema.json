@@ -8521,6 +8521,10 @@
                     "type": "string",
                     "description": "The owernship role of the object.\n"
                 },
+                "partitionBy": {
+                    "type": "string",
+                    "description": "A SQL expression used to partition the data in the Kafka sink. Can only be used with `ENVELOPE UPSERT`.\n"
+                },
                 "qualifiedSqlName": {
                     "type": "string",
                     "description": "The fully qualified name of the sink.\n"
@@ -8637,6 +8641,11 @@
                     "type": "string",
                     "description": "The owernship role of the object.\n"
                 },
+                "partitionBy": {
+                    "type": "string",
+                    "description": "A SQL expression used to partition the data in the Kafka sink. Can only be used with `ENVELOPE UPSERT`.\n",
+                    "willReplaceOnChanges": true
+                },
                 "region": {
                     "type": "string",
                     "description": "The region to use for the resource connection. If not set, the default region is used.\n",
@@ -8747,6 +8756,11 @@
                     "ownershipRole": {
                         "type": "string",
                         "description": "The owernship role of the object.\n"
+                    },
+                    "partitionBy": {
+                        "type": "string",
+                        "description": "A SQL expression used to partition the data in the Kafka sink. Can only be used with `ENVELOPE UPSERT`.\n",
+                        "willReplaceOnChanges": true
                     },
                     "qualifiedSqlName": {
                         "type": "string",
