@@ -1290,6 +1290,66 @@
                 }
             }
         },
+        "materialize:index/GetNetworkPoliciesNetworkPolicy:GetNetworkPoliciesNetworkPolicy": {
+            "properties": {
+                "comment": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string",
+                    "description": "The ID of this resource.\n"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "rules": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/materialize:index/GetNetworkPoliciesNetworkPolicyRule:GetNetworkPoliciesNetworkPolicyRule"
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "comment",
+                "id",
+                "name",
+                "rules"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "materialize:index/GetNetworkPoliciesNetworkPolicyRule:GetNetworkPoliciesNetworkPolicyRule": {
+            "properties": {
+                "action": {
+                    "type": "string"
+                },
+                "address": {
+                    "type": "string"
+                },
+                "direction": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "action",
+                "address",
+                "direction",
+                "name"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
         "materialize:index/GetRolesRole:GetRolesRole": {
             "properties": {
                 "id": {
@@ -1886,6 +1946,33 @@
             },
             "type": "object",
             "required": [
+                "name"
+            ]
+        },
+        "materialize:index/NetworkPolicyRule:NetworkPolicyRule": {
+            "properties": {
+                "action": {
+                    "type": "string",
+                    "description": "The action to take for this rule. Currently only 'allow' is supported.\n"
+                },
+                "address": {
+                    "type": "string",
+                    "description": "The CIDR block the rule will be applied to.\n"
+                },
+                "direction": {
+                    "type": "string",
+                    "description": "The direction of traffic the rule applies to. Currently only 'ingress' is supported.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the rule.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "action",
+                "address",
+                "direction",
                 "name"
             ]
         },
@@ -6606,7 +6693,7 @@
             }
         },
         "materialize:index/grantSystemPrivilege:GrantSystemPrivilege": {
-            "description": "Manages the system privileges for roles.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as materialize from \"@pulumi/materialize\";\n\n// Grant role the privilege CREATEDB\nconst roleCreatedb = new materialize.GrantSystemPrivilege(\"roleCreatedb\", {\n    privilege: \"CREATEDB\",\n    roleName: \"role\",\n});\n```\n```python\nimport pulumi\nimport pulumi_materialize as materialize\n\n# Grant role the privilege CREATEDB\nrole_createdb = materialize.GrantSystemPrivilege(\"roleCreatedb\",\n    privilege=\"CREATEDB\",\n    role_name=\"role\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Materialize = Pulumi.Materialize;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // Grant role the privilege CREATEDB\n    var roleCreatedb = new Materialize.GrantSystemPrivilege(\"roleCreatedb\", new()\n    {\n        Privilege = \"CREATEDB\",\n        RoleName = \"role\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-materialize/sdk/go/materialize\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := materialize.NewGrantSystemPrivilege(ctx, \"roleCreatedb\", \u0026materialize.GrantSystemPrivilegeArgs{\n\t\t\tPrivilege: pulumi.String(\"CREATEDB\"),\n\t\t\tRoleName:  pulumi.String(\"role\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.materialize.GrantSystemPrivilege;\nimport com.pulumi.materialize.GrantSystemPrivilegeArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var roleCreatedb = new GrantSystemPrivilege(\"roleCreatedb\", GrantSystemPrivilegeArgs.builder()        \n            .privilege(\"CREATEDB\")\n            .roleName(\"role\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # Grant role the privilege CREATEDB\n  roleCreatedb:\n    type: materialize:GrantSystemPrivilege\n    properties:\n      privilege: CREATEDB\n      roleName: role\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nGrants can be imported using the concatenation of GRANT SYSTEM, the id of the role and the privilege\n\n```sh\n $ pulumi import materialize:index/grantSystemPrivilege:GrantSystemPrivilege example \u003cregion\u003e:GRANT SYSTEM|\u003crole_id\u003e|\u003cprivilege\u003e\n```\n\n The region is the region where the database is located (e.g. aws/us-east-1) ",
+            "description": "Manages the system privileges for roles.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as materialize from \"@pulumi/materialize\";\n\n// Grant role the privilege CREATEDB\nconst roleCreatedb = new materialize.GrantSystemPrivilege(\"roleCreatedb\", {\n    privilege: \"CREATEDB\",\n    roleName: \"role\",\n});\n// Grant role the privilege CREATENETWORKPOLICY to allow the role to create network policies\nconst roleCreatenetworkpolicy = new materialize.GrantSystemPrivilege(\"roleCreatenetworkpolicy\", {\n    privilege: \"CREATENETWORKPOLICY\",\n    roleName: \"role\",\n});\n```\n```python\nimport pulumi\nimport pulumi_materialize as materialize\n\n# Grant role the privilege CREATEDB\nrole_createdb = materialize.GrantSystemPrivilege(\"roleCreatedb\",\n    privilege=\"CREATEDB\",\n    role_name=\"role\")\n# Grant role the privilege CREATENETWORKPOLICY to allow the role to create network policies\nrole_createnetworkpolicy = materialize.GrantSystemPrivilege(\"roleCreatenetworkpolicy\",\n    privilege=\"CREATENETWORKPOLICY\",\n    role_name=\"role\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Materialize = Pulumi.Materialize;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // Grant role the privilege CREATEDB\n    var roleCreatedb = new Materialize.GrantSystemPrivilege(\"roleCreatedb\", new()\n    {\n        Privilege = \"CREATEDB\",\n        RoleName = \"role\",\n    });\n\n    // Grant role the privilege CREATENETWORKPOLICY to allow the role to create network policies\n    var roleCreatenetworkpolicy = new Materialize.GrantSystemPrivilege(\"roleCreatenetworkpolicy\", new()\n    {\n        Privilege = \"CREATENETWORKPOLICY\",\n        RoleName = \"role\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-materialize/sdk/go/materialize\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := materialize.NewGrantSystemPrivilege(ctx, \"roleCreatedb\", \u0026materialize.GrantSystemPrivilegeArgs{\n\t\t\tPrivilege: pulumi.String(\"CREATEDB\"),\n\t\t\tRoleName:  pulumi.String(\"role\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = materialize.NewGrantSystemPrivilege(ctx, \"roleCreatenetworkpolicy\", \u0026materialize.GrantSystemPrivilegeArgs{\n\t\t\tPrivilege: pulumi.String(\"CREATENETWORKPOLICY\"),\n\t\t\tRoleName:  pulumi.String(\"role\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.materialize.GrantSystemPrivilege;\nimport com.pulumi.materialize.GrantSystemPrivilegeArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var roleCreatedb = new GrantSystemPrivilege(\"roleCreatedb\", GrantSystemPrivilegeArgs.builder()        \n            .privilege(\"CREATEDB\")\n            .roleName(\"role\")\n            .build());\n\n        var roleCreatenetworkpolicy = new GrantSystemPrivilege(\"roleCreatenetworkpolicy\", GrantSystemPrivilegeArgs.builder()        \n            .privilege(\"CREATENETWORKPOLICY\")\n            .roleName(\"role\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # Grant role the privilege CREATEDB\n  roleCreatedb:\n    type: materialize:GrantSystemPrivilege\n    properties:\n      privilege: CREATEDB\n      roleName: role\n  # Grant role the privilege CREATENETWORKPOLICY to allow the role to create network policies\n  roleCreatenetworkpolicy:\n    type: materialize:GrantSystemPrivilege\n    properties:\n      privilege: CREATENETWORKPOLICY\n      roleName: role\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nGrants can be imported using the concatenation of GRANT SYSTEM, the id of the role and the privilege\n\n```sh\n $ pulumi import materialize:index/grantSystemPrivilege:GrantSystemPrivilege example \u003cregion\u003e:GRANT SYSTEM|\u003crole_id\u003e|\u003cprivilege\u003e\n```\n\n The region is the region where the database is located (e.g. aws/us-east-1) ",
             "properties": {
                 "privilege": {
                     "type": "string",
@@ -7556,6 +7643,88 @@
                         "type": "string",
                         "description": "The SQL statement for the materialized view.\n",
                         "willReplaceOnChanges": true
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "materialize:index/networkPolicy:NetworkPolicy": {
+            "description": "A network policy manages access to the system through IP-based rules.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as materialize from \"@pulumi/materialize\";\n\nconst officePolicy = new materialize.NetworkPolicy(\"officePolicy\", {\n    comment: \"Network policy for office locations\",\n    rules: [\n        {\n            action: \"allow\",\n            address: \"2.3.4.5/32\",\n            direction: \"ingress\",\n            name: \"minnesota\",\n        },\n        {\n            action: \"allow\",\n            address: \"1.2.3.4/28\",\n            direction: \"ingress\",\n            name: \"new_york\",\n        },\n    ],\n});\n// An initial `default` network policy will be created.\n// This policy allows open access to the environment and can be altered by a `superuser`.\n// Use the `ALTER SYSTEM SET network_policy TO 'office_access_policy'` command.\n// Or the `materialize_system_parameter` resource to set the default network policy.\nconst systemParameter = new materialize.SystemParameter(\"systemParameter\", {value: \"office_access_policy\"});\n```\n```python\nimport pulumi\nimport pulumi_materialize as materialize\n\noffice_policy = materialize.NetworkPolicy(\"officePolicy\",\n    comment=\"Network policy for office locations\",\n    rules=[\n        materialize.NetworkPolicyRuleArgs(\n            action=\"allow\",\n            address=\"2.3.4.5/32\",\n            direction=\"ingress\",\n            name=\"minnesota\",\n        ),\n        materialize.NetworkPolicyRuleArgs(\n            action=\"allow\",\n            address=\"1.2.3.4/28\",\n            direction=\"ingress\",\n            name=\"new_york\",\n        ),\n    ])\n# An initial `default` network policy will be created.\n# This policy allows open access to the environment and can be altered by a `superuser`.\n# Use the `ALTER SYSTEM SET network_policy TO 'office_access_policy'` command.\n# Or the `materialize_system_parameter` resource to set the default network policy.\nsystem_parameter = materialize.SystemParameter(\"systemParameter\", value=\"office_access_policy\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Materialize = Pulumi.Materialize;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var officePolicy = new Materialize.NetworkPolicy(\"officePolicy\", new()\n    {\n        Comment = \"Network policy for office locations\",\n        Rules = new[]\n        {\n            new Materialize.Inputs.NetworkPolicyRuleArgs\n            {\n                Action = \"allow\",\n                Address = \"2.3.4.5/32\",\n                Direction = \"ingress\",\n                Name = \"minnesota\",\n            },\n            new Materialize.Inputs.NetworkPolicyRuleArgs\n            {\n                Action = \"allow\",\n                Address = \"1.2.3.4/28\",\n                Direction = \"ingress\",\n                Name = \"new_york\",\n            },\n        },\n    });\n\n    // An initial `default` network policy will be created.\n    // This policy allows open access to the environment and can be altered by a `superuser`.\n    // Use the `ALTER SYSTEM SET network_policy TO 'office_access_policy'` command.\n    // Or the `materialize_system_parameter` resource to set the default network policy.\n    var systemParameter = new Materialize.SystemParameter(\"systemParameter\", new()\n    {\n        Value = \"office_access_policy\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-materialize/sdk/go/materialize\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := materialize.NewNetworkPolicy(ctx, \"officePolicy\", \u0026materialize.NetworkPolicyArgs{\n\t\t\tComment: pulumi.String(\"Network policy for office locations\"),\n\t\t\tRules: materialize.NetworkPolicyRuleArray{\n\t\t\t\t\u0026materialize.NetworkPolicyRuleArgs{\n\t\t\t\t\tAction:    pulumi.String(\"allow\"),\n\t\t\t\t\tAddress:   pulumi.String(\"2.3.4.5/32\"),\n\t\t\t\t\tDirection: pulumi.String(\"ingress\"),\n\t\t\t\t\tName:      pulumi.String(\"minnesota\"),\n\t\t\t\t},\n\t\t\t\t\u0026materialize.NetworkPolicyRuleArgs{\n\t\t\t\t\tAction:    pulumi.String(\"allow\"),\n\t\t\t\t\tAddress:   pulumi.String(\"1.2.3.4/28\"),\n\t\t\t\t\tDirection: pulumi.String(\"ingress\"),\n\t\t\t\t\tName:      pulumi.String(\"new_york\"),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = materialize.NewSystemParameter(ctx, \"systemParameter\", \u0026materialize.SystemParameterArgs{\n\t\t\tValue: pulumi.String(\"office_access_policy\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.materialize.NetworkPolicy;\nimport com.pulumi.materialize.NetworkPolicyArgs;\nimport com.pulumi.materialize.inputs.NetworkPolicyRuleArgs;\nimport com.pulumi.materialize.SystemParameter;\nimport com.pulumi.materialize.SystemParameterArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var officePolicy = new NetworkPolicy(\"officePolicy\", NetworkPolicyArgs.builder()        \n            .comment(\"Network policy for office locations\")\n            .rules(            \n                NetworkPolicyRuleArgs.builder()\n                    .action(\"allow\")\n                    .address(\"2.3.4.5/32\")\n                    .direction(\"ingress\")\n                    .name(\"minnesota\")\n                    .build(),\n                NetworkPolicyRuleArgs.builder()\n                    .action(\"allow\")\n                    .address(\"1.2.3.4/28\")\n                    .direction(\"ingress\")\n                    .name(\"new_york\")\n                    .build())\n            .build());\n\n        var systemParameter = new SystemParameter(\"systemParameter\", SystemParameterArgs.builder()        \n            .value(\"office_access_policy\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  officePolicy:\n    type: materialize:NetworkPolicy\n    properties:\n      comment: Network policy for office locations\n      rules:\n        - action: allow\n          address: 2.3.4.5/32\n          direction: ingress\n          name: minnesota\n        - action: allow\n          address: 1.2.3.4/28\n          direction: ingress\n          name: new_york\n  # An initial `default` network policy will be created.\n  # // This policy allows open access to the environment and can be altered by a `superuser`.\n  # // Use the `ALTER SYSTEM SET network_policy TO 'office_access_policy'` command.\n  # // Or the `materialize_system_parameter` resource to set the default network policy.\n  systemParameter:\n    type: materialize:SystemParameter\n    properties:\n      value: office_access_policy\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\n\n\n```sh\n $ pulumi import materialize:index/networkPolicy:NetworkPolicy Network policies can be imported using the `terraform import` command.\n```\n\n\n\n```sh\n $ pulumi import materialize:index/networkPolicy:NetworkPolicy example_network_policy \u003cregion\u003e:\u003cnetwork_policy_id\u003e\n```\n\n The network_policy_id is the ID of the network policy. You can find it from the `mz_internal.mz_network_policy_rules` table in the materialize The region is the region where the database is located (e.g. aws/us-east-1) ",
+            "properties": {
+                "comment": {
+                    "type": "string",
+                    "description": "**Public Preview** Comment on an object in the database.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the network policy.\n"
+                },
+                "region": {
+                    "type": "string",
+                    "description": "The region to use for the resource connection. If not set, the default region is used.\n"
+                },
+                "rules": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/materialize:index/NetworkPolicyRule:NetworkPolicyRule"
+                    },
+                    "description": "Rules for the network policy.\n"
+                }
+            },
+            "required": [
+                "name",
+                "region",
+                "rules"
+            ],
+            "inputProperties": {
+                "comment": {
+                    "type": "string",
+                    "description": "**Public Preview** Comment on an object in the database.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the network policy.\n",
+                    "willReplaceOnChanges": true
+                },
+                "region": {
+                    "type": "string",
+                    "description": "The region to use for the resource connection. If not set, the default region is used.\n",
+                    "willReplaceOnChanges": true
+                },
+                "rules": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/materialize:index/NetworkPolicyRule:NetworkPolicyRule"
+                    },
+                    "description": "Rules for the network policy.\n"
+                }
+            },
+            "requiredInputs": [
+                "rules"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering NetworkPolicy resources.\n",
+                "properties": {
+                    "comment": {
+                        "type": "string",
+                        "description": "**Public Preview** Comment on an object in the database.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The name of the network policy.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "region": {
+                        "type": "string",
+                        "description": "The region to use for the resource connection. If not set, the default region is used.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "rules": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/materialize:index/NetworkPolicyRule:NetworkPolicyRule"
+                        },
+                        "description": "Rules for the network policy.\n"
                     }
                 },
                 "type": "object"
@@ -11097,6 +11266,45 @@
                 "type": "object",
                 "required": [
                     "materializedViews",
+                    "region",
+                    "id"
+                ]
+            }
+        },
+        "materialize:index/getNetworkPolicies:GetNetworkPolicies": {
+            "description": "A network policy data source. This can be used to get information about all network policies in Materialize.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as materialize from \"@pulumi/materialize\";\n\nconst all = materialize.GetNetworkPolicies({});\n```\n```python\nimport pulumi\nimport pulumi_materialize as materialize\n\nall = materialize.get_network_policies()\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Materialize = Pulumi.Materialize;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var all = Materialize.GetNetworkPolicies.Invoke();\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-materialize/sdk/go/materialize\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := materialize.GetNetworkPolicies(ctx, nil, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.materialize.MaterializeFunctions;\nimport com.pulumi.materialize.inputs.GetNetworkPoliciesArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var all = MaterializeFunctions.GetNetworkPolicies();\n\n    }\n}\n```\n```yaml\nvariables:\n  all:\n    fn::invoke:\n      Function: materialize:GetNetworkPolicies\n      Arguments: {}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "inputs": {
+                "description": "A collection of arguments for invoking GetNetworkPolicies.\n",
+                "properties": {
+                    "region": {
+                        "type": "string",
+                        "description": "The region in which the resource is located.\n"
+                    }
+                },
+                "type": "object"
+            },
+            "outputs": {
+                "description": "A collection of values returned by GetNetworkPolicies.\n",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "networkPolicies": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/materialize:index/GetNetworkPoliciesNetworkPolicy:GetNetworkPoliciesNetworkPolicy"
+                        },
+                        "description": "The network policies in the account\n"
+                    },
+                    "region": {
+                        "type": "string",
+                        "description": "The region in which the resource is located.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "networkPolicies",
                     "region",
                     "id"
                 ]
