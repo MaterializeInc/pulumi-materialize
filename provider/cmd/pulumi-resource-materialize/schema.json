@@ -98,6 +98,10 @@
                     ]
                 }
             },
+            "host": {
+                "type": "string",
+                "description": "The Materialize host. Can also come from the `MZ_HOST` environment variable.\n"
+            },
             "password": {
                 "type": "string",
                 "description": "Materialize host. Can also come from the `MZ_PASSWORD` environment variable.\n",
@@ -108,6 +112,10 @@
                 },
                 "secret": true
             },
+            "port": {
+                "type": "integer",
+                "description": "The Materialize SQL port. Can also come from the `MZ_PORT` environment variable.\n"
+            },
             "sslmode": {
                 "type": "string",
                 "description": "For testing purposes, the SSL mode to use.\n",
@@ -116,6 +124,10 @@
                         "MZ_SSLMODE"
                     ]
                 }
+            },
+            "username": {
+                "type": "string",
+                "description": "The Materialize username. Can also come from the `MZ_USERNAME` environment variable.\n"
             }
         }
     },
@@ -3122,7 +3134,7 @@
             "properties": {
                 "comment": {
                     "type": "string",
-                    "description": "**Public Preview** Comment on an object in the database.\n"
+                    "description": "Comment on an object in the database.\n"
                 },
                 "default": {
                     "type": "string",
@@ -3221,14 +3233,26 @@
                 "type": "string",
                 "description": "The endpoint for the Materialize API.\n"
             },
+            "host": {
+                "type": "string",
+                "description": "The Materialize host. Can also come from the `MZ_HOST` environment variable.\n"
+            },
             "password": {
                 "type": "string",
                 "description": "Materialize host. Can also come from the `MZ_PASSWORD` environment variable.\n",
                 "secret": true
             },
+            "port": {
+                "type": "integer",
+                "description": "The Materialize SQL port. Can also come from the `MZ_PORT` environment variable.\n"
+            },
             "sslmode": {
                 "type": "string",
                 "description": "For testing purposes, the SSL mode to use.\n"
+            },
+            "username": {
+                "type": "string",
+                "description": "The Materialize username. Can also come from the `MZ_USERNAME` environment variable.\n"
             }
         },
         "inputProperties": {
@@ -3277,6 +3301,10 @@
                     ]
                 }
             },
+            "host": {
+                "type": "string",
+                "description": "The Materialize host. Can also come from the `MZ_HOST` environment variable.\n"
+            },
             "password": {
                 "type": "string",
                 "description": "Materialize host. Can also come from the `MZ_PASSWORD` environment variable.\n",
@@ -3287,6 +3315,10 @@
                 },
                 "secret": true
             },
+            "port": {
+                "type": "integer",
+                "description": "The Materialize SQL port. Can also come from the `MZ_PORT` environment variable.\n"
+            },
             "sslmode": {
                 "type": "string",
                 "description": "For testing purposes, the SSL mode to use.\n",
@@ -3295,6 +3327,10 @@
                         "MZ_SSLMODE"
                     ]
                 }
+            },
+            "username": {
+                "type": "string",
+                "description": "The Materialize username. Can also come from the `MZ_USERNAME` environment variable.\n"
             }
         }
     },
@@ -3497,7 +3533,7 @@
                 },
                 "comment": {
                     "type": "string",
-                    "description": "**Public Preview** Comment on an object in the database.\n"
+                    "description": "Comment on an object in the database.\n"
                 },
                 "disk": {
                     "type": "boolean",
@@ -3563,7 +3599,7 @@
                 },
                 "comment": {
                     "type": "string",
-                    "description": "**Public Preview** Comment on an object in the database.\n"
+                    "description": "Comment on an object in the database.\n"
                 },
                 "disk": {
                     "type": "boolean",
@@ -3625,7 +3661,7 @@
                     },
                     "comment": {
                         "type": "string",
-                        "description": "**Public Preview** Comment on an object in the database.\n"
+                        "description": "Comment on an object in the database.\n"
                     },
                     "disk": {
                         "type": "boolean",
@@ -3691,7 +3727,7 @@
                 },
                 "comment": {
                     "type": "string",
-                    "description": "**Public Preview** Comment on an object in the database.\n"
+                    "description": "Comment on an object in the database.\n"
                 },
                 "disk": {
                     "type": "boolean",
@@ -3740,7 +3776,7 @@
                 },
                 "comment": {
                     "type": "string",
-                    "description": "**Public Preview** Comment on an object in the database.\n"
+                    "description": "Comment on an object in the database.\n"
                 },
                 "disk": {
                     "type": "boolean",
@@ -3793,7 +3829,7 @@
                     },
                     "comment": {
                         "type": "string",
-                        "description": "**Public Preview** Comment on an object in the database.\n"
+                        "description": "Comment on an object in the database.\n"
                     },
                     "disk": {
                         "type": "boolean",
@@ -3851,7 +3887,7 @@
                 },
                 "comment": {
                     "type": "string",
-                    "description": "**Public Preview** Comment on an object in the database.\n"
+                    "description": "Comment on an object in the database.\n"
                 },
                 "databaseName": {
                     "type": "string",
@@ -3891,7 +3927,7 @@
                 },
                 "validate": {
                     "type": "boolean",
-                    "description": "**Private Preview** If the connection should wait for validation.\n"
+                    "description": "If the connection should wait for validation.\n"
                 }
             },
             "required": [
@@ -3919,7 +3955,7 @@
                 },
                 "comment": {
                     "type": "string",
-                    "description": "**Public Preview** Comment on an object in the database.\n"
+                    "description": "Comment on an object in the database.\n"
                 },
                 "databaseName": {
                     "type": "string",
@@ -3958,7 +3994,7 @@
                 },
                 "validate": {
                     "type": "boolean",
-                    "description": "**Private Preview** If the connection should wait for validation.\n"
+                    "description": "If the connection should wait for validation.\n"
                 }
             },
             "stateInputs": {
@@ -3982,7 +4018,7 @@
                     },
                     "comment": {
                         "type": "string",
-                        "description": "**Public Preview** Comment on an object in the database.\n"
+                        "description": "Comment on an object in the database.\n"
                     },
                     "databaseName": {
                         "type": "string",
@@ -4025,7 +4061,7 @@
                     },
                     "validate": {
                         "type": "boolean",
-                        "description": "**Private Preview** If the connection should wait for validation.\n"
+                        "description": "If the connection should wait for validation.\n"
                     }
                 },
                 "type": "object"
@@ -4043,7 +4079,7 @@
                 },
                 "comment": {
                     "type": "string",
-                    "description": "**Public Preview** Comment on an object in the database.\n"
+                    "description": "Comment on an object in the database.\n"
                 },
                 "databaseName": {
                     "type": "string",
@@ -4080,7 +4116,7 @@
                 },
                 "validate": {
                     "type": "boolean",
-                    "description": "**Private Preview** If the connection should wait for validation.\n"
+                    "description": "If the connection should wait for validation.\n"
                 }
             },
             "required": [
@@ -4102,7 +4138,7 @@
                 },
                 "comment": {
                     "type": "string",
-                    "description": "**Public Preview** Comment on an object in the database.\n"
+                    "description": "Comment on an object in the database.\n"
                 },
                 "databaseName": {
                     "type": "string",
@@ -4133,7 +4169,7 @@
                 },
                 "validate": {
                     "type": "boolean",
-                    "description": "**Private Preview** If the connection should wait for validation.\n"
+                    "description": "If the connection should wait for validation.\n"
                 }
             },
             "requiredInputs": [
@@ -4152,7 +4188,7 @@
                     },
                     "comment": {
                         "type": "string",
-                        "description": "**Public Preview** Comment on an object in the database.\n"
+                        "description": "Comment on an object in the database.\n"
                     },
                     "databaseName": {
                         "type": "string",
@@ -4192,7 +4228,7 @@
                     },
                     "validate": {
                         "type": "boolean",
-                        "description": "**Private Preview** If the connection should wait for validation.\n"
+                        "description": "If the connection should wait for validation.\n"
                     }
                 },
                 "type": "object"
@@ -4207,7 +4243,7 @@
                 },
                 "comment": {
                     "type": "string",
-                    "description": "**Public Preview** Comment on an object in the database.\n"
+                    "description": "Comment on an object in the database.\n"
                 },
                 "databaseName": {
                     "type": "string",
@@ -4263,7 +4299,7 @@
                 },
                 "validate": {
                     "type": "boolean",
-                    "description": "**Private Preview** If the connection should wait for validation.\n"
+                    "description": "If the connection should wait for validation.\n"
                 }
             },
             "required": [
@@ -4281,7 +4317,7 @@
                 },
                 "comment": {
                     "type": "string",
-                    "description": "**Public Preview** Comment on an object in the database.\n"
+                    "description": "Comment on an object in the database.\n"
                 },
                 "databaseName": {
                     "type": "string",
@@ -4337,7 +4373,7 @@
                 },
                 "validate": {
                     "type": "boolean",
-                    "description": "**Private Preview** If the connection should wait for validation.\n"
+                    "description": "If the connection should wait for validation.\n"
                 }
             },
             "requiredInputs": [
@@ -4353,7 +4389,7 @@
                     },
                     "comment": {
                         "type": "string",
-                        "description": "**Public Preview** Comment on an object in the database.\n"
+                        "description": "Comment on an object in the database.\n"
                     },
                     "databaseName": {
                         "type": "string",
@@ -4413,7 +4449,7 @@
                     },
                     "validate": {
                         "type": "boolean",
-                        "description": "**Private Preview** If the connection should wait for validation.\n"
+                        "description": "If the connection should wait for validation.\n"
                     }
                 },
                 "type": "object"
@@ -4432,7 +4468,7 @@
                 },
                 "comment": {
                     "type": "string",
-                    "description": "**Public Preview** Comment on an object in the database.\n"
+                    "description": "Comment on an object in the database.\n"
                 },
                 "databaseName": {
                     "type": "string",
@@ -4507,7 +4543,7 @@
                 },
                 "validate": {
                     "type": "boolean",
-                    "description": "**Private Preview** If the connection should wait for validation.\n"
+                    "description": "If the connection should wait for validation.\n"
                 }
             },
             "required": [
@@ -4527,7 +4563,7 @@
                 },
                 "comment": {
                     "type": "string",
-                    "description": "**Public Preview** Comment on an object in the database.\n"
+                    "description": "Comment on an object in the database.\n"
                 },
                 "databaseName": {
                     "type": "string",
@@ -4603,7 +4639,7 @@
                 },
                 "validate": {
                     "type": "boolean",
-                    "description": "**Private Preview** If the connection should wait for validation.\n"
+                    "description": "If the connection should wait for validation.\n"
                 }
             },
             "stateInputs": {
@@ -4619,7 +4655,7 @@
                     },
                     "comment": {
                         "type": "string",
-                        "description": "**Public Preview** Comment on an object in the database.\n"
+                        "description": "Comment on an object in the database.\n"
                     },
                     "databaseName": {
                         "type": "string",
@@ -4699,7 +4735,7 @@
                     },
                     "validate": {
                         "type": "boolean",
-                        "description": "**Private Preview** If the connection should wait for validation.\n"
+                        "description": "If the connection should wait for validation.\n"
                     }
                 },
                 "type": "object"
@@ -4714,7 +4750,7 @@
                 },
                 "comment": {
                     "type": "string",
-                    "description": "**Public Preview** Comment on an object in the database.\n"
+                    "description": "Comment on an object in the database.\n"
                 },
                 "databaseName": {
                     "type": "string",
@@ -4778,7 +4814,7 @@
                 },
                 "validate": {
                     "type": "boolean",
-                    "description": "**Private Preview** If the connection should wait for validation.\n"
+                    "description": "If the connection should wait for validation.\n"
                 }
             },
             "required": [
@@ -4796,7 +4832,7 @@
                 },
                 "comment": {
                     "type": "string",
-                    "description": "**Public Preview** Comment on an object in the database.\n"
+                    "description": "Comment on an object in the database.\n"
                 },
                 "databaseName": {
                     "type": "string",
@@ -4859,7 +4895,7 @@
                 },
                 "validate": {
                     "type": "boolean",
-                    "description": "**Private Preview** If the connection should wait for validation.\n"
+                    "description": "If the connection should wait for validation.\n"
                 }
             },
             "requiredInputs": [
@@ -4875,7 +4911,7 @@
                     },
                     "comment": {
                         "type": "string",
-                        "description": "**Public Preview** Comment on an object in the database.\n"
+                        "description": "Comment on an object in the database.\n"
                     },
                     "databaseName": {
                         "type": "string",
@@ -4942,7 +4978,7 @@
                     },
                     "validate": {
                         "type": "boolean",
-                        "description": "**Private Preview** If the connection should wait for validation.\n"
+                        "description": "If the connection should wait for validation.\n"
                     }
                 },
                 "type": "object"
@@ -4957,7 +4993,7 @@
                 },
                 "comment": {
                     "type": "string",
-                    "description": "**Public Preview** Comment on an object in the database.\n"
+                    "description": "Comment on an object in the database.\n"
                 },
                 "database": {
                     "type": "string",
@@ -5025,7 +5061,7 @@
                 },
                 "validate": {
                     "type": "boolean",
-                    "description": "**Private Preview** If the connection should wait for validation.\n"
+                    "description": "If the connection should wait for validation.\n"
                 }
             },
             "required": [
@@ -5044,7 +5080,7 @@
                 },
                 "comment": {
                     "type": "string",
-                    "description": "**Public Preview** Comment on an object in the database.\n"
+                    "description": "Comment on an object in the database.\n"
                 },
                 "database": {
                     "type": "string",
@@ -5111,7 +5147,7 @@
                 },
                 "validate": {
                     "type": "boolean",
-                    "description": "**Private Preview** If the connection should wait for validation.\n"
+                    "description": "If the connection should wait for validation.\n"
                 }
             },
             "requiredInputs": [
@@ -5128,7 +5164,7 @@
                     },
                     "comment": {
                         "type": "string",
-                        "description": "**Public Preview** Comment on an object in the database.\n"
+                        "description": "Comment on an object in the database.\n"
                     },
                     "database": {
                         "type": "string",
@@ -5199,7 +5235,7 @@
                     },
                     "validate": {
                         "type": "boolean",
-                        "description": "**Private Preview** If the connection should wait for validation.\n"
+                        "description": "If the connection should wait for validation.\n"
                     }
                 },
                 "type": "object"
@@ -5210,7 +5246,7 @@
             "properties": {
                 "comment": {
                     "type": "string",
-                    "description": "**Public Preview** Comment on an object in the database.\n"
+                    "description": "Comment on an object in the database.\n"
                 },
                 "databaseName": {
                     "type": "string",
@@ -5258,7 +5294,7 @@
                 },
                 "validate": {
                     "type": "boolean",
-                    "description": "**Private Preview** If the connection should wait for validation.\n"
+                    "description": "If the connection should wait for validation.\n"
                 }
             },
             "required": [
@@ -5275,7 +5311,7 @@
             "inputProperties": {
                 "comment": {
                     "type": "string",
-                    "description": "**Public Preview** Comment on an object in the database.\n"
+                    "description": "Comment on an object in the database.\n"
                 },
                 "databaseName": {
                     "type": "string",
@@ -5314,7 +5350,7 @@
                 },
                 "validate": {
                     "type": "boolean",
-                    "description": "**Private Preview** If the connection should wait for validation.\n"
+                    "description": "If the connection should wait for validation.\n"
                 }
             },
             "requiredInputs": [
@@ -5327,7 +5363,7 @@
                 "properties": {
                     "comment": {
                         "type": "string",
-                        "description": "**Public Preview** Comment on an object in the database.\n"
+                        "description": "Comment on an object in the database.\n"
                     },
                     "databaseName": {
                         "type": "string",
@@ -5378,7 +5414,7 @@
                     },
                     "validate": {
                         "type": "boolean",
-                        "description": "**Private Preview** If the connection should wait for validation.\n"
+                        "description": "If the connection should wait for validation.\n"
                     }
                 },
                 "type": "object"
@@ -5389,7 +5425,7 @@
             "properties": {
                 "comment": {
                     "type": "string",
-                    "description": "**Public Preview** Comment on an object in the database.\n"
+                    "description": "Comment on an object in the database.\n"
                 },
                 "name": {
                     "type": "string",
@@ -5412,7 +5448,7 @@
             "inputProperties": {
                 "comment": {
                     "type": "string",
-                    "description": "**Public Preview** Comment on an object in the database.\n"
+                    "description": "Comment on an object in the database.\n"
                 },
                 "name": {
                     "type": "string",
@@ -5434,7 +5470,7 @@
                 "properties": {
                     "comment": {
                         "type": "string",
-                        "description": "**Public Preview** Comment on an object in the database.\n"
+                        "description": "Comment on an object in the database.\n"
                     },
                     "name": {
                         "type": "string",
@@ -7324,7 +7360,7 @@
                 },
                 "comment": {
                     "type": "string",
-                    "description": "**Public Preview** Comment on an object in the database.\n"
+                    "description": "Comment on an object in the database.\n"
                 },
                 "databaseName": {
                     "type": "string",
@@ -7385,7 +7421,7 @@
                 },
                 "comment": {
                     "type": "string",
-                    "description": "**Public Preview** Comment on an object in the database.\n"
+                    "description": "Comment on an object in the database.\n"
                 },
                 "default": {
                     "type": "boolean",
@@ -7436,7 +7472,7 @@
                     },
                     "comment": {
                         "type": "string",
-                        "description": "**Public Preview** Comment on an object in the database.\n"
+                        "description": "Comment on an object in the database.\n"
                     },
                     "databaseName": {
                         "type": "string",
@@ -7488,7 +7524,7 @@
                 },
                 "comment": {
                     "type": "string",
-                    "description": "**Public Preview** Comment on an object in the database.\n"
+                    "description": "Comment on an object in the database.\n"
                 },
                 "createSql": {
                     "type": "string",
@@ -7507,7 +7543,7 @@
                     "items": {
                         "type": "string"
                     },
-                    "description": "**Private Preview** A list of columns for which to create non-null assertions.\n"
+                    "description": "A list of columns for which to create non-null assertions.\n"
                 },
                 "ownershipRole": {
                     "type": "string",
@@ -7546,7 +7582,7 @@
                 },
                 "comment": {
                     "type": "string",
-                    "description": "**Public Preview** Comment on an object in the database.\n"
+                    "description": "Comment on an object in the database.\n"
                 },
                 "databaseName": {
                     "type": "string",
@@ -7562,7 +7598,7 @@
                     "items": {
                         "type": "string"
                     },
-                    "description": "**Private Preview** A list of columns for which to create non-null assertions.\n",
+                    "description": "A list of columns for which to create non-null assertions.\n",
                     "willReplaceOnChanges": true
                 },
                 "ownershipRole": {
@@ -7598,7 +7634,7 @@
                     },
                     "comment": {
                         "type": "string",
-                        "description": "**Public Preview** Comment on an object in the database.\n"
+                        "description": "Comment on an object in the database.\n"
                     },
                     "createSql": {
                         "type": "string",
@@ -7618,7 +7654,7 @@
                         "items": {
                             "type": "string"
                         },
-                        "description": "**Private Preview** A list of columns for which to create non-null assertions.\n",
+                        "description": "A list of columns for which to create non-null assertions.\n",
                         "willReplaceOnChanges": true
                     },
                     "ownershipRole": {
@@ -7653,7 +7689,7 @@
             "properties": {
                 "comment": {
                     "type": "string",
-                    "description": "**Public Preview** Comment on an object in the database.\n"
+                    "description": "Comment on an object in the database.\n"
                 },
                 "name": {
                     "type": "string",
@@ -7679,7 +7715,7 @@
             "inputProperties": {
                 "comment": {
                     "type": "string",
-                    "description": "**Public Preview** Comment on an object in the database.\n"
+                    "description": "Comment on an object in the database.\n"
                 },
                 "name": {
                     "type": "string",
@@ -7707,7 +7743,7 @@
                 "properties": {
                     "comment": {
                         "type": "string",
-                        "description": "**Public Preview** Comment on an object in the database.\n"
+                        "description": "Comment on an object in the database.\n"
                     },
                     "name": {
                         "type": "string",
@@ -7735,7 +7771,7 @@
             "properties": {
                 "comment": {
                     "type": "string",
-                    "description": "**Public Preview** Comment on an object in the database.\n"
+                    "description": "Comment on an object in the database.\n"
                 },
                 "inherit": {
                     "type": "boolean",
@@ -7763,7 +7799,7 @@
             "inputProperties": {
                 "comment": {
                     "type": "string",
-                    "description": "**Public Preview** Comment on an object in the database.\n"
+                    "description": "Comment on an object in the database.\n"
                 },
                 "name": {
                     "type": "string",
@@ -7781,7 +7817,7 @@
                 "properties": {
                     "comment": {
                         "type": "string",
-                        "description": "**Public Preview** Comment on an object in the database.\n"
+                        "description": "Comment on an object in the database.\n"
                     },
                     "inherit": {
                         "type": "boolean",
@@ -8422,7 +8458,7 @@
             "properties": {
                 "comment": {
                     "type": "string",
-                    "description": "**Public Preview** Comment on an object in the database.\n"
+                    "description": "Comment on an object in the database.\n"
                 },
                 "databaseName": {
                     "type": "string",
@@ -8454,7 +8490,7 @@
             "inputProperties": {
                 "comment": {
                     "type": "string",
-                    "description": "**Public Preview** Comment on an object in the database.\n"
+                    "description": "Comment on an object in the database.\n"
                 },
                 "databaseName": {
                     "type": "string",
@@ -8480,7 +8516,7 @@
                 "properties": {
                     "comment": {
                         "type": "string",
-                        "description": "**Public Preview** Comment on an object in the database.\n"
+                        "description": "Comment on an object in the database.\n"
                     },
                     "databaseName": {
                         "type": "string",
@@ -8513,7 +8549,7 @@
             "properties": {
                 "comment": {
                     "type": "string",
-                    "description": "**Public Preview** Comment on an object in the database.\n"
+                    "description": "Comment on an object in the database.\n"
                 },
                 "databaseName": {
                     "type": "string",
@@ -8555,7 +8591,7 @@
             "inputProperties": {
                 "comment": {
                     "type": "string",
-                    "description": "**Public Preview** Comment on an object in the database.\n"
+                    "description": "Comment on an object in the database.\n"
                 },
                 "databaseName": {
                     "type": "string",
@@ -8594,7 +8630,7 @@
                 "properties": {
                     "comment": {
                         "type": "string",
-                        "description": "**Public Preview** Comment on an object in the database.\n"
+                        "description": "Comment on an object in the database.\n"
                     },
                     "databaseName": {
                         "type": "string",
@@ -8641,7 +8677,7 @@
                 },
                 "comment": {
                     "type": "string",
-                    "description": "**Public Preview** Comment on an object in the database.\n"
+                    "description": "Comment on an object in the database.\n"
                 },
                 "compressionType": {
                     "type": "string",
@@ -8753,7 +8789,7 @@
                 },
                 "comment": {
                     "type": "string",
-                    "description": "**Public Preview** Comment on an object in the database.\n"
+                    "description": "Comment on an object in the database.\n"
                 },
                 "compressionType": {
                     "type": "string",
@@ -8869,7 +8905,7 @@
                     },
                     "comment": {
                         "type": "string",
-                        "description": "**Public Preview** Comment on an object in the database.\n"
+                        "description": "Comment on an object in the database.\n"
                     },
                     "compressionType": {
                         "type": "string",
@@ -8990,7 +9026,7 @@
                 },
                 "comment": {
                     "type": "string",
-                    "description": "**Public Preview** Comment on an object in the database.\n"
+                    "description": "Comment on an object in the database.\n"
                 },
                 "databaseName": {
                     "type": "string",
@@ -9118,7 +9154,7 @@
                 },
                 "comment": {
                     "type": "string",
-                    "description": "**Public Preview** Comment on an object in the database.\n"
+                    "description": "Comment on an object in the database.\n"
                 },
                 "databaseName": {
                     "type": "string",
@@ -9256,7 +9292,7 @@
                     },
                     "comment": {
                         "type": "string",
-                        "description": "**Public Preview** Comment on an object in the database.\n"
+                        "description": "Comment on an object in the database.\n"
                     },
                     "databaseName": {
                         "type": "string",
@@ -9404,7 +9440,7 @@
                 },
                 "comment": {
                     "type": "string",
-                    "description": "**Public Preview** Comment on an object in the database.\n"
+                    "description": "Comment on an object in the database.\n"
                 },
                 "counterOptions": {
                     "$ref": "#/types/materialize:index/SourceLoadgenCounterOptions:SourceLoadgenCounterOptions",
@@ -9481,7 +9517,7 @@
                 },
                 "comment": {
                     "type": "string",
-                    "description": "**Public Preview** Comment on an object in the database.\n"
+                    "description": "Comment on an object in the database.\n"
                 },
                 "counterOptions": {
                     "$ref": "#/types/materialize:index/SourceLoadgenCounterOptions:SourceLoadgenCounterOptions",
@@ -9555,7 +9591,7 @@
                     },
                     "comment": {
                         "type": "string",
-                        "description": "**Public Preview** Comment on an object in the database.\n"
+                        "description": "Comment on an object in the database.\n"
                     },
                     "counterOptions": {
                         "$ref": "#/types/materialize:index/SourceLoadgenCounterOptions:SourceLoadgenCounterOptions",
@@ -9631,7 +9667,7 @@
                 },
                 "comment": {
                     "type": "string",
-                    "description": "**Public Preview** Comment on an object in the database.\n"
+                    "description": "Comment on an object in the database.\n"
                 },
                 "databaseName": {
                     "type": "string",
@@ -9708,7 +9744,7 @@
                 },
                 "comment": {
                     "type": "string",
-                    "description": "**Public Preview** Comment on an object in the database.\n"
+                    "description": "Comment on an object in the database.\n"
                 },
                 "databaseName": {
                     "type": "string",
@@ -9778,7 +9814,7 @@
                     },
                     "comment": {
                         "type": "string",
-                        "description": "**Public Preview** Comment on an object in the database.\n"
+                        "description": "Comment on an object in the database.\n"
                     },
                     "databaseName": {
                         "type": "string",
@@ -9855,7 +9891,7 @@
                 },
                 "comment": {
                     "type": "string",
-                    "description": "**Public Preview** Comment on an object in the database.\n"
+                    "description": "Comment on an object in the database.\n"
                 },
                 "databaseName": {
                     "type": "string",
@@ -9931,7 +9967,7 @@
                 },
                 "comment": {
                     "type": "string",
-                    "description": "**Public Preview** Comment on an object in the database.\n"
+                    "description": "Comment on an object in the database.\n"
                 },
                 "databaseName": {
                     "type": "string",
@@ -10001,7 +10037,7 @@
                     },
                     "comment": {
                         "type": "string",
-                        "description": "**Public Preview** Comment on an object in the database.\n"
+                        "description": "Comment on an object in the database.\n"
                     },
                     "databaseName": {
                         "type": "string",
@@ -10068,7 +10104,7 @@
             }
         },
         "materialize:index/sourceWebhook:SourceWebhook": {
-            "description": "**Private Preview** A webhook source describes a webhook you want Materialize to read data from.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as materialize from \"@pulumi/materialize\";\n\nconst exampleWebhook = new materialize.SourceWebhook(\"exampleWebhook\", {\n    clusterName: materialize_cluster.cluster.name,\n    bodyFormat: \"json\",\n    checkExpression: \"headers-\u003e'x-mz-api-key' = secret\",\n    includeHeaders: {\n        nots: [\"x-mz-api-key\"],\n    },\n    checkOptions: [\n        {\n            field: {\n                headers: true,\n            },\n        },\n        {\n            field: {\n                secret: {\n                    name: materialize_secret.password.name,\n                    databaseName: materialize_secret.password.database_name,\n                    schemaName: materialize_secret.password.schema_name,\n                },\n            },\n            alias: \"secret\",\n        },\n    ],\n});\n```\n```python\nimport pulumi\nimport pulumi_materialize as materialize\n\nexample_webhook = materialize.SourceWebhook(\"exampleWebhook\",\n    cluster_name=materialize_cluster[\"cluster\"][\"name\"],\n    body_format=\"json\",\n    check_expression=\"headers-\u003e'x-mz-api-key' = secret\",\n    include_headers=materialize.SourceWebhookIncludeHeadersArgs(\n        nots=[\"x-mz-api-key\"],\n    ),\n    check_options=[\n        materialize.SourceWebhookCheckOptionArgs(\n            field=materialize.SourceWebhookCheckOptionFieldArgs(\n                headers=True,\n            ),\n        ),\n        materialize.SourceWebhookCheckOptionArgs(\n            field=materialize.SourceWebhookCheckOptionFieldArgs(\n                secret=materialize.SourceWebhookCheckOptionFieldSecretArgs(\n                    name=materialize_secret[\"password\"][\"name\"],\n                    database_name=materialize_secret[\"password\"][\"database_name\"],\n                    schema_name=materialize_secret[\"password\"][\"schema_name\"],\n                ),\n            ),\n            alias=\"secret\",\n        ),\n    ])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Materialize = Pulumi.Materialize;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var exampleWebhook = new Materialize.SourceWebhook(\"exampleWebhook\", new()\n    {\n        ClusterName = materialize_cluster.Cluster.Name,\n        BodyFormat = \"json\",\n        CheckExpression = \"headers-\u003e'x-mz-api-key' = secret\",\n        IncludeHeaders = new Materialize.Inputs.SourceWebhookIncludeHeadersArgs\n        {\n            Nots = new[]\n            {\n                \"x-mz-api-key\",\n            },\n        },\n        CheckOptions = new[]\n        {\n            new Materialize.Inputs.SourceWebhookCheckOptionArgs\n            {\n                Field = new Materialize.Inputs.SourceWebhookCheckOptionFieldArgs\n                {\n                    Headers = true,\n                },\n            },\n            new Materialize.Inputs.SourceWebhookCheckOptionArgs\n            {\n                Field = new Materialize.Inputs.SourceWebhookCheckOptionFieldArgs\n                {\n                    Secret = new Materialize.Inputs.SourceWebhookCheckOptionFieldSecretArgs\n                    {\n                        Name = materialize_secret.Password.Name,\n                        DatabaseName = materialize_secret.Password.Database_name,\n                        SchemaName = materialize_secret.Password.Schema_name,\n                    },\n                },\n                Alias = \"secret\",\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-materialize/sdk/go/materialize\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := materialize.NewSourceWebhook(ctx, \"exampleWebhook\", \u0026materialize.SourceWebhookArgs{\n\t\t\tClusterName:     pulumi.Any(materialize_cluster.Cluster.Name),\n\t\t\tBodyFormat:      pulumi.String(\"json\"),\n\t\t\tCheckExpression: pulumi.String(\"headers-\u003e'x-mz-api-key' = secret\"),\n\t\t\tIncludeHeaders: \u0026materialize.SourceWebhookIncludeHeadersArgs{\n\t\t\t\tNots: pulumi.StringArray{\n\t\t\t\t\tpulumi.String(\"x-mz-api-key\"),\n\t\t\t\t},\n\t\t\t},\n\t\t\tCheckOptions: materialize.SourceWebhookCheckOptionArray{\n\t\t\t\t\u0026materialize.SourceWebhookCheckOptionArgs{\n\t\t\t\t\tField: \u0026materialize.SourceWebhookCheckOptionFieldArgs{\n\t\t\t\t\t\tHeaders: pulumi.Bool(true),\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t\t\u0026materialize.SourceWebhookCheckOptionArgs{\n\t\t\t\t\tField: \u0026materialize.SourceWebhookCheckOptionFieldArgs{\n\t\t\t\t\t\tSecret: \u0026materialize.SourceWebhookCheckOptionFieldSecretArgs{\n\t\t\t\t\t\t\tName:         pulumi.Any(materialize_secret.Password.Name),\n\t\t\t\t\t\t\tDatabaseName: pulumi.Any(materialize_secret.Password.Database_name),\n\t\t\t\t\t\t\tSchemaName:   pulumi.Any(materialize_secret.Password.Schema_name),\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t\tAlias: pulumi.String(\"secret\"),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.materialize.SourceWebhook;\nimport com.pulumi.materialize.SourceWebhookArgs;\nimport com.pulumi.materialize.inputs.SourceWebhookIncludeHeadersArgs;\nimport com.pulumi.materialize.inputs.SourceWebhookCheckOptionArgs;\nimport com.pulumi.materialize.inputs.SourceWebhookCheckOptionFieldArgs;\nimport com.pulumi.materialize.inputs.SourceWebhookCheckOptionFieldSecretArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var exampleWebhook = new SourceWebhook(\"exampleWebhook\", SourceWebhookArgs.builder()        \n            .clusterName(materialize_cluster.cluster().name())\n            .bodyFormat(\"json\")\n            .checkExpression(\"headers-\u003e'x-mz-api-key' = secret\")\n            .includeHeaders(SourceWebhookIncludeHeadersArgs.builder()\n                .nots(\"x-mz-api-key\")\n                .build())\n            .checkOptions(            \n                SourceWebhookCheckOptionArgs.builder()\n                    .field(SourceWebhookCheckOptionFieldArgs.builder()\n                        .headers(true)\n                        .build())\n                    .build(),\n                SourceWebhookCheckOptionArgs.builder()\n                    .field(SourceWebhookCheckOptionFieldArgs.builder()\n                        .secret(SourceWebhookCheckOptionFieldSecretArgs.builder()\n                            .name(materialize_secret.password().name())\n                            .databaseName(materialize_secret.password().database_name())\n                            .schemaName(materialize_secret.password().schema_name())\n                            .build())\n                        .build())\n                    .alias(\"secret\")\n                    .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  exampleWebhook:\n    type: materialize:SourceWebhook\n    properties:\n      clusterName: ${materialize_cluster.cluster.name}\n      bodyFormat: json\n      checkExpression: headers-\u003e'x-mz-api-key' = secret\n      includeHeaders:\n        nots:\n          - x-mz-api-key\n      checkOptions:\n        - field:\n            headers: true\n        - field:\n            secret:\n              name: ${materialize_secret.password.name}\n              databaseName: ${materialize_secret.password.database_name}\n              schemaName: ${materialize_secret.password.schema_name}\n          alias: secret\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nSources can be imported using the source id\n\n```sh\n $ pulumi import materialize:index/sourceWebhook:SourceWebhook example_source_webhook \u003cregion\u003e:\u003csource_id\u003e\n```\n\n Source id and information be found in the `mz_catalog.mz_sources` table The region is the region where the database is located (e.g. aws/us-east-1) ",
+            "description": "A webhook source describes a webhook you want Materialize to read data from.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as materialize from \"@pulumi/materialize\";\n\nconst exampleWebhook = new materialize.SourceWebhook(\"exampleWebhook\", {\n    clusterName: materialize_cluster.cluster.name,\n    bodyFormat: \"json\",\n    checkExpression: \"headers-\u003e'x-mz-api-key' = secret\",\n    includeHeaders: {\n        nots: [\"x-mz-api-key\"],\n    },\n    checkOptions: [\n        {\n            field: {\n                headers: true,\n            },\n        },\n        {\n            field: {\n                secret: {\n                    name: materialize_secret.password.name,\n                    databaseName: materialize_secret.password.database_name,\n                    schemaName: materialize_secret.password.schema_name,\n                },\n            },\n            alias: \"secret\",\n        },\n    ],\n});\n```\n```python\nimport pulumi\nimport pulumi_materialize as materialize\n\nexample_webhook = materialize.SourceWebhook(\"exampleWebhook\",\n    cluster_name=materialize_cluster[\"cluster\"][\"name\"],\n    body_format=\"json\",\n    check_expression=\"headers-\u003e'x-mz-api-key' = secret\",\n    include_headers=materialize.SourceWebhookIncludeHeadersArgs(\n        nots=[\"x-mz-api-key\"],\n    ),\n    check_options=[\n        materialize.SourceWebhookCheckOptionArgs(\n            field=materialize.SourceWebhookCheckOptionFieldArgs(\n                headers=True,\n            ),\n        ),\n        materialize.SourceWebhookCheckOptionArgs(\n            field=materialize.SourceWebhookCheckOptionFieldArgs(\n                secret=materialize.SourceWebhookCheckOptionFieldSecretArgs(\n                    name=materialize_secret[\"password\"][\"name\"],\n                    database_name=materialize_secret[\"password\"][\"database_name\"],\n                    schema_name=materialize_secret[\"password\"][\"schema_name\"],\n                ),\n            ),\n            alias=\"secret\",\n        ),\n    ])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Materialize = Pulumi.Materialize;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var exampleWebhook = new Materialize.SourceWebhook(\"exampleWebhook\", new()\n    {\n        ClusterName = materialize_cluster.Cluster.Name,\n        BodyFormat = \"json\",\n        CheckExpression = \"headers-\u003e'x-mz-api-key' = secret\",\n        IncludeHeaders = new Materialize.Inputs.SourceWebhookIncludeHeadersArgs\n        {\n            Nots = new[]\n            {\n                \"x-mz-api-key\",\n            },\n        },\n        CheckOptions = new[]\n        {\n            new Materialize.Inputs.SourceWebhookCheckOptionArgs\n            {\n                Field = new Materialize.Inputs.SourceWebhookCheckOptionFieldArgs\n                {\n                    Headers = true,\n                },\n            },\n            new Materialize.Inputs.SourceWebhookCheckOptionArgs\n            {\n                Field = new Materialize.Inputs.SourceWebhookCheckOptionFieldArgs\n                {\n                    Secret = new Materialize.Inputs.SourceWebhookCheckOptionFieldSecretArgs\n                    {\n                        Name = materialize_secret.Password.Name,\n                        DatabaseName = materialize_secret.Password.Database_name,\n                        SchemaName = materialize_secret.Password.Schema_name,\n                    },\n                },\n                Alias = \"secret\",\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-materialize/sdk/go/materialize\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := materialize.NewSourceWebhook(ctx, \"exampleWebhook\", \u0026materialize.SourceWebhookArgs{\n\t\t\tClusterName:     pulumi.Any(materialize_cluster.Cluster.Name),\n\t\t\tBodyFormat:      pulumi.String(\"json\"),\n\t\t\tCheckExpression: pulumi.String(\"headers-\u003e'x-mz-api-key' = secret\"),\n\t\t\tIncludeHeaders: \u0026materialize.SourceWebhookIncludeHeadersArgs{\n\t\t\t\tNots: pulumi.StringArray{\n\t\t\t\t\tpulumi.String(\"x-mz-api-key\"),\n\t\t\t\t},\n\t\t\t},\n\t\t\tCheckOptions: materialize.SourceWebhookCheckOptionArray{\n\t\t\t\t\u0026materialize.SourceWebhookCheckOptionArgs{\n\t\t\t\t\tField: \u0026materialize.SourceWebhookCheckOptionFieldArgs{\n\t\t\t\t\t\tHeaders: pulumi.Bool(true),\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t\t\u0026materialize.SourceWebhookCheckOptionArgs{\n\t\t\t\t\tField: \u0026materialize.SourceWebhookCheckOptionFieldArgs{\n\t\t\t\t\t\tSecret: \u0026materialize.SourceWebhookCheckOptionFieldSecretArgs{\n\t\t\t\t\t\t\tName:         pulumi.Any(materialize_secret.Password.Name),\n\t\t\t\t\t\t\tDatabaseName: pulumi.Any(materialize_secret.Password.Database_name),\n\t\t\t\t\t\t\tSchemaName:   pulumi.Any(materialize_secret.Password.Schema_name),\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t\tAlias: pulumi.String(\"secret\"),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.materialize.SourceWebhook;\nimport com.pulumi.materialize.SourceWebhookArgs;\nimport com.pulumi.materialize.inputs.SourceWebhookIncludeHeadersArgs;\nimport com.pulumi.materialize.inputs.SourceWebhookCheckOptionArgs;\nimport com.pulumi.materialize.inputs.SourceWebhookCheckOptionFieldArgs;\nimport com.pulumi.materialize.inputs.SourceWebhookCheckOptionFieldSecretArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var exampleWebhook = new SourceWebhook(\"exampleWebhook\", SourceWebhookArgs.builder()        \n            .clusterName(materialize_cluster.cluster().name())\n            .bodyFormat(\"json\")\n            .checkExpression(\"headers-\u003e'x-mz-api-key' = secret\")\n            .includeHeaders(SourceWebhookIncludeHeadersArgs.builder()\n                .nots(\"x-mz-api-key\")\n                .build())\n            .checkOptions(            \n                SourceWebhookCheckOptionArgs.builder()\n                    .field(SourceWebhookCheckOptionFieldArgs.builder()\n                        .headers(true)\n                        .build())\n                    .build(),\n                SourceWebhookCheckOptionArgs.builder()\n                    .field(SourceWebhookCheckOptionFieldArgs.builder()\n                        .secret(SourceWebhookCheckOptionFieldSecretArgs.builder()\n                            .name(materialize_secret.password().name())\n                            .databaseName(materialize_secret.password().database_name())\n                            .schemaName(materialize_secret.password().schema_name())\n                            .build())\n                        .build())\n                    .alias(\"secret\")\n                    .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  exampleWebhook:\n    type: materialize:SourceWebhook\n    properties:\n      clusterName: ${materialize_cluster.cluster.name}\n      bodyFormat: json\n      checkExpression: headers-\u003e'x-mz-api-key' = secret\n      includeHeaders:\n        nots:\n          - x-mz-api-key\n      checkOptions:\n        - field:\n            headers: true\n        - field:\n            secret:\n              name: ${materialize_secret.password.name}\n              databaseName: ${materialize_secret.password.database_name}\n              schemaName: ${materialize_secret.password.schema_name}\n          alias: secret\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nSources can be imported using the source id\n\n```sh\n $ pulumi import materialize:index/sourceWebhook:SourceWebhook example_source_webhook \u003cregion\u003e:\u003csource_id\u003e\n```\n\n Source id and information be found in the `mz_catalog.mz_sources` table The region is the region where the database is located (e.g. aws/us-east-1) ",
             "properties": {
                 "bodyFormat": {
                     "type": "string",
@@ -10091,7 +10127,7 @@
                 },
                 "comment": {
                     "type": "string",
-                    "description": "**Public Preview** Comment on an object in the database.\n"
+                    "description": "Comment on an object in the database.\n"
                 },
                 "databaseName": {
                     "type": "string",
@@ -10167,7 +10203,7 @@
                 },
                 "comment": {
                     "type": "string",
-                    "description": "**Public Preview** Comment on an object in the database.\n"
+                    "description": "Comment on an object in the database.\n"
                 },
                 "databaseName": {
                     "type": "string",
@@ -10237,7 +10273,7 @@
                     },
                     "comment": {
                         "type": "string",
-                        "description": "**Public Preview** Comment on an object in the database.\n"
+                        "description": "Comment on an object in the database.\n"
                     },
                     "databaseName": {
                         "type": "string",
@@ -10360,7 +10396,7 @@
                 },
                 "comment": {
                     "type": "string",
-                    "description": "**Public Preview** Comment on an object in the database.\n"
+                    "description": "Comment on an object in the database.\n"
                 },
                 "databaseName": {
                     "type": "string",
@@ -10405,7 +10441,7 @@
                 },
                 "comment": {
                     "type": "string",
-                    "description": "**Public Preview** Comment on an object in the database.\n"
+                    "description": "Comment on an object in the database.\n"
                 },
                 "databaseName": {
                     "type": "string",
@@ -10447,7 +10483,7 @@
                     },
                     "comment": {
                         "type": "string",
-                        "description": "**Public Preview** Comment on an object in the database.\n"
+                        "description": "Comment on an object in the database.\n"
                     },
                     "databaseName": {
                         "type": "string",
@@ -10489,7 +10525,7 @@
                 },
                 "comment": {
                     "type": "string",
-                    "description": "**Public Preview** Comment on an object in the database.\n"
+                    "description": "Comment on an object in the database.\n"
                 },
                 "databaseName": {
                     "type": "string",
@@ -10541,7 +10577,7 @@
             "inputProperties": {
                 "comment": {
                     "type": "string",
-                    "description": "**Public Preview** Comment on an object in the database.\n"
+                    "description": "Comment on an object in the database.\n"
                 },
                 "databaseName": {
                     "type": "string",
@@ -10595,7 +10631,7 @@
                     },
                     "comment": {
                         "type": "string",
-                        "description": "**Public Preview** Comment on an object in the database.\n"
+                        "description": "Comment on an object in the database.\n"
                     },
                     "databaseName": {
                         "type": "string",
@@ -10743,7 +10779,7 @@
             "properties": {
                 "comment": {
                     "type": "string",
-                    "description": "**Public Preview** Comment on an object in the database.\n"
+                    "description": "Comment on an object in the database.\n"
                 },
                 "createSql": {
                     "type": "string",
@@ -10789,7 +10825,7 @@
             "inputProperties": {
                 "comment": {
                     "type": "string",
-                    "description": "**Public Preview** Comment on an object in the database.\n"
+                    "description": "Comment on an object in the database.\n"
                 },
                 "databaseName": {
                     "type": "string",
@@ -10828,7 +10864,7 @@
                 "properties": {
                     "comment": {
                         "type": "string",
-                        "description": "**Public Preview** Comment on an object in the database.\n"
+                        "description": "Comment on an object in the database.\n"
                     },
                     "createSql": {
                         "type": "string",
