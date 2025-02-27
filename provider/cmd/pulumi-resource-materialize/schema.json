@@ -1943,7 +1943,8 @@
             "properties": {
                 "field": {
                     "type": "string",
-                    "description": "The name of the option you want to set.\n"
+                    "description": "The name of the option you want to set.\n",
+                    "willReplaceOnChanges": true
                 }
             },
             "type": "object",
@@ -7426,7 +7427,7 @@
                 },
                 "default": {
                     "type": "boolean",
-                    "description": "Creates a default index using all inferred columns are used.\n"
+                    "description": "Creates a default index using all inferred columns are used. Required if col_expr is not set.\n"
                 },
                 "method": {
                     "type": "string",
@@ -7483,7 +7484,7 @@
                 },
                 "default": {
                     "type": "boolean",
-                    "description": "Creates a default index using all inferred columns are used.\n",
+                    "description": "Creates a default index using all inferred columns are used. Required if col_expr is not set.\n",
                     "willReplaceOnChanges": true
                 },
                 "method": {
@@ -7509,7 +7510,6 @@
             },
             "requiredInputs": [
                 "clusterName",
-                "colExprs",
                 "objName"
             ],
             "stateInputs": {
@@ -7538,7 +7538,7 @@
                     },
                     "default": {
                         "type": "boolean",
-                        "description": "Creates a default index using all inferred columns are used.\n",
+                        "description": "Creates a default index using all inferred columns are used. Required if col_expr is not set.\n",
                         "willReplaceOnChanges": true
                     },
                     "method": {
