@@ -1,5 +1,8 @@
 CHANGELOG
 =========
+## 0.3.15 2025-02-27
+Upgrade to Terraform Provider [0.8.15](https://github.com/MaterializeInc/terraform-provider-materialize/releases/tag/v0.8.15).
+
 ## 0.3.14 2025-02-24
 Upgrade to latest Pulumi SDK (`v3.152.0`) and Pulumi Terraform Bridge (`v3.103.0`).
 
