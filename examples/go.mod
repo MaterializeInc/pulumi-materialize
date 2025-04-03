@@ -1,6 +1,6 @@
 module github.com/MaterializeInc/pulumi-materialize/examples
 
-go 1.23.0
+go 1.23.6
 
 toolchain go1.24.1
 
