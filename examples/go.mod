@@ -1,6 +1,7 @@
 module github.com/MaterializeInc/pulumi-materialize/examples
 
-go 1.18
+go 1.23.0
+
 toolchain go1.24.1
 
 require github.com/pulumi/pulumi/pkg/v3 v3.96.2
