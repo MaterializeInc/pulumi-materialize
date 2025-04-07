@@ -7,13 +7,6 @@ services:
     image: materialize/materialized:latest
     container_name: materialized
     command:
-      - '--cluster-replica-sizes={"3xsmall": {"workers": 1, "scale": 1, "credits_per_hour": "1"}, "2xsmall": {"workers": 1, "scale": 1, "credits_per_hour": "1"}}'
-      - --bootstrap-default-cluster-replica-size=3xsmall
-      - --bootstrap-builtin-system-cluster-replica-size=3xsmall
-      - --bootstrap-builtin-catalog-server-cluster-replica-size=3xsmall
-      - --bootstrap-builtin-support-cluster-replica-size=3xsmall
-      - --bootstrap-builtin-probe-cluster-replica-size=3xsmall
-      - --bootstrap-builtin-analytics-cluster-replica-size=3xsmall
       - --availability-zone=test1
       - --availability-zone=test2
       - --all-features

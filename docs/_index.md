@@ -19,7 +19,7 @@ import pulumi_materialize
 pulumi_materialize.Cluster(
     resource_name="example",
     name="pulumi-cluster",
-    size="3xsmall",
+    size="25cc",
 )
 ```
 
