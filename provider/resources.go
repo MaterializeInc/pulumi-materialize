@@ -22,6 +22,7 @@ import (
 
 	materialize "github.com/MaterializeInc/terraform-provider-materialize/pkg/provider"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
+	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge/tokens"
 	shim "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim"
 	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v2"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
@@ -187,6 +188,7 @@ func Provider() tfbridge.ProviderInfo {
 			//Overlay: &tfbridge.OverlayInfo{},
 		},
 		Python: &tfbridge.PythonInfo{
+			RespectSchemaVersion: true,
 			// List any Python dependencies and their version ranges
 			Requires: map[string]string{
 				"pulumi": ">=3.0.0,<4.0.0",
@@ -207,6 +209,9 @@ func Provider() tfbridge.ProviderInfo {
 			},
 		},
 	}
+
+	prov.MustComputeTokens(tokens.SingleModule("materialize_",
+		mainMod, tokens.MakeStandard(mainPkg)))
 
 	prov.SetAutonaming(255, "-")
 
