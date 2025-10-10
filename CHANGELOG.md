@@ -1,5 +1,8 @@
 CHANGELOG
 =========
+## 0.3.22 2025-10-10
+Upgrade to Terraform Provider [0.8.22](https://github.com/MaterializeInc/terraform-provider-materialize/releases/tag/v0.8.22).
+
 ## 0.3.21 2025-10-04
 Upgrade to Terraform Provider [0.8.21](https://github.com/MaterializeInc/terraform-provider-materialize/releases/tag/v0.8.21).
 
