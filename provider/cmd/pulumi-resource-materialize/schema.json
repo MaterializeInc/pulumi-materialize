@@ -1112,6 +1112,136 @@
                 "name"
             ]
         },
+        "materialize:index/ConnectionSqlserverAwsPrivatelink:ConnectionSqlserverAwsPrivatelink": {
+            "properties": {
+                "databaseName": {
+                    "type": "string",
+                    "description": "The aws_privatelink database name. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The aws_privatelink name.\n"
+                },
+                "schemaName": {
+                    "type": "string",
+                    "description": "The aws_privatelink schema name. Defaults to `public`.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "name"
+            ]
+        },
+        "materialize:index/ConnectionSqlserverPassword:ConnectionSqlserverPassword": {
+            "properties": {
+                "databaseName": {
+                    "type": "string",
+                    "description": "The password database name. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The password name.\n"
+                },
+                "schemaName": {
+                    "type": "string",
+                    "description": "The password schema name. Defaults to `public`.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "name"
+            ]
+        },
+        "materialize:index/ConnectionSqlserverSshTunnel:ConnectionSqlserverSshTunnel": {
+            "properties": {
+                "databaseName": {
+                    "type": "string",
+                    "description": "The ssh_tunnel database name. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The ssh_tunnel name.\n"
+                },
+                "schemaName": {
+                    "type": "string",
+                    "description": "The ssh_tunnel schema name. Defaults to `public`.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "name"
+            ]
+        },
+        "materialize:index/ConnectionSqlserverSslCertificateAuthority:ConnectionSqlserverSslCertificateAuthority": {
+            "properties": {
+                "secret": {
+                    "$ref": "#/types/materialize:index/ConnectionSqlserverSslCertificateAuthoritySecret:ConnectionSqlserverSslCertificateAuthoritySecret",
+                    "description": "The `ssl_certificate_authority` secret value. Conflicts with `text` within this block.\n",
+                    "willReplaceOnChanges": true
+                },
+                "text": {
+                    "type": "string",
+                    "description": "The `ssl_certificate_authority` text value. Conflicts with `secret` within this block\n",
+                    "secret": true
+                }
+            },
+            "type": "object"
+        },
+        "materialize:index/ConnectionSqlserverSslCertificateAuthoritySecret:ConnectionSqlserverSslCertificateAuthoritySecret": {
+            "properties": {
+                "databaseName": {
+                    "type": "string",
+                    "description": "The ssl*certificate*authority database name. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The ssl*certificate*authority name.\n"
+                },
+                "schemaName": {
+                    "type": "string",
+                    "description": "The ssl*certificate*authority schema name. Defaults to `public`.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "name"
+            ]
+        },
+        "materialize:index/ConnectionSqlserverUser:ConnectionSqlserverUser": {
+            "properties": {
+                "secret": {
+                    "$ref": "#/types/materialize:index/ConnectionSqlserverUserSecret:ConnectionSqlserverUserSecret",
+                    "description": "The `user` secret value. Conflicts with `text` within this block.\n",
+                    "willReplaceOnChanges": true
+                },
+                "text": {
+                    "type": "string",
+                    "description": "The `user` text value. Conflicts with `secret` within this block\n",
+                    "secret": true
+                }
+            },
+            "type": "object"
+        },
+        "materialize:index/ConnectionSqlserverUserSecret:ConnectionSqlserverUserSecret": {
+            "properties": {
+                "databaseName": {
+                    "type": "string",
+                    "description": "The user database name. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The user name.\n"
+                },
+                "schemaName": {
+                    "type": "string",
+                    "description": "The user schema name. Defaults to `public`.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "name"
+            ]
+        },
         "materialize:index/GetClusterReplicasClusterReplica:GetClusterReplicasClusterReplica": {
             "properties": {
                 "availabilityZone": {
@@ -3071,6 +3201,105 @@
                 "upstreamSchemaName": {
                     "type": "string",
                     "description": "The schema of the table in the upstream Postgres database.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "upstreamName"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "databaseName",
+                        "name",
+                        "schemaName",
+                        "upstreamName",
+                        "upstreamSchemaName"
+                    ]
+                }
+            }
+        },
+        "materialize:index/SourceSqlserverAwsPrivatelink:SourceSqlserverAwsPrivatelink": {
+            "properties": {
+                "databaseName": {
+                    "type": "string",
+                    "description": "The aws_privatelink database name. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The aws_privatelink name.\n"
+                },
+                "schemaName": {
+                    "type": "string",
+                    "description": "The aws_privatelink schema name. Defaults to `public`.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "name"
+            ]
+        },
+        "materialize:index/SourceSqlserverExposeProgress:SourceSqlserverExposeProgress": {
+            "properties": {
+                "databaseName": {
+                    "type": "string",
+                    "description": "The expose_progress database name. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The expose_progress name.\n"
+                },
+                "schemaName": {
+                    "type": "string",
+                    "description": "The expose_progress schema name. Defaults to `public`.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "name"
+            ]
+        },
+        "materialize:index/SourceSqlserverSqlserverConnection:SourceSqlserverSqlserverConnection": {
+            "properties": {
+                "databaseName": {
+                    "type": "string",
+                    "description": "The sqlserver_connection database name. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The sqlserver_connection name.\n"
+                },
+                "schemaName": {
+                    "type": "string",
+                    "description": "The sqlserver_connection schema name. Defaults to `public`.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "name"
+            ]
+        },
+        "materialize:index/SourceSqlserverTable:SourceSqlserverTable": {
+            "properties": {
+                "databaseName": {
+                    "type": "string",
+                    "description": "The database of the table in Materialize.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name for the table, used in Materialize.\n"
+                },
+                "schemaName": {
+                    "type": "string",
+                    "description": "The schema of the table in Materialize.\n"
+                },
+                "upstreamName": {
+                    "type": "string",
+                    "description": "The name of the table in the upstream SQL Server database.\n"
+                },
+                "upstreamSchemaName": {
+                    "type": "string",
+                    "description": "The schema of the table in the upstream SQL Server database.\n"
                 }
             },
             "type": "object",
@@ -5304,6 +5533,257 @@
                     "user": {
                         "$ref": "#/types/materialize:index/ConnectionPostgresUser:ConnectionPostgresUser",
                         "description": "The Postgres database username.. Can be supplied as either free text using `text` or reference to a secret object using `secret`.\n"
+                    },
+                    "validate": {
+                        "type": "boolean",
+                        "description": "If the connection should wait for validation.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "materialize:index/connectionSqlserver:ConnectionSqlserver": {
+            "description": "A SQL Server connection establishes a link to a single database of a SQL Server instance.\n\n## Import\n\nThe `pulumi import` command can be used, for example:\n\n#!/bin/bash\n\nSQL Server connections can be imported using the connection name\n\n```sh\n$ pulumi import materialize:index/connectionSqlserver:ConnectionSqlserver example \u003cregion\u003e:\u003cconnection_name\u003e\n```\n\nExample\n\n```sh\n$ pulumi import materialize:index/connectionSqlserver:ConnectionSqlserver example aws/us-east-1:my_sqlserver_connection\n```\n\n",
+            "properties": {
+                "awsPrivatelink": {
+                    "$ref": "#/types/materialize:index/ConnectionSqlserverAwsPrivatelink:ConnectionSqlserverAwsPrivatelink",
+                    "description": "The AWS PrivateLink configuration for the SQL Server database.\n"
+                },
+                "comment": {
+                    "type": "string",
+                    "description": "Comment on an object in the database.\n"
+                },
+                "database": {
+                    "type": "string",
+                    "description": "The target SQL Server database.\n"
+                },
+                "databaseName": {
+                    "type": "string",
+                    "description": "The identifier for the connection database in Materialize. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
+                },
+                "host": {
+                    "type": "string",
+                    "description": "The SQL Server database hostname.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The identifier for the connection.\n"
+                },
+                "ownershipRole": {
+                    "type": "string",
+                    "description": "The owernship role of the object.\n"
+                },
+                "password": {
+                    "$ref": "#/types/materialize:index/ConnectionSqlserverPassword:ConnectionSqlserverPassword",
+                    "description": "The SQL Server database password.\n"
+                },
+                "port": {
+                    "type": "integer",
+                    "description": "The SQL Server database port.\n"
+                },
+                "qualifiedSqlName": {
+                    "type": "string",
+                    "description": "The fully qualified name of the connection.\n"
+                },
+                "region": {
+                    "type": "string",
+                    "description": "The region to use for the resource connection. If not set, the default region is used.\n"
+                },
+                "schemaName": {
+                    "type": "string",
+                    "description": "The identifier for the connection schema in Materialize. Defaults to `public`.\n"
+                },
+                "sshTunnel": {
+                    "$ref": "#/types/materialize:index/ConnectionSqlserverSshTunnel:ConnectionSqlserverSshTunnel",
+                    "description": "The SSH tunnel configuration for the SQL Server database.\n"
+                },
+                "sslCertificateAuthority": {
+                    "$ref": "#/types/materialize:index/ConnectionSqlserverSslCertificateAuthority:ConnectionSqlserverSslCertificateAuthority",
+                    "description": "The CA certificate for the SQL Server database.. Can be supplied as either free text using `text` or reference to a secret object using `secret`.\n"
+                },
+                "sslMode": {
+                    "type": "string",
+                    "description": "The SSL mode for the SQL Server database. Allowed values are disabled, required, verify, verify-ca.\n"
+                },
+                "user": {
+                    "$ref": "#/types/materialize:index/ConnectionSqlserverUser:ConnectionSqlserverUser",
+                    "description": "The SQL Server database username.. Can be supplied as either free text using `text` or reference to a secret object using `secret`.\n"
+                },
+                "validate": {
+                    "type": "boolean",
+                    "description": "If the connection should wait for validation.\n"
+                }
+            },
+            "required": [
+                "database",
+                "host",
+                "name",
+                "ownershipRole",
+                "qualifiedSqlName",
+                "region",
+                "user"
+            ],
+            "inputProperties": {
+                "awsPrivatelink": {
+                    "$ref": "#/types/materialize:index/ConnectionSqlserverAwsPrivatelink:ConnectionSqlserverAwsPrivatelink",
+                    "description": "The AWS PrivateLink configuration for the SQL Server database.\n",
+                    "willReplaceOnChanges": true
+                },
+                "comment": {
+                    "type": "string",
+                    "description": "Comment on an object in the database.\n"
+                },
+                "database": {
+                    "type": "string",
+                    "description": "The target SQL Server database.\n",
+                    "willReplaceOnChanges": true
+                },
+                "databaseName": {
+                    "type": "string",
+                    "description": "The identifier for the connection database in Materialize. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
+                    "willReplaceOnChanges": true
+                },
+                "host": {
+                    "type": "string",
+                    "description": "The SQL Server database hostname.\n",
+                    "willReplaceOnChanges": true
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The identifier for the connection.\n"
+                },
+                "ownershipRole": {
+                    "type": "string",
+                    "description": "The owernship role of the object.\n"
+                },
+                "password": {
+                    "$ref": "#/types/materialize:index/ConnectionSqlserverPassword:ConnectionSqlserverPassword",
+                    "description": "The SQL Server database password.\n",
+                    "willReplaceOnChanges": true
+                },
+                "port": {
+                    "type": "integer",
+                    "description": "The SQL Server database port.\n",
+                    "willReplaceOnChanges": true
+                },
+                "region": {
+                    "type": "string",
+                    "description": "The region to use for the resource connection. If not set, the default region is used.\n",
+                    "willReplaceOnChanges": true
+                },
+                "schemaName": {
+                    "type": "string",
+                    "description": "The identifier for the connection schema in Materialize. Defaults to `public`.\n",
+                    "willReplaceOnChanges": true
+                },
+                "sshTunnel": {
+                    "$ref": "#/types/materialize:index/ConnectionSqlserverSshTunnel:ConnectionSqlserverSshTunnel",
+                    "description": "The SSH tunnel configuration for the SQL Server database.\n",
+                    "willReplaceOnChanges": true
+                },
+                "sslCertificateAuthority": {
+                    "$ref": "#/types/materialize:index/ConnectionSqlserverSslCertificateAuthority:ConnectionSqlserverSslCertificateAuthority",
+                    "description": "The CA certificate for the SQL Server database.. Can be supplied as either free text using `text` or reference to a secret object using `secret`.\n",
+                    "willReplaceOnChanges": true
+                },
+                "sslMode": {
+                    "type": "string",
+                    "description": "The SSL mode for the SQL Server database. Allowed values are disabled, required, verify, verify-ca.\n",
+                    "willReplaceOnChanges": true
+                },
+                "user": {
+                    "$ref": "#/types/materialize:index/ConnectionSqlserverUser:ConnectionSqlserverUser",
+                    "description": "The SQL Server database username.. Can be supplied as either free text using `text` or reference to a secret object using `secret`.\n",
+                    "willReplaceOnChanges": true
+                },
+                "validate": {
+                    "type": "boolean",
+                    "description": "If the connection should wait for validation.\n"
+                }
+            },
+            "requiredInputs": [
+                "database",
+                "host",
+                "user"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering ConnectionSqlserver resources.\n",
+                "properties": {
+                    "awsPrivatelink": {
+                        "$ref": "#/types/materialize:index/ConnectionSqlserverAwsPrivatelink:ConnectionSqlserverAwsPrivatelink",
+                        "description": "The AWS PrivateLink configuration for the SQL Server database.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "comment": {
+                        "type": "string",
+                        "description": "Comment on an object in the database.\n"
+                    },
+                    "database": {
+                        "type": "string",
+                        "description": "The target SQL Server database.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "databaseName": {
+                        "type": "string",
+                        "description": "The identifier for the connection database in Materialize. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "host": {
+                        "type": "string",
+                        "description": "The SQL Server database hostname.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The identifier for the connection.\n"
+                    },
+                    "ownershipRole": {
+                        "type": "string",
+                        "description": "The owernship role of the object.\n"
+                    },
+                    "password": {
+                        "$ref": "#/types/materialize:index/ConnectionSqlserverPassword:ConnectionSqlserverPassword",
+                        "description": "The SQL Server database password.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "port": {
+                        "type": "integer",
+                        "description": "The SQL Server database port.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "qualifiedSqlName": {
+                        "type": "string",
+                        "description": "The fully qualified name of the connection.\n"
+                    },
+                    "region": {
+                        "type": "string",
+                        "description": "The region to use for the resource connection. If not set, the default region is used.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "schemaName": {
+                        "type": "string",
+                        "description": "The identifier for the connection schema in Materialize. Defaults to `public`.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "sshTunnel": {
+                        "$ref": "#/types/materialize:index/ConnectionSqlserverSshTunnel:ConnectionSqlserverSshTunnel",
+                        "description": "The SSH tunnel configuration for the SQL Server database.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "sslCertificateAuthority": {
+                        "$ref": "#/types/materialize:index/ConnectionSqlserverSslCertificateAuthority:ConnectionSqlserverSslCertificateAuthority",
+                        "description": "The CA certificate for the SQL Server database.. Can be supplied as either free text using `text` or reference to a secret object using `secret`.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "sslMode": {
+                        "type": "string",
+                        "description": "The SSL mode for the SQL Server database. Allowed values are disabled, required, verify, verify-ca.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "user": {
+                        "$ref": "#/types/materialize:index/ConnectionSqlserverUser:ConnectionSqlserverUser",
+                        "description": "The SQL Server database username.. Can be supplied as either free text using `text` or reference to a secret object using `secret`.\n",
+                        "willReplaceOnChanges": true
                     },
                     "validate": {
                         "type": "boolean",
@@ -10169,6 +10649,243 @@
                             "type": "string"
                         },
                         "description": "Decode data as text for specific columns that contain PostgreSQL types that are unsupported in Materialize. Can only be updated in place when also updating a corresponding `table` attribute.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "materialize:index/sourceSqlserver:SourceSqlserver": {
+            "description": "A SQL Server source describes a SQL Server database instance you want Materialize to read data from using Change Data Capture (CDC).\n\n## Import\n\nThe `pulumi import` command can be used, for example:\n\n#!/bin/bash\n\nSQL Server sources can be imported using the source name\n\n```sh\n$ pulumi import materialize:index/sourceSqlserver:SourceSqlserver example \u003cregion\u003e:\u003csource_name\u003e\n```\n\nExample\n\n```sh\n$ pulumi import materialize:index/sourceSqlserver:SourceSqlserver example aws/us-east-1:my_sqlserver_source\n```\n\n",
+            "properties": {
+                "awsPrivatelink": {
+                    "$ref": "#/types/materialize:index/SourceSqlserverAwsPrivatelink:SourceSqlserverAwsPrivatelink",
+                    "description": "The AWS PrivateLink configuration for the SQL Server database.\n"
+                },
+                "clusterName": {
+                    "type": "string",
+                    "description": "The cluster to maintain this source.\n"
+                },
+                "comment": {
+                    "type": "string",
+                    "description": "Comment on an object in the database.\n"
+                },
+                "databaseName": {
+                    "type": "string",
+                    "description": "The identifier for the source database in Materialize. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n"
+                },
+                "excludeColumns": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Exclude specific columns when reading data from SQL Server. Can only be updated in place when also updating a corresponding `table` attribute.\n"
+                },
+                "exposeProgress": {
+                    "$ref": "#/types/materialize:index/SourceSqlserverExposeProgress:SourceSqlserverExposeProgress",
+                    "description": "The name of the progress collection for the source. If this is not specified, the collection will be named `\u003csrc_name\u003e_progress`.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The identifier for the source.\n"
+                },
+                "ownershipRole": {
+                    "type": "string",
+                    "description": "The owernship role of the object.\n"
+                },
+                "qualifiedSqlName": {
+                    "type": "string",
+                    "description": "The fully qualified name of the source.\n"
+                },
+                "region": {
+                    "type": "string",
+                    "description": "The region to use for the resource connection. If not set, the default region is used.\n"
+                },
+                "schemaName": {
+                    "type": "string",
+                    "description": "The identifier for the source schema in Materialize. Defaults to `public`.\n"
+                },
+                "size": {
+                    "type": "string",
+                    "description": "The size of the cluster maintaining this source.\n"
+                },
+                "sqlserverConnection": {
+                    "$ref": "#/types/materialize:index/SourceSqlserverSqlserverConnection:SourceSqlserverSqlserverConnection",
+                    "description": "The SQL Server connection to use in the source.\n"
+                },
+                "tables": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/materialize:index/SourceSqlserverTable:SourceSqlserverTable"
+                    },
+                    "description": "Specify the tables to be included in the source. If not specified, all tables are included.\n"
+                },
+                "textColumns": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Decode data as text for specific columns that contain SQL Server types that are unsupported in Materialize. Can only be updated in place when also updating a corresponding `table` attribute.\n"
+                }
+            },
+            "required": [
+                "clusterName",
+                "name",
+                "ownershipRole",
+                "qualifiedSqlName",
+                "region",
+                "size",
+                "sqlserverConnection",
+                "tables"
+            ],
+            "inputProperties": {
+                "awsPrivatelink": {
+                    "$ref": "#/types/materialize:index/SourceSqlserverAwsPrivatelink:SourceSqlserverAwsPrivatelink",
+                    "description": "The AWS PrivateLink configuration for the SQL Server database.\n"
+                },
+                "clusterName": {
+                    "type": "string",
+                    "description": "The cluster to maintain this source.\n",
+                    "willReplaceOnChanges": true
+                },
+                "comment": {
+                    "type": "string",
+                    "description": "Comment on an object in the database.\n"
+                },
+                "databaseName": {
+                    "type": "string",
+                    "description": "The identifier for the source database in Materialize. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
+                    "willReplaceOnChanges": true
+                },
+                "excludeColumns": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Exclude specific columns when reading data from SQL Server. Can only be updated in place when also updating a corresponding `table` attribute.\n"
+                },
+                "exposeProgress": {
+                    "$ref": "#/types/materialize:index/SourceSqlserverExposeProgress:SourceSqlserverExposeProgress",
+                    "description": "The name of the progress collection for the source. If this is not specified, the collection will be named `\u003csrc_name\u003e_progress`.\n",
+                    "willReplaceOnChanges": true
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The identifier for the source.\n"
+                },
+                "ownershipRole": {
+                    "type": "string",
+                    "description": "The owernship role of the object.\n"
+                },
+                "region": {
+                    "type": "string",
+                    "description": "The region to use for the resource connection. If not set, the default region is used.\n",
+                    "willReplaceOnChanges": true
+                },
+                "schemaName": {
+                    "type": "string",
+                    "description": "The identifier for the source schema in Materialize. Defaults to `public`.\n",
+                    "willReplaceOnChanges": true
+                },
+                "sqlserverConnection": {
+                    "$ref": "#/types/materialize:index/SourceSqlserverSqlserverConnection:SourceSqlserverSqlserverConnection",
+                    "description": "The SQL Server connection to use in the source.\n",
+                    "willReplaceOnChanges": true
+                },
+                "tables": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/materialize:index/SourceSqlserverTable:SourceSqlserverTable"
+                    },
+                    "description": "Specify the tables to be included in the source. If not specified, all tables are included.\n"
+                },
+                "textColumns": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Decode data as text for specific columns that contain SQL Server types that are unsupported in Materialize. Can only be updated in place when also updating a corresponding `table` attribute.\n"
+                }
+            },
+            "requiredInputs": [
+                "sqlserverConnection"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering SourceSqlserver resources.\n",
+                "properties": {
+                    "awsPrivatelink": {
+                        "$ref": "#/types/materialize:index/SourceSqlserverAwsPrivatelink:SourceSqlserverAwsPrivatelink",
+                        "description": "The AWS PrivateLink configuration for the SQL Server database.\n"
+                    },
+                    "clusterName": {
+                        "type": "string",
+                        "description": "The cluster to maintain this source.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "comment": {
+                        "type": "string",
+                        "description": "Comment on an object in the database.\n"
+                    },
+                    "databaseName": {
+                        "type": "string",
+                        "description": "The identifier for the source database in Materialize. Defaults to `MZ_DATABASE` environment variable if set or `materialize` if environment variable is not set.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "excludeColumns": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Exclude specific columns when reading data from SQL Server. Can only be updated in place when also updating a corresponding `table` attribute.\n"
+                    },
+                    "exposeProgress": {
+                        "$ref": "#/types/materialize:index/SourceSqlserverExposeProgress:SourceSqlserverExposeProgress",
+                        "description": "The name of the progress collection for the source. If this is not specified, the collection will be named `\u003csrc_name\u003e_progress`.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The identifier for the source.\n"
+                    },
+                    "ownershipRole": {
+                        "type": "string",
+                        "description": "The owernship role of the object.\n"
+                    },
+                    "qualifiedSqlName": {
+                        "type": "string",
+                        "description": "The fully qualified name of the source.\n"
+                    },
+                    "region": {
+                        "type": "string",
+                        "description": "The region to use for the resource connection. If not set, the default region is used.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "schemaName": {
+                        "type": "string",
+                        "description": "The identifier for the source schema in Materialize. Defaults to `public`.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "size": {
+                        "type": "string",
+                        "description": "The size of the cluster maintaining this source.\n"
+                    },
+                    "sqlserverConnection": {
+                        "$ref": "#/types/materialize:index/SourceSqlserverSqlserverConnection:SourceSqlserverSqlserverConnection",
+                        "description": "The SQL Server connection to use in the source.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "tables": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/materialize:index/SourceSqlserverTable:SourceSqlserverTable"
+                        },
+                        "description": "Specify the tables to be included in the source. If not specified, all tables are included.\n"
+                    },
+                    "textColumns": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Decode data as text for specific columns that contain SQL Server types that are unsupported in Materialize. Can only be updated in place when also updating a corresponding `table` attribute.\n"
                     }
                 },
                 "type": "object"
