@@ -1,0 +1,138 @@
+name: Test
+
+on:
+  pull_request:
+    branches: [main]
+
+env:
+  # THIS GITHUB_TOKEN IS A REQUIREMENT TO BE ABLE TO WRITE TO GH RELEASES
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  # Materialize test environment variables
+  MZ_ENDPOINT: http://localhost:3000
+  MZ_CLOUD_ENDPOINT: http://localhost:3001
+  MZ_PASSWORD: mzp_1b2a3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b
+  MZ_SSLMODE: disable
+  PULUMI_SKIP_UPDATE_CHECK: true
+  PULUMI_AUTOMATION_API_SKIP_VERSION_CHECK: true
+  PULUMI_DISABLE_AUTOMATIC_PLUGIN_ACQUISITION: true
+  PULUMI_HOME: /home/runner/.pulumi
+
+jobs:
+  test:
+    name: Run Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: "1.24"
+
+      - name: Install pulumi
+        uses: pulumi/setup-pulumi@v2
+        with:
+          pulumi-version: ^3.0.0
+
+      - name: Install pulumictl
+        uses: jaxxstorm/action-install-gh-release@v1.5.0
+        with:
+          repo: pulumi/pulumictl
+
+      - name: Set up version fallback
+        run: |
+          # Debug: Check git tags and pulumictl
+          echo "Git tags:"
+          git tag -l
+          echo "Pulumictl version check:"
+          pulumictl get version || echo "pulumictl get version failed"
+
+          # Create a fallback version if no tags exist
+          if ! pulumictl get version >/dev/null 2>&1; then
+            echo "No git tags found, creating fallback version"
+            git tag v0.0.0-dev
+            echo "VERSION_FALLBACK=v0.0.0-dev" >> $GITHUB_ENV
+            echo "Created fallback version: v0.0.0-dev"
+          else
+            echo "VERSION_FALLBACK=" >> $GITHUB_ENV
+            echo "Using existing version: $(pulumictl get version)"
+          fi
+
+      - name: Install Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.9"
+
+      - name: Install Docker Compose
+        run: |
+          sudo curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+          sudo chmod +x /usr/local/bin/docker-compose
+
+      - name: Configure hosts file
+        run: echo "127.0.0.1 materialized frontegg cloud" | sudo tee -a /etc/hosts
+
+      - name: Start test services
+        run: |
+          docker compose -f examples/compose.yaml up -d --build
+
+      - name: Wait for services to be ready
+        run: |
+          # Wait for Materialize to be ready
+          timeout 60 bash -c 'until curl -f http://localhost:6878/api/readyz; do sleep 2; done'
+
+      - name: Build provider and SDKs
+        run: |
+          echo "VERSION_FALLBACK: $VERSION_FALLBACK"
+          echo "Current pulumictl version: $(pulumictl get version || echo 'failed')"
+
+          # Use fallback version if no tags exist
+          if [ -n "$VERSION_FALLBACK" ]; then
+            echo "Using fallback version: $VERSION_FALLBACK"
+            make provider VERSION="$VERSION_FALLBACK"
+            make build_python VERSION="$VERSION_FALLBACK"
+          else
+            echo "Using pulumictl version"
+            make provider
+            make build_python
+          fi
+
+      - name: Verify Python SDK build
+        run: |
+          ls -la sdk/python/bin/
+          test -f sdk/python/bin/setup.py
+          test -d sdk/python/bin/pulumi_materialize
+
+      - name: Install plugin locally and add to PATH
+        run: |
+          # Install the plugin locally to avoid download issues
+          VERSION=$(pulumictl get version)
+          echo "Installing plugin version: $VERSION"
+          pulumi plugin install resource materialize $VERSION --file ./bin/pulumi-resource-materialize
+          echo "Verifying plugin installation:"
+          pulumi plugin ls
+
+          # Copy plugin to a location on PATH so tests can find it
+          sudo cp ./bin/pulumi-resource-materialize /usr/local/bin/
+          sudo chmod +x /usr/local/bin/pulumi-resource-materialize
+
+          echo "Verifying plugin is on PATH:"
+          which pulumi-resource-materialize
+          pulumi-resource-materialize --version || echo "Version check failed (expected)"
+
+      - name: Run tests
+        run: |
+          make test
+
+      - name: Run tests with verbose output (for debugging)
+        if: failure()
+        run: |
+          make test
+
+      - name: Cleanup
+        if: always()
+        run: |
+          docker compose -f examples/compose.yaml down -v
