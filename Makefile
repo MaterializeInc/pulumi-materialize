@@ -99,6 +99,10 @@ help::
 	@grep '^[^.#]\+:\s\+.*#' Makefile | \
  	sed "s/\(.\+\):\s*\(.*\) #\s*\(.*\)/`printf "\033[93m"`\1`printf "\033[0m"`	\3 [\2]/" | \
  	expand -t20
+	@echo ""
+	@echo "Test targets:"
+	@echo "  test          Run tests with verbose output (default)"
+	@echo "  test-quiet    Run tests with quiet output"
 
 clean::
 	rm -rf sdk/{dotnet,nodejs,go,python}
@@ -129,3 +133,6 @@ install_sdks:: install_python_sdk
 
 test::
 	cd examples && go test -v -tags=all -parallel ${TESTPARALLELISM} -timeout 2h
+
+test-quiet::
+	cd examples && go test -tags=all -parallel ${TESTPARALLELISM} -timeout 2h

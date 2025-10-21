@@ -1,0 +1,86 @@
+name: Test
+
+on:
+  pull_request:
+    branches: [main]
+
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  MZ_ENDPOINT: http://localhost:3000
+  MZ_CLOUD_ENDPOINT: http://localhost:3001
+  MZ_PASSWORD: mzp_1b2a3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b
+  MZ_SSLMODE: disable
+  PULUMI_SKIP_UPDATE_CHECK: true
+  PULUMI_AUTOMATION_API_SKIP_VERSION_CHECK: true
+  PULUMI_DISABLE_AUTOMATIC_PLUGIN_ACQUISITION: true
+
+jobs:
+  test:
+    name: Run Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: "1.24"
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.9"
+
+      - name: Install pulumi
+        uses: pulumi/setup-pulumi@v2
+        with:
+          pulumi-version: ^3.0.0
+
+      - name: Install pulumictl
+        uses: jaxxstorm/action-install-gh-release@v1.5.0
+        with:
+          repo: pulumi/pulumictl
+
+      - name: Setup version
+        run: |
+          if ! pulumictl get version >/dev/null 2>&1; then
+            git tag v0.0.0-dev
+            echo "VERSION=v0.0.0-dev" >> $GITHUB_ENV
+          else
+            echo "VERSION=$(pulumictl get version)" >> $GITHUB_ENV
+          fi
+          echo "Using version: $VERSION"
+
+      - name: Configure environment
+        run: |
+          echo "127.0.0.1 materialized frontegg cloud" | sudo tee -a /etc/hosts
+          sudo curl -sL "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+          sudo chmod +x /usr/local/bin/docker-compose
+
+      - name: Start test services
+        run: docker compose -f examples/compose.yaml up -d --build
+
+      - name: Wait for services
+        run: timeout 60 bash -c 'until curl -sf http://localhost:6878/api/readyz; do sleep 2; done'
+
+      - name: Build provider and SDKs
+        run: |
+          make provider VERSION="$VERSION"
+          make build_python VERSION="$VERSION"
+
+      - name: Install plugin
+        run: |
+          pulumi plugin install resource materialize $VERSION --file ./bin/pulumi-resource-materialize
+          sudo cp ./bin/pulumi-resource-materialize /usr/local/bin/
+          sudo chmod +x /usr/local/bin/pulumi-resource-materialize
+
+      - name: Run tests
+        run: make test
+
+      - name: Cleanup
+        if: always()
+        run: docker compose -f examples/compose.yaml down -v
