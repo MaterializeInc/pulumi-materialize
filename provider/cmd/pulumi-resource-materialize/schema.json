@@ -8249,7 +8249,7 @@
             }
         },
         "materialize:index/role:Role": {
-            "description": "A role is a collection of privileges you can apply to users.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as materialize from \"@pulumi/materialize\";\n\nconst exampleRole = new materialize.Role(\"exampleRole\", {});\n```\n```python\nimport pulumi\nimport pulumi_materialize as materialize\n\nexample_role = materialize.Role(\"exampleRole\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Materialize = Pulumi.Materialize;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var exampleRole = new Materialize.Role(\"exampleRole\");\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-materialize/sdk/go/materialize\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := materialize.NewRole(ctx, \"exampleRole\", nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.materialize.Role;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var exampleRole = new Role(\"exampleRole\");\n\n    }\n}\n```\n```yaml\nresources:\n  exampleRole:\n    type: materialize:Role\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nThe `pulumi import` command can be used, for example:\n\nRoles can be imported using the role id:\n\n```sh\n$ pulumi import materialize:index/role:Role example_role \u003cregion\u003e:\u003crole_id\u003e\n```\n\nRole id and information be found in the `mz_catalog.mz_roles` table\n\nThe region is the region where the database is located (e.g. aws/us-east-1)\n\n",
+            "description": "A role is a collection of privileges you can apply to users.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as materialize from \"@pulumi/materialize\";\n\nconst exampleRole = new materialize.Role(\"exampleRole\", {});\nconst adminUser = new materialize.Role(\"adminUser\", {\n    password: _var.admin_password,\n    superuser: true,\n});\n```\n```python\nimport pulumi\nimport pulumi_materialize as materialize\n\nexample_role = materialize.Role(\"exampleRole\")\nadmin_user = materialize.Role(\"adminUser\",\n    password=var[\"admin_password\"],\n    superuser=True)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Materialize = Pulumi.Materialize;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var exampleRole = new Materialize.Role(\"exampleRole\");\n\n    var adminUser = new Materialize.Role(\"adminUser\", new()\n    {\n        Password = @var.Admin_password,\n        Superuser = true,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-materialize/sdk/go/materialize\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := materialize.NewRole(ctx, \"exampleRole\", nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = materialize.NewRole(ctx, \"adminUser\", \u0026materialize.RoleArgs{\n\t\t\tPassword:  pulumi.Any(_var.Admin_password),\n\t\t\tSuperuser: pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.materialize.Role;\nimport com.pulumi.materialize.RoleArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var exampleRole = new Role(\"exampleRole\");\n\n        var adminUser = new Role(\"adminUser\", RoleArgs.builder()\n            .password(var_.admin_password())\n            .superuser(true)\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  exampleRole:\n    type: materialize:Role\n  adminUser:\n    type: materialize:Role\n    properties:\n      password: ${var.admin_password}\n      superuser: true\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nThe `pulumi import` command can be used, for example:\n\nRoles can be imported using the role id:\n\n```sh\n$ pulumi import materialize:index/role:Role example_role \u003cregion\u003e:\u003crole_id\u003e\n```\n\nRole id and information be found in the `mz_catalog.mz_roles` table\n\nThe region is the region where the database is located (e.g. aws/us-east-1)\n\n",
             "properties": {
                 "comment": {
                     "type": "string",
@@ -8259,9 +8259,18 @@
                     "type": "boolean",
                     "description": "Grants the role the ability to inheritance of privileges of other roles. Unlike PostgreSQL, Materialize does not currently support `NOINHERIT`\n"
                 },
+                "login": {
+                    "type": "boolean",
+                    "description": "Whether the role can log in. Only available in self-hosted Materialize environments with password authentication enabled. Defaults to `false`.\n"
+                },
                 "name": {
                     "type": "string",
                     "description": "The identifier for the role.\n"
+                },
+                "password": {
+                    "type": "string",
+                    "description": "Password for the role. Only available in self-hosted Materialize environments with password authentication enabled. Required for password-based authentication.\n",
+                    "secret": true
                 },
                 "qualifiedSqlName": {
                     "type": "string",
@@ -8270,6 +8279,10 @@
                 "region": {
                     "type": "string",
                     "description": "The region to use for the resource connection. If not set, the default region is used.\n"
+                },
+                "superuser": {
+                    "type": "boolean",
+                    "description": "Whether the role is a superuser. Only available in self-hosted Materialize environments with password authentication enabled. Defaults to `false`.\n"
                 }
             },
             "required": [
@@ -8283,15 +8296,28 @@
                     "type": "string",
                     "description": "Comment on an object in the database.\n"
                 },
+                "login": {
+                    "type": "boolean",
+                    "description": "Whether the role can log in. Only available in self-hosted Materialize environments with password authentication enabled. Defaults to `false`.\n"
+                },
                 "name": {
                     "type": "string",
                     "description": "The identifier for the role.\n",
                     "willReplaceOnChanges": true
                 },
+                "password": {
+                    "type": "string",
+                    "description": "Password for the role. Only available in self-hosted Materialize environments with password authentication enabled. Required for password-based authentication.\n",
+                    "secret": true
+                },
                 "region": {
                     "type": "string",
                     "description": "The region to use for the resource connection. If not set, the default region is used.\n",
                     "willReplaceOnChanges": true
+                },
+                "superuser": {
+                    "type": "boolean",
+                    "description": "Whether the role is a superuser. Only available in self-hosted Materialize environments with password authentication enabled. Defaults to `false`.\n"
                 }
             },
             "stateInputs": {
@@ -8305,10 +8331,19 @@
                         "type": "boolean",
                         "description": "Grants the role the ability to inheritance of privileges of other roles. Unlike PostgreSQL, Materialize does not currently support `NOINHERIT`\n"
                     },
+                    "login": {
+                        "type": "boolean",
+                        "description": "Whether the role can log in. Only available in self-hosted Materialize environments with password authentication enabled. Defaults to `false`.\n"
+                    },
                     "name": {
                         "type": "string",
                         "description": "The identifier for the role.\n",
                         "willReplaceOnChanges": true
+                    },
+                    "password": {
+                        "type": "string",
+                        "description": "Password for the role. Only available in self-hosted Materialize environments with password authentication enabled. Required for password-based authentication.\n",
+                        "secret": true
                     },
                     "qualifiedSqlName": {
                         "type": "string",
@@ -8318,6 +8353,10 @@
                         "type": "string",
                         "description": "The region to use for the resource connection. If not set, the default region is used.\n",
                         "willReplaceOnChanges": true
+                    },
+                    "superuser": {
+                        "type": "boolean",
+                        "description": "Whether the role is a superuser. Only available in self-hosted Materialize environments with password authentication enabled. Defaults to `false`.\n"
                     }
                 },
                 "type": "object"
